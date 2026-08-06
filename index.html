@@ -1,0 +1,1229 @@
+<title>Suivi Zeno &amp; CRM AEIG</title>
+<style>
+  :root{
+    --ink:#111111;
+    --ink-soft:#666666;
+    --ink-faint:#999999;
+    --paper:#ffffff;
+    --paper-raised:#ffffff;
+    --line:#dddddd;
+    --line-soft:#eeeeee;
+    --ok:#1e7a44;
+    --ok-soft:#e6f2ea;
+    --warn:#946200;
+    --warn-soft:#fbf0dc;
+    --crit:#b23434;
+    --crit-soft:#fbe6e6;
+    --idle:#777777;
+    --idle-soft:#eeeeee;
+    --font-body: -apple-system, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#f0f0f0; --ink-soft:#a3a3a3; --ink-faint:#707070;
+      --paper:#0a0a0a; --paper-raised:#141414; --line:#2b2b2b; --line-soft:#1e1e1e;
+      --ok:#5fbf87; --ok-soft:#12261c; --warn:#e0ac47; --warn-soft:#2b2110;
+      --crit:#e2726f; --crit-soft:#2c1615; --idle:#9a9a9a; --idle-soft:#1c1c1c;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#f0f0f0; --ink-soft:#a3a3a3; --ink-faint:#707070;
+    --paper:#0a0a0a; --paper-raised:#141414; --line:#2b2b2b; --line-soft:#1e1e1e;
+    --ok:#5fbf87; --ok-soft:#12261c; --warn:#e0ac47; --warn-soft:#2b2110;
+    --crit:#e2726f; --crit-soft:#2c1615; --idle:#9a9a9a; --idle-soft:#1c1c1c;
+  }
+  :root[data-theme="light"]{
+    --ink:#111111; --ink-soft:#666666; --ink-faint:#999999;
+    --paper:#ffffff; --paper-raised:#ffffff; --line:#dddddd; --line-soft:#eeeeee;
+    --ok:#1e7a44; --ok-soft:#e6f2ea; --warn:#946200; --warn-soft:#fbf0dc;
+    --crit:#b23434; --crit-soft:#fbe6e6; --idle:#777777; --idle-soft:#eeeeee;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--font-body); font-size:13px; line-height:1.45;
+    padding:1.5rem clamp(1rem, 3vw, 2.5rem) 3rem;
+  }
+  .wrap{max-width:1320px; margin:0 auto;}
+
+  header.page{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:1.5rem; flex-wrap:wrap;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:.75rem; margin-bottom:1rem;
+  }
+  .titleblock{display:flex; flex-direction:column; gap:.15rem;}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-soft);
+  }
+  h1{ font-weight:700; font-size:1.3rem; margin:0; letter-spacing:-.01em; }
+  .meta-row{
+    display:flex; gap:1.1rem; flex-wrap:wrap;
+    font-family:var(--font-mono); font-size:.7rem; color:var(--ink-soft);
+    text-align:right;
+  }
+  .meta-row strong{color:var(--ink); font-weight:600;}
+
+  .project-tabs{
+    display:flex; gap:.4rem; margin-bottom:1.1rem; border-bottom:1px solid var(--line);
+  }
+  .project-tab{
+    font-family:var(--font-body); font-size:.85rem; font-weight:600; color:var(--ink-soft);
+    background:none; border:none; padding:.55rem .2rem; cursor:pointer;
+    border-bottom:2px solid transparent; margin-bottom:-1px;
+  }
+  .project-tab:hover{color:var(--ink);}
+  .project-tab.active{color:var(--ink); border-bottom-color:var(--ink);}
+  .project-tab .count{
+    font-family:var(--font-mono); font-size:.68rem; color:var(--ink-faint);
+    margin-left:.35rem;
+  }
+
+  .banner{
+    display:flex; gap:.6rem; align-items:flex-start;
+    border:1px solid var(--line); border-left:3px solid var(--ink);
+    padding:.55rem .75rem; margin-bottom:1.1rem; font-size:.76rem; color:var(--ink-soft);
+  }
+  .banner b{color:var(--ink);}
+
+  .summary{
+    display:grid; grid-template-columns:repeat(5, 1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+    margin-bottom:1.1rem;
+  }
+  .stat{
+    background:var(--paper-raised); padding:.6rem .8rem;
+    display:flex; align-items:baseline; gap:.5rem; cursor:pointer;
+  }
+  .stat:hover{background:var(--line-soft);}
+  .stat.active{box-shadow:inset 0 0 0 2px var(--ink);}
+  .stat .n{ font-family:var(--font-mono); font-variant-numeric: tabular-nums; font-size:1.15rem; font-weight:700; line-height:1; }
+  .stat .l{ font-size:.66rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); }
+  .stat.ok .n{color:var(--ok);} .stat.warn .n{color:var(--warn);}
+  .stat.crit .n{color:var(--crit);} .stat.idle .n{color:var(--idle);}
+
+  .filters{
+    display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
+    margin-bottom:.85rem; padding:.55rem .1rem;
+    border-bottom:1px solid var(--line);
+  }
+  .filter-group{display:flex; align-items:center; gap:.4rem;}
+  .filter-label{font-size:.66rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft);}
+  select{
+    font-family:var(--font-body); font-size:.78rem; color:var(--ink);
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:3px;
+    padding:.3rem .5rem; cursor:pointer; min-width:120px;
+  }
+  select:focus-visible, input:focus-visible, .stat:focus-visible, [data-toggle]:focus-visible{
+    outline:2px solid var(--ink); outline-offset:1px;
+  }
+  .search{
+    margin-left:auto; display:flex; align-items:center; gap:.4rem;
+    border:1px solid var(--line); border-radius:3px; padding:.3rem .55rem;
+    background:var(--paper-raised); min-width:190px;
+  }
+  .search input{
+    border:none; background:transparent; outline:none; color:var(--ink);
+    font-family:var(--font-body); font-size:.78rem; width:100%;
+  }
+  .search input::placeholder{color:var(--ink-faint);}
+  .reset{
+    font-family:var(--font-body); font-size:.72rem; color:var(--ink-soft);
+    background:none; border:none; text-decoration:underline; cursor:pointer; padding:0;
+  }
+  .reset:hover{color:var(--ink);}
+
+  .result-count{font-size:.72rem; color:var(--ink-faint); margin-bottom:.5rem;}
+
+  .modules{border-top:1px solid var(--ink);}
+  .module{border-bottom:1px solid var(--line);}
+  .module-row{
+    display:grid;
+    grid-template-columns:2fr 108px 84px 172px 92px 16px;
+    align-items:center; gap:.9rem;
+    padding:.5rem .3rem; cursor:pointer;
+  }
+  .module-row:hover{background:var(--line-soft);}
+  .module-name{font-weight:600; font-size:.85rem;}
+  .module-desc{display:block; font-size:.72rem; color:var(--ink-soft); font-weight:400;}
+
+  .pill{
+    display:inline-flex; align-items:center; gap:.35rem; padding:.14rem .5rem;
+    border-radius:3px; font-size:.7rem; font-weight:600; white-space:nowrap;
+  }
+  .pill::before{content:""; width:.4rem; height:.4rem; border-radius:50%; flex:none;}
+  .pill.ok{background:var(--ok-soft); color:var(--ok);} .pill.ok::before{background:var(--ok);}
+  .pill.warn{background:var(--warn-soft); color:var(--warn);} .pill.warn::before{background:var(--warn);}
+  .pill.crit{background:var(--crit-soft); color:var(--crit);} .pill.crit::before{background:var(--crit);}
+  .pill.idle{background:var(--idle-soft); color:var(--idle);} .pill.idle::before{background:var(--idle);}
+
+  .cdc{font-size:.75rem; white-space:nowrap;}
+  .cdc.yes{color:var(--ok);} .cdc.no{color:var(--crit); font-weight:600;} .cdc.partial{color:var(--warn);}
+
+  .owner{font-size:.78rem;}
+  .owner .role{color:var(--ink-faint); font-size:.7rem;}
+  .owner.clickable{
+    cursor:pointer; display:inline-flex; align-items:center; gap:.35rem;
+    padding:.18rem .5rem; border:1px solid var(--line); border-radius:4px;
+    background:var(--paper-raised); transition:background .12s, border-color .12s;
+  }
+  .owner.clickable:hover{background:var(--line-soft); border-color:var(--ink-soft);}
+  .owner.clickable .info-icon{color:var(--ink-faint); font-size:.72rem; line-height:1;}
+  .owner.clickable:hover .info-icon{color:var(--ink);}
+
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(0,0,0,.45);
+    display:none; align-items:center; justify-content:center; z-index:50; padding:1.5rem;
+  }
+  .modal-backdrop.open{display:flex;}
+  .modal{
+    background:var(--paper-raised); color:var(--ink); border:1px solid var(--line);
+    border-radius:6px; max-width:440px; width:100%; max-height:80vh; overflow-y:auto;
+    padding:1.1rem 1.2rem;
+  }
+  .modal-head{display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin-bottom:.9rem;}
+  .modal-head h3{margin:0; font-size:1rem;}
+  .modal-close-x{background:none; border:none; color:var(--ink-soft); font-size:1.1rem; cursor:pointer; line-height:1; padding:0;}
+  .modal-close-x:hover{color:var(--ink);}
+  .contact-block{padding:.6rem 0; border-top:1px solid var(--line-soft);}
+  .contact-block:first-of-type{border-top:none; padding-top:0;}
+  .contact-label{font-size:.64rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); margin-bottom:.3rem;}
+  .contact-name{font-size:.85rem; font-weight:600;}
+  .contact-role{font-size:.72rem; color:var(--ink-soft);}
+  .contact-empty{font-size:.8rem; color:var(--ink-faint); font-style:italic;}
+  .support-list{display:flex; flex-direction:column; gap:.35rem;}
+  .comment-text{font-size:.8rem; color:var(--ink); white-space:pre-wrap;}
+
+  .when{font-family:var(--font-mono); font-size:.72rem; color:var(--ink-soft); font-variant-numeric: tabular-nums; white-space:nowrap;}
+  .when.stale{color:var(--crit); font-weight:600;}
+
+  .chevron{
+    width:1rem; height:1rem; display:flex; align-items:center; justify-content:center;
+    color:var(--ink-faint); transition:transform .12s ease; flex:none; font-size:.85rem;
+  }
+  .module.open .chevron{transform:rotate(90deg); color:var(--ink);}
+
+  .tasks{ max-height:0; overflow:hidden; transition:max-height .16s ease; background:var(--line-soft); }
+  .tasks-inner{padding:.55rem .3rem .7rem 1.8rem; display:flex; flex-direction:column; gap:.3rem;}
+  .task{display:grid; grid-template-columns:auto 1fr auto; align-items:baseline; gap:.6rem; font-size:.78rem;}
+  .task .t-status{width:.4rem; height:.4rem; border-radius:50%; margin-top:.3rem; flex:none;}
+  .task .t-status.ok{background:var(--ok);} .task .t-status.warn{background:var(--warn);}
+  .task .t-status.crit{background:var(--crit);} .task .t-status.idle{background:var(--idle);}
+  .task .t-label{color:var(--ink);}
+  .task .t-note{color:var(--ink-faint); font-size:.72rem; text-align:right;}
+
+  .empty{ text-align:center; padding:2.5rem 1rem; color:var(--ink-soft); border:1px dashed var(--line); }
+
+  footer.legend{
+    display:flex; flex-wrap:wrap; gap:1.1rem; border-top:1px solid var(--line);
+    padding-top:.85rem; margin-top:1rem; font-size:.7rem; color:var(--ink-soft);
+  }
+  footer.legend .item{display:flex; align-items:center; gap:.35rem;}
+  footer.legend .dot{width:.4rem; height:.4rem; border-radius:50%;}
+  .dot.ok{background:var(--ok);} .dot.warn{background:var(--warn);} .dot.crit{background:var(--crit);} .dot.idle{background:var(--idle);}
+
+  @media (max-width: 860px){
+    .summary{grid-template-columns:repeat(2,1fr);}
+    .module-row{grid-template-columns:1fr auto; row-gap:.3rem;
+      grid-template-areas:"name chev" "status status" "cdc owner" "when when";}
+    .module-row > *:nth-child(1){grid-area:name;}
+    .module-row > *:nth-child(2){grid-area:status;}
+    .module-row > *:nth-child(3){grid-area:cdc;}
+    .module-row > *:nth-child(4){grid-area:owner;}
+    .module-row > *:nth-child(5){grid-area:when;}
+    .module-row > *:nth-child(6){grid-area:chev;}
+    .task .t-note{text-align:left;}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="page">
+    <div class="titleblock">
+      <span class="eyebrow">Suivi des chantiers — vérifié par lecture du code</span>
+      <h1>État des chantiers</h1>
+    </div>
+    <div class="meta-row">
+      <span>Méthode&nbsp;: <strong>audit direct du code</strong>, pas Plane</span>
+      <span>Vérifié le&nbsp;: <strong>06/08/2026</strong></span>
+    </div>
+  </header>
+
+  <div class="project-tabs" id="project-tabs">
+      <button class="project-tab active" data-project="zeno">
+        Zeno<span class="count">12</span>
+      </button>
+    
+      <button class="project-tab " data-project="crm_aeig">
+        CRM AEIG<span class="count">0</span>
+      </button>
+    </div>
+
+  <div class="banner" id="banner"><span>&#9888;</span><span><b>Statuts vérifiés par lecture directe du code</b> le 06/08/2026 (pas une déclaration Plane — Plane n'est pas à jour). "CDC disponible" ne compte que les docs écrits <b>récemment par nous</b> : les anciens docs d'architecture existent mais sont jugés obsolètes tant qu'ils n'ont pas été revérifiés. Porteur/support restent vides — à l'équipe de les renseigner.</span></div>
+
+  <div class="summary" id="summary">
+      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">4</span><span class="l">Fonctionnels</span></div>
+      <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">5</span><span class="l">En cours</span></div>
+      <div class="stat crit" data-stat="bloque" tabindex="0"><span class="n">2</span><span class="l">Bloqués</span></div>
+      <div class="stat idle" data-stat="pas-demarre" tabindex="0"><span class="n">1</span><span class="l">Pas démarrés</span></div>
+      <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">10</span><span class="l">Sans CDC</span></div>
+    </div>
+
+  <div class="filters">
+    <div class="filter-group">
+      <span class="filter-label">Statut</span>
+      <select id="filter-status">
+        <option value="">Tous</option>
+        <option value="fonctionnel">Fonctionnel</option>
+        <option value="en-cours">En cours</option>
+        <option value="bloque">Bloqué</option>
+        <option value="pas-demarre">Pas démarré</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">CDC</span>
+      <select id="filter-cdc">
+        <option value="">Tous</option>
+        <option value="oui">Oui</option>
+        <option value="partiel">Partiel</option>
+        <option value="non">Non</option>
+      </select>
+    </div>
+    <button class="reset" id="reset">Réinitialiser</button>
+    <div class="search">
+      <span>&#128269;</span>
+      <input id="search-input" type="text" placeholder="Chantier…" />
+    </div>
+  </div>
+
+  <div class="result-count" id="result-count">12 chantiers affichés sur 12</div>
+
+  <div class="modules" id="modules">
+      <div class="module" data-idx="0">
+        <div class="module-row" data-toggle="0" tabindex="0">
+          <div><span class="module-name">Admission</span><span class="module-desc">Pipeline candidat, formulaire, enrollment</span></div>
+          <span class="pill ok">Fonctionnel</span>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="0" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">03/08</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Pipeline candidat (capture → jury → décision)</span>
+                <span class="t-note">routes + pages montées, cron de relances actif</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Paiement des frais de dossier</span>
+                <span class="t-note">server/src/routes/payments.js:178</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Workflow entretien / jury</span>
+                <span class="t-note">créneaux + relances automatiques</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Conversion candidat → étudiant</span>
+                <span class="t-note">bug SENTINEL_NO_PROMO non défini, cas non testé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Réparation refs Student/Promotion cassées</span>
+                <span class="t-note">correctif prêt, pas mergé dans main</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="1">
+        <div class="module-row" data-toggle="1" tabindex="0">
+          <div><span class="module-name">Communication</span><span class="module-desc">Email, WhatsApp, newsletter, journal</span></div>
+          <span class="pill ok">Fonctionnel</span>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="1" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">02/08</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Email transactionnel</span>
+                <span class="t-note">testé (cc/bcc, pièces jointes)</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Envoi bulk (file d'attente async)</span>
+                <span class="t-note">worker BullMQ démarré au boot</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Notifications WhatsApp</span>
+                <span class="t-note">relances entretien, frais d'examen</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Newsletter (édition, envoi)</span>
+                <span class="t-note">builder + lifecycle mailer</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Journal d'activité unifié</span>
+                <span class="t-note">testé</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="2">
+        <div class="module-row" data-toggle="2" tabindex="0">
+          <div><span class="module-name">Campus</span><span class="module-desc">Salles, bâtiments, événements, tickets</span></div>
+          <span class="pill ok">Fonctionnel</span>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="2" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">27/07</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Réservation de salles</span>
+                <span class="t-note">booking + recherche de créneaux</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Gestion bâtiments/salles (CRUD)</span>
+                <span class="t-note">+ QR code salle en V2</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Gestion des événements</span>
+                <span class="t-note">icalendar, check-in QR</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">File tickets support campus</span>
+                <span class="t-note">migration legacy en cours de nettoyage</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Refonte Campus V2 (UI unifiée)</span>
+                <span class="t-note">coexiste avec V1, migration non terminée</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Conformité formulaires UI ↔ schéma</span>
+                <span class="t-note">champs cassés listés dans un audit interne, pas confirmés résolus</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="3">
+        <div class="module-row" data-toggle="3" tabindex="0">
+          <div><span class="module-name">Parent</span><span class="module-desc">Portail parent : notes, présences, RDV, paiements</span></div>
+          <span class="pill warn">En cours</span>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="3" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">03/08</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Accès dossier enfant (notes, présences)</span>
+                <span class="t-note">endpoints complets</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Rendez-vous avec formateur</span>
+                <span class="t-note">création, invitation, annulation</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Paiements</span>
+                <span class="t-note">testé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Notes / progression scolaire</span>
+                <span class="t-note">échelle GPA suspecte (/20 vs /4) + architecture non tranchée</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Suivi d'activité poste (sonde)</span>
+                <span class="t-note">code fonctionnel, déployé sur 1 poste réel seulement</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Événements campus côté parent</span>
+                <span class="t-note">placeholder explicite dans le code — aucun endpoint backend</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="4">
+        <div class="module-row" data-toggle="4" tabindex="0">
+          <div><span class="module-name">Pédagogie</span><span class="module-desc">Programmes, notes, présences, identité cursus/promo</span></div>
+          <span class="pill warn">En cours</span>
+          <span class="cdc partial">CDC&nbsp;Partiel</span>
+          <span class="owner clickable" data-contact="4" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">05/08</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Saisie des notes par module</span>
+                <span class="t-note">fonctionnel, non affecté par la refonte</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Gestion des présences</span>
+                <span class="t-note">fonctionnel, non affecté par la refonte</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Modèle Specialty (catalogue global)</span>
+                <span class="t-note">créé cette semaine, testé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Résolution promo à l'inscription</span>
+                <span class="t-note">fallback silencieux toujours en place, pas réécrit</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Formulaire de création de promotion</span>
+                <span class="t-note">n'expose pas campus/cohortYear/intake, un admin ne peut pas créer la bonne promo</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Tests frontend pédagogie</span>
+                <span class="t-note">couverture très partielle (2 fichiers seulement)</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="5">
+        <div class="module-row" data-toggle="5" tabindex="0">
+          <div><span class="module-name">Career Center</span><span class="module-desc">Stages, conventions, alumni, partenaires, offres</span></div>
+          <span class="pill ok">Fonctionnel</span>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="5" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when stale">21/07</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">CRUD stages</span>
+                <span class="t-note">testé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Signature de conventions de stage</span>
+                <span class="t-note">testé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Portail partenaires (offres, candidatures)</span>
+                <span class="t-note">testé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Portail alumni</span>
+                <span class="t-note">testé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Offres d'emploi</span>
+                <span class="t-note">aucun test dédié trouvé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Cycle de vie partenaires (relances, statut)</span>
+                <span class="t-note">chantier actif mais pas de mouvement récent</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="6">
+        <div class="module-row" data-toggle="6" tabindex="0">
+          <div><span class="module-name">Design system</span><span class="module-desc">Tokens, multi-brand, thèmes</span></div>
+          <span class="pill warn">En cours</span>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="6" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when stale">18/07</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Résolution de marque + injection runtime</span>
+                <span class="t-note">câblé avant le mount React</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">CLI de génération de thème</span>
+                <span class="t-note">valide contraste WCAG-AA</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Lint anti-couleurs brutes</span>
+                <span class="t-note">508 violations actives sur 60 fichiers (mesuré en direct)</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Lint anti-HTML brut</span>
+                <span class="t-note">pas d'outil réutilisable, juste un audit ponctuel passé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Storybook (catalogue de composants)</span>
+                <span class="t-note">sync fonctionnelle, couverture faible (6 fichiers)</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="7">
+        <div class="module-row" data-toggle="7" tabindex="0">
+          <div><span class="module-name">EDMS — moteur de données</span><span class="module-desc">Remplacer les modèles Zeno par EDMS (proposition)</span></div>
+          <span class="pill idle">Pas démarré</span>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="7" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">23/07</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Remplacement des modèles Mongoose par EDMS</span>
+                <span class="t-note">proposition d'architecture uniquement, aucun code</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="8">
+        <div class="module-row" data-toggle="8" tabindex="0">
+          <div><span class="module-name">EDMS — plugin tracking UTM</span><span class="module-desc">Liens courts et suivi UTM sur epitech.africa</span></div>
+          <span class="pill crit">Bloqué</span>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="8" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">03/08</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Émission de liens courts côté Zeno</span>
+                <span class="t-note">testé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Route serveur de redirection + comptage</span>
+                <span class="t-note">server/src/routes/utm-redirect.js</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Capture UTM côté SPA</span>
+                <span class="t-note">hook dédié</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Proxy à monter côté EDMS</span>
+                <span class="t-note">spec + exemple de code prêts, installation non confirmée</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Beacon de clic sur les pages EDMS</span>
+                <span class="t-note">script prêt, installation non confirmée</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="9">
+        <div class="module-row" data-toggle="9" tabindex="0">
+          <div><span class="module-name">DEVKORA</span><span class="module-desc">Plateforme de tests de code (challenges, QCM, exécution)</span></div>
+          <span class="pill warn">En cours</span>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="9" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">25/07</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Exécution de code (Judge0)</span>
+                <span class="t-note">stack déclarée en prod</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Hook automatique Admissions → invitation</span>
+                <span class="t-note">testé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Bibliothèque challenges / QCM</span>
+                <span class="t-note">pondération par type, 38 langages</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Anti-cheat V2</span>
+                <span class="t-note">code présent, pas de preuve de finalisation</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Refonte visuelle (prototype validé)</span>
+                <span class="t-note">maquettes approuvées, pas confirmé implémenté dans le vrai module</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="10">
+        <div class="module-row" data-toggle="10" tabindex="0">
+          <div><span class="module-name">Observability</span><span class="module-desc">Erreurs, métriques, alerting</span></div>
+          <span class="pill crit">Bloqué</span>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="10" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when stale">09/07</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Capture d'erreurs (GlitchTip)</span>
+                <span class="t-note">installée</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Alerting infra (Prometheus/Alertmanager)</span>
+                <span class="t-note">email seul, config prod non vérifiable depuis le repo</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Couverture des files d'attente (BullMQ)</span>
+                <span class="t-note">3 files sur 6 invisibles du monitoring, bug non corrigé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Notification automatique sur erreur applicative</span>
+                <span class="t-note">commande manuelle à lancer, jamais confirmée exécutée</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="11">
+        <div class="module-row" data-toggle="11" tabindex="0">
+          <div><span class="module-name">Dev Platform</span><span class="module-desc">CI/CD, Docker, outillage, hygiène repo</span></div>
+          <span class="pill warn">En cours</span>
+          <span class="cdc partial">CDC&nbsp;Partiel</span>
+          <span class="owner clickable" data-contact="11" title="Voir lead, support et contact marque"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">05/08</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">CI complète (make ci / GitHub Actions)</span>
+                <span class="t-note">pipeline miroir en 8 étapes</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Docker (dev/prod/monitoring)</span>
+                <span class="t-note">ports dynamiques, profils</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Hooks git (Husky)</span>
+                <span class="t-note">pre-commit/pre-push actifs</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Migration typage Student.promotionId</span>
+                <span class="t-note">PR #408 ouverte, pas mergée dans main</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Nettoyage incident données (refs orphelines)</span>
+                <span class="t-note">validé sur copie locale, rien appliqué en prod</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="empty" id="empty" style="display:none;"></div>
+
+  <div class="modal-backdrop" id="contact-modal">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="contact-modal-title"></h3>
+        <button class="modal-close-x" id="contact-modal-close" aria-label="Fermer">&#10005;</button>
+      </div>
+      <div id="contact-modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="legend">
+    <span class="item"><span class="dot ok"></span> Fonctionnel — en prod, utilisé</span>
+    <span class="item"><span class="dot warn"></span> En cours — dev actif</span>
+    <span class="item"><span class="dot crit"></span> Bloqué — code cassé, non branché, ou en attente d'une dépendance</span>
+    <span class="item"><span class="dot idle"></span> Pas démarré</span>
+  </footer>
+
+</div>
+
+<script>
+  const STATUS_LABEL = { 'fonctionnel':'Fonctionnel', 'en-cours':'En cours', 'bloque':'Bloqué', 'pas-demarre':'Pas démarré' };
+  const STATUS_CLASS = { 'fonctionnel':'ok', 'en-cours':'warn', 'bloque':'crit', 'pas-demarre':'idle' };
+  const CDC_CLASS = { 'oui':'yes', 'partiel':'partial', 'non':'no' };
+  const CDC_LABEL = { 'oui':'Oui', 'partiel':'Partiel', 'non':'Non' };
+
+  // Porteur/support/interlocuteur marque : non déterminables par lecture de
+  // code, laissés vides à dessein — c'est à l'équipe de les renseigner.
+  // Le champ "comments" porte le vrai contenu de l'audit (preuves, bugs).
+  const NO_ONE = { name:'—', role:'' };
+
+  const PROJECTS = {
+    zeno: {
+      label: 'Zeno',
+      modules: [
+        {
+          name:'Admission', desc:'Pipeline candidat, formulaire, enrollment',
+          status:'fonctionnel', cdc:'non', owner:'—', role:'', when:'03/08', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Bug de code non couvert par les tests : candidateProvisioningService.js:246 référence une variable SENTINEL_NO_PROMO jamais définie — plante (ReferenceError) si un candidat déjà connecté (Google) n\'a aucune promotion correspondante. Distinct de l\'incident de données (Student/Promotion cassés) dont le correctif est prêt mais pas mergé dans main.',
+          tasks:[
+            {label:'Pipeline candidat (capture → jury → décision)', status:'ok', note:'routes + pages montées, cron de relances actif'},
+            {label:'Paiement des frais de dossier', status:'ok', note:'server/src/routes/payments.js:178'},
+            {label:'Workflow entretien / jury', status:'ok', note:'créneaux + relances automatiques'},
+            {label:'Conversion candidat → étudiant', status:'crit', note:'bug SENTINEL_NO_PROMO non défini, cas non testé'},
+            {label:'Réparation refs Student/Promotion cassées', status:'crit', note:'correctif prêt, pas mergé dans main'},
+          ]
+        },
+        {
+          name:'Communication', desc:'Email, WhatsApp, newsletter, journal',
+          status:'fonctionnel', cdc:'non', owner:'—', role:'', when:'02/08', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Aucun bug identifié sur ce module lors de l\'audit. Sous-axes contacts/partenaires/automations/UTM pas creusés au même niveau de détail que le reste — à auditer si besoin de précision.',
+          tasks:[
+            {label:'Email transactionnel', status:'ok', note:'testé (cc/bcc, pièces jointes)'},
+            {label:'Envoi bulk (file d\'attente async)', status:'ok', note:'worker BullMQ démarré au boot'},
+            {label:'Notifications WhatsApp', status:'ok', note:'relances entretien, frais d\'examen'},
+            {label:'Newsletter (édition, envoi)', status:'ok', note:'builder + lifecycle mailer'},
+            {label:'Journal d\'activité unifié', status:'ok', note:'testé'},
+          ]
+        },
+        {
+          name:'Campus', desc:'Salles, bâtiments, événements, tickets',
+          status:'fonctionnel', cdc:'non', owner:'—', role:'', when:'27/07', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Module le plus mature des trois prioritaires (72 tests passés). Un audit de conformité interne liste des champs UI↔schéma cassés — pas confirmé comme totalement résolu. Refonte "Campus V2" déjà montée en parallèle de la V1.',
+          tasks:[
+            {label:'Réservation de salles', status:'ok', note:'booking + recherche de créneaux'},
+            {label:'Gestion bâtiments/salles (CRUD)', status:'ok', note:'+ QR code salle en V2'},
+            {label:'Gestion des événements', status:'ok', note:'icalendar, check-in QR'},
+            {label:'File tickets support campus', status:'ok', note:'migration legacy en cours de nettoyage'},
+            {label:'Refonte Campus V2 (UI unifiée)', status:'warn', note:'coexiste avec V1, migration non terminée'},
+            {label:'Conformité formulaires UI ↔ schéma', status:'crit', note:'champs cassés listés dans un audit interne, pas confirmés résolus'},
+          ]
+        },
+        {
+          name:'Parent', desc:'Portail parent : notes, présences, RDV, paiements',
+          status:'en-cours', cdc:'non', owner:'—', role:'', when:'03/08', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'~17 endpoints réels, 20 pages. Plusieurs bugs factuels documentés dans un audit UX dédié (15/15 pages auditées). La sonde de suivi d\'activité poste fonctionne mais n\'est déployée que sur un seul poste réel sur toute la cohorte.',
+          tasks:[
+            {label:'Accès dossier enfant (notes, présences)', status:'ok', note:'endpoints complets'},
+            {label:'Rendez-vous avec formateur', status:'ok', note:'création, invitation, annulation'},
+            {label:'Paiements', status:'ok', note:'testé'},
+            {label:'Notes / progression scolaire', status:'crit', note:'échelle GPA suspecte (/20 vs /4) + architecture non tranchée'},
+            {label:'Suivi d\'activité poste (sonde)', status:'crit', note:'code fonctionnel, déployé sur 1 poste réel seulement'},
+            {label:'Événements campus côté parent', status:'idle', note:'placeholder explicite dans le code — aucun endpoint backend'},
+          ]
+        },
+        {
+          name:'Pédagogie', desc:'Programmes, notes, présences, identité cursus/promo',
+          status:'en-cours', cdc:'partiel', owner:'—', role:'', when:'05/08', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'CDC écrit cette semaine (MODELE_PEDAGOGIQUE_IDENTITE_CIBLE.md) mais pas encore commité/diffusé à l\'équipe — d\'où "partiel". La refonte identité (Specialty/Cursus/Promotion) livre les modèles de données (43 tests verts) ; la résolution métier candidat→étudiant qui doit s\'en servir n\'est pas encore réécrite (phase 2, pas démarrée).',
+          tasks:[
+            {label:'Saisie des notes par module', status:'ok', note:'fonctionnel, non affecté par la refonte'},
+            {label:'Gestion des présences', status:'ok', note:'fonctionnel, non affecté par la refonte'},
+            {label:'Modèle Specialty (catalogue global)', status:'ok', note:'créé cette semaine, testé'},
+            {label:'Résolution promo à l\'inscription', status:'crit', note:'fallback silencieux toujours en place, pas réécrit'},
+            {label:'Formulaire de création de promotion', status:'crit', note:'n\'expose pas campus/cohortYear/intake, un admin ne peut pas créer la bonne promo'},
+            {label:'Tests frontend pédagogie', status:'warn', note:'couverture très partielle (2 fichiers seulement)'},
+          ]
+        },
+        {
+          name:'Career Center', desc:'Stages, conventions, alumni, partenaires, offres',
+          status:'fonctionnel', cdc:'non', owner:'—', role:'', when:'21/07', stale:true,
+          support:[], brandContact:NO_ONE,
+          comments:'Cœur solide (60 tests verts), aucun bug bloquant trouvé. Pas de modification depuis le 21/07 (16 jours). Une trace de cadrage existe mais dans un emplacement non standard (docs/superpowers/), à regrouper si on veut un seul endroit de référence.',
+          tasks:[
+            {label:'CRUD stages', status:'ok', note:'testé'},
+            {label:'Signature de conventions de stage', status:'ok', note:'testé'},
+            {label:'Portail partenaires (offres, candidatures)', status:'ok', note:'testé'},
+            {label:'Portail alumni', status:'ok', note:'testé'},
+            {label:'Offres d\'emploi', status:'warn', note:'aucun test dédié trouvé'},
+            {label:'Cycle de vie partenaires (relances, statut)', status:'warn', note:'chantier actif mais pas de mouvement récent'},
+          ]
+        },
+        {
+          name:'Design system', desc:'Tokens, multi-brand, thèmes',
+          status:'en-cours', cdc:'non', owner:'—', role:'', when:'18/07', stale:true,
+          support:[], brandContact:NO_ONE,
+          comments:'Infra réellement câblée et outillée (résolution de marque, CLI new-theme). Mais le lint anti-couleurs (exécuté réellement pendant l\'audit) rapporte 508 violations actives sur 60 fichiers — la règle existe, la dette non.',
+          tasks:[
+            {label:'Résolution de marque + injection runtime', status:'ok', note:'câblé avant le mount React'},
+            {label:'CLI de génération de thème', status:'ok', note:'valide contraste WCAG-AA'},
+            {label:'Lint anti-couleurs brutes', status:'crit', note:'508 violations actives sur 60 fichiers (mesuré en direct)'},
+            {label:'Lint anti-HTML brut', status:'idle', note:'pas d\'outil réutilisable, juste un audit ponctuel passé'},
+            {label:'Storybook (catalogue de composants)', status:'warn', note:'sync fonctionnelle, couverture faible (6 fichiers)'},
+          ]
+        },
+        {
+          name:'EDMS — moteur de données', desc:'Remplacer les modèles Zeno par EDMS (proposition)',
+          status:'pas-demarre', cdc:'non', owner:'—', role:'', when:'23/07', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Document de design ("Design Draft") daté du 25/03, pas mis à jour depuis. Aucune ligne de code trouvée dans le repo pour cette proposition. À distinguer du "plugin tracking UTM" ci-dessous, qui partage le nom "EDMS" mais est un chantier totalement différent et bien plus avancé.',
+          tasks:[
+            {label:'Remplacement des modèles Mongoose par EDMS', status:'idle', note:'proposition d\'architecture uniquement, aucun code'},
+          ]
+        },
+        {
+          name:'EDMS — plugin tracking UTM', desc:'Liens courts et suivi UTM sur epitech.africa',
+          status:'bloque', cdc:'non', owner:'—', role:'', when:'03/08', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Toute la partie côté Zeno est faite et testée. Bloqué sur l\'installation côté EDMS (repo séparé, hors de notre contrôle) — une checklist d\'installation existe mais rien ne prouve qu\'elle a été appliquée.',
+          tasks:[
+            {label:'Émission de liens courts côté Zeno', status:'ok', note:'testé'},
+            {label:'Route serveur de redirection + comptage', status:'ok', note:'server/src/routes/utm-redirect.js'},
+            {label:'Capture UTM côté SPA', status:'ok', note:'hook dédié'},
+            {label:'Proxy à monter côté EDMS', status:'idle', note:'spec + exemple de code prêts, installation non confirmée'},
+            {label:'Beacon de clic sur les pages EDMS', status:'idle', note:'script prêt, installation non confirmée'},
+          ]
+        },
+        {
+          name:'DEVKORA', desc:'Plateforme de tests de code (challenges, QCM, exécution)',
+          status:'en-cours', cdc:'non', owner:'—', role:'', when:'25/07', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'C\'est un module produit conséquent (26 docs techniques), pas juste une initiative de démo. Le blocage historique connu ("Judge0 pas déclaré en prod") semble résolu — la stack est bien présente dans docker-compose.prod.yml depuis le 23/07.',
+          tasks:[
+            {label:'Exécution de code (Judge0)', status:'ok', note:'stack déclarée en prod'},
+            {label:'Hook automatique Admissions → invitation', status:'ok', note:'testé'},
+            {label:'Bibliothèque challenges / QCM', status:'ok', note:'pondération par type, 38 langages'},
+            {label:'Anti-cheat V2', status:'warn', note:'code présent, pas de preuve de finalisation'},
+            {label:'Refonte visuelle (prototype validé)', status:'warn', note:'maquettes approuvées, pas confirmé implémenté dans le vrai module'},
+          ]
+        },
+        {
+          name:'Observability', desc:'Erreurs, métriques, alerting',
+          status:'bloque', cdc:'non', owner:'—', role:'', when:'09/07', stale:true,
+          support:[], brandContact:NO_ONE,
+          comments:'La capture d\'erreurs existe mais personne n\'est notifié automatiquement — il faut aller consulter un dashboard. Un tiers des files d\'attente de fond reste invisible du monitoring (bug connu, toujours présent).',
+          tasks:[
+            {label:'Capture d\'erreurs (GlitchTip)', status:'ok', note:'installée'},
+            {label:'Alerting infra (Prometheus/Alertmanager)', status:'warn', note:'email seul, config prod non vérifiable depuis le repo'},
+            {label:'Couverture des files d\'attente (BullMQ)', status:'crit', note:'3 files sur 6 invisibles du monitoring, bug non corrigé'},
+            {label:'Notification automatique sur erreur applicative', status:'idle', note:'commande manuelle à lancer, jamais confirmée exécutée'},
+          ]
+        },
+        {
+          name:'Dev Platform', desc:'CI/CD, Docker, outillage, hygiène repo',
+          status:'en-cours', cdc:'partiel', owner:'—', role:'', when:'05/08', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'CDC partiel : les docs d\'incident de cette semaine (typage/nettoyage de données) sont écrits par nous, mais il n\'existe pas de CDC général pour l\'outillage CI/Docker. Chantier typage/incident : diagnostic fait, correctif validé en local seulement, PR ouverte pas mergée, rien appliqué en prod.',
+          tasks:[
+            {label:'CI complète (make ci / GitHub Actions)', status:'ok', note:'pipeline miroir en 8 étapes'},
+            {label:'Docker (dev/prod/monitoring)', status:'ok', note:'ports dynamiques, profils'},
+            {label:'Hooks git (Husky)', status:'ok', note:'pre-commit/pre-push actifs'},
+            {label:'Migration typage Student.promotionId', status:'warn', note:'PR #408 ouverte, pas mergée dans main'},
+            {label:'Nettoyage incident données (refs orphelines)', status:'warn', note:'validé sur copie locale, rien appliqué en prod'},
+          ]
+        },
+      ],
+    },
+    crm_aeig: {
+      label: 'CRM AEIG',
+      modules: [],
+    },
+  };
+
+  const state = { project:'zeno', status:'', cdc:'', query:'' };
+
+  function currentModules(){ return PROJECTS[state.project].modules; }
+
+  function renderTabs(){
+    const el = document.getElementById('project-tabs');
+    el.innerHTML = Object.entries(PROJECTS).map(([key, p]) => `
+      <button class="project-tab ${state.project===key?'active':''}" data-project="${key}">
+        ${p.label}<span class="count">${p.modules.length}</span>
+      </button>
+    `).join('');
+    el.querySelectorAll('[data-project]').forEach(btn => btn.addEventListener('click', () => {
+      state.project = btn.dataset.project;
+      state.status=''; state.cdc=''; state.query='';
+      document.getElementById('filter-status').value='';
+      document.getElementById('filter-cdc').value='';
+      document.getElementById('search-input').value='';
+      renderTabs(); renderBanner(); renderSummary(); render();
+    }));
+  }
+
+  function renderBanner(){
+    const el = document.getElementById('banner');
+    if(state.project === 'zeno'){
+      el.innerHTML = `<span>&#9888;</span><span><b>Statuts vérifiés par lecture directe du code</b> le 06/08/2026 (pas une déclaration Plane — Plane n'est pas à jour). "CDC disponible" ne compte que les docs écrits <b>récemment par nous</b> : les anciens docs d'architecture existent mais sont jugés obsolètes tant qu'ils n'ont pas été revérifiés. Porteur/support restent vides — à l'équipe de les renseigner.</span>`;
+    } else {
+      el.innerHTML = `<span>&#9888;</span><span><b>Projet pas encore scopé.</b> CRM AEIG (rendre Zeno réutilisable pour d'autres marques AEIG) n'a pas encore de chantiers suivis ici — à définir avec l'équipe avant de remplir cette vue.</span>`;
+    }
+  }
+
+  function renderSummary(){
+    const modules = currentModules();
+    const el = document.getElementById('summary');
+    if(!modules.length){ el.style.display='none'; return; }
+    el.style.display='grid';
+    const counts = { fonctionnel:0, 'en-cours':0, bloque:0, 'pas-demarre':0, sansCdc:0 };
+    modules.forEach(m => { counts[m.status]++; if(m.cdc==='non') counts.sansCdc++; });
+    el.innerHTML = `
+      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">${counts.fonctionnel}</span><span class="l">Fonctionnels</span></div>
+      <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">${counts['en-cours']}</span><span class="l">En cours</span></div>
+      <div class="stat crit" data-stat="bloque" tabindex="0"><span class="n">${counts.bloque}</span><span class="l">Bloqués</span></div>
+      <div class="stat idle" data-stat="pas-demarre" tabindex="0"><span class="n">${counts['pas-demarre']}</span><span class="l">Pas démarrés</span></div>
+      <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">${counts.sansCdc}</span><span class="l">Sans CDC</span></div>
+    `;
+    el.querySelectorAll('[data-stat]').forEach(s => s.addEventListener('click', () => {
+      state.status = state.status === s.dataset.stat ? '' : s.dataset.stat;
+      document.getElementById('filter-status').value = state.status;
+      sync(); render();
+    }));
+    el.querySelector('[data-stat-cdc]').addEventListener('click', () => {
+      state.cdc = state.cdc === 'non' ? '' : 'non';
+      document.getElementById('filter-cdc').value = state.cdc;
+      sync(); render();
+    });
+  }
+
+  function sync(){
+    document.querySelectorAll('#summary .stat').forEach(s => {
+      if(s.dataset.stat) s.classList.toggle('active', state.status === s.dataset.stat);
+      if(s.dataset.statCdc) s.classList.toggle('active', state.cdc === 'non');
+    });
+  }
+
+  function matches(m){
+    if(state.status && m.status !== state.status) return false;
+    if(state.cdc && m.cdc !== state.cdc) return false;
+    if(state.query && !m.name.toLowerCase().includes(state.query.toLowerCase())) return false;
+    return true;
+  }
+
+  function render(){
+    const modules = currentModules();
+    const list = modules.filter(matches);
+    const wrap = document.getElementById('modules');
+    const empty = document.getElementById('empty');
+    const filtersEl = document.querySelector('.filters');
+    const countEl = document.getElementById('result-count');
+
+    if(!modules.length){
+      filtersEl.style.display='none'; countEl.style.display='none';
+      wrap.innerHTML=''; empty.style.display='block';
+      empty.textContent = 'Aucun chantier suivi pour ce projet pour l\'instant.';
+      return;
+    }
+    filtersEl.style.display='flex'; countEl.style.display='block';
+    countEl.textContent = `${list.length} chantier${list.length>1?'s':''} affiché${list.length>1?'s':''} sur ${modules.length}`;
+
+    if(!list.length){ wrap.innerHTML=''; empty.style.display='block'; empty.textContent='Aucun chantier ne correspond à ces filtres.'; return; }
+    empty.style.display='none';
+
+    wrap.innerHTML = list.map((m, i) => `
+      <div class="module" data-idx="${i}">
+        <div class="module-row" data-toggle="${i}" tabindex="0">
+          <div><span class="module-name">${m.name}</span><span class="module-desc">${m.desc}</span></div>
+          <span class="pill ${STATUS_CLASS[m.status]}">${STATUS_LABEL[m.status]}</span>
+          <span class="cdc ${CDC_CLASS[m.cdc]}">CDC&nbsp;${CDC_LABEL[m.cdc]}</span>
+          <span class="owner clickable" data-contact="${i}" title="Voir lead, support et contact marque"><span>${m.owner}${m.role ? `<span class="role"> · ${m.role}</span>` : ''}</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ${m.stale?'stale':''}">${m.when}</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            ${m.tasks.map(t => `
+              <div class="task">
+                <span class="t-status ${t.status}"></span>
+                <span class="t-label">${t.label}</span>
+                <span class="t-note">${t.note}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    wrap.querySelectorAll('[data-toggle]').forEach(row => {
+      const activate = () => {
+        const mod = row.closest('.module');
+        const tasks = mod.querySelector('.tasks');
+        const opening = !mod.classList.contains('open');
+        mod.classList.toggle('open', opening);
+        tasks.style.maxHeight = opening ? tasks.scrollHeight + 'px' : '0px';
+      };
+      row.addEventListener('click', activate);
+      row.addEventListener('keydown', e => { if(e.key==='Enter' || e.key===' '){ e.preventDefault(); activate(); } });
+    });
+
+    wrap.querySelectorAll('[data-contact]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.stopPropagation();
+        openContactModal(list[Number(el.dataset.contact)]);
+      });
+    });
+  }
+
+  const contactModal = document.getElementById('contact-modal');
+  const contactModalTitle = document.getElementById('contact-modal-title');
+  const contactModalBody = document.getElementById('contact-modal-body');
+
+  function personBlock(label, person){
+    if(!person || !person.name || person.name === '—') return `<div class="contact-block"><div class="contact-label">${label}</div><div class="contact-empty">Non assigné</div></div>`;
+    return `<div class="contact-block"><div class="contact-label">${label}</div><div class="contact-name">${person.name}</div><div class="contact-role">${person.role || ''}</div></div>`;
+  }
+
+  function openContactModal(m){
+    contactModalTitle.textContent = m.name;
+    const supportHtml = (m.support && m.support.length)
+      ? `<div class="support-list">${m.support.map(s => `<div><span class="contact-name">${s.name}</span> <span class="contact-role">· ${s.role}</span></div>`).join('')}</div>`
+      : `<div class="contact-empty">Aucun</div>`;
+    contactModalBody.innerHTML = `
+      ${personBlock('Lead', { name: m.owner, role: m.role })}
+      <div class="contact-block"><div class="contact-label">Support</div>${supportHtml}</div>
+      ${personBlock('Interlocuteur côté marque', m.brandContact)}
+      <div class="contact-block">
+        <div class="contact-label">Constat de l'audit</div>
+        <div class="comment-text">${m.comments ? m.comments : '<span class="contact-empty">Rien à signaler</span>'}</div>
+      </div>
+    `;
+    contactModal.classList.add('open');
+  }
+  function closeContactModal(){ contactModal.classList.remove('open'); }
+  document.getElementById('contact-modal-close').addEventListener('click', closeContactModal);
+  contactModal.addEventListener('click', e => { if(e.target === contactModal) closeContactModal(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeContactModal(); });
+
+  document.getElementById('filter-status').addEventListener('change', e => { state.status = e.target.value; sync(); render(); });
+  document.getElementById('filter-cdc').addEventListener('change', e => { state.cdc = e.target.value; sync(); render(); });
+  document.getElementById('search-input').addEventListener('input', e => { state.query = e.target.value.trim(); render(); });
+  document.getElementById('reset').addEventListener('click', () => {
+    state.status=''; state.cdc=''; state.query='';
+    document.getElementById('filter-status').value='';
+    document.getElementById('filter-cdc').value='';
+    document.getElementById('search-input').value='';
+    sync(); render();
+  });
+
+  renderTabs();
+  renderBanner();
+  renderSummary();
+  render();
+</script>

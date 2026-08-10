@@ -252,11 +252,15 @@
 
   <div class="project-tabs" id="project-tabs">
       <button class="project-tab active" data-project="zeno">
-        Zeno<span class="count">14</span>
+        Zeno<span class="count">12</span>
       </button>
     
       <button class="project-tab " data-project="crm_aeig">
         CRM AEIG<span class="count">5</span>
+      </button>
+    
+      <button class="project-tab " data-project="edms">
+        EDMS<span class="count">2</span>
       </button>
     
       <button class="project-tab " data-project="chantier_odoo">
@@ -267,11 +271,11 @@
   <div class="banner" id="banner"><span>&#9888;</span><span><b>Statuts vérifiés par lecture directe du code</b> (pas une déclaration Plane — Plane n'est pas à jour). "CDC disponible" ne compte que les documents écrits <b>récemment par nous</b>. Porteur/interlocuteur renseignés pour Admission, Communication, Campus et Pédagogie — le reste est à compléter par l'équipe.</span></div>
 
   <div class="summary" id="summary">
-      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">7</span><span class="l">Fonctionnels</span></div>
+      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">6</span><span class="l">Fonctionnels</span></div>
       <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">6</span><span class="l">En cours</span></div>
       <div class="stat crit" data-stat="bloque" tabindex="0"><span class="n">0</span><span class="l">Bloqués</span></div>
-      <div class="stat idle" data-stat="pas-demarre" tabindex="0"><span class="n">1</span><span class="l">Pas démarrés</span></div>
-      <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">8</span><span class="l">Sans CDC</span></div>
+      <div class="stat idle" data-stat="pas-demarre" tabindex="0"><span class="n">0</span><span class="l">Pas démarrés</span></div>
+      <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">6</span><span class="l">Sans CDC</span></div>
     </div>
 
   <div class="filters">
@@ -301,7 +305,7 @@
     </div>
   </div>
 
-  <div class="result-count" id="result-count">14 chantiers affichés sur 14</div>
+  <div class="result-count" id="result-count">12 chantiers affichés sur 12</div>
 
   <div class="modules" id="modules">
       <div class="module" data-idx="0">
@@ -690,62 +694,10 @@
     
       <div class="module" data-idx="9">
         <div class="module-row" data-toggle="9" tabindex="0">
-          <div><span class="module-name">EDMS — moteur de données</span><span class="module-desc">Remplacer le moteur de Zeno (proposition)</span></div>
-          <span class="pill idle">Pas démarré</span>
-          <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="9" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
-          <span class="when stale">01/04</span>
-          <span class="chevron">&#8250;</span>
-        </div>
-        <div class="tasks">
-          <div class="tasks-inner">
-            
-              <div class="task">
-                <span class="t-status idle"></span>
-                <span class="t-label">Aucune construction réelle — juste une proposition sur papier</span>
-              </div>
-            
-          </div>
-        </div>
-      </div>
-    
-      <div class="module" data-idx="10">
-        <div class="module-row" data-toggle="10" tabindex="0">
-          <div><span class="module-name">EDMS — suivi des liens (epitech.africa)</span><span class="module-desc">Mesurer le trafic venant des campagnes</span></div>
-          <span class="pill ok">Fonctionnel</span>
-          <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="10" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">23/07</span>
-          <span class="chevron">&#8250;</span>
-        </div>
-        <div class="tasks">
-          <div class="tasks-inner">
-            
-              <div class="task">
-                <span class="t-status ok"></span>
-                <span class="t-label">Les clics venant des campagnes (LinkedIn, email...) sont bien comptés</span>
-              </div>
-            
-              <div class="task">
-                <span class="t-status ok"></span>
-                <span class="t-label">Inscription newsletter depuis le site public, sans doublon</span>
-              </div>
-            
-              <div class="task">
-                <span class="t-status warn"></span>
-                <span class="t-label">Bloqué : une partie dépend d'une installation faite par une autre équipe</span>
-              </div>
-            
-          </div>
-        </div>
-      </div>
-    
-      <div class="module" data-idx="11">
-        <div class="module-row" data-toggle="11" tabindex="0">
           <div><span class="module-name">DEVKORA</span><span class="module-desc">Tests de code pour les candidats/étudiants</span></div>
           <span class="pill warn">En cours</span>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="11" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="9" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">25/07</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -786,12 +738,12 @@
         </div>
       </div>
     
-      <div class="module" data-idx="12">
-        <div class="module-row" data-toggle="12" tabindex="0">
+      <div class="module" data-idx="10">
+        <div class="module-row" data-toggle="10" tabindex="0">
           <div><span class="module-name">Observability</span><span class="module-desc">Surveillance des erreurs et de la santé du système</span></div>
           <span class="pill warn">En cours</span>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="12" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="10" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when stale">03/06</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -827,12 +779,12 @@
         </div>
       </div>
     
-      <div class="module" data-idx="13">
-        <div class="module-row" data-toggle="13" tabindex="0">
+      <div class="module" data-idx="11">
+        <div class="module-row" data-toggle="11" tabindex="0">
           <div><span class="module-name">Dev Platform</span><span class="module-desc">Outillage de développement et mise en ligne</span></div>
           <span class="pill ok">Fonctionnel</span>
           <span class="cdc partial">CDC&nbsp;Partiel</span>
-          <span class="owner clickable" data-contact="13" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="11" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">05/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -1024,26 +976,6 @@
           ]
         },
         {
-          name:'EDMS — moteur de données', desc:'Remplacer le moteur de Zeno (proposition)',
-          status:'pas-demarre', cdc:'non', owner:'—', role:'', when:'01/04', stale:true,
-          support:[], brandContact:NO_ONE,
-          comments:'Simple document de réflexion, jamais retravaillé depuis. À ne pas confondre avec le chantier ci-dessous qui partage juste le nom "EDMS".',
-          tasks:[
-            {label:'Aucune construction réelle — juste une proposition sur papier', status:'idle'},
-          ]
-        },
-        {
-          name:'EDMS — suivi des liens (epitech.africa)', desc:'Mesurer le trafic venant des campagnes',
-          status:'fonctionnel', cdc:'non', owner:'—', role:'', when:'23/07', stale:false,
-          support:[], brandContact:NO_ONE,
-          comments:'',
-          tasks:[
-            {label:'Les clics venant des campagnes (LinkedIn, email...) sont bien comptés', status:'ok'},
-            {label:'Inscription newsletter depuis le site public, sans doublon', status:'ok'},
-            {label:'Bloqué : une partie dépend d\'une installation faite par une autre équipe', status:'warn'},
-          ]
-        },
-        {
           name:'DEVKORA', desc:'Tests de code pour les candidats/étudiants',
           status:'en-cours', cdc:'non', owner:'—', role:'', when:'25/07', stale:false,
           support:[], brandContact:NO_ONE,
@@ -1128,6 +1060,31 @@
         },
       ],
     },
+    edms: {
+      label: 'EDMS',
+      modules: [
+        {
+          name:'Suivi des liens (epitech.africa)', desc:'Mesurer le trafic venant des campagnes',
+          status:'fonctionnel', cdc:'non', owner:'—', role:'', when:'23/07', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Constat provisoire, basé sur le code Zeno (le point de contact avec EDMS) — à revérifier une fois le repo EDMS lui-même audité.',
+          tasks:[
+            {label:'Les clics venant des campagnes (LinkedIn, email...) sont bien comptés', status:'ok'},
+            {label:'Inscription newsletter depuis le site public, sans doublon', status:'ok'},
+            {label:'Bloqué : une partie dépend d\'une installation faite côté EDMS', status:'warn'},
+          ]
+        },
+        {
+          name:'Moteur de données (proposition)', desc:'Remplacer le moteur de Zeno par EDMS',
+          status:'pas-demarre', cdc:'non', owner:'—', role:'', when:'01/04', stale:true,
+          support:[], brandContact:NO_ONE,
+          comments:'Simple document de réflexion côté Zeno, jamais retravaillé depuis. À revérifier depuis le repo EDMS lui-même.',
+          tasks:[
+            {label:'Aucune construction réelle — juste une proposition sur papier', status:'idle'},
+          ]
+        },
+      ],
+    },
     chantier_odoo: {
       label: 'Chantier Odoo',
       modules: [
@@ -1205,6 +1162,8 @@
       el.innerHTML = `<span>&#9888;</span><span>Statuts <b>vérifiés par lecture directe du code</b> quand c'est indiqué ; porteurs/interlocuteurs/CDC/blockers <b>repris du suivi Excel de Rachad</b> (10/08/2026) quand ce n'est pas du code — les deux sources sont mélangées ligne par ligne, la note de chaque chantier précise laquelle.</span>`;
     } else if(state.project === 'crm_aeig'){
       el.innerHTML = `<span>&#9888;</span><span><b>Repris du suivi Excel de Rachad</b> (10/08/2026), pas vérifié par lecture de code — CRM AEIG (rendre Zeno réutilisable pour d'autres marques du groupe) est encore au stade spécifications.</span>`;
+    } else if(state.project === 'edms'){
+      el.innerHTML = `<span>&#9888;</span><span>Projet dédié, distinct de Zeno — le clone du repo EDMS vient d'être fait, <b>audit détaillé pas encore lancé</b>. Les 2 entrées ci-dessous sont un point de départ basé sur ce qu'on voyait déjà depuis le code Zeno, à revérifier depuis le repo EDMS lui-même.</span>`;
     } else if(state.project === 'chantier_odoo'){
       el.innerHTML = `<span>&#9888;</span><span><b>Repris du suivi Excel de Rachad</b> (10/08/2026) — Odoo est un progiciel externe, pas de code Zeno à auditer ici. Chaque phase regroupe les chantiers du CSV en tâches.</span>`;
     } else {

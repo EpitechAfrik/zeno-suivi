@@ -260,7 +260,7 @@
       </button>
     
       <button class="project-tab " data-project="edms">
-        EDMS<span class="count">2</span>
+        EDMS<span class="count">5</span>
       </button>
     
       <button class="project-tab " data-project="chantier_odoo">
@@ -1100,24 +1100,57 @@
       label: 'EDMS',
       modules: [
         {
-          name:'Suivi des liens (epitech.africa)', desc:'Mesurer le trafic venant des campagnes',
-          status:'fonctionnel', cdc:'non', owner:'Alex Russel', role:'', when:'23/07', stale:false,
+          name:'Site vitrine Epitech Africa', desc:'epitech.africa / epitools.bj — édition sans développeur',
+          status:'fonctionnel', cdc:'non', owner:'Alex Russel', role:'', when:'10/08', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'Constat provisoire, basé sur le code Zeno (le point de contact avec EDMS) — à revérifier une fois le repo EDMS lui-même audité.',
+          comments:'Le seul vrai produit vivant de tout le système EDMS — 100% de l\'activité récente s\'y concentre (plus de 60 changements sur les 2 dernières semaines). Constat basé sur un audit interne du 27/04 comparant le site aux standards du marché (Wix, Webflow...).',
           tasks:[
-            {label:'Les clics venant des campagnes (LinkedIn, email...) sont bien comptés', status:'ok'},
-            {label:'Inscription newsletter depuis le site public, sans doublon', status:'ok'},
-            {label:'Bloqué : une partie dépend d\'une installation faite côté EDMS', status:'warn'},
+            {label:'Édition des pages au clic (textes, images, blocs de mise en page)', status:'ok'},
+            {label:'Gestion des médias, des menus et de l\'apparence du site', status:'ok'},
+            {label:'Rôles et permissions pour contrôler qui modifie quoi', status:'ok'},
+            {label:'Journal des modifications (qui a changé quoi et quand)', status:'ok'},
+            {label:'Assistant piloté par IA capable d\'éditer le contenu sur instruction', status:'ok'},
+            {label:'Bloqué : pas de sauvegarde automatique pendant l\'édition (perte possible si l\'onglet se ferme)', status:'crit'},
+            {label:'Bloqué : pas d\'historique de versions ni de bouton "annuler" après publication', status:'crit'},
+            {label:'Bloqué : pas d\'aperçu mobile/tablette avant de publier', status:'warn'},
+            {label:'Bloqué : une suppression est définitive, pas de corbeille', status:'warn'},
           ]
         },
         {
-          name:'Moteur de données (proposition)', desc:'Remplacer le moteur de Zeno par EDMS',
-          status:'pas-demarre', cdc:'non', owner:'Alex Russel', role:'', when:'01/04', stale:true,
+          name:'Suivi des campagnes marketing (lien avec Zeno)', desc:'Liens courts, mouchard de trafic, newsletter, téléchargement de brochures',
+          status:'fonctionnel', cdc:'non', owner:'Alex Russel', role:'', when:'27/07', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'Simple document de réflexion côté Zeno, jamais retravaillé depuis. À revérifier depuis le repo EDMS lui-même.',
+          comments:'Vérifié des deux côtés (Zeno ET le site vitrine) — ce n\'est pas qu\'une intention côté Zeno, le tuyau existe réellement côté site et est en service.',
           tasks:[
-            {label:'Aucune construction réelle — juste une proposition sur papier', status:'idle'},
+            {label:'Liens courts de campagne (clic LinkedIn/Facebook/email compté puis redirection)', status:'ok'},
+            {label:'Détection des visites venant d\'une campagne sur les pages du site public', status:'ok'},
+            {label:'Inscription newsletter transmise à Zeno sans doublon, respect du désabonnement', status:'ok'},
+            {label:'Téléchargement de brochure capte les coordonnées comme piste commerciale', status:'ok'},
           ]
+        },
+        {
+          name:'Outil de facturation', desc:'Créateur de factures avec export PDF',
+          status:'pas-demarre', cdc:'non', owner:'Alex Russel', role:'', when:'10/03', stale:true,
+          support:[], brandContact:NO_ONE,
+          comments:'Prototype complet construit fin février/début mars, puis abandonné immédiatement après — 5 mois d\'arrêt total. N\'a jamais servi en usage réel pour l\'équipe.',
+          tasks:[
+            {label:'Prototype fonctionnel construit et testé', status:'ok'},
+            {label:'Abandonné avant toute mise en usage réel', status:'idle'},
+          ]
+        },
+        {
+          name:'Console de gestion d\'utilisateurs', desc:'Prévue juste après l\'outil de facturation dans le plan initial',
+          status:'pas-demarre', cdc:'non', owner:'Alex Russel', role:'', when:'—', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Aucune trace de travail commencé — le projet est passé directement à la reconstruction du site vitrine, en sautant cette étape.',
+          tasks:[]
+        },
+        {
+          name:'Refonte de Zeno sur ce moteur', desc:'Reconstruire Zeno avec le système EDMS (dernière étape du plan initial)',
+          status:'pas-demarre', cdc:'non', owner:'Alex Russel', role:'', when:'01/03', stale:true,
+          support:[], brandContact:NO_ONE,
+          comments:'Un dossier d\'exemple générique existe mais ne contient que 3 modifications au total — ce n\'est qu\'une démonstration technique du moteur, pas un vrai travail de reconstruction de Zeno.',
+          tasks:[]
         },
       ],
     },
@@ -1199,7 +1232,7 @@
     } else if(state.project === 'crm_aeig'){
       el.innerHTML = `<span>&#9888;</span><span><b>Repris du suivi Excel de Rachad</b> (10/08/2026), pas vérifié par lecture de code — CRM AEIG (rendre Zeno réutilisable pour d'autres marques du groupe) est encore au stade spécifications.</span>`;
     } else if(state.project === 'edms'){
-      el.innerHTML = `<span>&#9888;</span><span>Projet dédié, distinct de Zeno — le clone du repo EDMS vient d'être fait, <b>audit détaillé pas encore lancé</b>. Les 2 entrées ci-dessous sont un point de départ basé sur ce qu'on voyait déjà depuis le code Zeno, à revérifier depuis le repo EDMS lui-même.</span>`;
+      el.innerHTML = `<span>&#9888;</span><span><b>Statuts vérifiés par lecture directe du code EDMS</b> le 10/08/2026. Projet dédié, distinct de Zeno.</span>`;
     } else if(state.project === 'chantier_odoo'){
       el.innerHTML = `<span>&#9888;</span><span><b>Repris du suivi Excel de Rachad</b> (10/08/2026) — Odoo est un progiciel externe, pas de code Zeno à auditer ici. Chaque phase regroupe les chantiers du CSV en tâches.</span>`;
     } else {

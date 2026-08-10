@@ -260,11 +260,11 @@
       </button>
     </div>
 
-  <div class="banner" id="banner"><span>&#9888;</span><span><b>Statuts vérifiés par lecture directe du code</b> le 06/08/2026 (pas une déclaration Plane — Plane n'est pas à jour). "CDC disponible" ne compte que les documents écrits <b>récemment par nous</b>. Porteur/interlocuteur renseignés pour Admission, Communication et Campus — le reste est à compléter par l'équipe.</span></div>
+  <div class="banner" id="banner"><span>&#9888;</span><span><b>Statuts vérifiés par lecture directe du code</b> (pas une déclaration Plane — Plane n'est pas à jour). "CDC disponible" ne compte que les documents écrits <b>récemment par nous</b>. Porteur/interlocuteur renseignés pour Admission, Communication, Campus et Pédagogie — le reste est à compléter par l'équipe.</span></div>
 
   <div class="summary" id="summary">
-      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">8</span><span class="l">Fonctionnels</span></div>
-      <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">3</span><span class="l">En cours</span></div>
+      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">7</span><span class="l">Fonctionnels</span></div>
+      <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">4</span><span class="l">En cours</span></div>
       <div class="stat crit" data-stat="bloque" tabindex="0"><span class="n">0</span><span class="l">Bloqués</span></div>
       <div class="stat idle" data-stat="pas-demarre" tabindex="0"><span class="n">1</span><span class="l">Pas démarrés</span></div>
       <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">10</span><span class="l">Sans CDC</span></div>
@@ -507,10 +507,10 @@
       <div class="module" data-idx="4">
         <div class="module-row" data-toggle="4" tabindex="0">
           <div><span class="module-name">Pédagogie</span><span class="module-desc">Promotions, notes, présences, décrochage</span></div>
-          <span class="pill ok">Fonctionnel</span>
+          <span class="pill warn">En cours</span>
           <span class="cdc partial">CDC&nbsp;Partiel</span>
-          <span class="owner clickable" data-contact="4" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">05/08</span>
+          <span class="owner clickable" data-contact="4" title="Voir porteur et interlocuteur"><span>Yemalin Agbangla</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">10/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -544,6 +544,16 @@
               <div class="task">
                 <span class="t-status ok"></span>
                 <span class="t-label">Import/export de listes d'étudiants</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">En cours : le rattachement d'un étudiant à sa promotion refusera désormais un cas ambigu au lieu de deviner (fiabilise l'inscription)</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">En cours : les écrans de gestion des cursus/promotions vont pouvoir déclarer les spécialités et les rentrées possibles</span>
               </div>
             
               <div class="task">
@@ -921,9 +931,9 @@
         },
         {
           name:'Pédagogie', desc:'Promotions, notes, présences, décrochage',
-          status:'fonctionnel', cdc:'partiel', owner:'—', role:'', when:'05/08', stale:false,
+          status:'en-cours', cdc:'partiel', owner:'Yemalin Agbangla', role:'', when:'10/08', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'CDC écrit cette semaine, pas encore diffusé à toute l\'équipe — d\'où "partiel".',
+          comments:'CDC écrit fin juillet, pas encore diffusé à toute l\'équipe — d\'où "partiel". Chantier en cours : refonte de l\'identité pédagogique (cursus/spécialité/promotion/campus) pour que chaque étudiant soit rattaché à la bonne promotion de façon fiable, au lieu d\'un rattachement approximatif comme aujourd\'hui.',
           tasks:[
             {label:'Création et suivi des promotions', status:'ok'},
             {label:'Saisie des notes module par module', status:'ok'},
@@ -931,6 +941,8 @@
             {label:'Conseils de classe et de discipline', status:'ok'},
             {label:'Tableau de suivi des étudiants à risque de décrochage', status:'ok'},
             {label:'Import/export de listes d\'étudiants', status:'ok'},
+            {label:'En cours : le rattachement d\'un étudiant à sa promotion refusera désormais un cas ambigu au lieu de deviner (fiabilise l\'inscription)', status:'warn'},
+            {label:'En cours : les écrans de gestion des cursus/promotions vont pouvoir déclarer les spécialités et les rentrées possibles', status:'warn'},
             {label:'Bloqué : certains contenus de formation pas encore traduits en français', status:'idle'},
           ]
         },

@@ -1,8 +1,8 @@
 # Zeno Suivi
 
-Page de suivi des chantiers Zeno & CRM AEIG, publiée via GitHub Pages.
+Page de suivi des chantiers Zeno, CRM AEIG et EDMS, publiée via GitHub Pages : https://epitechafrik.github.io/zeno-suivi/
 
-- **Contenu actuel** : statuts vérifiés manuellement par lecture directe du code (pas encore automatisé depuis Plane).
-- **Prochaine étape** : script qui régénère `index.html` à partir de sources fiables + GitHub Action planifiée pour republier automatiquement.
+**⚠️ Avant de modifier `index.html` : lire [`RULES.md`](./RULES.md).** Ça couvre le format des données, les règles de statut, et l'étape obligatoire après modification (`node scripts/bake.mjs`).
 
-Pour mettre à jour la page : remplacer `index.html` et pousser sur `main`.
+- **Contenu actuel** : mélange de statuts vérifiés par lecture directe du code, et de données reprises du suivi Excel de Rachad — chaque chantier précise sa source dans son commentaire.
+- **Prochaine étape possible** : script qui régénère `index.html` depuis une source de vérité automatisée (Plane, etc.) + GitHub Action planifiée pour republier automatiquement.

@@ -272,12 +272,12 @@
       </button>
     </div>
 
-  <div class="banner" id="banner"><span>&#9888;</span><span>Statuts <b>vérifiés par lecture directe du code</b> quand c'est indiqué ; porteurs/interlocuteurs/CDC/blockers <b>repris du suivi Excel de Rachad</b> (10/08/2026) quand ce n'est pas du code — les deux sources sont mélangées ligne par ligne, la note de chaque chantier précise laquelle.</span></div>
+  <div class="banner" id="banner"><span>&#9888;</span><span>Statuts <b>vérifiés par lecture directe du code</b> quand c'est indiqué ; porteurs/interlocuteurs/CDC/blockers <b>repris du suivi Excel de Rachad</b> quand ce n'est pas du code — les deux sources sont mélangées ligne par ligne, la note de chaque chantier précise laquelle.</span></div>
 
   <div class="summary" id="summary">
-      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">6</span><span class="l">Fonctionnels</span></div>
+      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">4</span><span class="l">Fonctionnels</span></div>
       <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">6</span><span class="l">En cours</span></div>
-      <div class="stat crit" data-stat="bloque" tabindex="0"><span class="n">1</span><span class="l">Bloqués</span></div>
+      <div class="stat crit" data-stat="bloque" tabindex="0"><span class="n">3</span><span class="l">Bloqués</span></div>
       <div class="stat idle" data-stat="pas-demarre" tabindex="0"><span class="n">0</span><span class="l">Pas démarrés</span></div>
       <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">6</span><span class="l">Sans CDC</span></div>
     </div>
@@ -316,7 +316,7 @@
         <div class="module-row" data-toggle="0" tabindex="0">
           <div><span class="module-name">Admission</span><span class="module-desc">De la candidature à l'inscription officielle</span></div>
           <div class="status-cell">
-            <span class="pill ok">Fonctionnel</span>
+            <span class="pill crit">Bloqué</span>
             <span class="blocker-tag">Communication (WhatsApp)</span>
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
@@ -663,7 +663,7 @@
         <div class="module-row" data-toggle="8" tabindex="0">
           <div><span class="module-name">Career Center</span><span class="module-desc">Stages, conventions, alumni, partenaires</span></div>
           <div class="status-cell">
-            <span class="pill ok">Fonctionnel</span>
+            <span class="pill crit">Bloqué</span>
             <span class="blocker-tag">CDC change énormément, à valider</span>
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
@@ -928,7 +928,7 @@
       modules: [
         {
           name:'Admission', desc:'De la candidature à l\'inscription officielle',
-          status:'fonctionnel', cdc:'oui', blocker:'Communication (WhatsApp)', owner:'Franck Birba', role:'', when:'03/08', stale:false,
+          status:'bloque', cdc:'oui', blocker:'Communication (WhatsApp)', owner:'Franck Birba', role:'', when:'03/08', stale:false,
           support:[{name:'Pissano', role:'Ressource additionnelle'}], brandContact:{name:'Fabrice, Charbel', role:''},
           comments:'Un problème récent où un candidat accepté pouvait ne pas être correctement rattaché à sa promotion vient d\'être corrigé début août. Selon le suivi de Rachad (fin juillet) : bloqué côté communication WhatsApp, et le compte d\'Antoine est à voir avec Foumi.',
           tasks:[
@@ -1029,7 +1029,7 @@
         },
         {
           name:'Career Center', desc:'Stages, conventions, alumni, partenaires',
-          status:'fonctionnel', cdc:'non', blocker:'CDC change énormément, à valider', owner:'Spynel', role:'', when:'31/08', stale:false,
+          status:'bloque', cdc:'non', blocker:'CDC change énormément, à valider', owner:'Spynel', role:'', when:'31/08', stale:false,
           support:[{name:'Cédric', role:'Ressource additionnelle'}], brandContact:{name:'Idelphonse', role:''},
           comments:'Le code fonctionne (vérifié par lecture directe, aucun bug bloquant trouvé). Mais Rachad signale une vigilance côté périmètre : le CDC change énormément et reste à valider — les specs de la suite sont prévues après Admission & CRM.',
           tasks:[

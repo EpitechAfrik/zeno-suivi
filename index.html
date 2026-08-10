@@ -252,11 +252,15 @@
 
   <div class="project-tabs" id="project-tabs">
       <button class="project-tab active" data-project="zeno">
-        Zeno<span class="count">12</span>
+        Zeno<span class="count">14</span>
       </button>
     
       <button class="project-tab " data-project="crm_aeig">
-        CRM AEIG<span class="count">0</span>
+        CRM AEIG<span class="count">5</span>
+      </button>
+    
+      <button class="project-tab " data-project="chantier_odoo">
+        Chantier Odoo<span class="count">3</span>
       </button>
     </div>
 
@@ -264,10 +268,10 @@
 
   <div class="summary" id="summary">
       <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">7</span><span class="l">Fonctionnels</span></div>
-      <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">4</span><span class="l">En cours</span></div>
+      <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">6</span><span class="l">En cours</span></div>
       <div class="stat crit" data-stat="bloque" tabindex="0"><span class="n">0</span><span class="l">Bloqués</span></div>
       <div class="stat idle" data-stat="pas-demarre" tabindex="0"><span class="n">1</span><span class="l">Pas démarrés</span></div>
-      <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">10</span><span class="l">Sans CDC</span></div>
+      <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">8</span><span class="l">Sans CDC</span></div>
     </div>
 
   <div class="filters">
@@ -297,14 +301,14 @@
     </div>
   </div>
 
-  <div class="result-count" id="result-count">12 chantiers affichés sur 12</div>
+  <div class="result-count" id="result-count">14 chantiers affichés sur 14</div>
 
   <div class="modules" id="modules">
       <div class="module" data-idx="0">
         <div class="module-row" data-toggle="0" tabindex="0">
           <div><span class="module-name">Admission</span><span class="module-desc">De la candidature à l'inscription officielle</span></div>
           <span class="pill ok">Fonctionnel</span>
-          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="cdc yes">CDC&nbsp;Oui</span>
           <span class="owner clickable" data-contact="0" title="Voir porteur et interlocuteur"><span>Franck Birba</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">03/08</span>
           <span class="chevron">&#8250;</span>
@@ -355,7 +359,7 @@
         <div class="module-row" data-toggle="1" tabindex="0">
           <div><span class="module-name">Communication</span><span class="module-desc">Emails, newsletters, boîte de réception, partenaires</span></div>
           <span class="pill ok">Fonctionnel</span>
-          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="cdc yes">CDC&nbsp;Oui</span>
           <span class="owner clickable" data-contact="1" title="Voir porteur et interlocuteur"><span>Alex Russel</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">02/08</span>
           <span class="chevron">&#8250;</span>
@@ -506,10 +510,10 @@
     
       <div class="module" data-idx="4">
         <div class="module-row" data-toggle="4" tabindex="0">
-          <div><span class="module-name">Pédagogie</span><span class="module-desc">Promotions, notes, présences, décrochage</span></div>
+          <div><span class="module-name">Pédagogie — Portail parent & cœur technique</span><span class="module-desc">Promotions, notes, présences, décrochage, identité pédagogique</span></div>
           <span class="pill warn">En cours</span>
-          <span class="cdc partial">CDC&nbsp;Partiel</span>
-          <span class="owner clickable" data-contact="4" title="Voir porteur et interlocuteur"><span>Yemalin Agbangla</span><span class="info-icon">&#9432;</span></span>
+          <span class="cdc yes">CDC&nbsp;Oui</span>
+          <span class="owner clickable" data-contact="4" title="Voir porteur et interlocuteur"><span>Modeste (Yemalin Agbangla)</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">10/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -567,11 +571,43 @@
     
       <div class="module" data-idx="5">
         <div class="module-row" data-toggle="5" tabindex="0">
+          <div><span class="module-name">Pédagogie — Étudiant & APE</span><span class="module-desc">Suivi étudiant côté association des parents d'élèves</span></div>
+          <span class="pill warn">En cours</span>
+          <span class="cdc yes">CDC&nbsp;Oui</span>
+          <span class="owner clickable" data-contact="5" title="Voir porteur et interlocuteur"><span>Edwin</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">31/07</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="6">
+        <div class="module-row" data-toggle="6" tabindex="0">
+          <div><span class="module-name">Pédagogie — Anglais</span><span class="module-desc">Suivi et placement anglais</span></div>
+          <span class="pill warn">En cours</span>
+          <span class="cdc yes">CDC&nbsp;Oui</span>
+          <span class="owner clickable" data-contact="6" title="Voir porteur et interlocuteur"><span>Alex</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">31/07</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="7">
+        <div class="module-row" data-toggle="7" tabindex="0">
           <div><span class="module-name">Career Center</span><span class="module-desc">Stages, conventions, alumni, partenaires</span></div>
           <span class="pill ok">Fonctionnel</span>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="5" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
-          <span class="when stale">21/07</span>
+          <span class="owner clickable" data-contact="7" title="Voir porteur et interlocuteur"><span>Spynel</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">31/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -611,12 +647,12 @@
         </div>
       </div>
     
-      <div class="module" data-idx="6">
-        <div class="module-row" data-toggle="6" tabindex="0">
+      <div class="module" data-idx="8">
+        <div class="module-row" data-toggle="8" tabindex="0">
           <div><span class="module-name">Design system</span><span class="module-desc">Apparence et marques visuelles</span></div>
           <span class="pill warn">En cours</span>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="6" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="8" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when stale">18/07</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -652,12 +688,12 @@
         </div>
       </div>
     
-      <div class="module" data-idx="7">
-        <div class="module-row" data-toggle="7" tabindex="0">
+      <div class="module" data-idx="9">
+        <div class="module-row" data-toggle="9" tabindex="0">
           <div><span class="module-name">EDMS — moteur de données</span><span class="module-desc">Remplacer le moteur de Zeno (proposition)</span></div>
           <span class="pill idle">Pas démarré</span>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="7" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="9" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when stale">01/04</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -673,12 +709,12 @@
         </div>
       </div>
     
-      <div class="module" data-idx="8">
-        <div class="module-row" data-toggle="8" tabindex="0">
+      <div class="module" data-idx="10">
+        <div class="module-row" data-toggle="10" tabindex="0">
           <div><span class="module-name">EDMS — suivi des liens (epitech.africa)</span><span class="module-desc">Mesurer le trafic venant des campagnes</span></div>
           <span class="pill ok">Fonctionnel</span>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="8" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="10" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">23/07</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -704,12 +740,12 @@
         </div>
       </div>
     
-      <div class="module" data-idx="9">
-        <div class="module-row" data-toggle="9" tabindex="0">
+      <div class="module" data-idx="11">
+        <div class="module-row" data-toggle="11" tabindex="0">
           <div><span class="module-name">DEVKORA</span><span class="module-desc">Tests de code pour les candidats/étudiants</span></div>
           <span class="pill warn">En cours</span>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="9" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="11" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">25/07</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -750,12 +786,12 @@
         </div>
       </div>
     
-      <div class="module" data-idx="10">
-        <div class="module-row" data-toggle="10" tabindex="0">
+      <div class="module" data-idx="12">
+        <div class="module-row" data-toggle="12" tabindex="0">
           <div><span class="module-name">Observability</span><span class="module-desc">Surveillance des erreurs et de la santé du système</span></div>
           <span class="pill warn">En cours</span>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="10" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="12" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when stale">03/06</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -791,12 +827,12 @@
         </div>
       </div>
     
-      <div class="module" data-idx="11">
-        <div class="module-row" data-toggle="11" tabindex="0">
+      <div class="module" data-idx="13">
+        <div class="module-row" data-toggle="13" tabindex="0">
           <div><span class="module-name">Dev Platform</span><span class="module-desc">Outillage de développement et mise en ligne</span></div>
           <span class="pill ok">Fonctionnel</span>
           <span class="cdc partial">CDC&nbsp;Partiel</span>
-          <span class="owner clickable" data-contact="11" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="13" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">05/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -871,9 +907,9 @@
       modules: [
         {
           name:'Admission', desc:'De la candidature à l\'inscription officielle',
-          status:'fonctionnel', cdc:'non', owner:'Franck Birba', role:'', when:'03/08', stale:false,
-          support:[], brandContact:{name:'Charbel Abdalla', role:''},
-          comments:'Un problème récent où un candidat accepté pouvait ne pas être correctement rattaché à sa promotion vient d\'être corrigé début août.',
+          status:'fonctionnel', cdc:'oui', owner:'Franck Birba', role:'', when:'03/08', stale:false,
+          support:[{name:'Pissano', role:'Ressource additionnelle'}], brandContact:{name:'Fabrice, Charbel', role:''},
+          comments:'Un problème récent où un candidat accepté pouvait ne pas être correctement rattaché à sa promotion vient d\'être corrigé début août. Selon le suivi de Rachad (fin juillet) : bloqué côté communication WhatsApp, et le compte d\'Antoine est à voir avec Foumi.',
           tasks:[
             {label:'Un candidat peut remplir et envoyer son dossier en ligne', status:'ok'},
             {label:'Le staff suit chaque candidat étape par étape jusqu\'à la décision', status:'ok'},
@@ -886,9 +922,9 @@
         },
         {
           name:'Communication', desc:'Emails, newsletters, boîte de réception, partenaires',
-          status:'fonctionnel', cdc:'non', owner:'Alex Russel', role:'', when:'02/08', stale:false,
-          support:[], brandContact:{name:'Foumi', role:'Équipe communication'},
-          comments:'',
+          status:'fonctionnel', cdc:'oui', owner:'Alex Russel', role:'', when:'02/08', stale:false,
+          support:[{name:'Cédric', role:'Ressource additionnelle'}], brandContact:{name:'Foumi', role:'Équipe communication'},
+          comments:'Selon le suivi de Rachad : le site epitech.africa (EDMS) et la synchro Zeno↔epitech.africa (événements campus) sont livrés début juillet. Reste des commodités à finaliser.',
           tasks:[
             {label:'Envoi d\'emails groupés avec modèles réutilisables', status:'ok'},
             {label:'Création et envoi de newsletters personnalisées', status:'ok'},
@@ -902,8 +938,8 @@
         {
           name:'Campus', desc:'Bâtiments, salles, matériel, événements',
           status:'fonctionnel', cdc:'non', owner:'Giovanni', role:'', when:'03/08', stale:false,
-          support:[], brandContact:{name:'Fawaz, Laure, Ghislain', role:''},
-          comments:'',
+          support:[{name:'David', role:'Ressource additionnelle'}], brandContact:{name:'Laure (vie associative) — aussi Fawaz, Ghislain selon les sujets', role:''},
+          comments:'Selon le suivi de Rachad : le volet "vie associative" est en cours, sans CDC, sur input du BO (bureau des élèves).',
           tasks:[
             {label:'Gestion des campus, bâtiments et salles', status:'ok'},
             {label:'Réservation de salle avec vérification automatique de disponibilité', status:'ok'},
@@ -930,10 +966,10 @@
           ]
         },
         {
-          name:'Pédagogie', desc:'Promotions, notes, présences, décrochage',
-          status:'en-cours', cdc:'partiel', owner:'Yemalin Agbangla', role:'', when:'10/08', stale:false,
-          support:[], brandContact:NO_ONE,
-          comments:'CDC écrit fin juillet, pas encore diffusé à toute l\'équipe — d\'où "partiel". Chantier en cours : refonte de l\'identité pédagogique (cursus/spécialité/promotion/campus) pour que chaque étudiant soit rattaché à la bonne promotion de façon fiable, au lieu d\'un rattachement approximatif comme aujourd\'hui.',
+          name:'Pédagogie — Portail parent & cœur technique', desc:'Promotions, notes, présences, décrochage, identité pédagogique',
+          status:'en-cours', cdc:'oui', owner:'Modeste (Yemalin Agbangla)', role:'', when:'10/08', stale:false,
+          support:[{name:'David', role:'Ressource additionnelle'}], brandContact:{name:'Ghislain, Franck', role:''},
+          comments:'CDC disponible (selon suivi Rachad, "en finalisation" fin juillet). Chantier en cours : refonte de l\'identité pédagogique (cursus/spécialité/promotion/campus) pour que chaque étudiant soit rattaché à la bonne promotion de façon fiable, au lieu d\'un rattachement approximatif comme aujourd\'hui.',
           tasks:[
             {label:'Création et suivi des promotions', status:'ok'},
             {label:'Saisie des notes module par module', status:'ok'},
@@ -947,10 +983,24 @@
           ]
         },
         {
+          name:'Pédagogie — Étudiant & APE', desc:'Suivi étudiant côté association des parents d\'élèves',
+          status:'en-cours', cdc:'oui', owner:'Edwin', role:'', when:'31/07', stale:false,
+          support:[{name:'Pissano', role:'Ressource additionnelle'}], brandContact:{name:'Ghislain, Franck', role:''},
+          comments:'Source : suivi Rachad (CSV), pas vérifié par lecture de code. Statut "en finalisation" fin juillet.',
+          tasks:[]
+        },
+        {
+          name:'Pédagogie — Anglais', desc:'Suivi et placement anglais',
+          status:'en-cours', cdc:'oui', owner:'Alex', role:'', when:'31/07', stale:false,
+          support:[], brandContact:{name:'Franck', role:''},
+          comments:'Source : suivi Rachad (CSV), pas vérifié par lecture de code.',
+          tasks:[]
+        },
+        {
           name:'Career Center', desc:'Stages, conventions, alumni, partenaires',
-          status:'fonctionnel', cdc:'non', owner:'—', role:'', when:'21/07', stale:true,
-          support:[], brandContact:NO_ONE,
-          comments:'Aucun point bloquant identifié — juste pas de mouvement depuis plus de 2 semaines.',
+          status:'fonctionnel', cdc:'non', owner:'Spynel', role:'', when:'31/08', stale:false,
+          support:[{name:'Cédric', role:'Ressource additionnelle'}], brandContact:{name:'Idelphonse', role:''},
+          comments:'Le code fonctionne (vérifié par lecture directe, aucun bug bloquant trouvé). Mais Rachad signale une vigilance côté périmètre : le CDC change énormément et reste à valider — les specs de la suite sont prévues après Admission & CRM.',
           tasks:[
             {label:'Les entreprises publient et gèrent leurs offres', status:'ok'},
             {label:'Modération des offres avant publication', status:'ok'},
@@ -1038,7 +1088,93 @@
     },
     crm_aeig: {
       label: 'CRM AEIG',
-      modules: [],
+      modules: [
+        {
+          name:'CRM AEIG (toutes marques)', desc:'Rendre Zeno réutilisable pour les autres marques du groupe AEIG',
+          status:'pas-demarre', cdc:'non', owner:'Franck', role:'', when:'01/08', stale:false,
+          support:[], brandContact:{name:'Stéphanie, Gwen', role:''},
+          comments:'Source : suivi Rachad (CSV), pas vérifié par lecture de code. Bloqué par l\'absence de spécifications/CDC. Test prévu en août.',
+          tasks:[
+            {label:'Rédiger les spécifications / CDC', status:'idle'},
+          ]
+        },
+        {
+          name:'DV — Digital Valley (campagne)', desc:'Déploiement Zeno pour la marque Digital Valley',
+          status:'pas-demarre', cdc:'non', owner:'Dara, Franck', role:'', when:'01/08', stale:false,
+          support:[], brandContact:{name:'Yann', role:''},
+          comments:'Source : suivi Rachad (CSV). À voir avec Daryl et Gwen pour produire le funnel à l\'image de ce qui a été fait pour Croissance.',
+          tasks:[]
+        },
+        {
+          name:'Takabytes (Bizdev)', desc:'Déploiement Zeno pour la marque Takabytes',
+          status:'pas-demarre', cdc:'non', owner:'—', role:'', when:'01/08', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Source : suivi Rachad (CSV) — colonnes non renseignées à date.',
+          tasks:[]
+        },
+        {
+          name:'Afrikedutech (captation de données)', desc:'Déploiement Zeno pour la marque Afrikedutech',
+          status:'pas-demarre', cdc:'non', owner:'—', role:'', when:'01/08', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Source : suivi Rachad (CSV) — colonnes non renseignées à date.',
+          tasks:[]
+        },
+        {
+          name:'Future Studio', desc:'Déploiement Zeno pour la marque Future Studio',
+          status:'pas-demarre', cdc:'non', owner:'Godwyn', role:'', when:'01/08', stale:false,
+          support:[], brandContact:{name:'Henry', role:''},
+          comments:'Source : suivi Rachad (CSV), pas vérifié par lecture de code.',
+          tasks:[]
+        },
+      ],
+    },
+    chantier_odoo: {
+      label: 'Chantier Odoo',
+      modules: [
+        {
+          name:'Phase 1 — Modules métiers', desc:'9 juin → 11 juillet',
+          status:'en-cours', cdc:'partiel', owner:'David, Pissano', role:'', when:'11/07', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Source : suivi Rachad (CSV), pas de code à auditer (Odoo est un progiciel, pas un repo Zeno).',
+          tasks:[
+            {label:'Voyages & Perdiems — Livré (porteur David, interlocuteur Léonce)', status:'ok'},
+            {label:'Bon de commande — Livré (porteur Pissano, interlocuteur Jaurès Fidel)', status:'ok'},
+            {label:'Signature — Livré (porteur Pissano)', status:'ok'},
+            {label:'Quick wins (dashboard évaluation RH + validations) — Livré', status:'ok'},
+            {label:'SAV Orchestra — Livré (interlocuteur Rachad)', status:'ok'},
+            {label:'Gestion des espaces — Livré (porteur David)', status:'ok'},
+            {label:'Validation — Livré', status:'ok'},
+            {label:'Électricité — Livré (porteur David)', status:'ok'},
+            {label:'Gestion de flotte — Livré (interlocuteur Rachad)', status:'ok'},
+            {label:'Cession des actifs — Annulé', status:'idle'},
+            {label:'Modules juridiques — Bloqué (disponibilité de Faustin, pas de besoins exprimés)', status:'crit'},
+            {label:'Modules SI (ticketing SAV, gestionnaire bocal) — En cours (interlocuteurs Cédric, Amos, Bernard)', status:'warn'},
+            {label:'Compléments RH (en continu) — En cours', status:'warn'},
+            {label:'Compléments RAF (en continu) — En cours (interlocuteur Constant)', status:'warn'},
+          ]
+        },
+        {
+          name:'Phase 2 — Automatisations', desc:'23 juin → 25 juillet',
+          status:'en-cours', cdc:'partiel', owner:'David, Pissano', role:'', when:'25/07', stale:false,
+          support:[], brandContact:{name:'Managers de tribus', role:''},
+          comments:'Source : suivi Rachad (CSV).',
+          tasks:[
+            {label:'Questionnaire managers — Livré (enquête irritants)', status:'ok'},
+            {label:'Consolidation des retours — En cours et évolutif (bloqué en attendant la fin du questionnaire)', status:'warn'},
+            {label:'Développement des automatisations — En cours', status:'warn'},
+          ]
+        },
+        {
+          name:'Phase 3 — Dashboards', desc:'21 juillet → 14 août',
+          status:'en-cours', cdc:'non', owner:'David, Pissano', role:'', when:'14/08', stale:false,
+          support:[], brandContact:{name:'Johanne, Franck', role:''},
+          comments:'Source : suivi Rachad (CSV).',
+          tasks:[
+            {label:'Dashboards de pilotage (mise en place du module) — En cours, calé sur la fin de Zeno Phase 1', status:'warn'},
+            {label:'Recette & go-live V2 — À venir', status:'idle'},
+          ]
+        },
+      ],
     },
   };
 
@@ -1066,9 +1202,13 @@
   function renderBanner(){
     const el = document.getElementById('banner');
     if(state.project === 'zeno'){
-      el.innerHTML = `<span>&#9888;</span><span><b>Statuts vérifiés par lecture directe du code</b> le 06/08/2026 (pas une déclaration Plane — Plane n'est pas à jour). "CDC disponible" ne compte que les documents écrits <b>récemment par nous</b>. Porteur/interlocuteur renseignés pour Admission, Communication et Campus — le reste est à compléter par l'équipe.</span>`;
+      el.innerHTML = `<span>&#9888;</span><span>Statuts <b>vérifiés par lecture directe du code</b> quand c'est indiqué ; porteurs/interlocuteurs/CDC/blockers <b>repris du suivi Excel de Rachad</b> (10/08/2026) quand ce n'est pas du code — les deux sources sont mélangées ligne par ligne, la note de chaque chantier précise laquelle.</span>`;
+    } else if(state.project === 'crm_aeig'){
+      el.innerHTML = `<span>&#9888;</span><span><b>Repris du suivi Excel de Rachad</b> (10/08/2026), pas vérifié par lecture de code — CRM AEIG (rendre Zeno réutilisable pour d'autres marques du groupe) est encore au stade spécifications.</span>`;
+    } else if(state.project === 'chantier_odoo'){
+      el.innerHTML = `<span>&#9888;</span><span><b>Repris du suivi Excel de Rachad</b> (10/08/2026) — Odoo est un progiciel externe, pas de code Zeno à auditer ici. Chaque phase regroupe les chantiers du CSV en tâches.</span>`;
     } else {
-      el.innerHTML = `<span>&#9888;</span><span><b>Projet pas encore scopé.</b> CRM AEIG (rendre Zeno réutilisable pour d'autres marques AEIG) n'a pas encore de chantiers suivis ici — à définir avec l'équipe avant de remplir cette vue.</span>`;
+      el.innerHTML = `<span>&#9888;</span><span><b>Projet pas encore scopé.</b></span>`;
     }
   }
 

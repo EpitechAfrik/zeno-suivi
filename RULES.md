@@ -40,11 +40,11 @@ Deux sources coexistent dans ce fichier, et il ne faut **jamais** les mélanger 
 
 **Ne jamais inventer un porteur, un interlocuteur ou une date.** Si l'info n'est pas connue, laisser `owner: '—'` / `brandContact: NO_ONE` plutôt que de deviner.
 
-## 3. Un blocage réel = statut "Bloqué", jamais "Fonctionnel" + une note cachée
+## 3. `status` = est-ce que ça sert vraiment aujourd'hui — `blocker` = pourquoi c'est imparfait
 
-Si un chantier a un blocage nommé et réel (une dépendance externe, une décision en attente, un CDC qui change sans arrêt...), le **statut global doit être `'bloque'`** — même si le code sous-jacent fonctionne techniquement. On ne mélange pas "ça marche" et "c'est bloqué" dans un statut optimiste avec le vrai problème caché dans les commentaires : ça trompe quelqu'un qui ne fait que scanner la liste.
+Un chantier **utilisé et fonctionnel** reste `status: 'fonctionnel'`, même s'il a un point bloquant identifié dessus (une dépendance externe, une décision en attente, un CDC qui change...). Ne pas rétrograder le statut à `'bloque'` juste parce qu'il y a un problème connu — `'bloque'` veut dire "n'est pas utilisable aujourd'hui", pas "a un défaut".
 
-Utiliser le champ `blocker` (une phrase courte, ex. `'Communication (WhatsApp)'`) pour que la raison soit visible directement dans la ligne, sans avoir à cliquer. Le détail complet reste dans `comments`.
+Utiliser le champ `blocker` (une phrase courte, ex. `'Communication (WhatsApp)'`) pour que le point bloquant reste **visible directement dans la ligne**, à côté du statut, sans avoir à cliquer. Le détail complet reste dans `comments`. Résultat recherché : "Fonctionnel" + un petit badge rouge à côté — pas un mensonge par omission, pas un statut alarmiste pour un outil qui marche.
 
 ## 4. "CDC disponible" ne compte que les documents récents et fiables
 

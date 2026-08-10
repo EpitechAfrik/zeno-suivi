@@ -54,7 +54,7 @@ function tabsHtml() {
     `).join('');
 }
 
-const bannerHtml = `<span>&#9888;</span><span>Statuts <b>vérifiés par lecture directe du code</b> quand c'est indiqué ; porteurs/interlocuteurs/CDC/blockers <b>repris du suivi Excel de Rachad</b> quand ce n'est pas du code — les deux sources sont mélangées ligne par ligne, la note de chaque chantier précise laquelle.</span>`;
+const bannerHtml = '';
 
 function summaryHtml(modules) {
   const counts = { fonctionnel: 0, 'en-cours': 0, bloque: 0, 'pas-demarre': 0, sansCdc: 0 };

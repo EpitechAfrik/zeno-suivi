@@ -260,7 +260,7 @@
 
   <div class="project-tabs" id="project-tabs">
       <button class="project-tab active" data-project="zeno">
-        Zeno<span class="count">13</span>
+        Zeno<span class="count">14</span>
       </button>
     
       <button class="project-tab " data-project="crm_aeig">
@@ -275,8 +275,8 @@
   <div class="banner" id="banner"></div>
 
   <div class="summary" id="summary">
-      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">6</span><span class="l">Fonctionnels</span></div>
-      <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">6</span><span class="l">En cours</span></div>
+      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">5</span><span class="l">Fonctionnels</span></div>
+      <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">8</span><span class="l">En cours</span></div>
       <div class="stat crit" data-stat="bloque" tabindex="0"><span class="n">1</span><span class="l">Bloqués</span></div>
       <div class="stat idle" data-stat="pas-demarre" tabindex="0"><span class="n">0</span><span class="l">Pas démarrés</span></div>
       <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">6</span><span class="l">Sans CDC</span></div>
@@ -309,18 +309,72 @@
     </div>
   </div>
 
-  <div class="result-count" id="result-count">13 chantiers affichés sur 13</div>
+  <div class="result-count" id="result-count">14 chantiers affichés sur 14</div>
 
   <div class="modules" id="modules">
       <div class="module" data-idx="0">
         <div class="module-row" data-toggle="0" tabindex="0">
+          <div><span class="module-name">Architecture globale (refonte technique)</span><span class="module-desc">Revoir en profondeur comment Zeno est construit : comment les données sont reliées entre elles, comment les accès sont contrôlés, et comment séparer l'environnement de test de celui utilisé par les vrais utilisateurs</span></div>
+          <div class="status-cell">
+            <span class="pill warn">En cours</span>
+            
+          </div>
+          <span class="cdc partial">CDC&nbsp;Partiel</span>
+          <span class="owner clickable" data-contact="0" title="Voir porteur et interlocuteur"><span>Franck<span class="role"> · Porteur</span></span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">14/08</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Diagnostic complet fait (données, accès, code obsolète)</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Réunion de cadrage avec l'équipe technique (14/08)</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Corriger les accès non protégés déjà identifiés</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Décider du sort du système de contrôle d'accès construit mais jamais réellement utilisé, et permettre d'attribuer des droits jusqu'au niveau du sous-module et de la personne</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Permettre aux autres structures du groupe d'utiliser Zeno, pas seulement Epitech</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Terminer la modernisation des écrans encore sur l'ancien système d'affichage</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Nettoyer le code obsolète au fur et à mesure des chantiers</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="1">
+        <div class="module-row" data-toggle="1" tabindex="0">
           <div><span class="module-name">Admission</span><span class="module-desc">De la candidature à l'inscription officielle</span></div>
           <div class="status-cell">
             <span class="pill ok">Fonctionnel</span>
             <span class="blocker-tag">Communication (WhatsApp)</span>
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
-          <span class="owner clickable" data-contact="0" title="Voir porteur et interlocuteur"><span>Franck Birba</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="1" title="Voir porteur et interlocuteur"><span>Franck Birba</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">03/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -366,15 +420,15 @@
         </div>
       </div>
     
-      <div class="module" data-idx="1">
-        <div class="module-row" data-toggle="1" tabindex="0">
+      <div class="module" data-idx="2">
+        <div class="module-row" data-toggle="2" tabindex="0">
           <div><span class="module-name">Communication</span><span class="module-desc">Emails, newsletters, boîte de réception, partenaires</span></div>
           <div class="status-cell">
             <span class="pill ok">Fonctionnel</span>
             
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
-          <span class="owner clickable" data-contact="1" title="Voir porteur et interlocuteur"><span>Alex Russel</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="2" title="Voir porteur et interlocuteur"><span>Alex Russel</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">02/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -420,15 +474,15 @@
         </div>
       </div>
     
-      <div class="module" data-idx="2">
-        <div class="module-row" data-toggle="2" tabindex="0">
+      <div class="module" data-idx="3">
+        <div class="module-row" data-toggle="3" tabindex="0">
           <div><span class="module-name">Campus</span><span class="module-desc">Bâtiments, salles, matériel, événements</span></div>
           <div class="status-cell">
             <span class="pill ok">Fonctionnel</span>
             
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="2" title="Voir porteur et interlocuteur"><span>Giovanni</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="3" title="Voir porteur et interlocuteur"><span>Giovanni</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">03/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -474,15 +528,15 @@
         </div>
       </div>
     
-      <div class="module" data-idx="3">
-        <div class="module-row" data-toggle="3" tabindex="0">
+      <div class="module" data-idx="4">
+        <div class="module-row" data-toggle="4" tabindex="0">
           <div><span class="module-name">Parent</span><span class="module-desc">Portail parent : notes, présences, RDV, paiements</span></div>
           <div class="status-cell">
             <span class="pill ok">Fonctionnel</span>
             
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="3" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="4" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">03/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -528,15 +582,15 @@
         </div>
       </div>
     
-      <div class="module" data-idx="4">
-        <div class="module-row" data-toggle="4" tabindex="0">
+      <div class="module" data-idx="5">
+        <div class="module-row" data-toggle="5" tabindex="0">
           <div><span class="module-name">Pédagogie — cœur technique (identité)</span><span class="module-desc">Promotions, notes, présences, décrochage, identité pédagogique</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
             
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
-          <span class="owner clickable" data-contact="4" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="5" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">10/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -592,15 +646,15 @@
         </div>
       </div>
     
-      <div class="module" data-idx="5">
-        <div class="module-row" data-toggle="5" tabindex="0">
+      <div class="module" data-idx="6">
+        <div class="module-row" data-toggle="6" tabindex="0">
           <div><span class="module-name">Pédagogie — Portail parent (interface)</span><span class="module-desc">Écrans du portail parent</span></div>
           <div class="status-cell">
             <span class="pill crit">Bloqué</span>
             <span class="blocker-tag">Token my.epitech non communiqué</span>
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
-          <span class="owner clickable" data-contact="5" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="6" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">10/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -621,34 +675,15 @@
         </div>
       </div>
     
-      <div class="module" data-idx="6">
-        <div class="module-row" data-toggle="6" tabindex="0">
+      <div class="module" data-idx="7">
+        <div class="module-row" data-toggle="7" tabindex="0">
           <div><span class="module-name">Pédagogie — Étudiant & APE</span><span class="module-desc">Suivi étudiant côté association des parents d'élèves</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
             
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
-          <span class="owner clickable" data-contact="6" title="Voir porteur et interlocuteur"><span>Edwin</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">31/07</span>
-          <span class="chevron">&#8250;</span>
-        </div>
-        <div class="tasks">
-          <div class="tasks-inner">
-            
-          </div>
-        </div>
-      </div>
-    
-      <div class="module" data-idx="7">
-        <div class="module-row" data-toggle="7" tabindex="0">
-          <div><span class="module-name">Pédagogie — Anglais</span><span class="module-desc">Suivi et placement anglais</span></div>
-          <div class="status-cell">
-            <span class="pill warn">En cours</span>
-            
-          </div>
-          <span class="cdc yes">CDC&nbsp;Oui</span>
-          <span class="owner clickable" data-contact="7" title="Voir porteur et interlocuteur"><span>Alex Russel</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="7" title="Voir porteur et interlocuteur"><span>Edwin</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">31/07</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -661,13 +696,32 @@
     
       <div class="module" data-idx="8">
         <div class="module-row" data-toggle="8" tabindex="0">
+          <div><span class="module-name">Pédagogie — Anglais</span><span class="module-desc">Suivi et placement anglais</span></div>
+          <div class="status-cell">
+            <span class="pill warn">En cours</span>
+            
+          </div>
+          <span class="cdc yes">CDC&nbsp;Oui</span>
+          <span class="owner clickable" data-contact="8" title="Voir porteur et interlocuteur"><span>Alex Russel</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">31/07</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="9">
+        <div class="module-row" data-toggle="9" tabindex="0">
           <div><span class="module-name">Career Center</span><span class="module-desc">Stages, conventions, alumni, partenaires</span></div>
           <div class="status-cell">
             <span class="pill ok">Fonctionnel</span>
             <span class="blocker-tag">CDC change énormément, à valider</span>
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="8" title="Voir porteur et interlocuteur"><span>Spynel</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="9" title="Voir porteur et interlocuteur"><span>Spynel</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">31/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -704,19 +758,24 @@
                 <span class="t-label">Rappels automatiques quand une signature tarde</span>
               </div>
             
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Signalé le 14/08 comme pas totalement terminé — à préciser</span>
+              </div>
+            
           </div>
         </div>
       </div>
     
-      <div class="module" data-idx="9">
-        <div class="module-row" data-toggle="9" tabindex="0">
+      <div class="module" data-idx="10">
+        <div class="module-row" data-toggle="10" tabindex="0">
           <div><span class="module-name">Design system</span><span class="module-desc">Apparence et marques visuelles</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
             
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="9" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="10" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when stale">18/07</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -752,16 +811,16 @@
         </div>
       </div>
     
-      <div class="module" data-idx="10">
-        <div class="module-row" data-toggle="10" tabindex="0">
+      <div class="module" data-idx="11">
+        <div class="module-row" data-toggle="11" tabindex="0">
           <div><span class="module-name">DEVKORA</span><span class="module-desc">Tests de code pour les candidats/étudiants</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
             
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="10" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">25/07</span>
+          <span class="owner clickable" data-contact="11" title="Voir porteur et interlocuteur"><span>Edwin</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">14/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -801,16 +860,16 @@
         </div>
       </div>
     
-      <div class="module" data-idx="11">
-        <div class="module-row" data-toggle="11" tabindex="0">
+      <div class="module" data-idx="12">
+        <div class="module-row" data-toggle="12" tabindex="0">
           <div><span class="module-name">Observability</span><span class="module-desc">Surveillance des erreurs et de la santé du système</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
             
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="11" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
-          <span class="when stale">03/06</span>
+          <span class="owner clickable" data-contact="12" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">14/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -841,20 +900,30 @@
                 <span class="t-label">Bloqué : les alertes ne partent que par email, pas sur un canal d'équipe</span>
               </div>
             
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Être alerté automatiquement avant l'expiration d'un certificat de sécurité</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Avoir une vue unique de ce qui se passe en temps réel sur l'ensemble des serveurs</span>
+              </div>
+            
           </div>
         </div>
       </div>
     
-      <div class="module" data-idx="12">
-        <div class="module-row" data-toggle="12" tabindex="0">
+      <div class="module" data-idx="13">
+        <div class="module-row" data-toggle="13" tabindex="0">
           <div><span class="module-name">Dev Platform</span><span class="module-desc">Outillage de développement et mise en ligne</span></div>
           <div class="status-cell">
-            <span class="pill ok">Fonctionnel</span>
+            <span class="pill warn">En cours</span>
             
           </div>
           <span class="cdc partial">CDC&nbsp;Partiel</span>
-          <span class="owner clickable" data-contact="12" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">05/08</span>
+          <span class="owner clickable" data-contact="13" title="Voir porteur et interlocuteur"><span>Franck</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">14/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -888,6 +957,31 @@
               <div class="task">
                 <span class="t-status warn"></span>
                 <span class="t-label">Bloqué : plusieurs incidents de données récents, nettoyage encore en cours</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Mettre en place un serveur de développement partagé entre les chantiers</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Créer, sur ce serveur, un environnement dédié au chantier de refonte technique</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Migrer les images techniques stockées sur un compte personnel vers un compte officiel Epitech</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Mettre en place un vrai circuit de relecture et de mise en ligne du code</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Scanner régulièrement la sécurité des applications (sujet porté par l'équipe SI, pas propre à Zeno)</span>
               </div>
             
           </div>
@@ -927,6 +1021,21 @@
       label: 'Zeno',
       modules: [
         {
+          name:'Architecture globale (refonte technique)', desc:'Revoir en profondeur comment Zeno est construit : comment les données sont reliées entre elles, comment les accès sont contrôlés, et comment séparer l\'environnement de test de celui utilisé par les vrais utilisateurs',
+          status:'en-cours', cdc:'partiel', owner:'Franck', role:'Porteur', when:'14/08', stale:false,
+          support:[{name:'Yemalin Modeste', role:''}, {name:'Cédric', role:'Support'}],
+          comments:'Vérifié par lecture directe du code (diagnostic complet mené le 13-14/08/2026), puis cadré en réunion technique le 14/08 : la vision est plus large qu\'un simple nettoyage technique (voir aussi "CRM AEIG (toutes marques)", "Dev Platform" et "Observability" pour les volets infra et multi-marques qui en découlent).',
+          tasks:[
+            {label:'Diagnostic complet fait (données, accès, code obsolète)', status:'ok'},
+            {label:'Réunion de cadrage avec l\'équipe technique (14/08)', status:'ok'},
+            {label:'Corriger les accès non protégés déjà identifiés', status:'crit'},
+            {label:'Décider du sort du système de contrôle d\'accès construit mais jamais réellement utilisé, et permettre d\'attribuer des droits jusqu\'au niveau du sous-module et de la personne', status:'idle'},
+            {label:'Permettre aux autres structures du groupe d\'utiliser Zeno, pas seulement Epitech', status:'idle'},
+            {label:'Terminer la modernisation des écrans encore sur l\'ancien système d\'affichage', status:'idle'},
+            {label:'Nettoyer le code obsolète au fur et à mesure des chantiers', status:'idle'},
+          ],
+        },
+        {
           name:'Admission', desc:'De la candidature à l\'inscription officielle',
           status:'fonctionnel', cdc:'oui', blocker:'Communication (WhatsApp)', owner:'Franck Birba', role:'', when:'03/08', stale:false,
           support:[{name:'Pissano', role:'Ressource additionnelle'}], brandContact:{name:'Fabrice, Charbel', role:''},
@@ -945,7 +1054,7 @@
           name:'Communication', desc:'Emails, newsletters, boîte de réception, partenaires',
           status:'fonctionnel', cdc:'oui', owner:'Alex Russel', role:'', when:'02/08', stale:false,
           support:[{name:'Cédric', role:'Ressource additionnelle'}], brandContact:{name:'Foumi', role:'Équipe communication'},
-          comments:'Selon le suivi de Rachad : le site epitech.africa (EDMS) et la synchro Zeno↔epitech.africa (événements campus) sont livrés début juillet. Reste des commodités à finaliser.',
+          comments:'Selon le suivi de Rachad : le site epitech.africa (EDMS) et la synchro Zeno↔epitech.africa (événements campus) sont livrés début juillet. Reste des commodités à finaliser. Confirmé le 14/08 : ce module est aussi utilisé par EDMS.',
           tasks:[
             {label:'Envoi d\'emails groupés avec modèles réutilisables', status:'ok'},
             {label:'Création et envoi de newsletters personnalisées', status:'ok'},
@@ -959,7 +1068,7 @@
         {
           name:'Campus', desc:'Bâtiments, salles, matériel, événements',
           status:'fonctionnel', cdc:'non', owner:'Giovanni', role:'', when:'03/08', stale:false,
-          support:[{name:'David', role:'Ressource additionnelle'}], brandContact:{name:'Laure (vie associative) — aussi Fawaz, Ghislain selon les sujets', role:''},
+          support:[{name:'David', role:'Ressource additionnelle'}], brandContact:{name:'Laure, Angelo (14/08) — Fawaz, Ghislain mentionnés selon les sujets dans une source antérieure', role:''},
           comments:'Selon le suivi de Rachad : le volet "vie associative" est en cours, sans CDC, sur input du BO (bureau des élèves).',
           tasks:[
             {label:'Gestion des campus, bâtiments et salles', status:'ok'},
@@ -1039,6 +1148,7 @@
             {label:'Convention de stage signée en ligne (entreprise → étudiant → école)', status:'ok'},
             {label:'Profil et suivi des anciens étudiants (alumni)', status:'ok'},
             {label:'Rappels automatiques quand une signature tarde', status:'ok'},
+            {label:'Signalé le 14/08 comme pas totalement terminé — à préciser', status:'warn'},
           ]
         },
         {
@@ -1056,9 +1166,9 @@
         },
         {
           name:'DEVKORA', desc:'Tests de code pour les candidats/étudiants',
-          status:'en-cours', cdc:'non', owner:'—', role:'', when:'25/07', stale:false,
+          status:'en-cours', cdc:'non', owner:'Edwin', role:'', when:'14/08', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'',
+          comments:'Précisé le 14/08 : utilisé pour les tests techniques d\'admission et l\'entraînement continu des étudiants, actuellement déployé sur le campus d\'Abidjan.',
           tasks:[
             {label:'Exécution réelle de code dans 38 langages', status:'ok'},
             {label:'Essais illimités avant le rendu final', status:'ok'},
@@ -1070,22 +1180,24 @@
         },
         {
           name:'Observability', desc:'Surveillance des erreurs et de la santé du système',
-          status:'en-cours', cdc:'non', owner:'—', role:'', when:'03/06', stale:true,
+          status:'en-cours', cdc:'non', owner:'—', role:'', when:'14/08', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'',
+          comments:'Relancé le 14/08 : besoin d\'un endroit unique pour voir ce qui se passe sur nos serveurs (au-delà des erreurs applicatives déjà suivies).',
           tasks:[
             {label:'Les erreurs du site sont enregistrées automatiquement', status:'ok'},
             {label:'Tableau de bord de santé du système en temps réel', status:'ok'},
             {label:'Alertes email automatiques en cas de panne', status:'ok'},
             {label:'Bloqué : la moitié des tâches automatiques de fond n\'est pas surveillée', status:'warn'},
             {label:'Bloqué : les alertes ne partent que par email, pas sur un canal d\'équipe', status:'idle'},
+            {label:'Être alerté automatiquement avant l\'expiration d\'un certificat de sécurité', status:'idle'},
+            {label:'Avoir une vue unique de ce qui se passe en temps réel sur l\'ensemble des serveurs', status:'idle'},
           ]
         },
         {
           name:'Dev Platform', desc:'Outillage de développement et mise en ligne',
-          status:'fonctionnel', cdc:'partiel', owner:'—', role:'', when:'05/08', stale:false,
-          support:[], brandContact:NO_ONE,
-          comments:'CDC partiel : les documents sur l\'incident de données récent sont écrits, mais il n\'existe pas de CDC général pour cet outillage.',
+          status:'en-cours', cdc:'partiel', owner:'Franck', role:'', when:'14/08', stale:false,
+          support:[{name:'Yemalin Modeste', role:''}], brandContact:NO_ONE,
+          comments:'CDC partiel : les documents sur l\'incident de données récent sont écrits, mais il n\'existe pas de CDC général pour cet outillage. Élargi le 14/08 (réunion de cadrage technique) : plusieurs chantiers infra portés par l\'équipe SI, qui touchent Zeno sans en être propres à Zeno.',
           tasks:[
             {label:'Démarrage de l\'environnement de travail en une seule commande', status:'ok'},
             {label:'Vérification automatique avant chaque mise en ligne', status:'ok'},
@@ -1093,6 +1205,11 @@
             {label:'Outils de réparation en cas d\'incident sur les données', status:'ok'},
             {label:'Surveillance automatique des services externes essentiels', status:'ok'},
             {label:'Bloqué : plusieurs incidents de données récents, nettoyage encore en cours', status:'warn'},
+            {label:'Mettre en place un serveur de développement partagé entre les chantiers', status:'idle'},
+            {label:'Créer, sur ce serveur, un environnement dédié au chantier de refonte technique', status:'idle'},
+            {label:'Migrer les images techniques stockées sur un compte personnel vers un compte officiel Epitech', status:'idle'},
+            {label:'Mettre en place un vrai circuit de relecture et de mise en ligne du code', status:'idle'},
+            {label:'Scanner régulièrement la sécurité des applications (sujet porté par l\'équipe SI, pas propre à Zeno)', status:'idle'},
           ]
         },
       ],
@@ -1102,11 +1219,21 @@
       modules: [
         {
           name:'CRM AEIG (toutes marques)', desc:'Rendre Zeno réutilisable pour les autres marques du groupe AEIG',
-          status:'pas-demarre', cdc:'non', owner:'Franck', role:'', when:'01/08', stale:false,
+          status:'en-cours', cdc:'partiel', owner:'Franck', role:'', when:'14/08', stale:false,
           support:[], brandContact:{name:'Stéphanie, Gwen', role:''},
-          comments:'Source : suivi Rachad (CSV), pas vérifié par lecture de code. Bloqué par l\'absence de spécifications/CDC. Test prévu en août.',
+          comments:'Bloqué depuis début août par l\'absence de spécifications/CDC. Une vision claire a été posée en réunion de cadrage le 14/08 (résumée ci-dessous) — reste à la mettre par écrit dans un vrai document.',
           tasks:[
-            {label:'Rédiger les spécifications / CDC', status:'idle'},
+            {label:'Chaque marque doit pouvoir lancer sa propre instance Zeno, avec ses modules activés ou désactivés selon ses besoins', status:'idle'},
+            {label:'L\'équipe technique centrale gère ce qui est commun à toutes les marques ; chaque marque gère ses propres modules spécifiques', status:'idle'},
+            {label:'Étudier la possibilité d\'un site vitrine (EDMS) dédié à chaque marque, pour mesurer l\'impact réel de la communication et des actions terrain', status:'idle'},
+            {label:'Permettre d\'attribuer des droits très précis, jusqu\'au sous-module et à la personne', status:'idle'},
+            {label:'Première version : un Zeno configurable avec sa propre identité visuelle et des modules qu\'on peut activer ou non', status:'idle'},
+            {label:'Version future : plusieurs Zeno capables de communiquer entre eux', status:'idle'},
+            {label:'La direction doit pouvoir avoir une vue d\'ensemble sur tous les projets/marques à la fois', status:'idle'},
+            {label:'Écrire un document expliquant vers quoi le projet tend à terme', status:'idle'},
+            {label:'Écrire un document qui décrit les grands blocs (modules) qui composent le projet', status:'idle'},
+            {label:'Écrire la fiche type de ce qu\'est un module Zeno activable/désactivable', status:'idle'},
+            {label:'Caler un point dédié à l\'infrastructure', status:'idle'},
           ]
         },
         {

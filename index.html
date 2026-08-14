@@ -338,6 +338,21 @@
               </div>
             
               <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Rédiger le document de vision cible de Zeno (Franck Birba)</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Rédiger la spec de structuration de Zeno et de ses modules (Yemalin Modeste) — en cours</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Point d'avancement sur ces deux documents prévu le 18/08</span>
+              </div>
+            
+              <div class="task">
                 <span class="t-status crit"></span>
                 <span class="t-label">Corriger les accès non protégés déjà identifiés</span>
               </div>
@@ -345,6 +360,16 @@
               <div class="task">
                 <span class="t-status idle"></span>
                 <span class="t-label">Décider du sort du système de contrôle d'accès construit mais jamais réellement utilisé, et permettre d'attribuer des droits jusqu'au niveau du sous-module et de la personne</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Démarrer la refonte technique une fois les documents de cadrage validés</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Migrer progressivement les modules vers la nouvelle structure</span>
               </div>
             
               <div class="task">
@@ -966,7 +991,7 @@
             
               <div class="task">
                 <span class="t-status idle"></span>
-                <span class="t-label">Créer, sur ce serveur, un environnement dédié au chantier de refonte technique</span>
+                <span class="t-label">Mettre en place une infrastructure de test dédiée au chantier de refonte technique</span>
               </div>
             
               <div class="task">
@@ -976,7 +1001,7 @@
             
               <div class="task">
                 <span class="t-status idle"></span>
-                <span class="t-label">Mettre en place un vrai circuit de relecture et de mise en ligne du code</span>
+                <span class="t-label">Mettre en place un pipeline de relecture et de mise en ligne automatisées (CI/CD)</span>
               </div>
             
               <div class="task">
@@ -1028,8 +1053,13 @@
           tasks:[
             {label:'Diagnostic complet fait (données, accès, code obsolète)', status:'ok'},
             {label:'Réunion de cadrage avec l\'équipe technique (14/08)', status:'ok'},
+            {label:'Rédiger le document de vision cible de Zeno (Franck Birba)', status:'warn'},
+            {label:'Rédiger la spec de structuration de Zeno et de ses modules (Yemalin Modeste) — en cours', status:'warn'},
+            {label:'Point d\'avancement sur ces deux documents prévu le 18/08', status:'warn'},
             {label:'Corriger les accès non protégés déjà identifiés', status:'crit'},
             {label:'Décider du sort du système de contrôle d\'accès construit mais jamais réellement utilisé, et permettre d\'attribuer des droits jusqu\'au niveau du sous-module et de la personne', status:'idle'},
+            {label:'Démarrer la refonte technique une fois les documents de cadrage validés', status:'idle'},
+            {label:'Migrer progressivement les modules vers la nouvelle structure', status:'idle'},
             {label:'Permettre aux autres structures du groupe d\'utiliser Zeno, pas seulement Epitech', status:'idle'},
             {label:'Terminer la modernisation des écrans encore sur l\'ancien système d\'affichage', status:'idle'},
             {label:'Nettoyer le code obsolète au fur et à mesure des chantiers', status:'idle'},
@@ -1206,9 +1236,9 @@
             {label:'Surveillance automatique des services externes essentiels', status:'ok'},
             {label:'Bloqué : plusieurs incidents de données récents, nettoyage encore en cours', status:'warn'},
             {label:'Mettre en place un serveur de développement partagé entre les chantiers', status:'idle'},
-            {label:'Créer, sur ce serveur, un environnement dédié au chantier de refonte technique', status:'idle'},
+            {label:'Mettre en place une infrastructure de test dédiée au chantier de refonte technique', status:'idle'},
             {label:'Migrer les images techniques stockées sur un compte personnel vers un compte officiel Epitech', status:'idle'},
-            {label:'Mettre en place un vrai circuit de relecture et de mise en ligne du code', status:'idle'},
+            {label:'Mettre en place un pipeline de relecture et de mise en ligne automatisées (CI/CD)', status:'idle'},
             {label:'Scanner régulièrement la sécurité des applications (sujet porté par l\'équipe SI, pas propre à Zeno)', status:'idle'},
           ]
         },

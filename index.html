@@ -138,6 +138,12 @@
 
   .result-count{font-size:.72rem; color:var(--ink-faint); margin-bottom:.5rem;}
 
+  .module-row-header{
+    display:grid; grid-template-columns:1.6fr 150px 84px 172px 92px 16px;
+    gap:.9rem; padding:.3rem .3rem .4rem; margin-bottom:.15rem;
+    font-size:.64rem; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--ink-faint); border-bottom:1px solid var(--ink);
+  }
   .modules{border-top:1px solid var(--ink);}
   .module{border-bottom:1px solid var(--line);}
   .module-row{
@@ -233,6 +239,7 @@
   .dot.ok{background:var(--ok);} .dot.warn{background:var(--warn);} .dot.crit{background:var(--crit);} .dot.idle{background:var(--idle);}
 
   @media (max-width: 860px){
+    .module-row-header{display:none;}
     .summary{grid-template-columns:repeat(2,1fr);}
     .module-row{grid-template-columns:1fr auto; row-gap:.3rem;
       grid-template-areas:"name chev" "status status" "cdc owner" "when when";}
@@ -311,6 +318,15 @@
 
   <div class="result-count" id="result-count">14 chantiers affichés sur 14</div>
 
+  <div class="module-row-header" aria-hidden="true">
+    <span>Chantier</span>
+    <span>Statut</span>
+    <span>CDC</span>
+    <span>Porteur</span>
+    <span>Dernière activité</span>
+    <span></span>
+  </div>
+
   <div class="modules" id="modules">
       <div class="module" data-idx="0">
         <div class="module-row" data-toggle="0" tabindex="0">
@@ -320,7 +336,7 @@
             
           </div>
           <span class="cdc partial">CDC&nbsp;Partiel</span>
-          <span class="owner clickable" data-contact="0" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="0" title="Voir porteur et interlocuteur"><span>Yemalin Modeste, Franck Birba</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">14/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -399,7 +415,7 @@
             
           </div>
           <span class="cdc partial">CDC&nbsp;Partiel</span>
-          <span class="owner clickable" data-contact="1" title="Voir porteur et interlocuteur"><span>Franck Birba</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="1" title="Voir porteur et interlocuteur"><span>Yemalin Modeste, Franck Birba</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">14/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -473,7 +489,7 @@
             
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="2" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="2" title="Voir porteur et interlocuteur"><span>Yemalin Modeste, Franck Birba</span><span class="info-icon">&#9432;</span></span>
           <span class="when ">14/08</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -1047,8 +1063,8 @@
       modules: [
         {
           name:'Architecture globale (refonte technique)', desc:'Revoir en profondeur comment Zeno est construit : comment les données sont reliées entre elles, comment les accès sont contrôlés, et comment séparer l\'environnement de test de celui utilisé par les vrais utilisateurs',
-          status:'en-cours', cdc:'partiel', owner:'—', role:'', when:'14/08', stale:false,
-          support:[{name:'Yemalin Modeste', role:''}, {name:'Cédric', role:'Support'}],
+          status:'en-cours', cdc:'partiel', owner:'Yemalin Modeste, Franck Birba', role:'', when:'14/08', stale:false,
+          support:[{name:'Cédric', role:'Support'}],
           comments:'Vérifié par lecture directe du code (diagnostic complet mené le 13-14/08/2026), puis cadré en réunion technique le 14/08 : la vision est plus large qu\'un simple nettoyage technique (voir aussi "CRM AEIG (toutes marques)", "Dev Platform" et "Observability" pour les volets infra et multi-marques qui en découlent).',
           tasks:[
             {label:'Diagnostic complet fait (données, accès, code obsolète)', status:'ok'},
@@ -1067,8 +1083,8 @@
         },
         {
           name:'Dev Platform', desc:'Outillage de développement et mise en ligne',
-          status:'en-cours', cdc:'partiel', owner:'Franck Birba', role:'', when:'14/08', stale:false,
-          support:[{name:'Yemalin Modeste', role:''}], brandContact:NO_ONE,
+          status:'en-cours', cdc:'partiel', owner:'Yemalin Modeste, Franck Birba', role:'', when:'14/08', stale:false,
+          support:[], brandContact:NO_ONE,
           comments:'CDC partiel : les documents sur l\'incident de données récent sont écrits, mais il n\'existe pas de CDC général pour cet outillage. Élargi le 14/08 (réunion de cadrage technique) : plusieurs chantiers infra portés par l\'équipe SI, qui touchent Zeno sans en être propres à Zeno.',
           tasks:[
             {label:'Démarrage de l\'environnement de travail en une seule commande', status:'ok'},
@@ -1086,8 +1102,8 @@
         },
         {
           name:'Observability', desc:'Surveillance des erreurs et de la santé du système',
-          status:'en-cours', cdc:'non', owner:'—', role:'', when:'14/08', stale:false,
-          support:[{name:'Yemalin Modeste', role:''}], brandContact:NO_ONE,
+          status:'en-cours', cdc:'non', owner:'Yemalin Modeste, Franck Birba', role:'', when:'14/08', stale:false,
+          support:[], brandContact:NO_ONE,
           comments:'Relancé le 14/08 : besoin d\'un endroit unique pour voir ce qui se passe sur nos serveurs (au-delà des erreurs applicatives déjà suivies).',
           tasks:[
             {label:'Les erreurs du site sont enregistrées automatiquement', status:'ok'},

@@ -261,7 +261,7 @@
     </div>
     <div class="meta-row">
       <span>Méthode&nbsp;: <strong>audit direct du code</strong>, pas Plane</span>
-      <span>Vérifié le&nbsp;: <strong>06/08/2026</strong></span>
+      <span>Vérifié le&nbsp;: <strong>14/08/2026</strong></span>
     </div>
   </header>
 
@@ -333,7 +333,7 @@
           <div><span class="module-name">Architecture globale (refonte technique)</span><span class="module-desc">Revoir en profondeur comment Zeno est construit : comment les données sont reliées entre elles, comment les accès sont contrôlés, et comment séparer l'environnement de test de celui utilisé par les vrais utilisateurs</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
-            
+            <span class="blocker-tag">Accès non protégés identifiés, pas encore corrigés</span>
           </div>
           <span class="cdc partial">CDC&nbsp;Partiel</span>
           <span class="owner clickable" data-contact="0" title="Voir porteur et interlocuteur"><span>Yemalin Modeste, Franck Birba</span><span class="info-icon">&#9432;</span></span>
@@ -877,7 +877,7 @@
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
           <span class="owner clickable" data-contact="10" title="Voir porteur et interlocuteur"><span>Spynel</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">31/08</span>
+          <span class="when ">31/07</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -1049,7 +1049,7 @@
       modules: [
         {
           name:'Architecture globale (refonte technique)', desc:'Revoir en profondeur comment Zeno est construit : comment les données sont reliées entre elles, comment les accès sont contrôlés, et comment séparer l\'environnement de test de celui utilisé par les vrais utilisateurs',
-          status:'en-cours', cdc:'partiel', owner:'Yemalin Modeste, Franck Birba', role:'', when:'14/08', stale:false,
+          status:'en-cours', cdc:'partiel', blocker:'Accès non protégés identifiés, pas encore corrigés', owner:'Yemalin Modeste, Franck Birba', role:'', when:'14/08', stale:false,
           support:[{name:'Cédric', role:'Support'}],
           comments:'Vérifié par lecture directe du code (diagnostic complet mené le 13-14/08/2026), puis cadré en réunion technique le 14/08 : la vision est plus large qu\'un simple nettoyage technique (voir aussi "CRM AEIG (toutes marques)", "Dev Platform" et "Observability" pour les volets infra et multi-marques qui en découlent).',
           tasks:[
@@ -1198,7 +1198,7 @@
         },
         {
           name:'Career Center', desc:'Stages, conventions, alumni, partenaires',
-          status:'fonctionnel', cdc:'non', blocker:'CDC change énormément, à valider', owner:'Spynel', role:'', when:'31/08', stale:false,
+          status:'fonctionnel', cdc:'non', blocker:'CDC change énormément, à valider', owner:'Spynel', role:'', when:'31/07', stale:false,
           support:[{name:'Cédric', role:'Ressource additionnelle'}], brandContact:{name:'Idelphonse', role:''},
           comments:'Le code fonctionne (vérifié par lecture directe, aucun bug bloquant trouvé). Mais Rachad signale une vigilance côté périmètre : le CDC change énormément et reste à valider — les specs de la suite sont prévues après Admission & CRM.',
           tasks:[
@@ -1297,7 +1297,7 @@
       modules: [
         {
           name:'Site vitrine Epitech Africa', desc:'epitech.africa / epitools.bj — édition sans développeur',
-          status:'fonctionnel', cdc:'non', owner:'Alex Russel', role:'', when:'10/08', stale:false,
+          status:'fonctionnel', cdc:'non', blocker:'Pas de sauvegarde auto ni d\'historique des modifications', owner:'Alex Russel', role:'', when:'10/08', stale:false,
           support:[], brandContact:NO_ONE,
           comments:'Le seul vrai produit vivant de tout le système EDMS — 100% de l\'activité récente s\'y concentre (plus de 60 changements sur les 2 dernières semaines). Constat basé sur un audit interne du 27/04 comparant le site aux standards du marché (Wix, Webflow...).',
           tasks:[

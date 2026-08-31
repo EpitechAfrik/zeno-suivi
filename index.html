@@ -261,13 +261,13 @@
     </div>
     <div class="meta-row">
       <span>Méthode&nbsp;: <strong>audit direct du code</strong>, pas Plane</span>
-      <span>Vérifié le&nbsp;: <strong>14/08/2026</strong></span>
+      <span>Vérifié le&nbsp;: <strong>30/08/2026</strong></span>
     </div>
   </header>
 
   <div class="project-tabs" id="project-tabs">
       <button class="project-tab active" data-project="zeno">
-        Zeno<span class="count">13</span>
+        Zeno<span class="count">15</span>
       </button>
     
       <button class="project-tab " data-project="crm_aeig">
@@ -282,11 +282,11 @@
   <div class="banner" id="banner"></div>
 
   <div class="summary" id="summary">
-      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">5</span><span class="l">Fonctionnels</span></div>
+      <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">7</span><span class="l">Fonctionnels</span></div>
       <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">8</span><span class="l">En cours</span></div>
       <div class="stat crit" data-stat="bloque" tabindex="0"><span class="n">0</span><span class="l">Bloqués</span></div>
       <div class="stat idle" data-stat="pas-demarre" tabindex="0"><span class="n">0</span><span class="l">Pas démarrés</span></div>
-      <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">6</span><span class="l">Sans CDC</span></div>
+      <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">8</span><span class="l">Sans CDC</span></div>
     </div>
 
   <div class="filters">
@@ -316,7 +316,7 @@
     </div>
   </div>
 
-  <div class="result-count" id="result-count">13 chantiers affichés sur 13</div>
+  <div class="result-count" id="result-count">15 chantiers affichés sur 15</div>
 
   <div class="module-row-header" aria-hidden="true">
     <span>Chantier</span>
@@ -510,7 +510,7 @@
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
           <span class="owner clickable" data-contact="2" title="Voir porteur et interlocuteur"><span>Yemalin Modeste, Franck Birba</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">14/08</span>
+          <span class="when stale">14/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -564,7 +564,7 @@
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
           <span class="owner clickable" data-contact="3" title="Voir porteur et interlocuteur"><span>Franck Birba</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">03/08</span>
+          <span class="when ">28/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -582,17 +582,17 @@
             
               <div class="task">
                 <span class="t-status ok"></span>
-                <span class="t-label">Organisation des entretiens avec rappels automatiques</span>
+                <span class="t-label">Organisation des entretiens avec rappels automatiques — désormais filtrable par campus</span>
               </div>
             
               <div class="task">
                 <span class="t-status ok"></span>
-                <span class="t-label">Le jury peut noter et évaluer les candidats</span>
+                <span class="t-label">Le jury peut noter et évaluer les candidats ; les candidats déjà admis restent visibles au filtre même après avoir avancé dans les étapes suivantes</span>
               </div>
             
               <div class="task">
                 <span class="t-status ok"></span>
-                <span class="t-label">Suivi après acceptation (documents, contrat, frais, inscription)</span>
+                <span class="t-label">Suivi après acceptation : contrat avec la bonne identité légale selon le campus, vraies instructions de paiement de la scolarité, justificatif de paiement ajoutable après coup</span>
               </div>
             
               <div class="task">
@@ -601,8 +601,13 @@
               </div>
             
               <div class="task">
-                <span class="t-status warn"></span>
-                <span class="t-label">Bloqué : certains messages automatiques après décision finale ne sont pas encore finalisés</span>
+                <span class="t-status ok"></span>
+                <span class="t-label">Relances groupées possibles directement depuis la liste des candidats, sans limite de 50</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Plusieurs bugs corrigés fin août (candidat mal repositionné après un changement, saisie effacée par erreur pendant une relance)</span>
               </div>
             
           </div>
@@ -618,7 +623,7 @@
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
           <span class="owner clickable" data-contact="4" title="Voir porteur et interlocuteur"><span>Alex Russel</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">02/08</span>
+          <span class="when ">27/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -655,8 +660,13 @@
               </div>
             
               <div class="task">
-                <span class="t-status idle"></span>
-                <span class="t-label">Bloqué : certains chiffres de performance (taux d'ouverture) pas encore calculés</span>
+                <span class="t-status warn"></span>
+                <span class="t-label">Nouvel écran de création d'automations en place, mais l'ancien reste encore accessible en parallèle — bascule pas terminée</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Le taux d'ouverture est calculé pour les envois groupés, mais pas encore pour les emails automatiques envoyés un par un</span>
               </div>
             
           </div>
@@ -665,14 +675,14 @@
     
       <div class="module" data-idx="5">
         <div class="module-row" data-toggle="5" tabindex="0">
-          <div><span class="module-name">Campus</span><span class="module-desc">Bâtiments, salles, matériel, événements</span></div>
+          <div><span class="module-name">Campus</span><span class="module-desc">Vie étudiante, événements, fiche étudiant</span></div>
           <div class="status-cell">
             <span class="pill ok">Fonctionnel</span>
             
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
           <span class="owner clickable" data-contact="5" title="Voir porteur et interlocuteur"><span>Giovanni</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">03/08</span>
+          <span class="when ">21/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -680,22 +690,7 @@
             
               <div class="task">
                 <span class="t-status ok"></span>
-                <span class="t-label">Gestion des campus, bâtiments et salles</span>
-              </div>
-            
-              <div class="task">
-                <span class="t-status ok"></span>
-                <span class="t-label">Réservation de salle avec vérification automatique de disponibilité</span>
-              </div>
-            
-              <div class="task">
-                <span class="t-status ok"></span>
-                <span class="t-label">Fiche salle consultable via un code QR sur la porte</span>
-              </div>
-            
-              <div class="task">
-                <span class="t-status ok"></span>
-                <span class="t-label">Suivi du matériel (enregistrement, statut, affectation)</span>
+                <span class="t-label">La fiche d'un étudiant affiche une vue d'ensemble complète (situation académique, administrative, financière, alertes de décrochage)</span>
               </div>
             
               <div class="task">
@@ -719,14 +714,92 @@
     
       <div class="module" data-idx="6">
         <div class="module-row" data-toggle="6" tabindex="0">
+          <div><span class="module-name">Infrastructure & Équipements</span><span class="module-desc">Bâtiments, salles, matériel (patrimoine)</span></div>
+          <div class="status-cell">
+            <span class="pill ok">Fonctionnel</span>
+            
+          </div>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="6" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">21/08</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Gestion des bâtiments et des salles</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Réservation de salle avec vérification automatique de disponibilité</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Fiche salle consultable via un code QR sur la porte</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status idle"></span>
+                <span class="t-label">Bloqué : la gestion complète du matériel n'est pas encore construite, seule la consultation existe pour l'instant</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="7">
+        <div class="module-row" data-toggle="7" tabindex="0">
+          <div><span class="module-name">Formulaires</span><span class="module-desc">Création, collecte et export de formulaires</span></div>
+          <div class="status-cell">
+            <span class="pill ok">Fonctionnel</span>
+            
+          </div>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="7" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">21/08</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Création de formulaires classés par thème</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Consultation des réponses dans un tableau</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Export des réponses en Excel</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Bloqué : l'ancien outil de formulaires reste actif en parallèle tant que la bascule n'est pas confirmée sans perte de données</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="module" data-idx="8">
+        <div class="module-row" data-toggle="8" tabindex="0">
           <div><span class="module-name">Portail parent</span><span class="module-desc">Notes, présences, RDV, paiements — écrans en partie en refonte</span></div>
           <div class="status-cell">
             <span class="pill ok">Fonctionnel</span>
             <span class="blocker-tag">Token my.epitech non communiqué</span>
           </div>
           <span class="cdc partial">CDC&nbsp;Partiel</span>
-          <span class="owner clickable" data-contact="6" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">14/08</span>
+          <span class="owner clickable" data-contact="8" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">31/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -774,6 +847,11 @@
             
               <div class="task">
                 <span class="t-status warn"></span>
+                <span class="t-label">En cours cette semaine : récupérer les bonnes informations étudiants (données maintenant nettoyées côté production) pour les importer correctement</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
                 <span class="t-label">En cours : revue de l'interface avec le responsable du Bachelor</span>
               </div>
             
@@ -781,16 +859,16 @@
         </div>
       </div>
     
-      <div class="module" data-idx="7">
-        <div class="module-row" data-toggle="7" tabindex="0">
+      <div class="module" data-idx="9">
+        <div class="module-row" data-toggle="9" tabindex="0">
           <div><span class="module-name">Pédagogie — cœur technique (identité)</span><span class="module-desc">Promotions, notes, présences, décrochage, identité pédagogique</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
             
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="7" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">14/08</span>
+          <span class="owner clickable" data-contact="9" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">30/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -818,7 +896,7 @@
             
               <div class="task">
                 <span class="t-status ok"></span>
-                <span class="t-label">Tableau de suivi des étudiants à risque de décrochage</span>
+                <span class="t-label">Tableau de suivi des étudiants à risque de décrochage — calcul recentré sur des critères réellement mesurés</span>
               </div>
             
               <div class="task">
@@ -827,8 +905,23 @@
               </div>
             
               <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Les anciens cursus remplacés n'apparaissent plus à tort comme un problème dans le suivi des mouvements pédagogiques</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Un bouton dédié fait passer une promotion au niveau supérieur, avec historique et droits restreints</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">La fiche d'un étudiant n'affiche plus que des informations réellement disponibles</span>
+              </div>
+            
+              <div class="task">
                 <span class="t-status warn"></span>
-                <span class="t-label">En cours : le rattachement d'un étudiant à sa promotion refusera désormais un cas ambigu au lieu de deviner (fiabilise l'inscription)</span>
+                <span class="t-label">Bloqué en pratique : le rattachement automatique d'un étudiant à sa promotion attend que le formulaire d'admission collecte les bonnes informations</span>
               </div>
             
               <div class="task">
@@ -845,16 +938,16 @@
         </div>
       </div>
     
-      <div class="module" data-idx="8">
-        <div class="module-row" data-toggle="8" tabindex="0">
+      <div class="module" data-idx="10">
+        <div class="module-row" data-toggle="10" tabindex="0">
           <div><span class="module-name">Pédagogie — Étudiant & APE</span><span class="module-desc">Suivi étudiant côté association des parents d'élèves</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
             
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
-          <span class="owner clickable" data-contact="8" title="Voir porteur et interlocuteur"><span>Edwin</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">14/08</span>
+          <span class="owner clickable" data-contact="10" title="Voir porteur et interlocuteur"><span>Edwin</span><span class="info-icon">&#9432;</span></span>
+          <span class="when stale">14/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -869,35 +962,55 @@
         </div>
       </div>
     
-      <div class="module" data-idx="9">
-        <div class="module-row" data-toggle="9" tabindex="0">
+      <div class="module" data-idx="11">
+        <div class="module-row" data-toggle="11" tabindex="0">
           <div><span class="module-name">Pédagogie — Anglais</span><span class="module-desc">Suivi et placement anglais</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
             
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
-          <span class="owner clickable" data-contact="9" title="Voir porteur et interlocuteur"><span>Alex Russel</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">14/08</span>
+          <span class="owner clickable" data-contact="11" title="Voir porteur et interlocuteur"><span>Alex Russel</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">21/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
           <div class="tasks-inner">
             
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Suivi automatique des scores TepiTech depuis la plateforme centrale Epitech</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Rappels automatiques par email avant une session — un bug qui empêchait silencieusement leur envoi en production a été corrigé le 21/08</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Planification de sessions, saisie des évaluations, portail dédié aux formateurs</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Le suivi d'assiduité sur les outils externes (7Speaking, PrepMyFuture) doit encore être importé à la main</span>
+              </div>
+            
           </div>
         </div>
       </div>
     
-      <div class="module" data-idx="10">
-        <div class="module-row" data-toggle="10" tabindex="0">
+      <div class="module" data-idx="12">
+        <div class="module-row" data-toggle="12" tabindex="0">
           <div><span class="module-name">Career Center</span><span class="module-desc">Stages, conventions, alumni, partenaires</span></div>
           <div class="status-cell">
             <span class="pill ok">Fonctionnel</span>
-            <span class="blocker-tag">CDC change énormément, à valider</span>
+            <span class="blocker-tag">CDC bloqué — point d'avancement prévu le 31/08</span>
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="10" title="Voir porteur et interlocuteur"><span>Spynel</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">31/07</span>
+          <span class="owner clickable" data-contact="12" title="Voir porteur et interlocuteur"><span>Spynel</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">31/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -942,15 +1055,15 @@
         </div>
       </div>
     
-      <div class="module" data-idx="11">
-        <div class="module-row" data-toggle="11" tabindex="0">
+      <div class="module" data-idx="13">
+        <div class="module-row" data-toggle="13" tabindex="0">
           <div><span class="module-name">Design system</span><span class="module-desc">Apparence et marques visuelles</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
             
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="11" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
+          <span class="owner clickable" data-contact="13" title="Voir porteur et interlocuteur"><span>—</span><span class="info-icon">&#9432;</span></span>
           <span class="when stale">18/07</span>
           <span class="chevron">&#8250;</span>
         </div>
@@ -986,16 +1099,16 @@
         </div>
       </div>
     
-      <div class="module" data-idx="12">
-        <div class="module-row" data-toggle="12" tabindex="0">
+      <div class="module" data-idx="14">
+        <div class="module-row" data-toggle="14" tabindex="0">
           <div><span class="module-name">DEVKORA</span><span class="module-desc">Tests de code pour les candidats/étudiants</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
             
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
-          <span class="owner clickable" data-contact="12" title="Voir porteur et interlocuteur"><span>Edwin</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">14/08</span>
+          <span class="owner clickable" data-contact="14" title="Voir porteur et interlocuteur"><span>Edwin</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">27/08</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -1024,6 +1137,16 @@
               <div class="task">
                 <span class="t-status ok"></span>
                 <span class="t-label">Détection de comportements suspects pendant le test</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Incident du 26-27/08 corrigé : un candidat peut désormais terminer et envoyer son test même après une coupure réseau</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">La supervision technique des erreurs est maintenant active sur l'écran de passage de test (elle ne l'était pas avant, alors que cet écran est public)</span>
               </div>
             
               <div class="task">
@@ -1112,7 +1235,7 @@
         },
         {
           name:'Observability', desc:'Surveillance des erreurs et de la santé du système',
-          status:'en-cours', cdc:'non', owner:'Yemalin Modeste, Franck Birba', role:'', when:'14/08', stale:false,
+          status:'en-cours', cdc:'non', owner:'Yemalin Modeste, Franck Birba', role:'', when:'14/08', stale:true,
           support:[], brandContact:NO_ONE,
           comments:'Relancé le 14/08 : besoin d\'un endroit unique pour voir ce qui se passe sur nos serveurs (au-delà des erreurs applicatives déjà suivies).',
           tasks:[
@@ -1127,24 +1250,25 @@
         },
         {
           name:'Admission', desc:'De la candidature à l\'inscription officielle',
-          status:'fonctionnel', cdc:'oui', blocker:'Communication (WhatsApp)', owner:'Franck Birba', role:'', when:'03/08', stale:false,
+          status:'fonctionnel', cdc:'oui', blocker:'Communication (WhatsApp)', owner:'Franck Birba', role:'', when:'28/08', stale:false,
           support:[{name:'Pissano', role:'Ressource additionnelle'}], brandContact:{name:'Fabrice, Charbel', role:''},
-          comments:'Un problème récent où un candidat accepté pouvait ne pas être correctement rattaché à sa promotion vient d\'être corrigé début août. Selon le suivi de Rachad (fin juillet) : bloqué côté communication WhatsApp, et le compte d\'Antoine est à voir avec Foumi.',
+          comments:'Un problème récent où un candidat accepté pouvait ne pas être correctement rattaché à sa promotion vient d\'être corrigé début août. Vérifié par lecture directe du code le 31/08 : semaine dense de livraisons (26-28/08) — filtre du jury, actions groupées sur les candidats, entretiens filtrables par campus, contrat d\'inscription avec la bonne identité légale par campus, vraies instructions de paiement de la scolarité. Un incident de production est survenu le 27/08 (l\'API plantait en boucle à cause d\'une erreur de fusion) : corrigé le jour même. Toujours bloqué côté communication WhatsApp (blocage business, aucune trace d\'avancement dans le code) ; le compte d\'Antoine reste à voir avec Foumi (suivi Rachad, fin juillet, pas revérifié).',
           tasks:[
             {label:'Un candidat peut remplir et envoyer son dossier en ligne', status:'ok'},
             {label:'Le staff suit chaque candidat étape par étape jusqu\'à la décision', status:'ok'},
-            {label:'Organisation des entretiens avec rappels automatiques', status:'ok'},
-            {label:'Le jury peut noter et évaluer les candidats', status:'ok'},
-            {label:'Suivi après acceptation (documents, contrat, frais, inscription)', status:'ok'},
+            {label:'Organisation des entretiens avec rappels automatiques — désormais filtrable par campus', status:'ok'},
+            {label:'Le jury peut noter et évaluer les candidats ; les candidats déjà admis restent visibles au filtre même après avoir avancé dans les étapes suivantes', status:'ok'},
+            {label:'Suivi après acceptation : contrat avec la bonne identité légale selon le campus, vraies instructions de paiement de la scolarité, justificatif de paiement ajoutable après coup', status:'ok'},
             {label:'Création de parcours d\'admission automatisés', status:'ok'},
-            {label:'Bloqué : certains messages automatiques après décision finale ne sont pas encore finalisés', status:'warn'},
+            {label:'Relances groupées possibles directement depuis la liste des candidats, sans limite de 50', status:'ok'},
+            {label:'Plusieurs bugs corrigés fin août (candidat mal repositionné après un changement, saisie effacée par erreur pendant une relance)', status:'ok'},
           ]
         },
         {
           name:'Communication', desc:'Emails, newsletters, boîte de réception, partenaires',
-          status:'fonctionnel', cdc:'oui', owner:'Alex Russel', role:'', when:'02/08', stale:false,
+          status:'fonctionnel', cdc:'oui', owner:'Alex Russel', role:'', when:'27/08', stale:false,
           support:[{name:'Cédric', role:'Ressource additionnelle'}], brandContact:{name:'Foumi', role:'Équipe communication'},
-          comments:'Selon le suivi de Rachad : le site epitech.africa (EDMS) et la synchro Zeno↔epitech.africa (événements campus) sont livrés début juillet. Reste des commodités à finaliser. Confirmé le 14/08 : ce module est aussi utilisé par EDMS.',
+          comments:'Selon le suivi de Rachad : le site epitech.africa (EDMS) et la synchro Zeno↔epitech.africa (événements campus) sont livrés début juillet. Reste des commodités à finaliser. Confirmé le 14/08 : ce module est aussi utilisé par EDMS. Vérifié par lecture directe du code le 31/08 : un nouvel écran de création d\'automations est en place, mais l\'ancien reste accessible en parallèle — la bascule complète n\'est pas terminée.',
           tasks:[
             {label:'Envoi d\'emails groupés avec modèles réutilisables', status:'ok'},
             {label:'Création et envoi de newsletters personnalisées', status:'ok'},
@@ -1152,29 +1276,51 @@
             {label:'Boîte de réception centralisée pour le portail candidat', status:'ok'},
             {label:'Gestion des partenaires et liens traçables', status:'ok'},
             {label:'Bloqué : la boîte de réception ne couvre encore que le portail candidat', status:'warn'},
-            {label:'Bloqué : certains chiffres de performance (taux d\'ouverture) pas encore calculés', status:'idle'},
+            {label:'Nouvel écran de création d\'automations en place, mais l\'ancien reste encore accessible en parallèle — bascule pas terminée', status:'warn'},
+            {label:'Le taux d\'ouverture est calculé pour les envois groupés, mais pas encore pour les emails automatiques envoyés un par un', status:'warn'},
           ]
         },
         {
-          name:'Campus', desc:'Bâtiments, salles, matériel, événements',
-          status:'fonctionnel', cdc:'non', owner:'Giovanni', role:'', when:'03/08', stale:false,
+          name:'Campus', desc:'Vie étudiante, événements, fiche étudiant',
+          status:'fonctionnel', cdc:'non', owner:'Giovanni', role:'', when:'21/08', stale:false,
           support:[{name:'David', role:'Ressource additionnelle'}], brandContact:{name:'Laure, Angelo (14/08) — Fawaz, Ghislain mentionnés selon les sujets dans une source antérieure', role:''},
-          comments:'Selon le suivi de Rachad : le volet "vie associative" est en cours, sans CDC, sur input du BO (bureau des élèves).',
+          comments:'Selon le suivi de Rachad : le volet "vie associative" est en cours, sans CDC, sur input du BO (bureau des élèves). Vérifié par lecture directe du code le 31/08 : la gestion des bâtiments/salles/matériel a été déplacée dans un chantier séparé ("Infrastructure & Équipements"). La fiche étudiant a été refondue avec une vue d\'ensemble plus complète.',
           tasks:[
-            {label:'Gestion des campus, bâtiments et salles', status:'ok'},
-            {label:'Réservation de salle avec vérification automatique de disponibilité', status:'ok'},
-            {label:'Fiche salle consultable via un code QR sur la porte', status:'ok'},
-            {label:'Suivi du matériel (enregistrement, statut, affectation)', status:'ok'},
+            {label:'La fiche d\'un étudiant affiche une vue d\'ensemble complète (situation académique, administrative, financière, alertes de décrochage)', status:'ok'},
             {label:'Organisation d\'événements avec inscriptions et invitations', status:'ok'},
             {label:'Prise de rendez-vous en ligne avec l\'équipe pédagogique', status:'ok'},
             {label:'Bloqué : le suivi des sanctions disciplinaires n\'a jamais été vérifié en profondeur', status:'warn'},
           ]
         },
         {
+          name:'Infrastructure & Équipements', desc:'Bâtiments, salles, matériel (patrimoine)',
+          status:'fonctionnel', cdc:'non', owner:'—', role:'', when:'21/08', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Vérifié par lecture directe du code le 31/08 : ce chantier existait déjà dans "Campus" ; il en a été détaché le 21/08 pour devenir une application autonome, sans changement de fonctionnement pour l\'utilisateur.',
+          tasks:[
+            {label:'Gestion des bâtiments et des salles', status:'ok'},
+            {label:'Réservation de salle avec vérification automatique de disponibilité', status:'ok'},
+            {label:'Fiche salle consultable via un code QR sur la porte', status:'ok'},
+            {label:'Bloqué : la gestion complète du matériel n\'est pas encore construite, seule la consultation existe pour l\'instant', status:'idle'},
+          ]
+        },
+        {
+          name:'Formulaires', desc:'Création, collecte et export de formulaires',
+          status:'fonctionnel', cdc:'non', owner:'—', role:'', when:'21/08', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Vérifié par lecture directe du code le 31/08 : nouvel outil de formulaires (classés par thème : admission, vie étudiante, écoute...) qui remplace progressivement l\'ancien module du même nom. L\'ancien reste accessible en parallèle, le temps de confirmer qu\'il ne contient plus de réponses réelles à récupérer.',
+          tasks:[
+            {label:'Création de formulaires classés par thème', status:'ok'},
+            {label:'Consultation des réponses dans un tableau', status:'ok'},
+            {label:'Export des réponses en Excel', status:'ok'},
+            {label:'Bloqué : l\'ancien outil de formulaires reste actif en parallèle tant que la bascule n\'est pas confirmée sans perte de données', status:'warn'},
+          ]
+        },
+        {
           name:'Portail parent', desc:'Notes, présences, RDV, paiements — écrans en partie en refonte',
-          status:'fonctionnel', cdc:'partiel', blocker:'Token my.epitech non communiqué', owner:'Yemalin Modeste', role:'', when:'14/08', stale:false,
+          status:'fonctionnel', cdc:'partiel', blocker:'Token my.epitech non communiqué', owner:'Yemalin Modeste', role:'', when:'31/08', stale:false,
           support:[], brandContact:{name:'Sergino', role:'Responsable du Bachelor'},
-          comments:'Le portail est fonctionnel et utilisé (quelques zones du tableau de bord encore vides). Une partie des écrans est en refonte, en pause : on attend que le token d\'accès à la plateforme my (intra) soit communiqué pour récupérer les données. En attendant, revue de l\'interface avec Sergino (responsable du Bachelor), l\'interlocuteur principal sur ce volet.',
+          comments:'Le portail est fonctionnel et utilisé (quelques zones du tableau de bord encore vides). Une partie des écrans est en refonte, en pause : on attend que le token d\'accès à la plateforme my (intra) soit communiqué pour récupérer les données. En attendant, revue de l\'interface avec Sergino (responsable du Bachelor), l\'interlocuteur principal sur ce volet. Semaine du 25-31/08 : maintenant que les données étudiants ont été corrigées côté production (voir chantier Pédagogie — cœur technique), le travail porte sur la récupération des bonnes informations étudiants pour les importer correctement dans le portail.',
           tasks:[
             {label:'Un parent voit ses enfants, leurs notes, présences, documents', status:'ok'},
             {label:'Tableau de bord d\'activité de code avec alerte si difficulté', status:'ok'},
@@ -1184,29 +1330,33 @@
             {label:'Bloqué : certains compteurs du tableau de bord restent vides pour l\'instant', status:'warn'},
             {label:'Bloqué : un compte parent non relié à son enfant ne voit rien (déblocage manuel nécessaire)', status:'warn'},
             {label:'En pause : la refonte de certains écrans attend le token my.epitech pour récupérer les données', status:'crit'},
+            {label:'En cours cette semaine : récupérer les bonnes informations étudiants (données maintenant nettoyées côté production) pour les importer correctement', status:'warn'},
             {label:'En cours : revue de l\'interface avec le responsable du Bachelor', status:'warn'},
           ]
         },
         {
           name:'Pédagogie — cœur technique (identité)', desc:'Promotions, notes, présences, décrochage, identité pédagogique',
-          status:'en-cours', cdc:'non', owner:'Yemalin Modeste', role:'', when:'14/08', stale:false,
+          status:'en-cours', cdc:'non', owner:'Yemalin Modeste', role:'', when:'30/08', stale:false,
           support:[{name:'David', role:'Ressource additionnelle'}], brandContact:NO_ONE,
-          comments:'Pas de CDC pour ce chantier (corrige le suivi Rachad qui indiquait "en finalisation" fin juillet). Chantier en cours : refonte de l\'identité pédagogique (cursus/spécialité/promotion/campus) pour que chaque étudiant soit rattaché à la bonne promotion de façon fiable, au lieu d\'un rattachement approximatif comme aujourd\'hui.',
+          comments:'Pas de CDC pour ce chantier (corrige le suivi Rachad qui indiquait "en finalisation" fin juillet). Chantier en cours : refonte de l\'identité pédagogique (cursus/spécialité/promotion/campus) pour que chaque étudiant soit rattaché à la bonne promotion de façon fiable, au lieu d\'un rattachement approximatif comme aujourd\'hui. Vérifié par lecture directe du code le 31/08 : nettoyage de données (695 fiches étudiants pointant vers des promotions supprimées) avec un garde-fou pour empêcher que ça se reproduise ; le calcul du risque de décrochage est plus honnête (un critère jamais mesuré ne fait plus baisser artificiellement le score de tout le monde). Le vrai verrou reste en amont : le formulaire d\'admission ne collecte toujours pas les informations (campus, type de rentrée, spécialité) nécessaires au rattachement automatique — une action manuelle du staff reste nécessaire pour chaque candidat.',
           tasks:[
             {label:'Création et suivi des promotions', status:'ok'},
             {label:'Saisie des notes module par module', status:'ok'},
             {label:'Suivi de présence des étudiants', status:'ok'},
             {label:'Conseils de classe et de discipline', status:'ok'},
-            {label:'Tableau de suivi des étudiants à risque de décrochage', status:'ok'},
+            {label:'Tableau de suivi des étudiants à risque de décrochage — calcul recentré sur des critères réellement mesurés', status:'ok'},
             {label:'Import/export de listes d\'étudiants', status:'ok'},
-            {label:'En cours : le rattachement d\'un étudiant à sa promotion refusera désormais un cas ambigu au lieu de deviner (fiabilise l\'inscription)', status:'warn'},
+            {label:'Les anciens cursus remplacés n\'apparaissent plus à tort comme un problème dans le suivi des mouvements pédagogiques', status:'ok'},
+            {label:'Un bouton dédié fait passer une promotion au niveau supérieur, avec historique et droits restreints', status:'ok'},
+            {label:'La fiche d\'un étudiant n\'affiche plus que des informations réellement disponibles', status:'ok'},
+            {label:'Bloqué en pratique : le rattachement automatique d\'un étudiant à sa promotion attend que le formulaire d\'admission collecte les bonnes informations', status:'warn'},
             {label:'En cours : les écrans de gestion des cursus/promotions vont pouvoir déclarer les spécialités et les rentrées possibles', status:'warn'},
             {label:'Bloqué : certains contenus de formation pas encore traduits en français', status:'idle'},
           ]
         },
         {
           name:'Pédagogie — Étudiant & APE', desc:'Suivi étudiant côté association des parents d\'élèves',
-          status:'en-cours', cdc:'oui', owner:'Edwin', role:'', when:'14/08', stale:false,
+          status:'en-cours', cdc:'oui', owner:'Edwin', role:'', when:'14/08', stale:true,
           support:[{name:'Pissano', role:'Ressource additionnelle'}], brandContact:{name:'Ghislain, Franck Birba', role:''},
           comments:'Source : suivi Rachad (CSV), pas vérifié par lecture de code. Statut "en finalisation" fin juillet.',
           tasks:[
@@ -1215,16 +1365,21 @@
         },
         {
           name:'Pédagogie — Anglais', desc:'Suivi et placement anglais',
-          status:'en-cours', cdc:'oui', owner:'Alex Russel', role:'', when:'14/08', stale:false,
+          status:'en-cours', cdc:'oui', owner:'Alex Russel', role:'', when:'21/08', stale:false,
           support:[], brandContact:{name:'Franck Birba', role:''},
-          comments:'Source : suivi Rachad (CSV), pas vérifié par lecture de code.',
-          tasks:[]
+          comments:'Vérifié par lecture directe du code le 31/08 (première vérification technique pour ce chantier — jusqu\'ici seulement déclaratif via le suivi Rachad). Le module est substantiel : suivi automatique des scores TepiTech depuis la plateforme centrale Epitech, planification de sessions avec rappels, saisie d\'évaluations, portail dédié aux formateurs, écran de synthèse. Un bug a été corrigé le 21/08 : en production, les rappels avant une session étaient programmés en apparence mais ne partaient jamais, sans aucune erreur visible.',
+          tasks:[
+            {label:'Suivi automatique des scores TepiTech depuis la plateforme centrale Epitech', status:'ok'},
+            {label:'Rappels automatiques par email avant une session — un bug qui empêchait silencieusement leur envoi en production a été corrigé le 21/08', status:'ok'},
+            {label:'Planification de sessions, saisie des évaluations, portail dédié aux formateurs', status:'ok'},
+            {label:'Le suivi d\'assiduité sur les outils externes (7Speaking, PrepMyFuture) doit encore être importé à la main', status:'warn'},
+          ]
         },
         {
           name:'Career Center', desc:'Stages, conventions, alumni, partenaires',
-          status:'fonctionnel', cdc:'non', blocker:'CDC change énormément, à valider', owner:'Spynel', role:'', when:'31/07', stale:false,
+          status:'fonctionnel', cdc:'non', blocker:'CDC bloqué — point d\'avancement prévu le 31/08', owner:'Spynel', role:'', when:'31/08', stale:false,
           support:[{name:'Cédric', role:'Ressource additionnelle'}], brandContact:{name:'Idelphonse', role:''},
-          comments:'Le code fonctionne (vérifié par lecture directe, aucun bug bloquant trouvé). Mais Rachad signale une vigilance côté périmètre : le CDC change énormément et reste à valider — les specs de la suite sont prévues après Admission & CRM.',
+          comments:'Le code fonctionne (vérifié par lecture directe, aucun bug bloquant trouvé). Mais Rachad signale une vigilance côté périmètre : le CDC change énormément et reste à valider — les specs de la suite sont prévues après Admission & CRM. Le 31/08 : le chantier est décrit comme bloqué côté CDC, un point d\'avancement est prévu le jour même pour le débloquer.',
           tasks:[
             {label:'Les entreprises publient et gèrent leurs offres', status:'ok'},
             {label:'Modération des offres avant publication', status:'ok'},
@@ -1250,15 +1405,17 @@
         },
         {
           name:'DEVKORA', desc:'Tests de code pour les candidats/étudiants',
-          status:'en-cours', cdc:'non', owner:'Edwin', role:'', when:'14/08', stale:false,
+          status:'en-cours', cdc:'non', owner:'Edwin', role:'', when:'27/08', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'Précisé le 14/08 : utilisé pour les tests techniques d\'admission et l\'entraînement continu des étudiants, actuellement déployé sur le campus d\'Abidjan.',
+          comments:'Précisé le 14/08 : utilisé pour les tests techniques d\'admission et l\'entraînement continu des étudiants, actuellement déployé sur le campus d\'Abidjan. Incident du 26-27/08 : un groupe de candidats est resté bloqué en plein test sans aucun recours, à cause d\'un bug qui désactivait le bouton d\'envoi après une coupure réseau en fin de temps imparti. Corrigé et vérifié par lecture directe du code le 27/08, aucune rechute depuis.',
           tasks:[
             {label:'Exécution réelle de code dans 38 langages', status:'ok'},
             {label:'Essais illimités avant le rendu final', status:'ok'},
             {label:'Plusieurs types d\'épreuves combinables (code, QCM, terminal...)', status:'ok'},
             {label:'Invitation automatique liée aux admissions, bon test selon la filière', status:'ok'},
             {label:'Détection de comportements suspects pendant le test', status:'ok'},
+            {label:'Incident du 26-27/08 corrigé : un candidat peut désormais terminer et envoyer son test même après une coupure réseau', status:'ok'},
+            {label:'La supervision technique des erreurs est maintenant active sur l\'écran de passage de test (elle ne l\'était pas avant, alors que cet écran est public)', status:'ok'},
             {label:'Bloqué : une nouvelle interface existe en maquette, pas encore mise en place', status:'warn'},
           ]
         },

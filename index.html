@@ -337,7 +337,7 @@
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
           <span class="owner clickable" data-contact="0" title="Voir porteur et interlocuteur"><span>Yemalin Modeste, Franck Birba</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">19/08</span>
+          <span class="when ">02/09</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -380,12 +380,12 @@
             
               <div class="task">
                 <span class="t-status warn"></span>
-                <span class="t-label">Décider du sort du système de contrôle d'accès construit mais jamais réellement utilisé, et permettre d'attribuer des droits jusqu'au niveau du sous-module et de la personne</span>
+                <span class="t-label">Attribution de droits jusqu'au sous-module et à la personne — spécifiée, reste à construire</span>
               </div>
             
               <div class="task">
                 <span class="t-status warn"></span>
-                <span class="t-label">Semaine du 18 au 25/08 : poser les fondations (structure de base, premier chantier pilote sur Admission, premières briques infra)</span>
+                <span class="t-label">Travail en cours : rédaction des spécifications de chaque module (détail dans "CRM AEIG (toutes marques)")</span>
               </div>
             
               <div class="task">
@@ -1212,9 +1212,9 @@
       modules: [
         {
           name:'Architecture globale (refonte technique)', desc:'Revoir en profondeur comment Zeno est construit : comment les données sont reliées entre elles, comment les accès sont contrôlés, et comment séparer l\'environnement de test de celui utilisé par les vrais utilisateurs',
-          status:'en-cours', cdc:'oui', blocker:'Accès non protégés identifiés, correction déjà planifiée', owner:'Yemalin Modeste, Franck Birba', role:'', when:'19/08', stale:false,
+          status:'en-cours', cdc:'oui', blocker:'Accès non protégés identifiés, correction déjà planifiée', owner:'Yemalin Modeste, Franck Birba', role:'', when:'02/09', stale:false,
           support:[{name:'Cédric', role:'Support'}],
-          comments:'Vérifié par lecture directe du code (diagnostic complet mené le 13-14/08/2026), cadré en réunion technique le 14/08, puis les deux documents de cadrage ont été fusionnés dans le projet le 18/08 : un document d\'architecture cible complet existe maintenant, avec un plan de travail chiffré sur plusieurs semaines et des tâches déjà distribuées. La semaine du 18 au 25/08 est consacrée à poser les fondations (voir aussi "CRM AEIG (toutes marques)" et "Dev Platform").',
+          comments:'Vérifié par lecture directe du code (diagnostic complet mené le 13-14/08/2026), cadré en réunion technique le 14/08, puis les deux documents de cadrage ont été fusionnés dans le projet le 18/08 : un document d\'architecture cible complet existe maintenant, avec un plan de travail chiffré sur plusieurs semaines et des tâches déjà distribuées. La semaine du 18 au 25/08 est consacrée à poser les fondations (voir aussi "CRM AEIG (toutes marques)" et "Dev Platform"). Mise à jour du 02/09 (rapportée par Yemalin, pas vérifiée par lecture de code) : la semaine du 18-25/08 a en réalité été consacrée à la rédaction des spécifications de chaque module plutôt qu\'au démarrage concret du chantier pilote Admission comme envisagé initialement — voir le détail dans "CRM AEIG (toutes marques)", qui est le chantier qui deviendra la nouvelle version de Zeno.',
           tasks:[
             {label:'Diagnostic complet fait (données, accès, code obsolète)', status:'ok'},
             {label:'Réunion de cadrage avec l\'équipe technique (14/08)', status:'ok'},
@@ -1223,8 +1223,8 @@
             {label:'Point d\'avancement du 18/08 fait — les deux documents fusionnés dans un seul plan de travail', status:'ok'},
             {label:'Décision actée : chaque marque aura sa propre installation Zeno indépendante, plutôt qu\'une installation unique partagée par toutes (pour qu\'une panne ou une mise à jour chez une marque ne touche jamais les autres)', status:'ok'},
             {label:'Corriger les accès non protégés déjà identifiés — priorité de la semaine en cours', status:'crit'},
-            {label:'Décider du sort du système de contrôle d\'accès construit mais jamais réellement utilisé, et permettre d\'attribuer des droits jusqu\'au niveau du sous-module et de la personne', status:'warn'},
-            {label:'Semaine du 18 au 25/08 : poser les fondations (structure de base, premier chantier pilote sur Admission, premières briques infra)', status:'warn'},
+            {label:'Attribution de droits jusqu\'au sous-module et à la personne — spécifiée, reste à construire', status:'warn'},
+            {label:'Travail en cours : rédaction des spécifications de chaque module (détail dans "CRM AEIG (toutes marques)")', status:'warn'},
             {label:'Digital Valley sera la première marque à utiliser la nouvelle version ; Epitech restera sur l\'ancienne le temps que ce soit stabilisé', status:'idle'},
             {label:'Migrer progressivement les autres chantiers vers la nouvelle structure', status:'idle'},
             {label:'Terminer la modernisation des écrans encore sur l\'ancien système d\'affichage', status:'idle'},
@@ -1450,21 +1450,21 @@
       modules: [
         {
           name:'CRM AEIG (toutes marques)', desc:'Rendre Zeno réutilisable pour les autres marques du groupe AEIG',
-          status:'en-cours', cdc:'oui', owner:'Franck Birba', role:'', when:'19/08', stale:false,
+          status:'en-cours', cdc:'oui', owner:'Franck Birba', role:'', when:'02/09', stale:false,
           support:[{name:'Yemalin Modeste', role:''}], brandContact:{name:'Stéphanie, Gwen', role:''},
-          comments:'Bloqué depuis début août par l\'absence de spécifications/CDC. Un document d\'architecture complet a été validé et fusionné dans le projet le 18/08, avec un plan de travail chiffré sur plusieurs semaines. Décision actée entre-temps (revient sur une piste envisagée le 14/08) : chaque marque aura sa propre installation Zeno indépendante — pas une seule installation partagée — pour qu\'une panne ou une mise à jour chez une marque ne puisse jamais affecter les autres. Digital Valley sera la toute première marque servie par cette nouvelle version, avant Epitech. Précisé le 31/08 : point avec Franck Birba prévu le 01/09 pour finaliser les spécifications et lancer le développement, avec des agents qui travaillent en boucle.',
+          comments:'Bloqué depuis début août par l\'absence de spécifications/CDC. Un document d\'architecture complet a été validé et fusionné dans le projet le 18/08, avec un plan de travail chiffré sur plusieurs semaines. Décision actée entre-temps (revient sur une piste envisagée le 14/08) : chaque marque aura sa propre installation Zeno indépendante — pas une seule installation partagée — pour qu\'une panne ou une mise à jour chez une marque ne puisse jamais affecter les autres. Digital Valley sera la toute première marque servie par cette nouvelle version, avant Epitech. Précisé le 31/08 : point avec Franck Birba prévu le 01/09 pour finaliser les spécifications et lancer le développement, avec des agents qui travaillent en boucle. Mise à jour du 02/09 (rapportée par Yemalin, pas vérifiée par lecture de code) : les tâches ci-dessous se lisent en deux temps — les décisions de cadrage sont actées (celles marquées faites), et le travail concret en ce moment est la rédaction des spécifications de chaque module une par une, pour permettre ensuite un développement autonome. C\'est ce chantier qui deviendra la nouvelle version de Zeno.',
           tasks:[
-            {label:'Chaque marque a sa propre installation Zeno indépendante, avec les modules dont elle a besoin activés', status:'ok'},
-            {label:'L\'équipe technique centrale gère le produit (le socle commun) ; chaque marque gère sa propre installation (données, réglages, utilisateurs)', status:'ok'},
-            {label:'Le site vitrine (EDMS) de chaque marque sera géré depuis Zeno plutôt que par une solution séparée comme aujourd\'hui', status:'ok'},
-            {label:'Permettre d\'attribuer des droits très précis, jusqu\'au sous-module et à la personne — spécifié, reste à construire', status:'warn'},
-            {label:'Créer une nouvelle marque doit se faire sans écrire de code — juste une mise en place automatisée', status:'idle'},
-            {label:'La direction doit pouvoir avoir une vue d\'ensemble sur toutes les marques à la fois, sans pour autant tout centraliser dans une seule installation', status:'ok'},
+            {label:'Décision actée : chaque marque a sa propre installation Zeno indépendante, avec les modules dont elle a besoin activés', status:'ok'},
+            {label:'Décision actée : l\'équipe technique centrale gère le produit (le socle commun) ; chaque marque gère sa propre installation (données, réglages, utilisateurs)', status:'ok'},
+            {label:'Décision actée : le site vitrine de chaque marque sera géré depuis Zeno plutôt que par une solution séparée comme aujourd\'hui', status:'ok'},
+            {label:'Décision actée : créer une nouvelle marque doit se faire sans écrire de code — juste une mise en place automatisée', status:'ok'},
+            {label:'Décision actée : la direction doit pouvoir avoir une vue d\'ensemble sur toutes les marques à la fois, sans pour autant tout centraliser dans une seule installation', status:'ok'},
             {label:'Document expliquant vers quoi le projet tend à terme — rédigé et validé', status:'ok'},
             {label:'Document qui décrit les grands blocs (modules) qui composent le projet — rédigé et validé', status:'ok'},
             {label:'Fiche type de ce qu\'est un module Zeno activable/désactivable — rédigée et validée', status:'ok'},
-            {label:'Point infrastructure fait — plan détaillé posé (répartition de charge, bascule automatique en cas de panne, déploiement sans interruption)', status:'ok'},
-            {label:'Semaine du 18 au 25/08 : démarrer concrètement le premier chantier pilote (Admission) sur cette nouvelle base', status:'warn'},
+            {label:'Plan d\'infrastructure détaillé posé (répartition de charge, bascule automatique en cas de panne, déploiement sans interruption)', status:'ok'},
+            {label:'Attribution de droits précis jusqu\'au sous-module et à la personne — spécifiée, reste à construire', status:'warn'},
+            {label:'Travail en cours : rédaction des spécifications de chaque module, une par une, pour permettre le développement autonome de la nouvelle version de Zeno', status:'warn'},
           ]
         },
         {

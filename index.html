@@ -380,11 +380,6 @@
             
               <div class="task">
                 <span class="t-status warn"></span>
-                <span class="t-label">Attribution de droits jusqu'au sous-module et à la personne — spécifiée, reste à construire</span>
-              </div>
-            
-              <div class="task">
-                <span class="t-status warn"></span>
                 <span class="t-label">Travail en cours : rédaction des spécifications de chaque module (détail dans "CRM AEIG (toutes marques)")</span>
               </div>
             
@@ -1223,7 +1218,6 @@
             {label:'Point d\'avancement du 18/08 fait — les deux documents fusionnés dans un seul plan de travail', status:'ok'},
             {label:'Décision actée : chaque marque aura sa propre installation Zeno indépendante, plutôt qu\'une installation unique partagée par toutes (pour qu\'une panne ou une mise à jour chez une marque ne touche jamais les autres)', status:'ok'},
             {label:'Corriger les accès non protégés déjà identifiés — priorité de la semaine en cours', status:'crit'},
-            {label:'Attribution de droits jusqu\'au sous-module et à la personne — spécifiée, reste à construire', status:'warn'},
             {label:'Travail en cours : rédaction des spécifications de chaque module (détail dans "CRM AEIG (toutes marques)")', status:'warn'},
             {label:'Digital Valley sera la première marque à utiliser la nouvelle version ; Epitech restera sur l\'ancienne le temps que ce soit stabilisé', status:'idle'},
             {label:'Migrer progressivement les autres chantiers vers la nouvelle structure', status:'idle'},
@@ -1452,18 +1446,17 @@
           name:'CRM AEIG (toutes marques)', desc:'Rendre Zeno réutilisable pour les autres marques du groupe AEIG',
           status:'en-cours', cdc:'oui', owner:'Franck Birba', role:'', when:'02/09', stale:false,
           support:[{name:'Yemalin Modeste', role:''}], brandContact:{name:'Stéphanie, Gwen', role:''},
-          comments:'Bloqué depuis début août par l\'absence de spécifications/CDC. Un document d\'architecture complet a été validé et fusionné dans le projet le 18/08, avec un plan de travail chiffré sur plusieurs semaines. Décision actée entre-temps (revient sur une piste envisagée le 14/08) : chaque marque aura sa propre installation Zeno indépendante — pas une seule installation partagée — pour qu\'une panne ou une mise à jour chez une marque ne puisse jamais affecter les autres. Digital Valley sera la toute première marque servie par cette nouvelle version, avant Epitech. Précisé le 31/08 : point avec Franck Birba prévu le 01/09 pour finaliser les spécifications et lancer le développement, avec des agents qui travaillent en boucle. Mise à jour du 02/09 (rapportée par Yemalin, pas vérifiée par lecture de code) : les tâches ci-dessous se lisent en deux temps — les décisions de cadrage sont actées (celles marquées faites), et le travail concret en ce moment est la rédaction des spécifications de chaque module une par une, pour permettre ensuite un développement autonome. C\'est ce chantier qui deviendra la nouvelle version de Zeno.',
+          comments:'Le rythme de ce chantier est limité par le fait que l\'équipe doit, en parallèle, maintenir et continuer à développer les fonctionnalités de la version actuelle de Zeno (V1). L\'idée est d\'avoir des agents autonomes qui construisent cette nouvelle version en continu. (Rapporté par Yemalin le 02/09, pas vérifié par lecture de code.)',
           tasks:[
             {label:'Décision actée : chaque marque a sa propre installation Zeno indépendante, avec les modules dont elle a besoin activés', status:'ok'},
             {label:'Décision actée : l\'équipe technique centrale gère le produit (le socle commun) ; chaque marque gère sa propre installation (données, réglages, utilisateurs)', status:'ok'},
             {label:'Décision actée : le site vitrine de chaque marque sera géré depuis Zeno plutôt que par une solution séparée comme aujourd\'hui', status:'ok'},
             {label:'Décision actée : créer une nouvelle marque doit se faire sans écrire de code — juste une mise en place automatisée', status:'ok'},
             {label:'Décision actée : la direction doit pouvoir avoir une vue d\'ensemble sur toutes les marques à la fois, sans pour autant tout centraliser dans une seule installation', status:'ok'},
-            {label:'Document expliquant vers quoi le projet tend à terme — rédigé et validé', status:'ok'},
-            {label:'Document qui décrit les grands blocs (modules) qui composent le projet — rédigé et validé', status:'ok'},
-            {label:'Fiche type de ce qu\'est un module Zeno activable/désactivable — rédigée et validée', status:'ok'},
+            {label:'Document expliquant vers quoi le projet tend à terme — rédigé', status:'ok'},
+            {label:'Document qui décrit les grands blocs (modules) qui composent le projet — rédigé', status:'ok'},
+            {label:'Fiche type de ce qu\'est un module Zeno activable/désactivable — rédigée', status:'ok'},
             {label:'Plan d\'infrastructure détaillé posé (répartition de charge, bascule automatique en cas de panne, déploiement sans interruption)', status:'ok'},
-            {label:'Attribution de droits précis jusqu\'au sous-module et à la personne — spécifiée, reste à construire', status:'warn'},
             {label:'Travail en cours : rédaction des spécifications de chaque module, une par une, pour permettre le développement autonome de la nouvelle version de Zeno', status:'warn'},
           ]
         },

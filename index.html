@@ -799,7 +799,7 @@
           </div>
           <span class="cdc partial">CDC&nbsp;Partiel</span>
           <span class="owner clickable" data-contact="8" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">31/08</span>
+          <span class="when ">02/09</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -831,6 +831,16 @@
               </div>
             
               <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Écran d'accueil du parent simplifié à l'essentiel, menu de navigation encombré retiré</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Écrans de connexion (parent et étudiant) refaits aux couleurs officielles Epitech</span>
+              </div>
+            
+              <div class="task">
                 <span class="t-status warn"></span>
                 <span class="t-label">Bloqué : certains compteurs du tableau de bord restent vides pour l'instant</span>
               </div>
@@ -847,11 +857,6 @@
             
               <div class="task">
                 <span class="t-status warn"></span>
-                <span class="t-label">À faire : désengorger le portail, trop d'informations peu utiles à retirer</span>
-              </div>
-            
-              <div class="task">
-                <span class="t-status warn"></span>
                 <span class="t-label">En cours : revue de l'interface avec le responsable du Bachelor</span>
               </div>
             
@@ -864,11 +869,11 @@
           <div><span class="module-name">Pédagogie — cœur technique (identité)</span><span class="module-desc">Promotions, notes, présences, décrochage, identité pédagogique</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
-            <span class="blocker-tag">En attente des infos étudiants pour recharger et relier les modules</span>
+            <span class="blocker-tag">Réimport complet des étudiants supprimés, groupe par groupe (premier groupe fait)</span>
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
           <span class="owner clickable" data-contact="9" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">31/08</span>
+          <span class="when ">02/09</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -920,18 +925,23 @@
               </div>
             
               <div class="task">
-                <span class="t-status crit"></span>
-                <span class="t-label">Bloqué : des fiches étudiantes ont été nettoyées, certaines supprimées, en attente des bonnes informations pour les recharger et les relier aux autres modules</span>
+                <span class="t-status ok"></span>
+                <span class="t-label">Cause d'un incident de données trouvée : 695 fiches étudiantes pointaient vers une promotion supprimée, nettoyées après sauvegarde de sécurité</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Garantie ajoutée : un étudiant ne peut plus jamais être enregistré sans promotion réelle</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Premier groupe d'étudiants (PGE Abidjan) réimporté correctement comme preuve que le nouveau circuit fonctionne</span>
               </div>
             
               <div class="task">
                 <span class="t-status warn"></span>
-                <span class="t-label">Focus de la semaine : permettre à un candidat admis de basculer en étudiant et de signer son contrat</span>
-              </div>
-            
-              <div class="task">
-                <span class="t-status warn"></span>
-                <span class="t-label">Bloqué en pratique : le rattachement automatique d'un étudiant à sa promotion attend que le formulaire d'admission collecte les bonnes informations</span>
+                <span class="t-label">À faire : réimporter progressivement les autres groupes d'étudiants supprimés</span>
               </div>
             
               <div class="task">
@@ -1328,27 +1338,28 @@
         },
         {
           name:'Portail parent', desc:'Notes, présences, RDV, paiements — écrans en partie en refonte',
-          status:'fonctionnel', cdc:'partiel', blocker:'Token my.epitech non communiqué', owner:'Yemalin Modeste', role:'', when:'31/08', stale:false,
+          status:'fonctionnel', cdc:'partiel', blocker:'Token my.epitech non communiqué', owner:'Yemalin Modeste', role:'', when:'02/09', stale:false,
           support:[], brandContact:{name:'Sergino', role:'Responsable du Bachelor'},
-          comments:'Le portail est fonctionnel et utilisé (quelques zones du tableau de bord encore vides). Une partie des écrans est en refonte, en pause : on attend que le token d\'accès à la plateforme my (intra) soit communiqué pour récupérer les données. En attendant, revue de l\'interface avec Sergino (responsable du Bachelor), l\'interlocuteur principal sur ce volet. Précisé le 31/08 par Yemalin Modeste : aujourd\'hui, la source des données pour les parents doit venir de la plateforme my (intra) — token toujours pas communiqué. Le portail doit aussi être désengorgé : trop d\'informations peu utiles à retirer.',
+          comments:'Le portail est fonctionnel et utilisé (quelques zones du tableau de bord encore vides). Une partie des écrans est en refonte, en pause : on attend que le token d\'accès à la plateforme my (intra) soit communiqué pour récupérer les données. En attendant, revue de l\'interface avec Sergino (responsable du Bachelor), l\'interlocuteur principal sur ce volet. Précisé le 31/08 par Yemalin Modeste : aujourd\'hui, la source des données pour les parents doit venir de la plateforme my (intra) — token toujours pas communiqué. Le portail doit aussi être désengorgé : trop d\'informations peu utiles à retirer. Vérifié par lecture directe du code le 02/09 : le désengorgement a démarré — l\'écran d\'accueil du parent ne garde plus qu\'une vue d\'ensemble simple et un accès direct au suivi du poste de travail et aux rendez-vous, le menu de navigation encombré a été retiré. L\'écran de connexion du parent (et de l\'étudiant) a aussi été refait aux couleurs officielles Epitech. Ce travail a été avancé en priorité cette semaine aussi parce que la communication en a besoin pour prendre des captures d\'écran pour le livret remis aux parents.',
           tasks:[
             {label:'Un parent voit ses enfants, leurs notes, présences, documents', status:'ok'},
             {label:'Tableau de bord d\'activité de code avec alerte si difficulté', status:'ok'},
             {label:'Demande et suivi de rendez-vous avec l\'équipe', status:'ok'},
             {label:'Messagerie directe avec l\'école', status:'ok'},
             {label:'Suivi des paiements de scolarité', status:'ok'},
+            {label:'Écran d\'accueil du parent simplifié à l\'essentiel, menu de navigation encombré retiré', status:'ok'},
+            {label:'Écrans de connexion (parent et étudiant) refaits aux couleurs officielles Epitech', status:'ok'},
             {label:'Bloqué : certains compteurs du tableau de bord restent vides pour l\'instant', status:'warn'},
             {label:'Bloqué : un compte parent non relié à son enfant ne voit rien (déblocage manuel nécessaire)', status:'warn'},
             {label:'En pause : la refonte de certains écrans attend le token my.epitech pour récupérer les données', status:'crit'},
-            {label:'À faire : désengorger le portail, trop d\'informations peu utiles à retirer', status:'warn'},
             {label:'En cours : revue de l\'interface avec le responsable du Bachelor', status:'warn'},
           ]
         },
         {
           name:'Pédagogie — cœur technique (identité)', desc:'Promotions, notes, présences, décrochage, identité pédagogique',
-          status:'en-cours', cdc:'non', blocker:'En attente des infos étudiants pour recharger et relier les modules', owner:'Yemalin Modeste', role:'', when:'31/08', stale:false,
+          status:'en-cours', cdc:'non', blocker:'Réimport complet des étudiants supprimés, groupe par groupe (premier groupe fait)', owner:'Yemalin Modeste', role:'', when:'02/09', stale:false,
           support:[{name:'David', role:'Ressource additionnelle'}], brandContact:NO_ONE,
-          comments:'Pas de CDC pour ce chantier (corrige le suivi Rachad qui indiquait "en finalisation" fin juillet). Chantier en cours : refonte de l\'identité pédagogique (cursus/spécialité/promotion/campus) pour que chaque étudiant soit rattaché à la bonne promotion de façon fiable, au lieu d\'un rattachement approximatif comme aujourd\'hui. Vérifié par lecture directe du code le 31/08 : un garde-fou empêche désormais les rattachements ambigus ; le calcul du risque de décrochage est plus honnête (un critère jamais mesuré ne fait plus baisser artificiellement le score de tout le monde). Précisé le 31/08 par Yemalin Modeste : les fiches étudiantes concernées par des rattachements erronés ont été nettoyées, certaines supprimées — en attente des bonnes informations pour les recharger et relier ces étudiants aux autres modules. Focus de la semaine : permettre à un candidat admis de basculer en étudiant et de signer son contrat.',
+          comments:'Pas de CDC pour ce chantier (corrige le suivi Rachad qui indiquait "en finalisation" fin juillet). Chantier en cours : refonte de l\'identité pédagogique (cursus/spécialité/promotion/campus) pour que chaque étudiant soit rattaché à la bonne promotion de façon fiable, au lieu d\'un rattachement approximatif comme aujourd\'hui. Vérifié par lecture directe du code le 31/08 : un garde-fou empêche désormais les rattachements ambigus ; le calcul du risque de décrochage est plus honnête (un critère jamais mesuré ne fait plus baisser artificiellement le score de tout le monde). Précisé le 31/08 par Yemalin Modeste : les fiches étudiantes concernées par des rattachements erronés ont été nettoyées, certaines supprimées — en attente des bonnes informations pour les recharger et relier ces étudiants aux autres modules. Vérifié par lecture directe du code le 02/09 : la cause du problème a été retrouvée (une manipulation du 07/04 avait laissé 695 fiches étudiantes pointer vers une promotion qui n\'existait plus, sans que rien ne le signale) — sauvegarde de sécurité prise, fiches concernées supprimées proprement. Le système empêche maintenant, de façon garantie, qu\'un étudiant soit un jour enregistré sans promotion réelle — ce type d\'incident ne peut plus se reproduire. Premier groupe d\'étudiants (promotion PGE d\'Abidjan) réimporté correctement comme test du nouveau circuit propre ; les autres groupes seront réimportés progressivement, marque par marque plus tard, pas dans l\'urgence.',
           tasks:[
             {label:'Création et suivi des promotions', status:'ok'},
             {label:'Saisie des notes module par module', status:'ok'},
@@ -1359,9 +1370,10 @@
             {label:'Les anciens cursus remplacés n\'apparaissent plus à tort comme un problème dans le suivi des mouvements pédagogiques', status:'ok'},
             {label:'Un bouton dédié fait passer une promotion au niveau supérieur, avec historique et droits restreints', status:'ok'},
             {label:'La fiche d\'un étudiant n\'affiche plus que des informations réellement disponibles', status:'ok'},
-            {label:'Bloqué : des fiches étudiantes ont été nettoyées, certaines supprimées, en attente des bonnes informations pour les recharger et les relier aux autres modules', status:'crit'},
-            {label:'Focus de la semaine : permettre à un candidat admis de basculer en étudiant et de signer son contrat', status:'warn'},
-            {label:'Bloqué en pratique : le rattachement automatique d\'un étudiant à sa promotion attend que le formulaire d\'admission collecte les bonnes informations', status:'warn'},
+            {label:'Cause d\'un incident de données trouvée : 695 fiches étudiantes pointaient vers une promotion supprimée, nettoyées après sauvegarde de sécurité', status:'ok'},
+            {label:'Garantie ajoutée : un étudiant ne peut plus jamais être enregistré sans promotion réelle', status:'ok'},
+            {label:'Premier groupe d\'étudiants (PGE Abidjan) réimporté correctement comme preuve que le nouveau circuit fonctionne', status:'ok'},
+            {label:'À faire : réimporter progressivement les autres groupes d\'étudiants supprimés', status:'warn'},
             {label:'En cours : les écrans de gestion des cursus/promotions vont pouvoir déclarer les spécialités et les rentrées possibles', status:'warn'},
             {label:'Bloqué : certains contenus de formation pas encore traduits en français', status:'idle'},
           ]

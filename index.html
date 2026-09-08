@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Suivi Zeno &amp; CRM AEIG</title>
 <style>
   :root{
@@ -255,21 +256,412 @@
     .module-row > *:nth-child(5){grid-area:when;}
     .module-row > *:nth-child(6){grid-area:chev;}
   }
+
+
+/* ===== tokens supplémentaires du plan de charge (séries, phases, accent monochrome) ===== */
+:root{
+  --serious:#b25a1a; --serious-soft:#f9ebdf;
+  --accent:var(--ink); --accent-ink:var(--ink); --accent-soft:var(--line-soft); --on-accent:var(--paper);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+  --p1:#86b6ef; --p2:#5598e7; --p3:#2a78d6; --p4:#1c5cab; --p5:#0d366b;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --serious:#f0955a; --serious-soft:#2e1c10;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#3f9a3f; --s7:#9085e9; --s8:#e66767;
+    --p1:#b7d3f6; --p2:#86b6ef; --p3:#5598e7; --p4:#2a78d6; --p5:#184f95;
+  }
+}
+:root[data-theme="dark"]{
+  --serious:#f0955a; --serious-soft:#2e1c10;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#3f9a3f; --s7:#9085e9; --s8:#e66767;
+  --p1:#b7d3f6; --p2:#86b6ef; --p3:#5598e7; --p4:#2a78d6; --p5:#184f95;
+}
+
+[hidden]{display:none!important;}
+
+/* ===== vues (onglets de premier niveau) ===== */
+.view-tabs{display:flex; gap:.2rem; flex-wrap:wrap; margin:-.2rem 0 1rem; border-bottom:1px solid var(--line);}
+.view-tab{
+  font-family:var(--font-body); font-size:.9rem; font-weight:600; color:var(--ink-soft);
+  background:none; border:none; padding:.6rem .7rem; cursor:pointer;
+  border-bottom:2px solid transparent; margin-bottom:-1px;
+}
+.view-tab:hover{color:var(--ink);}
+.view-tab.active{color:var(--ink); border-bottom-color:var(--ink);}
+.view{display:flex; flex-direction:column; gap:2.2rem;}
+#view-chantiers{display:block;}
+.view[hidden]{display:none!important;}
+.project-tabs{border-bottom:none; gap:.3rem; margin-bottom:.9rem;}
+.project-tab{border:1px solid var(--line); border-radius:3px; padding:.35rem .7rem; margin-bottom:0; font-size:.8rem;}
+.project-tab.active{border-color:var(--ink); background:var(--line-soft);}
+.plan-banner a{color:var(--ink); font-weight:600;}
+.section-head p{color:var(--ink-soft); max-width:70ch; font-size:.8rem;}
+.section-head .eyebrow{margin-bottom:.2rem; display:block;}
+.card{font-size:.8rem;}
+.tile .l,.ptile .l{font-size:.75rem;}
+.hero-main .lede{font-size:.85rem;}
+.hero-fig .lbl{font-size:.85rem;}
+.method{font-size:.72rem; color:var(--ink-faint); border-top:1px solid var(--line); padding-top:.85rem; max-width:90ch;}
+.method p+p{margin-top:.4rem;}
+.ecart-done{color:var(--ink-faint);}
+.ecart-done b{color:var(--ink-soft);}
+.drow .ro{font-size:.78rem;}
+@media print{ .view-tabs,.plan-banner{display:none!important} .view[hidden]{display:none!important} }
+
+/* ===== plan de charge, roadmap, ressources ===== */
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--accent)}
+.mono{font-family:var(--font-mono)}
+.num{font-variant-numeric:tabular-nums}
+
+/* top bar */
+
+.section-title{font-size:1.1rem;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.section-head p{color:var(--ink-soft);max-width:62ch}
+.card{background:var(--paper-raised);border:1px solid var(--line);border-radius:6px}
+
+/* hero / synthèse */
+.hero{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;align-items:stretch}
+.hero-main{padding:28px}
+.hero-main h1{font-size:1.25rem;font-weight:700;line-height:1.2}
+.hero-main .lede{margin-top:14px;color:var(--ink-soft);max-width:60ch;font-size:15px}
+.hero-fig{display:flex;align-items:baseline;gap:12px;margin-top:22px}
+.hero-fig .big{font-size:40px;font-weight:600;line-height:1;letter-spacing:-.02em}
+.hero-fig .lbl{color:var(--ink-soft);font-size:15px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{padding:16px 18px;display:flex;flex-direction:column;gap:6px;justify-content:space-between}
+.tile .v{font-size:26px;font-weight:600;line-height:1.1;letter-spacing:-.01em}
+.tile .l{color:var(--ink-soft);font-size:13px}
+.tile .sub{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint)}
+.tile.live.bad .v{color:var(--crit)}
+.tile.live.ok .v{color:var(--ok)}
+
+.alerts{margin-top:24px}
+.alerts h3{font-size:.95rem;font-weight:700;margin-bottom:10px}
+.alert-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.alert{position:relative;padding:12px 14px 12px 18px;background:var(--paper-raised);border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;gap:4px;overflow:hidden}
+.alert::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--sev)}
+.alert.crit{--sev:var(--crit)} .alert.serious{--sev:var(--serious)} .alert.warn{--sev:var(--warn)} .alert.good{--sev:var(--ok)}
+.alert .t{font-weight:600;display:flex;align-items:center;gap:8px}
+.alert .t .ico{font-family:var(--font-mono);font-size:11px;padding:1px 6px;border-radius:3px;background:var(--line-soft);color:var(--ink-faint);border:1px solid var(--line)}
+.alert .d{color:var(--ink-soft);font-size:13px}
+
+/* legend */
+.klegend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:12px}
+.klegend .k{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-soft)}
+.sw{width:10px;height:10px;border-radius:2px;background:var(--c);flex:none}
+
+/* module chart */
+.chart-card{padding:18px 20px}
+.chart-tools{display:flex;gap:8px;align-items:center;justify-content:flex-end;margin-bottom:8px}
+.seg-btn{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg-btn button{background:transparent;border:0;padding:5px 10px;font-size:12px;color:var(--ink-soft)}
+.seg-btn button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+.mrow{display:grid;grid-template-columns:170px minmax(0,1fr) 150px;gap:12px;align-items:center;padding:5px 0}
+.mrow.muted-row .mname{color:var(--ink-faint)}
+.mname{font-size:13px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mbar{display:flex;gap:2px;height:16px;align-items:stretch}
+.mseg{background:var(--c);border-radius:0;min-width:2px}
+.mseg:last-child{border-radius:0 4px 4px 0}
+.mseg.hatch{background:repeating-linear-gradient(45deg,var(--c) 0 3px,transparent 3px 6px);opacity:.7}
+.mmeta{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--ink-soft);white-space:nowrap}
+.mmeta .tot{font-family:var(--font-mono);color:var(--ink-faint)}
+.mmeta .own{font-weight:600}
+.mmeta .own.solo{color:var(--crit)}
+.axis-note{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);margin-top:10px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* tables */
+table.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th,.tbl td{padding:6px 8px;border-bottom:1px solid var(--line-soft);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl th:first-child,.tbl td:first-child{text-align:left;position:sticky;left:0;background:var(--paper-raised)}
+.tbl th{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
+.tbl-wrap{overflow-x:auto}
+.tbl td.zero{color:var(--ink-faint)}
+
+/* frise */
+.frise{display:flex;flex-direction:column}
+.frow{--name-w:190px;--status-w:150px;display:grid;grid-template-columns:var(--name-w) repeat(8,minmax(0,1fr)) var(--status-w);gap:0;align-items:end;border-bottom:1px solid var(--line-soft);position:relative}
+.frow.head{align-items:center;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:2px}
+.frow.head .mo{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);text-align:center}
+.fname{display:flex;align-items:center;gap:8px;padding:10px 8px 10px 0;font-weight:500;font-size:13px;min-width:0}
+.fname .sub{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);font-weight:400;white-space:nowrap}
+.fcell{height:64px;display:flex;align-items:flex-end;justify-content:center;padding:0 4px 10px;position:relative;border-left:1px solid var(--line-soft)}
+.fcol{width:min(100%,22px);background:var(--c);border-radius:4px 4px 0 0;min-height:0;position:relative}
+.fcol.empty{background:transparent;height:0}
+.fcell:hover .fcol:not(.empty){filter:brightness(1.08)}
+.fspan{position:absolute;height:2px;background:var(--c);bottom:5px;opacity:.55;border-radius:2px;pointer-events:none;left:calc(var(--name-w) + (100% - var(--name-w) - var(--status-w)) * var(--l));width:calc((100% - var(--name-w) - var(--status-w)) * var(--w) + 4px)}
+.fstatus{padding:10px 0 10px 12px;font-size:12px;display:flex;flex-direction:column;gap:2px;align-items:flex-start}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:600;line-height:1.5;border:1px solid transparent;white-space:nowrap}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+.chip.good{color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}
+.chip.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 18%,transparent)}
+.chip.serious{color:var(--serious);background:color-mix(in srgb,var(--serious) 16%,transparent)}
+.chip.crit{color:var(--crit);background:color-mix(in srgb,var(--crit) 14%,transparent)}
+.chip.neutral{color:var(--ink-soft);background:var(--line-soft);border-color:var(--line)}
+.chip.accent{color:var(--accent-ink);background:var(--accent-soft)}
+.chip.mono{font-family:var(--font-mono);font-weight:500}
+
+/* resource cards */
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.rcard{padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.rhead{display:flex;align-items:center;gap:12px}
+.avatar{width:40px;height:40px;border-radius:8px;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px;flex:none}
+.rname{font-weight:600;font-size:15px;line-height:1.2}
+.rrole{color:var(--ink-faint);font-size:12px}
+.rstats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:10px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.rstat .v{font-weight:600;font-size:16px;line-height:1.1}
+.rstat .l{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint)}
+.rmods{display:flex;flex-direction:column;gap:5px}
+.rmod{display:grid;grid-template-columns:120px 1fr 44px;gap:8px;align-items:center;font-size:12px}
+.rmod .n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-soft)}
+.rmod .bar{height:6px;background:var(--line-soft);border-radius:3px;overflow:hidden}
+.rmod .bar i{display:block;height:100%;background:var(--c);border-radius:3px}
+.rmod .p{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);text-align:right}
+.rload{display:flex;flex-direction:column;gap:6px;font-size:12.5px}
+.rload .t{display:flex;justify-content:space-between;align-items:center}
+.rload ul{margin:0;padding-left:16px;color:var(--ink-soft);display:flex;flex-direction:column;gap:2px}
+.rload li{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.redit{display:grid;grid-template-columns:130px 1fr;gap:8px;align-items:center}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint)}
+.inp,select.inp,textarea.inp{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:6px;background:var(--paper-raised);color:var(--ink);font-size:13px;min-width:0}
+.inp:focus{border-color:var(--accent)}
+select.inp{appearance:auto}
+textarea.inp{resize:vertical;min-height:38px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:6px;border:1px solid var(--line);background:var(--paper-raised);color:var(--ink);font-weight:500;font-size:13px;white-space:nowrap}
+.btn:hover{background:var(--line-soft)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--ink-soft)}
+.btn.ghost:hover{background:var(--line-soft)}
+.btn.danger{color:var(--crit)}
+.btn.sm{padding:4px 8px;font-size:12px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* plan de charge */
+.plan-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
+.ptile{padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.ptile .v{font-size:24px;font-weight:600;line-height:1.1}
+.ptile .l{font-size:12px;color:var(--ink-soft)}
+.ptile.bad .v{color:var(--crit)}
+.ptile.blocked .v{color:var(--serious)}
+.loadbars{display:flex;flex-direction:column;gap:6px;padding:14px 16px;margin-bottom:14px}
+.loadbars h4{margin:0 0 4px;font-size:13px;font-weight:600}
+.lb{display:grid;grid-template-columns:150px 1fr 40px;gap:10px;align-items:center;font-size:12.5px}
+.lb .track{display:flex;gap:2px;height:12px}
+.lb .track i{display:block;height:100%;background:var(--c);border-radius:0}
+.lb .track i:last-child{border-radius:0 4px 4px 0}
+.lb .track i.blk{background:repeating-linear-gradient(45deg,var(--serious) 0 3px,transparent 3px 6px)}
+.lb .n{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);text-align:right}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid var(--line)}
+.toolbar .grow{flex:1}
+.toolbar select.inp,.toolbar input.inp{width:auto;min-width:140px}
+.form-panel{padding:16px;border-bottom:1px solid var(--line);background:var(--line-soft);display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;align-items:end}
+.form-panel .full{grid-column:1/-1}
+.form-actions{display:flex;gap:8px;justify-content:flex-end;grid-column:1/-1}
+.drow{display:grid;grid-template-columns:76px minmax(0,2.2fr) 130px 96px 150px 200px 70px;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line-soft);position:relative}
+.drow.missing{background:color-mix(in srgb,var(--crit) 6%,transparent)}
+.drow.missing::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--crit)}
+.drow.blocked::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--serious)}
+.drow.done{opacity:.6}
+.dref{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-faint)}
+.dtitle{min-width:0}
+.dtitle .t{font-weight:500;line-height:1.35}
+.dtitle .n{font-size:12px;color:var(--ink-faint);margin-top:2px;white-space:pre-wrap}
+.dcol-h{display:grid;grid-template-columns:76px minmax(0,2.2fr) 130px 96px 150px 200px 70px;gap:10px;padding:8px 14px;border-bottom:1px solid var(--line);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint)}
+.dact{display:flex;gap:2px;justify-content:flex-end}
+.prio{font-family:var(--font-mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.prio.urgent{color:var(--crit)} .prio.high{color:var(--serious)} .prio.medium{color:var(--ink-soft)} .prio.low{color:var(--ink-faint)}
+.pc-empty{padding:28px;text-align:center;color:var(--ink-faint)}
+.notice{padding:12px 14px;border-radius:6px;background:var(--accent-soft);color:var(--accent-ink);font-size:13px;display:flex;gap:10px;align-items:center}
+.notice.err{background:color-mix(in srgb,var(--crit) 12%,transparent);color:var(--crit)}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:9px 14px;border-radius:6px;font-size:13px;z-index:50;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+.confirm{display:inline-flex;gap:4px;align-items:center;font-size:12px}
+
+/* frise stacked V2 */
+.fcol{display:flex;flex-direction:column-reverse;overflow:visible}
+.fcol .fz{background:var(--c);border-radius:0}
+.fcol .fv{background:repeating-linear-gradient(45deg,var(--c) 0 3px,transparent 3px 5px);margin-bottom:2px}
+.fcol .fz:only-child,.fcol .fv:last-child{border-radius:4px 4px 0 0}
+.fcol .fz:first-child:not(:only-child){border-radius:0}
+.mrow.group{padding:12px 0 4px;border-top:1px solid var(--line);margin-top:6px}
+.mrow.group .mname{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);white-space:normal}
+.keyrow{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-soft);margin-top:10px}
+.keyrow .k{display:inline-flex;align-items:center;gap:6px}
+.keyrow .sw.h{background:repeating-linear-gradient(45deg,var(--c) 0 2px,transparent 2px 4px)}
+
+/* roadmap */
+.rm-ref{font-size:13px;color:var(--ink-soft);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.timeline{position:relative;padding:26px 0 6px;margin-top:6px}
+.tl-axis{display:grid;grid-template-columns:repeat(11,1fr);border-top:1px solid var(--line);position:relative}
+.tl-axis span{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);padding-top:4px;border-left:1px solid var(--line-soft);padding-left:4px;white-space:nowrap;overflow:hidden}
+.tl-rows{position:relative;display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.tl-row{position:relative;height:30px}
+.tl-bar{position:absolute;top:0;height:30px;border-radius:4px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;padding:0 10px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:4px solid var(--accent)}
+.tl-bar.late{background:color-mix(in srgb,var(--crit) 12%,transparent);color:var(--crit);border-left-color:var(--crit)}
+.tl-bar.open{border-right:2px dashed var(--accent);border-radius:4px 0 0 4px}
+.tl-today{position:absolute;top:-22px;bottom:0;width:0;border-left:2px solid var(--ink);pointer-events:none}
+.tl-today::before{content:attr(data-label);position:absolute;top:0;left:6px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);white-space:nowrap;background:var(--paper-raised);padding:0 4px}
+.phase-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:14px}
+.phase{padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.phase .n{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+.phase .t{font-weight:600;line-height:1.3}
+.phase .w{font-size:12px;color:var(--ink-soft)}
+.ch-head,.ch-row{display:grid;grid-template-columns:44px minmax(0,2fr) 110px 120px minmax(0,2fr) 150px;gap:10px;align-items:start;padding:9px 14px;border-bottom:1px solid var(--line-soft)}
+.ch-head{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);border-bottom:1px solid var(--line);align-items:center}
+.ch-row .num{font-family:var(--font-mono);font-size:12px;color:var(--ink-faint)}
+.ch-row .t{font-weight:500;line-height:1.35}
+.ch-row .t .sub{font-weight:400;color:var(--ink-faint);font-size:12px}
+.ch-row .real{font-size:12.5px;color:var(--ink-soft);line-height:1.4}
+.ch-row .tk{display:flex;flex-wrap:wrap;gap:4px}
+.ch-row.late{background:color-mix(in srgb,var(--crit) 4%,transparent)}
+.rm-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.rm-list{padding:14px 16px}
+.rm-list h4{margin:0 0 8px;font-size:13px;font-weight:600;display:flex;gap:8px;align-items:center}
+.rm-list ol,.rm-list ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-soft)}
+.rm-list li b{color:var(--ink)}
+.tr-row{display:grid;grid-template-columns:52px minmax(0,1fr) 110px 110px;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line-soft);font-size:12.5px}
+.tr-row .id{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-faint)}
+.tr-row:last-child{border-bottom:0}
+@media (max-width:900px){
+  .ch-head{display:none}
+  .ch-row{grid-template-columns:1fr 1fr}
+  .ch-row .t,.ch-row .real{grid-column:1/-1}
+  .rm-cols{grid-template-columns:1fr}
+  .tl-bar{font-size:11px;padding:0 6px}
+}
+
+/* avancement */
+.av-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr);gap:14px;align-items:stretch}
+.av-hero{padding:22px 24px;display:flex;flex-direction:column;gap:8px}
+.av-big{font-size:48px;font-weight:600;line-height:1;letter-spacing:-.02em;display:flex;align-items:baseline;gap:4px}
+.av-big .unit{font-size:22px;color:var(--ink-faint);font-weight:500}
+.av-sub{color:var(--ink-soft);font-size:14px}
+.av-bar{display:flex;gap:2px;height:14px;margin-top:8px}
+.av-bar i{display:block;height:100%;background:var(--c)}
+.av-bar i:first-child{border-radius:4px 0 0 4px} .av-bar i:last-child{border-radius:0 4px 4px 0}
+.av-tiles{grid-template-columns:1fr 1fr}
+.ph-head,.ph-row{display:grid;grid-template-columns:minmax(0,2.2fr) 150px 90px minmax(0,1.6fr) 150px 190px;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line-soft)}
+.ph-head{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);border-bottom:1px solid var(--line)}
+.ph-row .t{font-weight:600;line-height:1.3}
+.ph-row .t .sub{font-weight:400;color:var(--ink-faint);font-size:12px;display:block}
+.ph-row .w{font-size:12.5px;color:var(--ink-soft)}
+.ph-row .n{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft)}
+.ph-prog{display:flex;align-items:center;gap:10px}
+.ph-prog .bar{flex:1;display:flex;gap:2px;height:12px;background:var(--line);border-radius:4px;overflow:hidden}
+.ph-prog .bar i{display:block;height:100%;background:var(--c)}
+.ph-prog .pct{font-family:var(--font-mono);font-size:12px;width:40px;text-align:right}
+.ph-res{font-size:12px;color:var(--ink-soft);line-height:1.35}
+.ph-res b{color:var(--ink)}
+.ch-phase{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 14px 8px;border-bottom:1px solid var(--line);background:var(--line-soft)}
+.ch-phase .t{font-weight:600}
+.ch-phase .w{font-size:12px;color:var(--ink-faint)}
+.chip.todo{color:var(--ink-faint);background:var(--line-soft);border-color:var(--line);font-weight:500}
+@media (max-width:900px){
+  .av-grid{grid-template-columns:1fr}
+  .ph-head{display:none}
+  .ph-row{grid-template-columns:1fr 1fr}
+  .ph-row .t,.ph-row .ph-prog{grid-column:1/-1}
+}
+@media print{
+  .topbar,.toolbar,.form-panel,#add-res-panel,.redit,.dact,.seg-btn,.tip,.toast{display:none!important}
+  .wrap{padding:0;gap:24px} .card{break-inside:avoid;box-shadow:none}
+  select.inp{border:0;appearance:none;padding:0;background:transparent}
+}
+
+/* échéancier */
+.sched-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:14px}
+.sched-tiles .tile .v{font-size:26px}
+.sched-tiles .tile.hero .v{color:var(--accent-ink)}
+.gantt{padding:16px 18px 10px;overflow-x:auto}
+.gantt-in{min-width:720px}
+.g-head{display:grid;grid-template-columns:170px minmax(0,1fr);gap:10px;align-items:end;margin-bottom:6px}
+.g-axis{position:relative;height:34px;border-bottom:1px solid var(--line)}
+.g-axis .mo{position:absolute;top:0;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);padding-left:4px;border-left:1px solid var(--line)}
+.g-axis .wk{position:absolute;bottom:2px;font-family:var(--font-mono);font-size:10px;color:var(--ink-faint);padding-left:3px;border-left:1px solid var(--line-soft);height:14px}
+.g-row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:10px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line-soft)}
+.g-name{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;min-width:0}
+.g-name .sub{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);font-weight:400;white-space:nowrap}
+.g-track{position:relative;height:26px;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(var(--wk) - 1px),var(--line-soft) calc(var(--wk) - 1px),var(--line-soft) var(--wk))}
+.g-bar{position:absolute;top:3px;height:20px;border-radius:3px;background:var(--c);color:#fff;font-size:11px;line-height:20px;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-right:2px solid var(--paper-raised);cursor:default}
+.g-bar.other{background:color-mix(in srgb,var(--ink-faint) 55%,transparent)}
+.g-bar.blk{background:repeating-linear-gradient(45deg,var(--serious) 0 4px,color-mix(in srgb,var(--serious) 40%,transparent) 4px 8px)}
+.g-bar.p1{color:var(--ink)} .g-bar.p2{color:var(--ink)}
+:root[data-theme="dark"] .g-bar.p3,:root[data-theme="dark"] .g-bar.p4{color:var(--ink)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .g-bar.p3,:root:not([data-theme="light"]) .g-bar.p4{color:var(--ink)} }
+.g-today{position:absolute;top:0;bottom:0;width:0;border-left:2px solid var(--ink);z-index:2;pointer-events:none}
+.g-ms{position:absolute;top:0;bottom:0;width:0;border-left:2px dashed var(--accent);z-index:1;pointer-events:none}
+.g-ms::after{content:attr(data-label);position:absolute;top:-2px;left:4px;font-family:var(--font-mono);font-size:10px;color:var(--accent-ink);white-space:nowrap;background:var(--paper-raised);padding:0 3px}
+.g-rows{position:relative}
+.g-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:var(--ink-soft)}
+.g-legend .k{display:inline-flex;align-items:center;gap:6px}
+.unplanned{padding:12px 16px;display:flex;flex-direction:column;gap:6px;font-size:13px}
+.unplanned ul{margin:0;padding-left:18px;color:var(--ink-soft);columns:2;column-gap:24px}
+.unplanned li{break-inside:avoid}
+.settings{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;padding:14px 16px;align-items:end}
+.settings .field input{font-family:var(--font-mono)}
+.settings .full{grid-column:1/-1;font-size:12px;color:var(--ink-faint)}
+.days-inp{width:58px;padding:4px 6px;text-align:right;font-family:var(--font-mono)}
+.ph-head,.ph-row{grid-template-columns:minmax(0,2fr) 130px 80px minmax(0,1.4fr) 140px 120px 150px}
+.ph-row .fin{font-size:12.5px} .ph-row .fin b{font-family:var(--font-mono);font-weight:600}
+.ph-row .fin .sub{display:block;font-size:11px;color:var(--ink-faint)}
+.dcol-h,.drow{grid-template-columns:76px minmax(0,2.2fr) 120px 90px 140px 190px 64px 70px}
+@media (max-width:900px){ .ph-row{grid-template-columns:1fr 1fr} .drow{grid-template-columns:1fr 1fr} .g-head,.g-row{grid-template-columns:120px minmax(0,1fr)} }
+
+/* tooltip */
+.tip{position:fixed;z-index:60;pointer-events:none;background:var(--ink);color:var(--paper);padding:6px 9px;border-radius:5px;font-size:12px;line-height:1.35;max-width:260px;opacity:0;transition:opacity .12s;white-space:nowrap}
+.tip.show{opacity:1}
+.tip .k{font-family:var(--font-mono);font-size:10.5px;opacity:.75;letter-spacing:.04em;text-transform:uppercase}
+footer{color:var(--ink-faint);font-size:12px;border-top:1px solid var(--line);padding-top:16px;max-width:80ch}
+footer p+p{margin-top:6px}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .mrow{grid-template-columns:120px minmax(0,1fr)}
+  .mrow .mmeta{grid-column:2;justify-content:flex-start;gap:14px}
+  .frow{--name-w:120px;--status-w:0px;grid-template-columns:var(--name-w) repeat(8,minmax(0,1fr))}
+  .fstatus,.frow.head .mo:last-child{display:none}
+  .form-panel{grid-template-columns:1fr 1fr}
+  .dcol-h{display:none}
+  .drow{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
+  .drow .dtitle{grid-column:1/-1}
+  .drow .dact{grid-column:1/-1;justify-content:flex-start}
+}
+@media (prefers-reduced-motion:reduce){ *{transition:none!important} }
 </style>
 
 <div class="wrap">
 
   <header class="page">
     <div class="titleblock">
-      <span class="eyebrow">Suivi des chantiers — vérifié par lecture du code</span>
-      <h1>État des chantiers</h1>
+      <span class="eyebrow">Zeno · CRM AEIG · EDMS</span>
+      <h1>Suivi des chantiers et plan de charge</h1>
     </div>
     <div class="meta-row">
-      <span>Méthode&nbsp;: <strong>audit direct du code</strong>, pas Plane</span>
-      <span>Vérifié le&nbsp;: <strong>03/09/2026</strong></span>
+      <span>Chantiers&nbsp;: <strong>audit direct du code</strong>, vérifié le <strong>07/09/2026</strong></span>
+      <span>Plan de charge&nbsp;: <strong id="meta-plan">–</strong></span>
     </div>
   </header>
 
+  <div class="view-tabs" role="tablist" aria-label="Vues">
+    <button class="view-tab active" data-go="chantiers" role="tab">Chantiers</button>
+    <button class="view-tab" data-go="avancement" role="tab">Avancement V2</button>
+    <button class="view-tab" data-go="roadmap" role="tab">Roadmap V2</button>
+    <button class="view-tab" data-go="plan" role="tab">Plan de charge</button>
+    <button class="view-tab" data-go="ressources" role="tab">Ressources</button>
+  </div>
+  <div class="banner plan-banner" id="plan-banner" hidden></div>
+
+  <div class="view" id="view-chantiers">
   <div class="project-tabs" id="project-tabs">
       <button class="project-tab active" data-project="zeno">
         Zeno<span class="count">16</span>
@@ -1224,6 +1616,207 @@
     </div>
   <div class="empty" id="empty" style="display:none;"></div>
 
+  <footer class="legend">
+    <span class="item"><span class="dot ok"></span> Fonctionnel — utilisé au quotidien</span>
+    <span class="item"><span class="dot warn"></span> En cours — utilisable, des parties encore en travaux</span>
+    <span class="item"><span class="dot crit"></span> Bloqué — ne fonctionne pas ou dépend d'une autre équipe</span>
+    <span class="item"><span class="dot idle"></span> Pas démarré</span>
+  </footer>
+  </div>
+
+  <div class="view" id="view-avancement" hidden>
+  <div class="section-head">
+    <div><div class="eyebrow">Rapport direction · Zeno V2</div><h2 class="section-title">Avancement</h2></div>
+    <p>Lecture d'ensemble de la réécriture V2 : où en est chaque phase, ce qui est livré, ce qui a une ressource. Un chantier livré compte 1, un chantier partiel 0,5. L'état réel est une lecture du code d'aeig-plateform au 7 septembre 2026 (voir la roadmap pour le détail par chantier).</p>
+  </div>
+  <div class="av-grid">
+    <div class="card av-hero">
+      <div class="eyebrow">Avancement pondéré · 5 phases</div>
+      <div class="av-big"><span id="av-pct">–</span><span class="unit">%</span></div>
+      <div class="av-sub" id="av-sub"></div>
+      <div class="av-bar" id="av-bar"></div>
+      <div class="keyrow" style="margin-top:8px"><span class="k"><i class="sw" style="--c:var(--ok)"></i>Livré</span><span class="k"><i class="sw" style="--c:var(--warn)"></i>Partiel</span><span class="k"><i class="sw" style="--c:var(--line)"></i>Non commencé</span></div>
+    </div>
+    <div class="tiles av-tiles">
+      <div class="card tile"><div class="v num" id="av-done">–</div><div class="l">chantiers livrés</div><div class="sub">sur aeig-plateform, branche main</div></div>
+      <div class="card tile"><div class="v num" id="av-partial">–</div><div class="l">chantiers partiels</div><div class="sub">démarrés, pas au périmètre</div></div>
+      <div class="card tile"><div class="v num" id="av-none">–</div><div class="l">chantiers non commencés</div><div class="sub" id="av-none-sub"></div></div>
+      <div class="card tile live" id="av-res-tile"><div class="v num" id="av-res">–</div><div class="l">chantiers avec une ressource</div><div class="sub" data-mode-sub>plan de charge</div></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="ph-head"><span>Phase</span><span>Fenêtre prévue</span><span>Chantiers</span><span>Avancement</span><span>Ressources</span><span>Fin estimée</span><span>Statut</span></div>
+    <div id="phase-rows"></div>
+  </div>
+  <div class="card rm-list" style="margin-top:14px">
+    <h4>Messages clés pour la direction</h4>
+    <ul id="av-messages"></ul>
+  </div>
+  </div>
+
+  <div class="view" id="view-roadmap" hidden>
+  <div class="section-head">
+    <div><div class="eyebrow">Refacto · Zeno V2</div><h2 class="section-title">Roadmap V2</h2></div>
+    <p>Référence : <span class="mono">docs/architecture/ROADMAP_V2.md</span> (Zeno, actée le 19 août 2026, ZENO-827/828). Les 5 phases et leurs chantiers, avec l'état réel lu dans le code du dépôt <b>aeig-plateform</b> (branche <span class="mono">main</span>, où la branche refacto a été fusionnée le 7 septembre), les tickets Plane et la ressource affectée dans le plan de charge.</p>
+  </div>
+  <div class="card chart-card">
+    <div class="rm-ref"><span class="chip neutral mono" id="rm-count">5 phases</span><span class="chip crit"><i class="dot"></i>Échéance Phase 1 dépassée (25 août)</span><span class="chip neutral" id="rm-today"></span></div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="toolbar" style="justify-content:space-between"><b>Les 5 phases — chantiers, tickets et état réel sur aeig-plateform</b><span style="font-size:12px;color:var(--ink-faint)">« Ressource » vient du plan de charge · tous les chantiers ont un ticket Plane sous l'épic ZENO-827</span></div>
+    <div class="ch-head"><span>#</span><span>Chantier</span><span>Tickets</span><span>Plane</span><span>État réel (lecture du code du 7 sept.)</span><span>Ressource</span></div>
+    <div id="chantiers"></div>
+  </div>
+  <div class="rm-cols">
+    <div class="card rm-list">
+      <h4>Tranches livrées sur <span class="mono">main</span> (ex-refacto) <span class="chip neutral" style="font-weight:500">plan de Giovanni, 30 juillet</span></h4>
+      <div id="tranches"></div>
+    </div>
+    <div class="card rm-list">
+      <h4>Écarts à arbitrer entre la roadmap et le code</h4>
+      <ol id="ecarts"></ol>
+    </div>
+  </div>
+  </div>
+
+  <div class="view" id="view-plan" hidden>
+  <div class="section-head">
+    <div><div class="eyebrow">Pilotage · partagé</div><h2 class="section-title">Plan de charge</h2></div>
+    <p>Les demandes en cours (tickets Plane et chantiers de la roadmap V2), affectées à une ressource ou marquées « ressource manquante ». Dans l'artifact Claude, tout ce qui est modifié est enregistré et visible par toute l'équipe ; ici, la page publiée montre le dernier instantané.</p>
+  </div>
+  <div id="plan-unavailable" class="notice" hidden>Le plan de charge n'est pas disponible dans cette copie de la page.</div>
+  <div id="plan-body">
+    <div class="plan-top">
+      <div class="card ptile"><div class="v num" id="p-total">–</div><div class="l">demandes ouvertes</div></div>
+      <div class="card ptile bad"><div class="v num" id="p-missing">–</div><div class="l">sans ressource</div></div>
+      <div class="card ptile"><div class="v num" id="p-unassigned">–</div><div class="l">à affecter</div></div>
+      <div class="card ptile blocked"><div class="v num" id="p-blocked">–</div><div class="l">bloquées</div></div>
+      <div class="card ptile"><div class="v num" id="p-urgent">–</div><div class="l">urgentes ou hautes</div></div>
+    </div>
+    <div class="card loadbars" id="loadbars"></div>
+    <div class="card">
+      <div class="toolbar">
+        <select class="inp" id="f-status"><option value="open">Ouvertes</option><option value="a_affecter">À affecter</option><option value="en_cours">En cours</option><option value="bloquee">Bloquées</option><option value="terminee">Terminées</option><option value="all">Toutes</option></select>
+        <select class="inp" id="f-phase"><option value="">Toutes les phases</option><option value="1">Phase 1</option><option value="2">Phase 2</option><option value="3">Phase 3</option><option value="4">Phase 4</option><option value="5">Phase 5</option><option value="none">Hors roadmap</option></select>
+        <select class="inp" id="f-module"><option value="">Tous les modules</option></select>
+        <select class="inp" id="f-res"><option value="">Toutes les ressources</option><option value="__missing__">Ressource manquante</option><option value="__none__">Non affectées</option></select>
+        <input class="inp" id="f-q" placeholder="Rechercher…" style="min-width:180px">
+        <span class="grow"></span>
+        <button class="btn primary" id="btn-new">+ Nouvelle demande</button>
+      </div>
+      <form class="form-panel" id="dform" hidden>
+        <div class="field full"><label for="d-title">Demande</label><input class="inp" id="d-title" required placeholder="Ex. Export des admis au format Fillout"></div>
+        <div class="field"><label for="d-module">Module</label><select class="inp" id="d-module"></select></div>
+        <div class="field"><label for="d-prio">Priorité</label><select class="inp" id="d-prio"><option value="urgent">Urgente</option><option value="high" selected>Haute</option><option value="medium">Moyenne</option><option value="low">Basse</option></select></div>
+        <div class="field"><label for="d-status">Statut</label><select class="inp" id="d-status"><option value="a_affecter">À affecter</option><option value="en_cours">En cours</option><option value="bloquee">Bloquée</option><option value="terminee">Terminée</option></select></div>
+        <div class="field"><label for="d-res">Ressource</label><select class="inp" id="d-res"></select></div>
+        <div class="field"><label for="d-ref">Réf. Plane</label><input class="inp" id="d-ref" placeholder="ZENO-867"></div>
+        <div class="field full"><label for="d-roadmap">Chantier de la roadmap V2 (optionnel)</label><select class="inp" id="d-roadmap"></select></div>
+        <div class="field full"><label for="d-note">Note</label><textarea class="inp" id="d-note" placeholder="Contexte, échéance, dépendances…"></textarea></div>
+        <div class="form-actions"><button type="button" class="btn ghost" id="d-cancel">Annuler</button><button type="submit" class="btn primary" id="d-save">Enregistrer</button></div>
+      </form>
+      <div class="dcol-h"><span>Réf.</span><span>Demande</span><span>Module</span><span>Priorité</span><span>Statut</span><span>Ressource</span><span>Reste (j)</span><span></span></div>
+      <div id="dlist"></div>
+    </div>
+  </div>
+  <div class="section-head">
+    <div><div class="eyebrow">Projection · partagé</div><h2 class="section-title">Quand on finit</h2></div>
+    <p>L'unité est le <b>jour de boucle humaine</b> : Claude Code écrit le code, la ressource relit la spec, répond aux questions et recette. Chaque demande ouverte porte une charge restante dans cette unité, chaque ressource une capacité hebdomadaire. Les demandes affectées sont enchaînées par ressource (en cours d'abord, puis par priorité et par phase) ; ce qui n'a pas de ressource n'est pas daté. Calibrage mesuré sur l'historique : 2 000 lignes V2 revues par jour de boucle, compaction V1 → V2 de 3,5, une demi-journée de recette par module.</p>
+  </div>
+  <div id="sched-unavailable" class="notice" hidden>L'échéancier a besoin des données du plan de charge, absentes de cette copie de la page.</div>
+  <div id="sched-body">
+    <div class="sched-tiles">
+      <div class="card tile hero"><div class="v" id="s-end">–</div><div class="l">fin estimée du projet</div><div class="sub" id="s-end-sub">avec les ressources affectées</div></div>
+      <div class="card tile"><div class="v num" id="s-load">–</div><div class="l">jours de boucle restants, affectés</div><div class="sub" id="s-load-sub"></div></div>
+      <div class="card tile live" id="s-unp-tile"><div class="v num" id="s-unp">–</div><div class="l">jours de boucle sans ressource</div><div class="sub" id="s-unp-sub"></div></div>
+      <div class="card tile"><div class="v num" id="s-cap">–</div><div class="l">jours de capacité par semaine</div><div class="sub" id="s-cap-sub"></div></div>
+    </div>
+    <div class="card gantt">
+      <div class="chart-tools" style="justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div class="seg-btn" role="group" aria-label="Périmètre"><button aria-pressed="true" data-scope="all">Tout le plan de charge</button><button aria-pressed="false" data-scope="roadmap">Roadmap V2 seule</button></div>
+        <span style="font-size:12px;color:var(--ink-faint)">Barres = demandes enchaînées par ressource · trait plein = aujourd'hui · pointillés = fin estimée d'une phase</span>
+      </div>
+      <div class="gantt-in" id="gantt"></div>
+      <div class="g-legend" id="g-legend"></div>
+    </div>
+    <div class="card unplanned" id="unplanned" style="margin-top:14px"></div>
+    <div class="card settings" id="settings" style="margin-top:14px">
+      <div class="field"><label for="st-start">Début de la projection</label><input class="inp" id="st-start" type="date"></div>
+      <div class="field"><label for="st-S">Chantier S (j)</label><input class="inp" id="st-S" type="number" min="0" step="1"></div>
+      <div class="field"><label for="st-M">Chantier M (j)</label><input class="inp" id="st-M" type="number" min="0" step="1"></div>
+      <div class="field"><label for="st-L">Chantier L (j)</label><input class="inp" id="st-L" type="number" min="0" step="1"></div>
+      <div class="field"><label for="st-XL">Chantier XL (j)</label><input class="inp" id="st-XL" type="number" min="0" step="1"></div>
+      <div class="field"><label for="st-def">Ticket Plane sans estimation (j)</label><input class="inp" id="st-def" type="number" min="0" step="0.5"></div>
+      <div class="full">Calibrage par défaut d'une demande sans « reste » saisi, en jours de boucle humaine. Les 39 chantiers de la roadmap portent une valeur calculée depuis la taille V1 du module (visible dans leur note) ; une valeur saisie sur la ligne l'emporte toujours. Capacité et date de disponibilité de chaque ressource : dans sa fiche, onglet Ressources. Modifiable uniquement dans l'artifact Claude.</div>
+    </div>
+  </div>
+  <div class="method">
+    <p><strong>Plan de charge.</strong> Amorcé le 7 septembre 2026 avec les tickets Plane en cours, bloqués et à faire, plus les 39 chantiers de la roadmap V2, puis maintenu à la main dans l'artifact Claude. La page publiée en montre un instantané, republié avec <span class="mono">node scripts/build.mjs</span> (RULES.md §9).</p>
+    <p><strong>Échéancier.</strong> Unité = jour de boucle humaine (Claude Code écrit le code, la ressource relit la spec, répond et recette). Calibrage mesuré le 7 septembre : 2 000 lignes V2 revues par jour, compaction V1 → V2 de 3,5, une demi-journée de recette par module. Jours ouvrés, capacité hebdomadaire par ressource, enchaînement en cours → priorité → phase.</p>
+  </div>
+  </div>
+
+  <div class="view" id="view-ressources" hidden>
+  <div class="hero">
+    <div class="card hero-main">
+      <div class="eyebrow">Ressources de développement · janvier → août 2026 · historique git de Zeno et d'aeig-plateform, tickets Plane</div>
+      <h1 style="margin-top:10px">Qui développe Zeno, sur quoi</h1>
+      <p class="lede">Cette vue reconstitue le périmètre réel de chaque développeur à partir des commits, module par module. Le plan de charge (onglet dédié) affecte les demandes en cours à une ressource ou les signale sans ressource.</p>
+      <div class="hero-fig"><span class="big" id="hero-n">8</span><span class="lbl">développeurs ont contribué au code depuis janvier, <strong id="hero-active"></strong> encore actifs en août.</span></div>
+    </div>
+    <div class="tiles">
+      <div class="card tile"><div class="v num" id="t-commits"></div><div class="l">commits Zeno sur main</div><div class="sub" id="t-commits-sub">hors merges et bots</div></div>
+      <div class="card tile"><div class="v num" id="t-modules"></div><div class="l">modules touchés</div><div class="sub">déduits des fichiers modifiés</div></div>
+      <div class="card tile"><div class="v num" id="t-solo"></div><div class="l">modules portés à ≥ 80 % par une seule personne</div><div class="sub">bus factor 1</div></div>
+      <div class="card tile live" id="t-missing-tile"><div class="v num" id="t-missing">–</div><div class="l">demandes sans ressource</div><div class="sub" data-mode-sub>plan de charge</div></div>
+    </div>
+  </div>
+  <div class="alerts">
+    <h3>Points d'attention</h3>
+    <div class="alert-list" id="alerts"></div>
+  </div>
+  <div class="section-head">
+    <div><div class="eyebrow">Équipe</div><h2 class="section-title">Fiches ressources</h2></div>
+    <p>Périmètre constaté, période d'activité, capacité hebdomadaire et charge actuelle. Dans l'artifact Claude, le statut, la note, la capacité et la disponibilité sont modifiables et enregistrés pour tous.</p>
+  </div>
+  <div class="rgrid" id="rgrid"></div>
+  <div class="card" style="margin-top:14px;padding:14px 16px;display:flex;gap:10px;align-items:end;flex-wrap:wrap" id="add-res-panel">
+    <div class="field" style="flex:2;min-width:180px"><label for="nr-name">Nouvelle ressource</label><input class="inp" id="nr-name" placeholder="Nom (ou « Dev backend à recruter »)"></div>
+    <div class="field" style="flex:1;min-width:140px"><label for="nr-role">Rôle</label><input class="inp" id="nr-role" placeholder="Fullstack, backend…"></div>
+    <div class="field" style="min-width:150px"><label for="nr-status">Statut</label><select class="inp" id="nr-status"><option value="actif">Actif</option><option value="inactif">Inactif</option><option value="parti">Parti</option><option value="a_recruter" selected>À recruter</option></select></div>
+    <button class="btn" id="nr-add">Ajouter la ressource</button>
+  </div>
+  <div class="section-head">
+    <div><div class="eyebrow">Périmètre</div><h2 class="section-title">Charge par module</h2></div>
+    <p>Chaque barre est un module ; ses segments sont les développeurs qui y ont commité. Le nom à droite est le porteur principal et sa part. Survolez un segment pour le détail.</p>
+  </div>
+  <div class="card chart-card">
+    <div class="chart-tools">
+      <div class="klegend" id="legend-mod" style="margin:0 auto 0 0"></div>
+      <div class="seg-btn" role="group" aria-label="Affichage"><button aria-pressed="true" data-view="chart" data-target="mod">Graphique</button><button aria-pressed="false" data-view="table" data-target="mod">Tableau</button></div>
+    </div>
+    <div id="mod-chart"></div>
+    <div id="mod-table" class="tbl-wrap" hidden></div>
+    <div class="axis-note"><span>Longueur = nombre de commits touchant le module (échelle commune). Un commit qui touche deux modules compte dans les deux.</span><span>« Socle &amp; transverse » = fichiers non attribuables à un module (hachuré).</span></div>
+  </div>
+  <div class="section-head">
+    <div><div class="eyebrow">Historique</div><h2 class="section-title">Frise chronologique</h2></div>
+    <p>Commits par mois et par développeur, sur une même échelle. Le trait fin marque la période entre le premier et le dernier commit. Survolez une colonne pour voir le module dominant du mois.</p>
+  </div>
+  <div class="card chart-card">
+    <div class="chart-tools"><div class="seg-btn" role="group" aria-label="Affichage"><button aria-pressed="true" data-view="chart" data-target="frise">Graphique</button><button aria-pressed="false" data-view="table" data-target="frise">Tableau</button></div></div>
+    <div id="frise-chart" class="frise"></div>
+    <div id="frise-table" class="tbl-wrap" hidden></div>
+    <div class="keyrow"><span class="k"><i class="sw" style="--c:var(--ink-soft)"></i>Zeno (dépôt Zeno, main)</span><span class="k"><i class="sw h" style="--c:var(--ink-soft)"></i>Zeno V2 (dépôt aeig-plateform, main et refacto avant leur fusion), empilé au-dessus</span></div>
+    <div class="axis-note"><span>Hauteur max = <span id="frise-max"></span> commits (juin 2026). Statut « actif » = au moins un commit depuis le 1er août, tous dépôts.</span><span>Données git arrêtées au 27 août 2026 (Zeno) et au 17 août (aeig-plateform).</span></div>
+  </div>
+  <div class="method">
+    <p><strong>Méthode.</strong> Historique git de la branche main du dépôt Zeno, commits hors merges et hors bots, du 7 janvier au 27 août 2026. Un commit est rattaché à un module d'après les chemins des fichiers qu'il modifie ; il compte dans chaque module qu'il touche. Les commits ne mesurent pas l'effort réel : ils indiquent où chacun est intervenu.</p>
+    <p><strong>Zeno V2.</strong> Les modules V2 (crm, admission, communication, socle) vivent dans le dépôt aeig-plateform : 88 commits sur main (juillet) et 56 sur la branche refacto (17 juillet au 17 août), fusionnés dans main le 7 septembre. Ils sont comptés à part, empilés dans la frise et listés sous « Zeno V2 » dans les modules.</p>
+  </div>
+  </div>
+
   <div class="modal-backdrop" id="contact-modal">
     <div class="modal">
       <div class="modal-head">
@@ -1234,16 +1827,12 @@
     </div>
   </div>
 
-  <footer class="legend">
-    <span class="item"><span class="dot ok"></span> Fonctionnel — utilisé au quotidien</span>
-    <span class="item"><span class="dot warn"></span> En cours — utilisable, des parties encore en travaux</span>
-    <span class="item"><span class="dot crit"></span> Bloqué — ne fonctionne pas ou dépend d'une autre équipe</span>
-    <span class="item"><span class="dot idle"></span> Pas démarré</span>
-  </footer>
-
 </div>
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+<div class="toast" id="toast"></div>
 
 <script>
+  // ===== 1. Données des chantiers — éditées à la main (voir RULES.md), puis `node scripts/bake.mjs` =====
   const STATUS_LABEL = { 'fonctionnel':'Fonctionnel', 'en-cours':'En cours', 'bloque':'Bloqué', 'pas-demarre':'Pas démarré' };
   const STATUS_CLASS = { 'fonctionnel':'ok', 'en-cours':'warn', 'bloque':'crit', 'pas-demarre':'idle' };
   const CDC_CLASS = { 'oui':'yes', 'partiel':'partial', 'non':'no' };
@@ -1611,6 +2200,98 @@
     },
   };
 
+</script>
+
+<script id="roadmap-data">
+// ===== 2. Roadmap V2 — éditée à la main (RULES.md §10) : phases, chantiers, état réel lu dans le code, tickets Plane =====
+const ROADMAP = {
+  range:{start:'2026-08-17',end:'2026-10-31'},
+  phases:[
+    {n:1,t:'Zeno générique — pack DV, 5 modules',short:'Générique',w:'18 → 25 août',start:'2026-08-18',end:'2026-08-25',late:true,cls:'crit',lbl:'Échéance dépassée · tickets Plane à rapprocher du code'},
+    {n:2,t:'Compléter le pack DV, puis le reste du core',short:'Pack DV + core',w:'S35 → S37 · 24 août → 13 sept.',start:'2026-08-24',end:'2026-09-13',cls:'warn',lbl:'Fenêtre en cours, aucun chantier démarré'},
+    {n:3,t:'Vertical éducation + portails',short:'Éducation + portails',w:'S37 → S39 · 7 → 27 sept.',start:'2026-09-07',end:'2026-09-27',cls:'neutral',lbl:'Fenêtre ouverte, admission en avance'},
+    {n:4,t:'Niveau groupe : EDMS, référentiel relationnel, console direction',short:'Niveau groupe',w:'S39 et après · dès le 21 sept.',start:'2026-09-21',end:null,cls:'neutral',lbl:'À venir'},
+    {n:5,t:'Migration Epitech V1 → V2, décommission V1',w:'Sans date · quand DV est stable',start:null,end:null,cls:'neutral',lbl:'Gate : parité module par module'}
+  ],
+  chantiers:[
+    {phase:1,n:'1.0',effort:'M',t:'Sécurité immédiate V1/main',sub:'routes sans auth, whitelisting, lot M6',tk:['ZENO-829'],real:'none',note:'Concerne la V1 (dépôt Zeno), indépendant de refacto.'},
+    {phase:1,n:'1.1',effort:'L',t:'Fondation V2',sub:'pnpm workspaces + app NestJS + module kernel',tk:['ZENO-842','ZENO-830'],real:'done',note:'Sur main (ex-refacto) : pnpm workspaces, apps/server NestJS, core auth · mongo · events · contracts · context · brands (tranches 1–3). Nommé autrement, jamais rapproché des tickets.'},
+    {phase:1,n:'1.2',effort:'M',t:'Assemblage des modules',sub:'manifestes + modules dynamiques (ZENO_MODULES)',tk:['ZENO-831'],real:'done',note:'Manifestes de modules et instances déclaratives (instances/src : demo, crm, epitech-benin).'},
+    {phase:1,n:'1.3',effort:'M',t:'NATS au socle',sub:'accounts marque, kernel/bus',tk:['ZENO-832'],real:'done',note:'core/events sur NATS JetStream : publication et consommation durables, idempotence, reconnexion illimitée (17 août).'},
+    {phase:1,n:'1.4',effort:'M',t:'Permify par stack',sub:'engine persistant, schéma au boot, guard',tk:['ZENO-833'],real:'none',note:'Zéro fichier Permify. refacto s\'appuie sur AEIG ID et des rôles déduits des faits (décision D6 de Giovanni) : divergence à trancher.'},
+    {phase:1,n:'1.5',effort:'XL',t:'crm T1 — le moteur',sub:'funnel paramétrable, modèles neufs, service public',tk:['ZENO-848'],real:'partial',note:'modules/crm sur main (juillet, ZENO-708) : contacts, organisations, offres, opportunités, alertes, pipeline. Funnel paramétrable par marque à vérifier.'},
+    {phase:1,n:'1.6',effort:'M',t:'crm T2 — droits + bus',sub:'checkPermission par sous-module, événements, « à traiter aujourd\'hui »',tk:['ZENO-849'],real:'partial',note:'events.ts et alertes existent ; pas de checkPermission par sous-module.'},
+    {phase:1,n:'1.7',effort:'XL',t:'crm T3 — les écrans',sub:'fondation front V2 + écrans du prototype',tk:['ZENO-839','ZENO-850'],real:'partial',note:'apps/web + core/ui-kit + modules/crm/web : kanban fidèle au prototype, drawer opportunité, contacts. La fondation front est celle d\'aeig-plateform, pas le kit admin-v2 de Zeno.'},
+    {phase:1,n:'1.7b',effort:'L',t:'forms (DV minimal)',sub:'builder, rendu public, soumission → lead crm',tk:['ZENO-851'],real:'done',note:'core/forms (T-2a) + formulaire public /f/:token → personne + candidature (T-2b, 31 juil.). Définitions seedées en code, pas de builder.'},
+    {phase:1,n:'1.7c',effort:'L',t:'workflow (DV minimal)',sub:'automations sur événements, relances du funnel',tk:['ZENO-852'],real:'partial',note:'core/workflow (T-1b) : parcours, faits vivants, effets idempotents, repositionnement. Pas d\'automations déclenchées par le bus ; relances = poste de relance admission (T-3b).'},
+    {phase:1,n:'1.7d',effort:'L',t:'calendar (DV minimal, neuf)',sub:'types de RDV, créneaux, réservation publique',tk:['ZENO-853'],real:'none',note:'Aucun module calendar.'},
+    {phase:1,n:'1.7e',effort:'L',t:'esignature (DV minimal)',sub:'templates, envoi DocuSeal, webhook → étape',tk:['ZENO-854'],real:'none',note:'Aucun module esignature ; le mot n\'apparaît que dans les specs.'},
+    {phase:1,n:'1.7f',effort:'M',t:'communication minimal',sub:'envoi transactionnel + templates simples',tk:['ZENO-855'],real:'done',note:'modules/communication (T-3a, 7 août) : templates seedés à variables bornées, providers console et Resend, consumer durable, journal scopé pôle.'},
+    {phase:1,n:'1.8',effort:'M',t:'Infra : IaC Ansible + DEV Hetzner',sub:'déploiement de la branche refacto',tk:['ZENO-837'],real:'check',note:'L\'IaC Ansible vit dans Zeno (infra/, prod V1). Workflow deploy-dev.yml (main → serveur DEV Hetzner, quotidien) écrit le 7 sept., désactivé tant que le serveur n\'est pas préparé.'},
+    {phase:1,n:'1.9',effort:'L',t:'Provisionnement marque + instance DV',sub:'db, Permify, Redis, buckets, NATS, DNS, thème',tk:['ZENO-838'],real:'partial',note:'Instances déclaratives (demo, crm, epitech-benin) ; aucune instance DV, aucune mention DV dans le code.'},
+    {phase:1,n:'1.10',effort:'L',t:'Blue/green par marque',sub:'double stack, bascule health-gated',tk:['ZENO-840'],real:'none',note:'Rien.'},
+  {phase:2,n:'2.1',t:'workflow — parité complète',sub:'targeting, dry-runs génériques, le reste du moteur',tk:['ZENO-871'],effort:'L',real:'none',note:'core/workflow ne couvre que les parcours et effets (T-1b).'},
+  {phase:2,n:'2.2',t:'forms — fusion Evaluation',sub:'décision D4 : un seul moteur de formulaires',tk:['ZENO-872'],effort:'M',real:'none',note:'Rien côté V2 ; les deux moteurs V1 restent séparés.'},
+  {phase:2,n:'2.3',t:'calendar — unification',sub:'les 4 systèmes V1 + absorption planning/rétro (D2, besoin Epitech)',tk:['ZENO-873'],effort:'L',real:'none',note:'Aucun module calendar, même minimal (1.7d).'},
+  {phase:2,n:'2.4',t:'esignature — conventions en masse',sub:'après le minimal DV',tk:['ZENO-874'],effort:'M',real:'none',note:'Aucun module esignature (1.7e).'},
+  {phase:2,n:'2.5',t:'communication — complète',sub:'newsletters, inbox, WhatsApp, social → tracking, publipostage → module, contacts → crm',tk:['ZENO-875'],effort:'L',real:'none',note:'V2 n\'a que l\'envoi transactionnel (T-3a).'},
+  {phase:2,n:'2.6',t:'tracking',sub:'réécriture, parité par fiche, M1-M8 corrigées',tk:['ZENO-876'],effort:'M',real:'none',note:''},
+  {phase:2,n:'2.7',t:'documents',sub:'réécriture, parité par fiche',tk:['ZENO-877'],effort:'M',real:'none',note:''},
+  {phase:2,n:'2.8',t:'finance',sub:'module core (D1)',tk:['ZENO-878'],effort:'M',real:'none',note:'Le prototype CRM cadre facturation/encours comme module finance, hors pilote.'},
+  {phase:2,n:'2.9',t:'ticketing',sub:'réécriture, parité par fiche',tk:['ZENO-879'],effort:'M',real:'none',note:''},
+  {phase:2,n:'2.10',t:'publipostage',sub:'réécriture, parité par fiche',tk:['ZENO-880'],effort:'M',real:'none',note:''},
+  {phase:2,n:'2.11',t:'devkora',sub:'formaliser au gabarit ZenoModule (ex-1.x)',tk:['ZENO-834'],effort:'M',real:'none',note:'Ticket Todo ; rien dans aeig-plateform.'},
+  {phase:3,n:'3.1',t:'admission — réécriture du vertical',sub:'le funnel candidat = configuration crm/workflow + spécificités école',tk:['ZENO-835','ZENO-836'],effort:'XL',real:'partial',note:'En avance sur main (ex-refacto) : modules/admission (T-1c facette lean, stepper projeté), formulaire public (T-2b), poste de relance (T-3b). Reste : parité fiche admission, jury, paiements, documents.'},
+  {phase:3,n:'3.2',t:'pédagogie',sub:'45 routes, 35 modèles, par tranches : students/promotions d\'abord',tk:['ZENO-881'],effort:'XL',real:'none',note:'T-5 « scolarité » (référentiel académique, inscription 3 axes) spécifiée par Giovanni, non démarrée.'},
+  {phase:3,n:'3.3',t:'campus',sub:'décision D3 : 4ᵉ module métier',tk:['ZENO-882'],effort:'M',real:'none',note:''},
+  {phase:3,n:'3.4',t:'carrière',sub:'conventions → esignature',tk:['ZENO-883'],effort:'L',real:'none',note:'Dépend de 2.4.'},
+  {phase:3,n:'3.5',t:'portails',sub:'src/portals/<audience> + manifestes, faces portal/ des modules, chunk par portail',tk:['ZENO-884'],effort:'L',real:'none',note:'T-4 « portail candidat » (apps/portal, garde self-scope) spécifiée, non démarrée.'},
+  {phase:3,n:'3.6',t:'crm — pipeline B2B',sub:'opportunités du prototype au-dessus des contacts',tk:['ZENO-885'],effort:'L',real:'partial',note:'main : opportunités, offres, kanban gagné/perdu (juillet). Vue groupe multi-entités absente.'},
+  {phase:4,n:'4.1',t:'edms — module core',sub:'intégration du repo EpitechAfrik/EDMS, site par marque',tk:['ZENO-886'],effort:'L',real:'none',note:'EDMS reporté (décision 19/08) ; rien côté V2.'},
+  {phase:4,n:'4.2',t:'Référentiel Relationnel Groupe + Trajectoires',sub:'Personne / Lien / Jalon, scoring 0-100, opportunités routées vers le CRM de la marque',tk:['ZENO-887'],effort:'XL',real:'partial',note:'Fondation seulement : registre Personne dans AEIG ID (T-1a, dédup, matricule). Scoring et trajectoires absents.'},
+  {phase:4,n:'4.3',t:'Console groupe / Direction',sub:'agrégation au-dessus des instances',tk:['ZENO-888'],effort:'L',real:'none',note:''},
+  {phase:5,n:'5.1',t:'Migration des données Epitech',sub:'expand-contract sur les collections vivantes, rejeu des référentiels',tk:['ZENO-889'],effort:'XL',real:'none',note:'Gate : DV stabilisé.'},
+  {phase:5,n:'5.2',t:'Bascule des portails',sub:'candidat, étudiant, parent, partenaire, alumni',tk:['ZENO-890'],effort:'L',real:'none',note:''},
+  {phase:5,n:'5.3',t:'Décommission V1',sub:'gate : parité module par module + recette admissions',tk:['ZENO-891'],effort:'M',real:'none',note:''},
+  ],
+  planeDone:['ZENO-827','ZENO-828','ZENO-843','ZENO-844','ZENO-845'],
+  planeBacklog:['ZENO-881','ZENO-882','ZENO-883','ZENO-884','ZENO-885','ZENO-886','ZENO-887','ZENO-888','ZENO-889','ZENO-890','ZENO-891'],
+  tranches:[
+    {id:'T1–T3',t:'Pôles (accès, nav), scoping poleId fail-closed, bijection instance ↔ marque',state:'done',map:'1.1 · 1.2'},
+    {id:'T-0',t:'Contexte de pôle côté front (sélecteur + en-tête X-AEIG-Pole)',state:'done',map:'1.7'},
+    {id:'T-1a',t:'Registre Personne dans AEIG ID : dédup, matricule, relations',state:'done',map:'Hors roadmap (D5)'},
+    {id:'T-1b',t:'@aeig/workflow : parcours épinglés, faits vivants, effets idempotents',state:'done',map:'1.7c'},
+    {id:'T-1c',t:'Module admission (facette lean, stepper projeté) + web-session',state:'done',map:'Phase 2/3 · en avance'},
+    {id:'T-2',t:'Forms : @aeig/forms + formulaire public → candidature (31 juil.)',state:'done',map:'1.7b'},
+    {id:'T-3a',t:'Communication : event comm.message.requested.v1, module, journal (7 août)',state:'done',map:'1.7f'},
+    {id:'T-3b',t:'Poste de relance : un sujet à la fois, issues forcées, suivis (17 août)',state:'done',map:'1.7c · relances'},
+    {id:'T-4',t:'Portail candidat : apps/portal, garde self-scope, claims personneId',state:'todo',map:'Phase 3 · portails'},
+    {id:'T-5',t:'Scolarité : référentiel académique, inscription 3 axes',state:'todo',map:'Phase 3 · pédagogie'}
+  ],
+  ecarts:[
+    ['Dépôt','Réglé le 7 sept. (PR Zeno#491) : ARCHITECTURE.md et ROADMAP_V2.md situent désormais la V2 dans le dépôt aeig-plateform, branche main.',true],
+    ['Autorisation','La roadmap veut Permify par stack (1.4). refacto s\'appuie sur AEIG ID et des rôles déduits des faits (D6), sans aucun fichier Permify.'],
+    ['Premier vertical','La roadmap est DV-first avec le crm en pilote et une instance DV. refacto est admission-first sur l\'instance epitech-benin ; DV n\'apparaît nulle part dans le code.'],
+    ['Deux lignes de code','Réglé le 7 sept. : la branche refacto (56 commits, admission et communication) est fusionnée dans main (PR aeig-plateform#2), CI verte sur main.',true],
+    ['Modules absents','calendar (1.7d), esignature (1.7e), blue/green (1.10) et Permify (1.4) n\'existent nulle part.'],
+    ['Tickets ↔ code','7 chantiers sont livrés ou partiels sur refacto sans qu\'aucun ticket 829 → 855 n\'ait quitté « Todo ». Fermer ou re-cadrer 830, 831, 832, 851 et 855 avant de dispatcher des agents dessus.']
+  ]
+};
+</script>
+
+<script id="generated-data">
+// ===== 3. Données générées par `node scripts/build.mjs` — NE PAS ÉDITER À LA MAIN =====
+/*@GIT-MATRIX*/
+const GIT = {"months":["2026-01","2026-02","2026-03","2026-04","2026-05","2026-06","2026-07","2026-08"],"total":2453,"authors":[{"slug":"franck","name":"Franck Birba","commits":1637,"first":"2026-01-07","last":"2026-08-27","byMonth":[108,117,200,217,291,509,136,59],"dom":["Admissions","Pédagogie","Admissions","Admissions","Admissions","Admissions","Admissions","Admissions"],"byModule":{"Admissions":889,"Socle / autre":654,"Infra & CI":277,"Pédagogie":167,"Socle UI & design":150,"Formulaires":150,"Marketing & CRM":132,"Communication":117,"Auth & sécurité":105,"Documentation":93,"Portail parent":52,"Carrière":52,"Devkora":52,"Campus":51,"Événements":51,"Portails":26,"Tickets":14,"Partenaires":14,"Anglais":11,"Landing":9}},{"slug":"giovanni","name":"Giovanni Atchaoué","commits":289,"first":"2026-04-24","last":"2026-08-22","byMonth":[0,0,0,44,144,33,37,31],"dom":["","","","Tickets","Campus","Campus","Campus","Formulaires"],"byModule":{"Socle / autre":188,"Campus":122,"Tickets":55,"Formulaires":49,"Communication":42,"Pédagogie":40,"Événements":35,"Admissions":25,"Socle UI & design":25,"Infra & CI":24,"Carrière":15,"Documentation":12,"Auth & sécurité":12,"Partenaires":11,"Portail parent":8,"Portails":4,"Anglais":2,"Landing":2,"Marketing & CRM":1}},{"slug":"alex","name":"Alex-Russel Kouawou","commits":209,"first":"2026-04-27","last":"2026-08-15","byMonth":[0,0,0,49,5,3,31,121],"dom":["","","","Marketing & CRM","Admissions","Marketing & CRM","Communication","Anglais"],"byModule":{"Anglais":106,"Socle / autre":71,"Communication":31,"Marketing & CRM":29,"Socle UI & design":17,"Partenaires":15,"Admissions":14,"Infra & CI":10,"Formulaires":10,"Documentation":5,"Campus":2,"Portail parent":1,"Portails":1,"Événements":1,"Auth & sécurité":1}},{"slug":"cedric","name":"Cédric Gnansounou","commits":142,"first":"2026-01-12","last":"2026-08-14","byMonth":[18,0,0,1,3,27,90,3],"dom":["Admissions","","","Carrière","Infra & CI","Infra & CI","Carrière","Carrière"],"byModule":{"Carrière":61,"Socle / autre":56,"Infra & CI":31,"Admissions":28,"Partenaires":14,"Auth & sécurité":6,"Documentation":5,"Pédagogie":5,"Socle UI & design":4,"Portails":3,"Communication":3,"Marketing & CRM":2,"Portail parent":1}},{"slug":"edwin","name":"Edwin Kouassi","commits":136,"first":"2026-04-26","last":"2026-07-14","byMonth":[0,0,0,60,42,33,1,0],"dom":["","","","Devkora","Devkora","Devkora","Devkora",""],"byModule":{"Devkora":105,"Socle / autre":98,"Infra & CI":20,"Pédagogie":15,"Admissions":11,"Socle UI & design":11,"Formulaires":9,"Documentation":9,"Événements":7,"Marketing & CRM":6,"Auth & sécurité":5,"Portails":5,"Communication":4,"Tickets":3,"Anglais":2,"Portail parent":1,"Carrière":1}},{"slug":"yemalin","name":"Yemalin Agbangla","commits":18,"first":"2026-06-09","last":"2026-06-26","byMonth":[0,0,0,0,0,18,0,0],"dom":["","","","","","Portail parent","",""],"byModule":{"Portail parent":12,"Socle / autre":11,"Infra & CI":5,"Carrière":3,"Pédagogie":3,"Portails":2,"Socle UI & design":2}},{"slug":"spynel","name":"Spynel Kouton","commits":16,"first":"2026-06-24","last":"2026-07-28","byMonth":[0,0,0,0,0,4,12,0],"dom":["","","","","","Carrière","Carrière",""],"byModule":{"Carrière":10,"Socle / autre":9,"Infra & CI":5,"Partenaires":2,"Documentation":1,"Communication":1,"Pédagogie":1,"Socle UI & design":1,"Admissions":1}},{"slug":"amos","name":"Amos Dakpé","commits":6,"first":"2026-08-19","last":"2026-08-20","byMonth":[0,0,0,0,0,0,0,6],"dom":["","","","","","","","Infra & CI"],"byModule":{"Infra & CI":3,"Admissions":3}}],"modules":[{"name":"Socle / autre","total":1087,"per":{"franck":654,"giovanni":188,"alex":71,"cedric":56,"edwin":98,"yemalin":11,"spynel":9},"top":"franck","topShare":60},{"name":"Admissions","total":971,"per":{"franck":889,"giovanni":25,"alex":14,"cedric":28,"edwin":11,"spynel":1,"amos":3},"top":"franck","topShare":92},{"name":"Infra & CI","total":375,"per":{"franck":277,"giovanni":24,"alex":10,"cedric":31,"edwin":20,"yemalin":5,"spynel":5,"amos":3},"top":"franck","topShare":74},{"name":"Pédagogie","total":231,"per":{"franck":167,"giovanni":40,"cedric":5,"edwin":15,"yemalin":3,"spynel":1},"top":"franck","topShare":72},{"name":"Formulaires","total":218,"per":{"franck":150,"giovanni":49,"alex":10,"edwin":9},"top":"franck","topShare":69},{"name":"Socle UI & design","total":210,"per":{"franck":150,"giovanni":25,"alex":17,"cedric":4,"edwin":11,"yemalin":2,"spynel":1},"top":"franck","topShare":71},{"name":"Communication","total":198,"per":{"franck":117,"giovanni":42,"alex":31,"cedric":3,"edwin":4,"spynel":1},"top":"franck","topShare":59},{"name":"Campus","total":175,"per":{"franck":51,"giovanni":122,"alex":2},"top":"giovanni","topShare":70},{"name":"Marketing & CRM","total":170,"per":{"franck":132,"giovanni":1,"alex":29,"cedric":2,"edwin":6},"top":"franck","topShare":78},{"name":"Devkora","total":157,"per":{"franck":52,"edwin":105},"top":"edwin","topShare":67},{"name":"Carrière","total":142,"per":{"franck":52,"giovanni":15,"cedric":61,"edwin":1,"yemalin":3,"spynel":10},"top":"cedric","topShare":43},{"name":"Auth & sécurité","total":129,"per":{"franck":105,"giovanni":12,"alex":1,"cedric":6,"edwin":5},"top":"franck","topShare":81},{"name":"Documentation","total":125,"per":{"franck":93,"giovanni":12,"alex":5,"cedric":5,"edwin":9,"spynel":1},"top":"franck","topShare":74},{"name":"Anglais","total":121,"per":{"franck":11,"giovanni":2,"alex":106,"edwin":2},"top":"alex","topShare":88},{"name":"Événements","total":94,"per":{"franck":51,"giovanni":35,"alex":1,"edwin":7},"top":"franck","topShare":54},{"name":"Portail parent","total":75,"per":{"franck":52,"giovanni":8,"alex":1,"cedric":1,"edwin":1,"yemalin":12},"top":"franck","topShare":69},{"name":"Tickets","total":72,"per":{"franck":14,"giovanni":55,"edwin":3},"top":"giovanni","topShare":76},{"name":"Partenaires","total":56,"per":{"franck":14,"giovanni":11,"alex":15,"cedric":14,"spynel":2},"top":"alex","topShare":27},{"name":"Portails","total":41,"per":{"franck":26,"giovanni":4,"alex":1,"cedric":3,"edwin":5,"yemalin":2},"top":"franck","topShare":63},{"name":"Landing","total":11,"per":{"franck":9,"giovanni":2},"top":"franck","topShare":82}],"v2":{"total":144,"repo":"aeig-plateform","authors":{"franck":{"commits":88,"first":"2026-07-08","last":"2026-07-10","byMonth":[0,0,0,0,0,0,88,0],"byModule":{"Socle V2":71,"CRM V2":18,"Documentation V2":9},"dom":["","","","","","","CRM V2",""]},"giovanni":{"commits":56,"first":"2026-07-17","last":"2026-08-17","byMonth":[0,0,0,0,0,0,29,27],"byModule":{"Socle V2":23,"Admission V2":18,"Communication V2":8,"Formulaires V2":6,"CRM V2":6,"Workflow V2":1,"Documentation V2":14},"dom":["","","","","","","Documentation V2","Admission V2"]}},"modules":[{"name":"CRM V2","total":24,"per":{"franck":18,"giovanni":6},"top":"franck","topShare":75},{"name":"Documentation V2","total":23,"per":{"franck":9,"giovanni":14},"top":"giovanni","topShare":61},{"name":"Admission V2","total":18,"per":{"giovanni":18},"top":"giovanni","topShare":100},{"name":"Communication V2","total":8,"per":{"giovanni":8},"top":"giovanni","topShare":100},{"name":"Formulaires V2","total":6,"per":{"giovanni":6},"top":"giovanni","topShare":100},{"name":"Workflow V2","total":1,"per":{"giovanni":1},"top":"giovanni","topShare":100},{"name":"Socle V2","total":94,"per":{"franck":71,"giovanni":23},"top":"franck","topShare":76}]}};
+/*@/GIT-MATRIX*/
+/*@PLAN-SNAPSHOT*/
+const SNAPSHOT = {"exportedAt":"2026-09-08T01:41:13.573Z","demandes":[{"id":"rm-2-1","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 2.1 workflow parité : socle. Roadmap V2 — Phase 2, chantier 2.1 (effort L). Ticket Plane à créer. Calibrage 07/09 : 2.5 j de boucle humaine pour le chantier.","phase":2,"priority":"high","proposed":true,"ref":"ZENO-871","restDays":2.5,"roadmap":"2.1","source":"roadmap","status":"a_affecter","title":"workflow — parité complète (targeting, dry-runs génériques)","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-2-10","assignee":"alex","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 2.10 publipostage : communication. Roadmap V2 — Phase 2, chantier 2.10 (effort M). Ticket Plane à créer. Calibrage 07/09 : 1.5 j de boucle humaine pour le chantier.","phase":2,"priority":"medium","proposed":true,"ref":"ZENO-880","restDays":1.5,"roadmap":"2.10","source":"roadmap","status":"a_affecter","title":"publipostage — réécriture, parité par fiche","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-2-2","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 2.2 forms fusion : socle. Roadmap V2 — Phase 2, chantier 2.2 (effort M). Ticket Plane à créer. Calibrage 07/09 : 2.5 j de boucle humaine pour le chantier.","phase":2,"priority":"high","proposed":true,"ref":"ZENO-872","restDays":2.5,"roadmap":"2.2","source":"roadmap","status":"a_affecter","title":"forms — fusion Evaluation (D4)","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-2-3","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 2.3 calendar unification : socle. Roadmap V2 — Phase 2, chantier 2.3 (effort L). Ticket Plane à créer. Calibrage 07/09 : 2 j de boucle humaine pour le chantier.","phase":2,"priority":"high","proposed":true,"ref":"ZENO-873","restDays":2,"roadmap":"2.3","source":"roadmap","status":"a_affecter","title":"calendar — unification des 4 systèmes V1 + planning/rétro (D2)","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-2-4","assignee":"cedric","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 2.4 esignature en masse : conventions du career center. Roadmap V2 — Phase 2, chantier 2.4 (effort M). Ticket Plane à créer. Calibrage 07/09 : 1 j de boucle humaine pour le chantier.","phase":2,"priority":"medium","proposed":true,"ref":"ZENO-874","restDays":1,"roadmap":"2.4","source":"roadmap","status":"a_affecter","title":"esignature — conventions en masse","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-2-5","assignee":"alex","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 2.5 communication complète : communication. Roadmap V2 — Phase 2, chantier 2.5 (effort L). Ticket Plane à créer. Calibrage 07/09 : 6 j de boucle humaine pour le chantier (communication V1 25 900 lignes).","phase":2,"priority":"high","proposed":true,"ref":"ZENO-875","restDays":6,"roadmap":"2.5","source":"roadmap","status":"a_affecter","title":"communication complète — newsletters, inbox, WhatsApp, social, publipostage","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-2-6","assignee":"alex","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 2.6 tracking : EDMS / marketing. Roadmap V2 — Phase 2, chantier 2.6 (effort M). Ticket Plane à créer. Calibrage 07/09 : 2 j de boucle humaine pour le chantier.","phase":2,"priority":"medium","proposed":true,"ref":"ZENO-876","restDays":2,"roadmap":"2.6","source":"roadmap","status":"a_affecter","title":"tracking — réécriture, parité par fiche","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-2-7","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 2.7 documents : socle. Roadmap V2 — Phase 2, chantier 2.7 (effort M). Ticket Plane à créer. Calibrage 07/09 : 2 j de boucle humaine pour le chantier.","phase":2,"priority":"medium","proposed":true,"ref":"ZENO-877","restDays":2,"roadmap":"2.7","source":"roadmap","status":"a_affecter","title":"documents — réécriture, parité par fiche","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-2-8","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 2.8 finance : socle. Roadmap V2 — Phase 2, chantier 2.8 (effort M). Ticket Plane à créer. Calibrage 07/09 : 1.5 j de boucle humaine pour le chantier.","phase":2,"priority":"medium","proposed":true,"ref":"ZENO-878","restDays":1.5,"roadmap":"2.8","source":"roadmap","status":"a_affecter","title":"finance — module core (D1)","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-2-9","assignee":"giovanni","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 2.9 ticketing : vie de campus, porteur des tickets V1. Roadmap V2 — Phase 2, chantier 2.9 (effort M). Ticket Plane à créer. Calibrage 07/09 : 1.5 j de boucle humaine pour le chantier.","phase":2,"priority":"medium","proposed":true,"ref":"ZENO-879","restDays":1.5,"roadmap":"2.9","source":"roadmap","status":"a_affecter","title":"ticketing — réécriture, parité par fiche","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-3-2","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 3.2 pédagogie : 72 % des commits pédagogie V1 — aucun autre porteur dans l'équipe V2, à confirmer. Roadmap V2 — Phase 3, chantier 3.2 (effort XL). Ticket Plane à créer. Calibrage 07/09 : 8 j de boucle humaine pour le chantier (pédagogie V1 30 100 lignes).","phase":3,"priority":"medium","proposed":true,"ref":"ZENO-881","restDays":8,"roadmap":"3.2","source":"roadmap","status":"a_affecter","title":"pédagogie — réécriture par tranches (students/promotions d'abord)","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-3-3","assignee":"giovanni","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 3.3 campus : toute la connaissance campus. Roadmap V2 — Phase 3, chantier 3.3 (effort M). Ticket Plane à créer. Calibrage 07/09 : 5 j de boucle humaine pour le chantier (campus-v2 + campus V1 24 200 lignes).","phase":3,"priority":"medium","proposed":true,"ref":"ZENO-882","restDays":5,"roadmap":"3.3","source":"roadmap","status":"a_affecter","title":"campus — 4ᵉ module métier (D3)","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-3-4","assignee":"cedric","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 3.4 carrière : career center. Roadmap V2 — Phase 3, chantier 3.4 (effort L). Ticket Plane à créer. Calibrage 07/09 : 2 j de boucle humaine pour le chantier.","phase":3,"priority":"medium","proposed":true,"ref":"ZENO-883","restDays":2,"roadmap":"3.4","source":"roadmap","status":"a_affecter","title":"carrière — conventions → esignature","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-3-5","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 3.5 portails : auteur du portail parent V1. Roadmap V2 — Phase 3, chantier 3.5 (effort L). Ticket Plane à créer. Calibrage 07/09 : 6 j de boucle humaine pour le chantier (portails V1 25 500 lignes).","phase":3,"priority":"medium","proposed":true,"ref":"ZENO-884","restDays":6,"roadmap":"3.5","source":"roadmap","status":"a_affecter","title":"portails — src/portals/<audience> + manifestes, faces portal/ des modules","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-3-6","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 3.6 crm B2B : socle CRM V2. Roadmap V2 — Phase 3, chantier 3.6 (effort L). Ticket Plane à créer. Calibrage 07/09 : 2 j de boucle humaine pour le chantier.","phase":3,"priority":"medium","proposed":true,"ref":"ZENO-885","restDays":2,"roadmap":"3.6","source":"roadmap","status":"a_affecter","title":"crm — pipeline B2B/opportunités du prototype","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-4-1","assignee":"alex","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 4.1 EDMS : EDMS. Roadmap V2 — Phase 4, chantier 4.1 (effort L). Ticket Plane à créer. Calibrage 07/09 : 3 j de boucle humaine pour le chantier.","phase":4,"priority":"low","proposed":true,"ref":"ZENO-886","restDays":3,"roadmap":"4.1","source":"roadmap","status":"a_affecter","title":"edms — intégration du repo EDMS comme module core","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-4-2","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 4.2 référentiel groupe : socle, avec Franck pour l'ADR. Roadmap V2 — Phase 4, chantier 4.2 (effort XL). Ticket Plane à créer. Calibrage 07/09 : 4 j de boucle humaine pour le chantier.","phase":4,"priority":"low","proposed":true,"ref":"ZENO-887","restDays":4,"roadmap":"4.2","source":"roadmap","status":"a_affecter","title":"Référentiel Relationnel Groupe + Trajectoires (scoring, routage)","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-4-3","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 4.3 console groupe : socle. Roadmap V2 — Phase 4, chantier 4.3 (effort L). Ticket Plane à créer. Calibrage 07/09 : 3 j de boucle humaine pour le chantier.","phase":4,"priority":"low","proposed":true,"ref":"ZENO-888","restDays":3,"roadmap":"4.3","source":"roadmap","status":"a_affecter","title":"Console groupe / Direction","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-5-1","assignee":"cedric","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 5.1 migration données : infra. Roadmap V2 — Phase 5, chantier 5.1 (effort XL). Ticket Plane à créer. Calibrage 07/09 : 5 j de boucle humaine pour le chantier (recette de migration, pas du code).","phase":5,"priority":"low","proposed":true,"ref":"ZENO-889","restDays":5,"roadmap":"5.1","source":"roadmap","status":"a_affecter","title":"Migration des données Epitech V1 → V2 (expand-contract)","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-5-2","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 5.2 bascule portails : portails. Roadmap V2 — Phase 5, chantier 5.2 (effort L). Ticket Plane à créer. Calibrage 07/09 : 2 j de boucle humaine pour le chantier.","phase":5,"priority":"low","proposed":true,"ref":"ZENO-890","restDays":2,"roadmap":"5.2","source":"roadmap","status":"a_affecter","title":"Bascule des portails Epitech vers V2","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"rm-5-3","assignee":"cedric","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 5.3 décommission V1 : infra. Roadmap V2 — Phase 5, chantier 5.3 (effort M). Ticket Plane à créer. Calibrage 07/09 : 1 j de boucle humaine pour le chantier.","phase":5,"priority":"low","proposed":true,"ref":"ZENO-891","restDays":1,"roadmap":"5.3","source":"roadmap","status":"a_affecter","title":"Décommission de la V1 (gate parité + recette admissions)","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-192","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Infra & CI","note":"","planeId":"4769972b-9bef-40cd-8eb3-3daebe67d20c","planeUpdated":"2026-04-30","priority":"urgent","ref":"ZENO-192","source":"plane","status":"bloquee","title":"Benchmark Observability — choisir l'outil avant #157","updatedAt":"2026-04-30T00:00:00.000Z"},{"id":"zeno-196","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Infra & CI","note":"","planeId":"5117ee67-756d-4d50-a93f-4a3f685ed5f5","planeUpdated":"2026-04-30","priority":"high","ref":"ZENO-196","source":"plane","status":"bloquee","title":"Self-hosted Sentry deployment (preprod, code/config)","updatedAt":"2026-04-30T00:00:00.000Z"},{"id":"zeno-197","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Infra & CI","note":"","planeId":"217b45b7-e9e8-495f-b0e0-1d5b1acfb6a4","planeUpdated":"2026-04-30","priority":"medium","ref":"ZENO-197","source":"plane","status":"bloquee","title":"CI source-map upload + auth token rotation runbook","updatedAt":"2026-04-30T00:00:00.000Z"},{"id":"zeno-198","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"be8ba446-6238-4f58-b878-538f18b785cb","planeUpdated":"2026-04-30","priority":"high","ref":"ZENO-198","source":"plane","status":"en_cours","title":"Scrubber PII review + synthetic-PII fixture test","updatedAt":"2026-04-30T00:00:00.000Z"},{"id":"zeno-199","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Infra & CI","note":"","planeId":"d95861f3-b464-42c7-9508-77082672642a","planeUpdated":"2026-04-30","priority":"high","ref":"ZENO-199","source":"plane","status":"bloquee","title":"Verification matrix preprod (11 cells)","updatedAt":"2026-04-30T00:00:00.000Z"},{"id":"zeno-282","assignee":"cedric","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Infra & CI","note":"Proposition 07/09 v2 (règles Franck) → audit judge0 VPS : infra.","planeId":"24e73367-efe9-4087-a986-b425cdaee72f","planeUpdated":"2026-05-04","priority":"medium","proposed":true,"ref":"ZENO-282","source":"plane","status":"a_affecter","title":"Auditer le stack judge0-abj sur le VPS prod et décider de son sort","updatedAt":"2026-09-07T19:10:00.000Z"},{"id":"zeno-298","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Devkora","note":"","planeId":"9766b6ea-6b14-4de0-9f66-eb5d67f286e9","planeUpdated":"2026-05-04","priority":"urgent","ref":"ZENO-298","source":"plane","status":"en_cours","title":"Migrer le test technique candidat de Coderbyte vers Devkora","updatedAt":"2026-05-04T00:00:00.000Z"},{"id":"zeno-299","assignee":"edwin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"Proposition 07/09 (Claude) → Devkora ↔ admission : idem.","planeId":"6bf0b54c-ccb5-4c1f-9c2a-9f7d39fa6ba4","planeUpdated":"2026-05-04","priority":"urgent","proposed":true,"ref":"ZENO-299","source":"plane","status":"a_affecter","title":"Modèle CandidateAssessmentInvitation + auth par token (backend)","updatedAt":"2026-09-07T18:40:00.000Z"},{"id":"zeno-300","assignee":"edwin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"Proposition 07/09 (Claude) → Devkora ↔ admission : idem.","planeId":"6c664469-4f86-4b1b-be2d-02c269942dc5","planeUpdated":"2026-05-04","priority":"urgent","proposed":true,"ref":"ZENO-300","source":"plane","status":"a_affecter","title":"Endpoint public /api/public/candidate-assessment/:token (backend)","updatedAt":"2026-09-07T18:40:00.000Z"},{"id":"zeno-301","assignee":"edwin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"Proposition 07/09 (Claude) → Devkora ↔ admission : idem.","planeId":"2b16f4e4-335b-4e14-b233-4172c7f6189e","planeUpdated":"2026-05-04","priority":"urgent","proposed":true,"ref":"ZENO-301","source":"plane","status":"a_affecter","title":"Page candidat /code/take/:token sur le portail candidat (frontend)","updatedAt":"2026-09-07T18:40:00.000Z"},{"id":"zeno-302","assignee":"edwin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Devkora","note":"Proposition 07/09 (Claude) → Devkora : idem.","planeId":"4bfde2a0-e68a-4ac0-8e4f-185de6a7e93a","planeUpdated":"2026-05-04","priority":"urgent","proposed":true,"ref":"ZENO-302","source":"plane","status":"a_affecter","title":"Bulk-send d'invitations Devkora depuis la pipeline admissions","updatedAt":"2026-09-07T18:40:00.000Z"},{"id":"zeno-303","assignee":"edwin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Devkora","note":"Proposition 07/09 (Claude) → Devkora : idem.","planeId":"b9b6a3fe-9275-42e4-9446-40cfc9508531","planeUpdated":"2026-05-04","priority":"urgent","proposed":true,"ref":"ZENO-303","source":"plane","status":"a_affecter","title":"Hook score Devkora → fiche candidat (auto-update statut Testé)","updatedAt":"2026-09-07T18:40:00.000Z"},{"id":"zeno-306","assignee":"edwin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Devkora","note":"Proposition 07/09 (Claude) → Devkora : idem.","planeId":"797083b6-6fe9-4e45-a4f2-d2c9b000243c","planeUpdated":"2026-05-04","priority":"urgent","proposed":true,"ref":"ZENO-306","source":"plane","status":"a_affecter","title":"Migrer les 3 questions du test de positionnement Coderbyte vers Devkora","updatedAt":"2026-09-07T18:40:00.000Z"},{"id":"zeno-34","assignee":"edwin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Devkora","note":"Proposition 07/09 (Claude) → Devkora : idem.","planeId":"4cb3b98e-cd57-4ac5-8fe8-95c8114394e2","planeUpdated":"2026-04-26","priority":"low","proposed":true,"ref":"ZENO-34","source":"plane","status":"a_affecter","title":"Devkora — Tests E2E flow étudiant + flow candidat","updatedAt":"2026-09-07T18:40:00.000Z"},{"id":"zeno-342","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Carrière","note":"","planeId":"920ccbb9-3df8-418f-859f-e3b90cea6e08","planeUpdated":"2026-05-18","priority":"urgent","ref":"ZENO-342","source":"plane","status":"en_cours","title":"Bloquer l'authentification Alumni avec un email inconnu de la base","updatedAt":"2026-05-18T00:00:00.000Z"},{"id":"zeno-344","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Partenaires","note":"","planeId":"92fb44b1-a72b-4342-87de-e19b86a03d84","planeUpdated":"2026-05-18","priority":"urgent","ref":"ZENO-344","source":"plane","status":"en_cours","title":"Bloquer l'authentification Partenaire avec un email inconnu et corriger la redirection","updatedAt":"2026-05-18T00:00:00.000Z"},{"id":"zeno-35","assignee":"edwin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Devkora","note":"Proposition 07/09 (Claude) → Devkora : idem.","planeId":"2d9cf67d-ea7d-449b-b2a7-0a5359497473","planeUpdated":"2026-04-26","priority":"low","proposed":true,"ref":"ZENO-35","source":"plane","status":"a_affecter","title":"Devkora — Lien Admissions: créer auto un Assessment quand candidat passe au statut \"test technique\"","updatedAt":"2026-09-07T18:40:00.000Z"},{"id":"zeno-372","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"4f0db8fa-32e5-403f-9f0e-c4a86b459417","planeUpdated":"2026-05-10","priority":"urgent","ref":"ZENO-372","source":"plane","status":"en_cours","title":"Câbler l'action send_whatsapp de l'Automation Module — bout-en-bout testé en local","updatedAt":"2026-05-10T00:00:00.000Z"},{"id":"zeno-400","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Marketing & CRM","note":"","planeId":"9f362b0e-2434-4758-a8cf-b679d8239754","planeUpdated":"2026-05-10","priority":"medium","ref":"ZENO-400","source":"plane","status":"en_cours","title":"Couvrir en Playwright les 2 scénarios RDV — public EDMS + création campus","updatedAt":"2026-05-10T00:00:00.000Z"},{"id":"zeno-490","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Communication","note":"","planeId":"708a927f-6dbf-45de-b534-b62a79384a7e","planeUpdated":"2026-05-29","priority":"medium","ref":"ZENO-490","source":"plane","status":"en_cours","title":"Connecter Metricool à Zeno — page Social Media (Communication)","updatedAt":"2026-05-29T00:00:00.000Z"},{"id":"zeno-566","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"05c13e1a-c957-4747-b8d3-9eb5cdc6d607","planeUpdated":"2026-05-27","priority":"high","ref":"ZENO-566","source":"plane","status":"en_cours","title":"Corriger la fiche candidat V2 — onglets cassés et données incomplètes","updatedAt":"2026-05-27T00:00:00.000Z"},{"id":"zeno-569","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"faf29289-f886-4377-bf0a-0304c75e9416","planeUpdated":"2026-06-01","priority":"high","ref":"ZENO-569","source":"plane","status":"en_cours","title":"Ajouter action \"Valider la candidature\" (unitaire + batch) sur le dashboard admissions V2","updatedAt":"2026-06-01T00:00:00.000Z"},{"id":"zeno-570","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"eeaf4527-eee5-4a8b-800f-ff656c1007af","planeUpdated":"2026-06-01","priority":"high","ref":"ZENO-570","source":"plane","status":"en_cours","title":"Workflow runtime — faire du workflow par cursus×campus la source de vérité du parcours candidat","updatedAt":"2026-06-01T00:00:00.000Z"},{"id":"zeno-571","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"1fea9a7b-0158-4e0e-81d2-8235b910730d","planeUpdated":"2026-06-01","priority":"high","ref":"ZENO-571","source":"plane","status":"en_cours","title":"Lier candidat ↔ workflow + résolution (workflowId, currentNodeId, journeyState)","updatedAt":"2026-06-01T00:00:00.000Z"},{"id":"zeno-572","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"7d33a94c-5762-47f5-b985-b1d633317ffc","planeUpdated":"2026-06-01","priority":"high","ref":"ZENO-572","source":"plane","status":"en_cours","title":"Interpréteur de workflow pur (workflowRuntime.js) + tests par node/edge kind","updatedAt":"2026-06-01T00:00:00.000Z"},{"id":"zeno-573","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"692f7096-aef5-43d0-ae6b-c846e176e737","planeUpdated":"2026-06-01","priority":"high","ref":"ZENO-573","source":"plane","status":"en_cours","title":"Chokepoint transitionStage en shadow mode (log des rejets, sans throw)","updatedAt":"2026-06-01T00:00:00.000Z"},{"id":"zeno-574","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"bec80d93-0707-44f2-b14e-f79ba89cc204","planeUpdated":"2026-06-01","priority":"high","ref":"ZENO-574","source":"plane","status":"en_cours","title":"Régénérer le stepper du portail candidat depuis le workflow (retirer les 10 étapes hardcodées)","updatedAt":"2026-06-01T00:00:00.000Z"},{"id":"zeno-575","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"1bc9e094-37a3-40b2-b1f5-515f3b92d2fd","planeUpdated":"2026-06-01","priority":"high","ref":"ZENO-575","source":"plane","status":"en_cours","title":"Activer le hard-reject de transitionStage (ferme l'état impossible)","updatedAt":"2026-06-01T00:00:00.000Z"},{"id":"zeno-576","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Autre","note":"","planeId":"91890578-52ba-4345-8be5-8dea47c77d71","planeUpdated":"2026-06-01","priority":"medium","ref":"ZENO-576","source":"plane","status":"en_cours","title":"Backstop pre-save/pre-update hook (fast-follow) + migration des sites d'écriture restants","updatedAt":"2026-06-01T00:00:00.000Z"},{"id":"zeno-577","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"dff5898f-0651-44e3-8e65-774cfb72e642","planeUpdated":"2026-06-01","priority":"medium","ref":"ZENO-577","source":"plane","status":"en_cours","title":"Conformance parcours end-to-end sur ≥2 workflows divergents","updatedAt":"2026-06-01T00:00:00.000Z"},{"id":"zeno-578","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"2b9dec2b-c50d-4fa6-9925-e4a53132d6b5","planeUpdated":"2026-06-01","priority":"high","ref":"ZENO-578","source":"plane","status":"en_cours","title":"Stepper candidat — états \"terminé\" faux (vacuous-truth interpréteur + fallback stage + configs nœuds vides)","updatedAt":"2026-06-01T00:00:00.000Z"},{"id":"zeno-582","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Marketing & CRM","note":"","planeId":"3e4f54dc-b1c0-4631-ab1f-f752a823f349","planeUpdated":"2026-06-02","priority":"high","ref":"ZENO-582","source":"plane","status":"en_cours","title":"Résoudre le workflow candidat depuis les signaux UTM/campagne + sélection campus×cursus","updatedAt":"2026-06-02T00:00:00.000Z"},{"id":"zeno-583","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Anglais","note":"","planeId":"e3ada261-ed13-451a-9dc5-b484dc36c965","planeUpdated":"2026-06-02","priority":"high","ref":"ZENO-583","source":"plane","status":"en_cours","title":"Email post-test anglais manquant + test technique en fallback legacy par cursus","updatedAt":"2026-06-02T00:00:00.000Z"},{"id":"zeno-599","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"9ec36cb6-2bb7-4ac1-9b64-1edfd9b6f8b6","planeUpdated":"2026-06-04","priority":"high","ref":"ZENO-599","source":"plane","status":"en_cours","title":"Appliquer la refonte des emails d'admission + aperçu rendu dans l'admin","updatedAt":"2026-06-04T00:00:00.000Z"},{"id":"zeno-602","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Marketing & CRM","note":"","planeId":"e48200ae-178d-4a77-a45b-2b0ae03801d2","planeUpdated":"2026-06-04","priority":"high","ref":"ZENO-602","source":"plane","status":"en_cours","title":"Corriger le comptage clics/scans UTM et le pousser en temps réel (SSE)","updatedAt":"2026-06-04T00:00:00.000Z"},{"id":"zeno-611","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Documentation","note":"","planeId":"ed10dc42-3aea-465b-b67b-03cfc58ba5e8","planeUpdated":"2026-06-12","priority":"high","ref":"ZENO-611","source":"plane","status":"en_cours","title":"Assainir le repo — worktrees, branches, racine, docs et .claude","updatedAt":"2026-06-12T00:00:00.000Z"},{"id":"zeno-631","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Communication","note":"","planeId":"5fb88a59-a030-47b5-9e21-869bf9b013e1","planeUpdated":"2026-06-12","priority":"medium","ref":"ZENO-631","source":"plane","status":"en_cours","title":"Concevoir le module Communication V2 unifié — publipostage, templates, inbox","updatedAt":"2026-06-12T00:00:00.000Z"},{"id":"zeno-644","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Communication","note":"","planeId":"09daa60a-7257-4e39-bcdd-9b22db2040b9","planeUpdated":"2026-06-16","priority":"high","ref":"ZENO-644","source":"plane","status":"en_cours","title":"Convergence — rattacher UTM, métriques (Metricool/GA) et funnel sous /communication","updatedAt":"2026-06-16T00:00:00.000Z"},{"id":"zeno-653","assignee":"alex","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Marketing & CRM","note":"Proposition 07/09 v2 (règles Franck) → tracking UTM côté EDMS : EDMS.","planeId":"e1f861c2-73b3-4a11-8d76-ee5e0afc3709","planeUpdated":"2026-06-19","priority":"high","proposed":true,"ref":"ZENO-653","source":"plane","status":"a_affecter","title":"Installer le tracking UTM Zeno côté EDMS (proxy /r/ + beacon)","updatedAt":"2026-09-07T19:10:00.000Z"},{"id":"zeno-660","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Socle UI & design","note":"","planeId":"8dbd839d-cfdf-4d52-b641-10cc89d65ae8","planeUpdated":"2026-06-22","priority":"high","ref":"ZENO-660","source":"plane","status":"en_cours","title":"Unifier la navigation V2 sur tous les modules et décommissionner la V1","updatedAt":"2026-06-22T00:00:00.000Z"},{"id":"zeno-663","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Marketing & CRM","note":"","planeId":"0d8dd8f4-1822-46ea-90c3-91c1ab795832","planeUpdated":"2026-06-24","priority":"medium","ref":"ZENO-663","source":"plane","status":"en_cours","title":"Porter UTM Links sous /communication-v2 — Lot 1 (liste + rail)","updatedAt":"2026-06-24T00:00:00.000Z"},{"id":"zeno-685","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"b304869a-61d5-4554-9b3d-c5f90c87665b","planeUpdated":"2026-07-06","priority":"high","ref":"ZENO-685","source":"plane","status":"en_cours","title":"Ajouter le flag compte de test sur la fiche candidat — action introuvable depuis le détail","updatedAt":"2026-07-06T00:00:00.000Z"},{"id":"zeno-686","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"c3f5fff7-75a8-4e4f-b646-ec086a3c7b4c","planeUpdated":"2026-07-06","priority":"high","ref":"ZENO-686","source":"plane","status":"en_cours","title":"Scoper les créneaux InterviewSlot par campus — sélecteur campus dans le modal Nouveau créneau","updatedAt":"2026-07-06T00:00:00.000Z"},{"id":"zeno-712","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Infra & CI","note":"","planeId":"3a69e8ac-785e-42e9-a046-edbf179cc7bf","planeUpdated":"2026-07-10","priority":"high","ref":"ZENO-712","source":"plane","status":"en_cours","title":"Phase 2 — Zeno accepte les tokens AEIG ID en fallback (flag AEIG_SSO_ENABLED)","updatedAt":"2026-07-10T00:00:00.000Z"},{"id":"zeno-713","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"","planeId":"a5508d3b-4f25-4bd8-8331-9f16bac3e776","planeUpdated":"2026-07-10","priority":"high","ref":"ZENO-713","source":"plane","status":"en_cours","title":"Phase 3 — signaux groupe Zeno→CRM via NATS (flag AEIG_GROUP_SIGNALS_ENABLED)","updatedAt":"2026-07-10T00:00:00.000Z"},{"id":"zeno-728","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Infra & CI","note":"","planeId":"762e884e-de16-4a11-ae84-a26cde8c4b4e","planeUpdated":"2026-07-14","priority":"high","ref":"ZENO-728","source":"plane","status":"en_cours","title":"Alléger la CI — dédoublonner les runs push/PR et retirer synthetic du push main","updatedAt":"2026-07-14T00:00:00.000Z"},{"id":"zeno-742","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"2fe003bf-07f4-4f53-aeea-07acbd36d4d8","planeUpdated":"2026-07-15","priority":"medium","ref":"ZENO-742","source":"plane","status":"en_cours","title":"Ajouter le suivi d'abandon sur la fiche candidat — raison + note","updatedAt":"2026-07-15T00:00:00.000Z"},{"id":"zeno-748","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"9ea6432e-ce3c-4915-960a-daf32833d9d3","planeUpdated":"2026-07-16","priority":"high","ref":"ZENO-748","source":"plane","status":"en_cours","title":"Workflow V2 affiche TOUTES les actions d'un nœud + leur santé, éditables","updatedAt":"2026-07-16T00:00:00.000Z"},{"id":"zeno-752","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"cc1773af-e443-4343-be5c-01d0dbede0d1","planeUpdated":"2026-07-16","priority":"high","ref":"ZENO-752","source":"plane","status":"en_cours","title":"Corriger le rate limit global compté par IP — jurys bloqués en session","updatedAt":"2026-07-16T00:00:00.000Z"},{"id":"zeno-753","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"99b729a0-c713-4f01-871a-2cd4bb193bf9","planeUpdated":"2026-07-16","priority":"high","ref":"ZENO-753","source":"plane","status":"en_cours","title":"Workflow V2 — position réelle du candidat sur le graphe + pastille ⚠ sur les nœuds cassés","updatedAt":"2026-07-16T00:00:00.000Z"},{"id":"zeno-754","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"d7527375-931c-418e-91b6-d1ff458da042","planeUpdated":"2026-07-17","priority":"high","ref":"ZENO-754","source":"plane","status":"en_cours","title":"Corriger les groupes « ou » du nœud document — obligation portée par le groupe","updatedAt":"2026-07-17T00:00:00.000Z"},{"id":"zeno-759","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Infra & CI","note":"","planeId":"7d7fe472-490c-45c8-bb65-db892e050a3a","planeUpdated":"2026-07-17","priority":"high","ref":"ZENO-759","source":"plane","status":"en_cours","title":"Corriger ipKeyGenerator appelé avec (req, res) — 6 rate limits inopérants","updatedAt":"2026-07-17T00:00:00.000Z"},{"id":"zeno-769","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"667ca550-d26f-4da2-8a07-8dc96a7ce2e7","planeUpdated":"2026-07-21","priority":"high","ref":"ZENO-769","source":"plane","status":"en_cours","title":"Afficher les étapes réelles et permettre l'exclusion dans les filtres candidats","updatedAt":"2026-07-21T00:00:00.000Z"},{"id":"zeno-770","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Tickets","note":"","planeId":"16d6e08e-3010-4793-978e-cfa88ade2a66","planeUpdated":"2026-07-21","priority":"medium","ref":"ZENO-770","source":"plane","status":"en_cours","title":"Relier les tickets aux candidats et afficher les tickets ouverts en liste","updatedAt":"2026-07-21T00:00:00.000Z"},{"id":"zeno-771","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"a850593b-d812-4529-8aea-5edc70d0beb6","planeUpdated":"2026-07-21","priority":"medium","ref":"ZENO-771","source":"plane","status":"en_cours","title":"Signaler les candidats en erreur technique depuis la liste","updatedAt":"2026-07-21T00:00:00.000Z"},{"id":"zeno-776","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"50181738-190c-48d4-a010-09b85339393c","planeUpdated":"2026-07-21","priority":"high","ref":"ZENO-776","source":"plane","status":"en_cours","title":"Étendre le modèle Activity pour absorber les relances du poste de travail","updatedAt":"2026-07-21T00:00:00.000Z"},{"id":"zeno-777","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"8e9744dc-727b-4914-8a0a-b43e0c7bcc54","planeUpdated":"2026-07-21","priority":"high","ref":"ZENO-777","source":"plane","status":"en_cours","title":"Porter le flux d'événements candidat de 6 à 15 sources, avec un détail lisible","updatedAt":"2026-07-21T00:00:00.000Z"},{"id":"zeno-778","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"1c7c83b5-1ee9-4693-8328-dbcf98334465","planeUpdated":"2026-07-30","priority":"high","ref":"ZENO-778","source":"plane","status":"en_cours","title":"Poste de traitement des relances — un candidat à la fois, avec playbook","updatedAt":"2026-07-30T00:00:00.000Z"},{"id":"zeno-779","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"88d5b18e-48c9-4c2b-afac-b18584686756","planeUpdated":"2026-07-21","priority":"medium","ref":"ZENO-779","source":"plane","status":"en_cours","title":"Dashboard de pilotage des relances — conversion par listing et goulot","updatedAt":"2026-07-21T00:00:00.000Z"},{"id":"zeno-780","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"3edf46da-9d3f-44ef-8799-7764146bb6ee","planeUpdated":"2026-07-21","priority":"medium","ref":"ZENO-780","source":"plane","status":"en_cours","title":"Importer le CSV de relances du responsable d'admission (preview puis commit)","updatedAt":"2026-07-21T00:00:00.000Z"},{"id":"zeno-781","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"e43e2725-3689-4837-8b3c-ca258b6b6c06","planeUpdated":"2026-07-21","priority":"high","ref":"ZENO-781","source":"plane","status":"en_cours","title":"Cloisonner les relances par campus — Cotonou et Abidjan en parallèle","updatedAt":"2026-07-21T00:00:00.000Z"},{"id":"zeno-782","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"2cf81836-8cd1-485f-bb52-1ee361a0f853","planeUpdated":"2026-07-21","priority":"medium","ref":"ZENO-782","source":"plane","status":"en_cours","title":"Monter TrackingProvider et émettre les connexions candidat","updatedAt":"2026-07-21T00:00:00.000Z"},{"id":"zeno-786","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Portails","note":"","planeId":"3040b54c-805e-411a-af7d-89d2d5432e9d","planeUpdated":"2026-07-25","priority":"high","ref":"ZENO-786","source":"plane","status":"en_cours","title":"Corriger DateInput — le clic sur un jour ne remplit plus le champ (portail #326)","updatedAt":"2026-07-25T00:00:00.000Z"},{"id":"zeno-789","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Événements","note":"","planeId":"b51145c6-65dc-49ce-b76f-31e1210f3c56","planeUpdated":"2026-07-28","priority":"high","ref":"ZENO-789","source":"plane","status":"en_cours","title":"Relier Événements et Admissions — présence, filtre, envoi post-JPO","updatedAt":"2026-07-28T00:00:00.000Z"},{"id":"zeno-800","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Documentation","note":"","planeId":"0fcbadf6-6a04-4f7c-865b-cbbe26f5f7c3","planeUpdated":"2026-08-11","priority":"high","ref":"ZENO-800","source":"plane","status":"en_cours","title":"Régénérer les SOULs agents — état 2026-08 + contrat d'autonomie boucle","updatedAt":"2026-08-11T00:00:00.000Z"},{"id":"zeno-820","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"Proposition 07/09 v2 (règles Franck) → admissions V1.","planeId":"ad6bf125-c40e-469b-a872-ada5a05cab48","planeUpdated":"2026-08-14","priority":"medium","proposed":true,"ref":"ZENO-820","source":"plane","status":"a_affecter","title":"Corriger la couverture des relances rattachées dans la liste du module automations","updatedAt":"2026-09-07T19:10:00.000Z"},{"id":"zeno-824","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"Proposition 07/09 v2 (règles Franck) → admissions V1.","planeId":"8244e135-82fb-4075-8ec2-d12bfa3e3dbd","planeUpdated":"2026-08-15","priority":"medium","proposed":true,"ref":"ZENO-824","source":"plane","status":"a_affecter","title":"Seed canonique — skipper l'automation registre si le template ne se résout pas","updatedAt":"2026-09-07T19:10:00.000Z"},{"id":"zeno-825","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"Proposition 07/09 v2 (règles Franck) → admissions V1.","planeId":"db60a6f6-91be-4d7d-9205-1c0053c3974f","planeUpdated":"2026-08-15","priority":"medium","proposed":true,"ref":"ZENO-825","source":"plane","status":"a_affecter","title":"Auditer les status_change sans reason en prod et durcir la garde emitJourneySend","updatedAt":"2026-09-07T19:10:00.000Z"},{"id":"zeno-826","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"f070c23d-2986-4d30-93f5-1e4133b85bc3","planeUpdated":"2026-08-17","priority":"urgent","ref":"ZENO-826","source":"plane","status":"en_cours","title":"Débloquer la saisie de justificatif sur un paiement candidat déjà en attente","updatedAt":"2026-08-17T00:00:00.000Z"},{"id":"zeno-829","assignee":"cedric","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"Proposition 07/09 v2 (règles Franck) → 1.0 sécurité V1 : infra/sécurité. Calibrage 07/09 : 1 j de boucle humaine pour le chantier.","phase":1,"planeId":"11af565a-afda-4ca7-9027-5aceb99f05db","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-829","restDays":1,"roadmap":"1.0","source":"plane","status":"a_affecter","title":"Sécuriser les 4 routes sans auth et whitelister les champs de candidates.js","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-830","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.1 fondation : idem. Calibrage 07/09 : 0 j de boucle humaine pour le chantier, partagés entre 2 tickets.","phase":1,"planeId":"1c7eecab-fa25-4e17-9bc1-6dcf00c6f19b","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-830","restDays":0,"roadmap":"1.1","source":"plane","status":"a_affecter","title":"Fondation backend V2 — app NestJS neuve et module kernel (arborescence pnpm)","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-831","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.2 assemblage : livré — à clore. Calibrage 07/09 : 0 j de boucle humaine pour le chantier.","phase":1,"planeId":"a7743c0b-703d-4770-a444-0e1424eefd16","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-831","restDays":0,"roadmap":"1.2","source":"plane","status":"a_affecter","title":"Assemblage ZENO_MODULES via modules dynamiques Nest + manifestes de modules","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-832","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.3 NATS : livré — à clore. Calibrage 07/09 : 0 j de boucle humaine pour le chantier.","phase":1,"planeId":"bf3a9c77-3f46-47b4-a5ee-686323eae346","planeUpdated":"2026-08-18","priority":"high","proposed":true,"ref":"ZENO-832","restDays":0,"roadmap":"1.3","source":"plane","status":"a_affecter","title":"Ajouter NATS au socle et créer kernel/bus.js avec accounts par marque","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-833","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.4 Permify : socle, décision d'architecture. Calibrage 07/09 : 1.5 j de boucle humaine pour le chantier.","phase":1,"planeId":"6cc2ed41-3a55-49e6-9675-b0f6959c79c1","planeUpdated":"2026-08-18","priority":"high","proposed":true,"ref":"ZENO-833","restDays":1.5,"roadmap":"1.4","source":"plane","status":"a_affecter","title":"Passer Permify en persistant par stack et provisionner le schéma au boot","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-834","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 2.11 devkora au gabarit ZenoModule : socle. Calibrage 07/09 : 8 j de boucle humaine pour le chantier (Devkora V1 45 000 lignes, le plus gros module).","phase":2,"planeId":"6d53f455-72bf-4c29-b8c1-cdb42357f749","planeUpdated":"2026-08-19","priority":"high","proposed":true,"ref":"ZENO-834","restDays":8,"roadmap":"2.11","source":"plane","status":"a_affecter","title":"Formaliser Devkora au gabarit ZenoModule — pilote d'échauffement","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-835","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 3.1 admission : 92 % des commits admissions V1, moteur crm/workflow. Calibrage 07/09 : 8 j de boucle humaine pour le chantier (admissions-v2 V1 32 700 lignes, 2 100 déjà en V2), partagés entre 2 tickets.","phase":3,"planeId":"1f437e31-91ec-45cc-8571-3ad46aa2a8b5","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-835","restDays":4,"roadmap":"3.1","source":"plane","status":"a_affecter","title":"Extraire le module Admission (pilote) — T1 manifeste, service public, modèles","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-836","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 3.1 admission : idem. Calibrage 07/09 : 8 j de boucle humaine pour le chantier (admissions-v2 V1 32 700 lignes, 2 100 déjà en V2), partagés entre 2 tickets.","phase":3,"planeId":"5de834db-a58b-49f0-9ac1-36a895eb3459","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-836","restDays":4,"roadmap":"3.1","source":"plane","status":"a_affecter","title":"Pilote Admission — T2 checkPermission sur chaque route et événements NATS","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-837","assignee":"cedric","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.8 IaC + DEV Hetzner : infra. Calibrage 07/09 : 2 j de boucle humaine pour le chantier.","phase":1,"planeId":"5661df15-b017-45a1-9411-6cefc5661459","planeUpdated":"2026-08-18","priority":"urgent","proposed":true,"ref":"ZENO-837","restDays":2,"roadmap":"1.8","source":"plane","status":"a_affecter","title":"Merger l'IaC Ansible, créer l'inventaire DEV Hetzner et déployer la branche refacto","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-838","assignee":"cedric","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.9 provisionnement + instance DV : infra. Calibrage 07/09 : 2 j de boucle humaine pour le chantier.","phase":1,"planeId":"b9c3c03c-65a9-4680-9b41-10430a2b5768","planeUpdated":"2026-08-18","priority":"high","proposed":true,"ref":"ZENO-838","restDays":2,"roadmap":"1.9","source":"plane","status":"a_affecter","title":"Scripter le provisionnement d'une marque et créer l'instance DV sur DEV","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-839","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.7 fondation front : socle CRM V2. Calibrage 07/09 : 1.5 j de boucle humaine pour le chantier, partagés entre 2 tickets.","phase":1,"planeId":"b4a56bbc-52f4-49c5-9fa0-9d62766f62c8","planeUpdated":"2026-08-19","priority":"high","proposed":true,"ref":"ZENO-839","restDays":1,"roadmap":"1.7","source":"plane","status":"a_affecter","title":"Fondation frontend V2 — kernel front neuf (kit admin-v2 repris, http, thèmes, router)","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-840","assignee":"cedric","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.10 blue/green : infra. Calibrage 07/09 : 2 j de boucle humaine pour le chantier.","phase":1,"planeId":"019bc2d3-6e31-4ddb-8399-f4371fee56d5","planeUpdated":"2026-08-18","priority":"medium","proposed":true,"ref":"ZENO-840","restDays":2,"roadmap":"1.10","source":"plane","status":"a_affecter","title":"Mettre en place la double stack blue/green par marque sur le serveur DEV","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-842","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.1 fondation : livrée sur refacto — ticket à clore, reprise par le socle. Calibrage 07/09 : 0 j de boucle humaine pour le chantier, partagés entre 2 tickets.","phase":1,"planeId":"53308ff3-60af-4f24-b488-6d0d16e48f19","planeUpdated":"2026-08-19","priority":"high","proposed":true,"ref":"ZENO-842","restDays":0,"roadmap":"1.1","source":"plane","status":"a_affecter","title":"Basculer le monorepo sur pnpm — workspaces, lockfiles, Dockerfiles, CI","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-846","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Infra & CI","note":"Proposition 07/09 v2 (règles Franck) → purge PII git : coordination Franck.","planeId":"37bb8219-6ebc-491e-ae7b-2520c29d8e99","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-846","source":"plane","status":"a_affecter","title":"Purger l'historique git des données sensibles encore récupérables","updatedAt":"2026-09-07T19:10:00.000Z"},{"id":"zeno-847","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"Proposition 07/09 v2 (règles Franck) → bug CSV paiements : admissions V1.","planeId":"5b7f381f-3231-4ed7-8f6a-e17f45de653f","planeUpdated":"2026-08-19","priority":"medium","proposed":true,"ref":"ZENO-847","source":"plane","status":"a_affecter","title":"Corriger l'en-tête method du template CSV paiements ignoré à l'import","updatedAt":"2026-09-07T19:10:00.000Z"},{"id":"zeno-848","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.5 crm T1 : socle CRM V2, auteur du module crm. Calibrage 07/09 : 1.5 j de boucle humaine pour le chantier.","phase":1,"planeId":"f4c1eed5-4ba3-49b2-8685-f3241fef5a0d","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-848","restDays":1.5,"roadmap":"1.5","source":"plane","status":"a_affecter","title":"Réécrire le module crm — T1 moteur : funnel paramétrable, modèles, service public","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-849","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.6 crm T2 : socle CRM V2. Calibrage 07/09 : 0.5 j de boucle humaine pour le chantier.","phase":1,"planeId":"9e519bef-9e0d-4b8a-924f-1d573d7842a4","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-849","restDays":0.5,"roadmap":"1.6","source":"plane","status":"a_affecter","title":"Module crm — T2 : checkPermission par sous-module, événements NATS, à traiter aujourd'hui","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-850","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.7 écrans crm : socle CRM V2. Calibrage 07/09 : 1.5 j de boucle humaine pour le chantier, partagés entre 2 tickets.","phase":1,"planeId":"6f7cb8da-246c-46b3-9640-edb8e1ac88b9","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-850","restDays":1,"roadmap":"1.7","source":"plane","status":"a_affecter","title":"Module crm — T3 : écrans du prototype sur la fondation front V2","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-851","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.7b forms : livré — à clore. Calibrage 07/09 : 0 j de boucle humaine pour le chantier.","phase":1,"planeId":"357aa802-0d7e-4c29-9ac1-4ba08f120db4","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-851","restDays":0,"roadmap":"1.7b","source":"plane","status":"a_affecter","title":"Réécrire le module forms (périmètre DV) — builder, rendu public, soumission vers le CRM","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-852","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.7c workflow DV : socle, suite de core/workflow. Calibrage 07/09 : 1 j de boucle humaine pour le chantier.","phase":1,"planeId":"6f97d509-d4ac-444e-b023-562ae96ee18d","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-852","restDays":1,"roadmap":"1.7c","source":"plane","status":"a_affecter","title":"Réécrire le module workflow (périmètre DV) — automations sur événements, relances du funnel","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-853","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.7d calendar : pack DV, socle. Calibrage 07/09 : 2 j de boucle humaine pour le chantier.","phase":1,"planeId":"9bf66cf2-b23e-473e-ad92-a47637dfbd09","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-853","restDays":2,"roadmap":"1.7d","source":"plane","status":"a_affecter","title":"Créer le module calendar (périmètre DV, neuf) — types de RDV, créneaux, réservation publique","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-854","assignee":"yemalin","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Refacto V2 (modulaire)","note":"Proposition 07/09 v2 (règles Franck) → 1.7e esignature minimal : pack DV, socle. Calibrage 07/09 : 1.5 j de boucle humaine pour le chantier.","phase":1,"planeId":"6b35cab5-5db1-41d3-93b9-86f37df3853d","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-854","restDays":1.5,"roadmap":"1.7e","source":"plane","status":"a_affecter","title":"Réécrire le module esignature (périmètre DV) — proposition à signer et retour au pipeline","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-855","assignee":"alex","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Communication","note":"Proposition 07/09 v2 (règles Franck) → 1.7f communication minimal : livré — à clore, périmètre communication. Calibrage 07/09 : 0 j de boucle humaine pour le chantier.","phase":1,"planeId":"c60b5ce9-76f9-4a9c-8a68-3ea78695ada0","planeUpdated":"2026-08-19","priority":"urgent","proposed":true,"ref":"ZENO-855","restDays":0,"roadmap":"1.7f","source":"plane","status":"a_affecter","title":"Créer le module communication minimal — envoi transactionnel et templates simples","updatedAt":"2026-09-07T19:40:00.000Z"},{"id":"zeno-858","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"665c3992-d9e1-44bc-a211-184d83a87be5","planeUpdated":"2026-08-21","priority":"high","ref":"ZENO-858","source":"plane","status":"en_cours","title":"Ajouter un filtre campus au calendrier des entretiens d'admission","updatedAt":"2026-08-21T00:00:00.000Z"},{"id":"zeno-866","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"889c1994-9763-41ff-b547-314faece70c2","planeUpdated":"2026-09-07","priority":"urgent","ref":"ZENO-866","source":"plane","status":"en_cours","title":"Envoyer le contrat d'inscription DocuSeal depuis Admissions V2 — lot A, envoi manuel","updatedAt":"2026-09-07T00:00:00.000Z"},{"id":"zeno-867","assignee":"franck","createdAt":"2026-09-07T00:00:00.000Z","missing":false,"module":"Admissions","note":"","planeId":"8b89c024-bb9c-45e0-854a-c9c6217e673a","planeUpdated":"2026-09-07","priority":"high","ref":"ZENO-867","source":"plane","status":"en_cours","title":"Exporter les admis au format Fillout pour la création des comptes Epitech","updatedAt":"2026-09-07T00:00:00.000Z"}],"resources":{"alex":{"capacity":1.5,"name":"Alex-Russel Kouawou","note":"30 % V2","role":"EDMS · communication","status":"actif","updatedAt":"2026-09-07T19:10:00.000Z"},"amos":{"capacity":0,"name":"Amos Dakpé","note":"Retiré de la V2 (décision Franck 07/09)","role":"","status":"parti","updatedAt":"2026-09-07T19:10:00.000Z"},"cedric":{"capacity":1.5,"name":"Cédric Gnansounou","note":"30 % V2","role":"Infra · career center","status":"actif","updatedAt":"2026-09-07T19:10:00.000Z"},"franck":{"capacity":5,"name":"Franck Birba","note":"100 % V2","role":"Socle CRM V2 · architecture","status":"actif","updatedAt":"2026-09-07T19:10:00.000Z"},"giovanni":{"capacity":1.5,"name":"Giovanni Atchaoué","note":"30 % V2","role":"Campus","status":"actif","updatedAt":"2026-09-07T19:10:00.000Z"},"yemalin":{"capacity":5,"name":"Yemalin Agbangla","note":"Modeste — 100 % V2","role":"Modeste · socle CRM V2","status":"actif","updatedAt":"2026-09-07T19:10:00.000Z"}},"settings":{"basis":"Mesuré le 07/09/2026 : 2 000 lignes V2 revues par jour de boucle, compaction V1→V2 ×3,5, +0,5 j de recette par module. Claude Code écrit le code ; la ressource relit, répond, recette.","defaultDays":0.25,"sizeDays":{"L":3,"M":1.5,"S":0.5,"XL":6},"startDate":"2026-09-08","unit":"jours de boucle humaine","updatedAt":"2026-09-07T19:40:00.000Z"}};
+/*@/PLAN-SNAPSHOT*/
+</script>
+
+<script id="app">
+// ===== Chantiers (Yemalin Modeste) =====
+{
   const state = { project:'zeno', status:'', cdc:'', query:'', sortWhen:0 }; // sortWhen: 0=off, 1=plus ancien d'abord, -1=plus récent d'abord
 
   // `when` est une date "JJ/MM" sans année (toujours l'année en cours) — on la
@@ -1823,4 +2504,496 @@
   renderBanner();
   renderSummary();
   render();
+}
+
+// ===== Plan de charge, roadmap V2, ressources (Franck Birba / Claude) =====
+const DATA = GIT;
+const SNAP = (typeof SNAPSHOT !== 'undefined') ? SNAPSHOT : null;
+const ARTIFACT_URL = 'https://claude.ai/code/artifact/659d6577-e053-4895-bde3-289ae23de053';
+const MONTH_LBL = ['janv.','févr.','mars','avr.','mai','juin','juil.','août'];
+const MONTH_LONG = ['janvier','février','mars','avril','mai','juin','juillet','août'];
+const ACTIVE_SINCE = '2026-08-01';
+const SOCLE = 'Socle / autre';
+const SOCLE_LBL = 'Socle & transverse';
+const MODULES_PLAN = DATA.modules.map(m=>m.name).filter(n=>n!==SOCLE).concat(['Refacto V2 (modulaire)','Autre']);
+const STATUS_LBL = {a_affecter:'À affecter',en_cours:'En cours',bloquee:'Bloquée',terminee:'Terminée'};
+const PRIO_LBL = {urgent:'Urgente',high:'Haute',medium:'Moyenne',low:'Basse'};
+const RSTATUS_LBL = {actif:'Actif',inactif:'Inactif',parti:'Parti',a_recruter:'À recruter'};
+const RSTATUS_CLS = {actif:'good',inactif:'warn',parti:'serious',a_recruter:'crit'};
+
+const authors = DATA.authors.map((a,i)=>({...a, color:`var(--s${i+1})`, initials:a.name.split(/[\s-]+/).map(s=>s[0]).join('').slice(0,2).toUpperCase()}));
+const byslug = Object.fromEntries(authors.map(a=>[a.slug,a]));
+const V2 = DATA.v2 || {total:0,authors:{},modules:[]};
+const v2Of = slug => V2.authors[slug] || null;
+const lastAny = a => { const v=v2Of(a.slug); return (v && v.last > a.last) ? v.last : a.last; };
+const firstAny = a => { const v=v2Of(a.slug); return (v && v.first < a.first) ? v.first : a.first; };
+
+const fmtDate = s => { const [y,m,d]=s.split('-'); return `${parseInt(d)} ${MONTH_LBL[parseInt(m)-1]}`; };
+const fmtN = n => n.toLocaleString('fr-FR');
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const firstName = a => a.name.split(' ')[0];
+
+// ---------- state ----------
+const state = { db:null, hasData:false, canEdit:false, mode:'none', demandes:[], resources:{}, editing:null, filters:{status:'open',module:'',res:'',q:'',phase:''}, confirmDel:null };
+
+function resStatus(a){ const o=state.resources[a.slug]; if(o&&o.status) return o.status; return lastAny(a)>=ACTIVE_SINCE?'actif':'inactif'; }
+function resStatusText(a){ const s=resStatus(a); if(s==='inactif'&&a.last) return `Inactif depuis le ${fmtDate(lastAny(a))}`; return RSTATUS_LBL[s]; }
+function allResources(){ // git authors + custom
+  const custom = Object.entries(state.resources).filter(([k,v])=>v.custom).map(([k,v])=>({slug:k,name:v.name,role:v.role||'',custom:true,color:'var(--ink-faint)',initials:(v.name||'?').split(/[\s-]+/).map(s=>s[0]).join('').slice(0,2).toUpperCase(),commits:0,byMonth:[],byModule:{},first:'',last:''}));
+  return authors.concat(custom);
+}
+function loadOf(slug){ return state.demandes.filter(d=>d.assignee===slug && d.status!=='terminee'); }
+
+// ---------- tooltip ----------
+const tip = document.getElementById('tip');
+function showTip(html,x,y){ tip.innerHTML=html; tip.classList.add('show'); moveTip(x,y); }
+function moveTip(x,y){ const r=tip.getBoundingClientRect(); let left=x+14, top=y+14; if(left+r.width>innerWidth-8) left=x-r.width-14; if(top+r.height>innerHeight-8) top=y-r.height-14; tip.style.left=left+'px'; tip.style.top=top+'px'; }
+function hideTip(){ tip.classList.remove('show'); }
+document.addEventListener('mousemove',e=>{ const t=e.target.closest('[data-tip]'); if(t){ showTip(t.dataset.tip,e.clientX,e.clientY);} else hideTip(); });
+document.addEventListener('focusin',e=>{ const t=e.target.closest('[data-tip]'); if(t){ const r=t.getBoundingClientRect(); showTip(t.dataset.tip,r.left,r.bottom);} });
+document.addEventListener('focusout',hideTip);
+
+// ---------- toast ----------
+let toastT; function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),2200); }
+
+// ---------- synthèse ----------
+function renderSynthese(){
+  const active = authors.filter(a=>lastAny(a)>=ACTIVE_SINCE).length;
+  document.getElementById('hero-n').textContent = authors.length;
+  document.getElementById('hero-active').textContent = active;
+  document.getElementById('t-commits').textContent = fmtN(DATA.total);
+  if(V2.total) document.getElementById('t-commits-sub').textContent = `+ ${fmtN(V2.total)} sur aeig-plateform (Zeno V2)`;
+  document.getElementById('t-modules').textContent = DATA.modules.filter(m=>m.name!==SOCLE).length;
+  const solo = DATA.modules.filter(m=>m.name!==SOCLE && m.total>=50 && m.topShare>=80);
+  document.getElementById('t-solo').textContent = solo.length;
+}
+function renderAlerts(){
+  const list=[];
+  const franck = byslug.franck; const share = Math.round(100*franck.commits/DATA.total);
+  const adm = DATA.modules.find(m=>m.name==='Admissions');
+  list.push({sev:'crit',ico:'CONCENTRATION',t:`${share} % des commits viennent d'une seule personne`,d:`${franck.name} porte ${fmtN(franck.commits)} commits sur ${fmtN(DATA.total)}${adm?`, et ${adm.topShare} % du module Admissions, le plus gros du produit`:''}. Toute absence bloque le cœur du produit.`});
+  const p1=phaseStats(1); const p1tk=[...new Set(ROADMAP.chantiers.filter(c=>c.phase===1).flatMap(c=>c.tk))]; const p1done=p1tk.filter(t=>ROADMAP.planeDone.includes(t)).length;
+  list.push({sev:p1.pct>=100?'good':'crit',ico:'ROADMAP V2',t:`Phase 1 « Zeno générique » : ${p1.pct} % réalisé, échéance du 25 août dépassée`,d:`${p1.done} chantier${p1.done>1?'s':''} livré${p1.done>1?'s':''} et ${p1.partial} partiel${p1.partial>1?'s':''} sur ${p1.n} d'après le code d'aeig-plateform, ${p1done} ticket${p1done>1?'s':''} Plane fermé${p1done>1?'s':''} sur ${p1tk.length}. Rapprocher tickets et code avant de dispatcher des agents.`});
+  if(V2.total){ const g=v2Of('giovanni'), f=v2Of('franck'); if(g) list.push({sev:'warn',ico:'ZENO V2',t:`La V2 repose sur deux personnes`,d:`${f?fmtN(f.commits):0} commits de Franck et ${fmtN(g.commits)} de Giovanni sur aeig-plateform (${fmtDate(g.first)} → ${fmtDate(g.last)}). Depuis le 7 septembre tout est fusionné sur main, avec une CI verte ; Modeste rejoint le socle.`}); }
+  DATA.modules.filter(m=>m.name!==SOCLE).forEach(m=>{
+    const top=byslug[m.top]; const st=resStatus(top);
+    if(st!=='actif' && m.total>=50) list.push({sev:'serious',ico:'ORPHELIN',t:`${m.name} sans mainteneur actif`,d:`Porté à ${m.topShare} % par ${top.name}, ${resStatusText(top).toLowerCase()}. Personne d'autre n'a de périmètre significatif dessus.`});
+    else if(m.topShare>=80 && m.total>=50 && m.top!=='franck') list.push({sev:'warn',ico:'BUS FACTOR 1',t:`${m.name} repose sur ${top.name}`,d:`${m.topShare} % des ${m.total} commits du module. Prévoir un binôme ou une passation documentée.`});
+  });
+  const gio = DATA.modules.filter(m=>m.top==='giovanni'&&m.total>=50).map(m=>m.name);
+  if(gio.length>1) list.push({sev:'warn',ico:'CUMUL',t:`${byslug.giovanni.name} porte seul ${gio.join(' et ')}`,d:`Deux modules sans second contributeur : la charge nouvelle sur l'un pénalise l'autre.`});
+  const carr = DATA.modules.find(m=>m.name==='Carrière'); if(carr && byslug.spynel) list.push({sev:'warn',ico:'DISPERSÉ',t:`Carrière : porteur principal à ${carr.topShare} % seulement`,d:`Réparti entre ${Object.keys(carr.per).map(s=>firstName(byslug[s])).join(', ')}. Le renfort d'été (Spynel) est inactif depuis le ${fmtDate(byslug.spynel.last)} : Cédric reprend le career center dans le plan V2.`});
+  if(state.hasData){
+    const open = state.demandes.filter(d=>d.status!=='terminee');
+    const missing = open.filter(d=>d.missing);
+    const blocked = open.filter(d=>d.status==='bloquee');
+    if(missing.length) list.unshift({sev:'crit',ico:'PLAN DE CHARGE',t:`${missing.length} demande${missing.length>1?'s':''} sans ressource`,d:missing.slice(0,3).map(d=>d.title).join(' · ')+(missing.length>3?' · …':'')});
+    if(blocked.length) list.push({sev:'serious',ico:'BLOQUÉ',t:`${blocked.length} demande${blocked.length>1?'s':''} bloquée${blocked.length>1?'s':''}`,d:blocked.slice(0,3).map(d=>d.title).join(' · ')+(blocked.length>3?' · …':'')});
+    if(!missing.length) list.push({sev:'good',ico:'PLAN DE CHARGE',t:`Toutes les demandes ouvertes ont une ressource`,d:`${open.length} demande${open.length>1?'s':''} ouverte${open.length>1?'s':''} dans le plan de charge.`});
+    const tile=document.getElementById('t-missing-tile'); document.getElementById('t-missing').textContent=missing.length; tile.classList.toggle('ok',missing.length===0); tile.classList.toggle('bad',missing.length>0);
+  }
+  document.getElementById('alerts').innerHTML = list.map(a=>`<div class="alert ${a.sev}"><div class="t"><span class="ico">${esc(a.ico)}</span>${esc(a.t)}</div><div class="d">${esc(a.d)}</div></div>`).join('');
+}
+
+// ---------- modules chart ----------
+function renderModules(){
+  const legend = document.getElementById('legend-mod');
+  legend.innerHTML = authors.map(a=>`<span class="k"><i class="sw" style="--c:${a.color}"></i>${esc(a.name)}</span>`).join('');
+  const zenoMods = DATA.modules.filter(m=>m.name!==SOCLE);
+  const socle = DATA.modules.filter(m=>m.name===SOCLE);
+  const v2Mods = (V2.modules||[]).map(m=>({...m, v2:true}));
+  const max = Math.max(...DATA.modules.map(m=>m.total));
+  const row = m => {
+    const isS = m.name===SOCLE || m.name==='Socle V2'; const top=byslug[m.top]; const label = m.name===SOCLE?SOCLE_LBL:m.name;
+    const segs = authors.filter(a=>m.per[a.slug]).map(a=>{ const n=m.per[a.slug]; const pct=Math.round(100*n/m.total); return `<div class="mseg${isS?' hatch':''}" style="--c:${a.color};width:${(100*n/max).toFixed(2)}%" tabindex="0" data-tip="<span class=k>${esc(label)}${m.v2?' · aeig-plateform':''}</span><br><b>${esc(a.name)}</b> · ${n} commit${n>1?'s':''} (${pct} %)"></div>`; }).join('');
+    const solo = m.topShare>=80 && !isS;
+    return `<div class="mrow${isS?' muted-row':''}"><div class="mname" title="${esc(label)}">${esc(label)}</div><div class="mbar" style="width:100%">${segs}</div><div class="mmeta"><span class="own${solo?' solo':''}">${isS?'':esc(firstName(top))+' · '+m.topShare+' %'}</span><span class="tot num">${fmtN(m.total)}</span></div></div>`;
+  };
+  const group = v2Mods.length ? `<div class="mrow group"><div class="mname">Zeno V2 · dépôt aeig-plateform · ${fmtN(V2.total)} commits, main + refacto</div></div>` : '';
+  document.getElementById('mod-chart').innerHTML = zenoMods.map(row).join('') + group + v2Mods.map(row).join('') + `<div class="mrow group"><div class="mname">Non attribuable</div></div>` + socle.map(row).join('');
+  // table
+  const all = zenoMods.concat(v2Mods, socle);
+  const head = `<tr><th>Module</th>${authors.map(a=>`<th>${esc(firstName(a))}</th>`).join('')}<th>Total</th><th>Porteur</th></tr>`;
+  const rows = all.map(m=>`<tr><td>${esc(m.name===SOCLE?SOCLE_LBL:m.name)}${m.v2?' <span style="color:var(--ink-faint)">(V2)</span>':''}</td>${authors.map(a=>{const n=m.per[a.slug]||0;return `<td class="${n?'':'zero'}">${n||'·'}</td>`}).join('')}<td><b>${fmtN(m.total)}</b></td><td>${esc(firstName(byslug[m.top]))} ${m.topShare} %</td></tr>`).join('');
+  document.getElementById('mod-table').innerHTML = `<table class="tbl"><thead>${head}</thead><tbody>${rows}</tbody></table>`;
+}
+
+// ---------- frise ----------
+function renderFrise(){
+  const v2m = (a,i) => { const v=v2Of(a.slug); return v ? (v.byMonth[i]||0) : 0; };
+  const max = Math.max(...authors.flatMap(a=>a.byMonth.map((n,i)=>n+v2m(a,i))));
+  document.getElementById('frise-max').textContent = max;
+  const H=54;
+  const head = `<div class="frow head"><div></div>${MONTH_LBL.map(m=>`<div class="mo">${m}</div>`).join('')}<div class="mo" style="text-align:left;padding-left:12px">Statut</div></div>`;
+  const rows = authors.map(a=>{
+    const v = v2Of(a.slug);
+    const cells = a.byMonth.map((n,i)=>{ const nv=v2m(a,i); const tot=n+nv; const hz=n?Math.max(2,Math.round(H*n/max)):0; const hv=nv?Math.max(2,Math.round(H*nv/max)):0; const dom=a.dom[i]; const dl = dom===SOCLE?SOCLE_LBL:dom; const dv = v&&v.dom?v.dom[i]:'';
+      const tipTxt = `<span class=k>${MONTH_LONG[i]} 2026</span><br><b>${esc(a.name)}</b> · ${tot} commit${tot>1?'s':''}${nv?` (Zeno ${n} + V2 ${nv})`:''}<br>Zeno : ${esc(dl||'–')}${nv?`<br>V2 : ${esc(dv||'–')}`:''}`;
+      return `<div class="fcell"><div class="fcol${tot?'':' empty'}" style="--c:${a.color}" ${tot?`tabindex="0" data-tip="${tipTxt}"`:''}>${n?`<div class="fz" style="height:${hz}px"></div>`:''}${nv?`<div class="fv" style="height:${hv}px"></div>`:''}</div></div>`; }).join('');
+    // span line: month index + day fraction
+    const pos = s => { const [y,m,d]=s.split('-').map(Number); return (m-1)+(d-1)/31; };
+    const l = pos(firstAny(a)), r = pos(lastAny(a));
+    const colW = 100/8; // percent of the 8-col band; band starts after name col
+    const st = resStatus(a); const cls = RSTATUS_CLS[st];
+    return `<div class="frow"><div class="fname"><i class="sw" style="--c:${a.color}"></i><div><div>${esc(a.name)}</div><div class="sub">${fmtDate(firstAny(a))} → ${fmtDate(lastAny(a))} · ${fmtN(a.commits)}${v?' + '+fmtN(v.commits)+' V2':''} commits</div></div></div>${cells}<div class="fstatus"><span class="chip ${cls}"><i class="dot"></i>${esc(resStatusText(a))}</span></div><div class="fspan" style="--c:${a.color};--l:${(l/8).toFixed(4)};--w:${((r-l)/8).toFixed(4)}"></div></div>`;
+  }).join('');
+  document.getElementById('frise-chart').innerHTML = head+rows;
+  const th = `<tr><th>Développeur</th>${MONTH_LBL.map(m=>`<th>${m}</th>`).join('')}<th>Total</th><th>Premier</th><th>Dernier</th></tr>`;
+  const tr = authors.map(a=>{ const v=v2Of(a.slug); return `<tr><td>${esc(a.name)}</td>${a.byMonth.map((n,i)=>{const nv=v2m(a,i); return `<td class="${n||nv?'':'zero'}">${n||nv?(nv?`${n} + ${nv}`:n):'·'}</td>`}).join('')}<td><b>${fmtN(a.commits)}${v?' + '+fmtN(v.commits):''}</b></td><td>${firstAny(a)}</td><td>${lastAny(a)}</td></tr>`; }).join('') + (V2.total?`<tr><td colspan="${MONTH_LBL.length+4}" style="color:var(--ink-faint);text-align:left">« a + b » = commits Zeno + commits aeig-plateform (V2)</td></tr>`:'');
+  document.getElementById('frise-table').innerHTML = `<table class="tbl"><thead>${th}</thead><tbody>${tr}</tbody></table>`;
+}
+
+// ---------- view toggles ----------
+document.querySelectorAll('.seg-btn button[data-target]').forEach(b=>b.addEventListener('click',()=>{
+  const t=b.dataset.target, v=b.dataset.view;
+  b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+  document.getElementById(t+'-chart').hidden = v!=='chart';
+  document.getElementById(t+'-table').hidden = v!=='table';
+}));
+
+// ---------- resources ----------
+function renderResources(){
+  const grid=document.getElementById('rgrid');
+  const canEdit = state.canEdit;
+  grid.innerHTML = allResources().map(a=>{
+    const o = state.resources[a.slug]||{};
+    const st = a.custom ? (o.status||'a_recruter') : resStatus(a);
+    const load = loadOf(a.slug);
+    const v = a.custom ? null : v2Of(a.slug);
+    const mods = Object.entries(a.byModule||{}).filter(([k])=>k!==SOCLE).concat(v?Object.entries(v.byModule).filter(([k])=>k!=='Socle V2' && k!=='Documentation').map(([k,n])=>[k+' (aeig-plateform)',n]):[]).sort((x,y)=>y[1]-x[1]).slice(0,4);
+    const maxM = mods.length?mods[0][1]:1;
+    const period = a.custom ? (o.role||'Ressource ajoutée au plan') : `${fmtDate(firstAny(a))} → ${fmtDate(lastAny(a))} 2026`;
+    const role = o.role || (a.custom?'':'Développeur');
+    return `<div class="card rcard" id="rc-${a.slug}">
+      <div class="rhead"><div class="avatar" style="--c:${a.color}">${esc(a.initials)}</div><div style="min-width:0"><div class="rname">${esc(a.name)}</div><div class="rrole">${esc(role)} · ${esc(period)}</div></div><span class="chip ${RSTATUS_CLS[st]}" style="margin-left:auto"><i class="dot"></i>${esc(a.custom?RSTATUS_LBL[st]:resStatusText(a))}</span></div>
+      ${a.custom?'':`<div class="rstats"><div class="rstat"><div class="v num">${fmtN(a.commits)}</div><div class="l">commits Zeno</div></div><div class="rstat"><div class="v num">${v?fmtN(v.commits):'0'}</div><div class="l">commits V2</div></div><div class="rstat"><div class="v num">${Math.round(100*a.commits/DATA.total)} %</div><div class="l">du total Zeno</div></div></div>
+      <div class="rmods">${mods.map(([n,c])=>`<div class="rmod"><span class="n" title="${esc(n)}">${esc(n)}</span><span class="bar"><i style="--c:${a.color};width:${Math.round(100*c/maxM)}%"></i></span><span class="p">${c}</span></div>`).join('')||'<span class="rrole">Aucun module attribuable</span>'}</div>`}
+      <div class="rload"><div class="t"><b>Charge actuelle</b><span class="chip ${load.length?'accent':'neutral'}">${state.hasData?load.length+' demande'+(load.length>1?'s':''):'–'}</span></div>${load.length?`<ul>${load.slice(0,4).map(d=>`<li title="${esc(d.title)}">${d.ref?`<span class="mono" style="color:var(--ink-faint)">${esc(d.ref)}</span> `:''}${esc(d.title)}</li>`).join('')}${load.length>4?`<li>… et ${load.length-4} de plus</li>`:''}</ul>`:''}</div>
+      ${canEdit?`<div class="redit"><select class="inp r-status" data-slug="${a.slug}" aria-label="Statut de ${esc(a.name)}">${Object.entries(RSTATUS_LBL).map(([k,v])=>`<option value="${k}"${k===st?' selected':''}>${v}</option>`).join('')}</select><input class="inp r-note" data-slug="${a.slug}" placeholder="Note (dispo, contrat, passation…)" value="${esc(o.note||'')}" aria-label="Note sur ${esc(a.name)}"><label class="rrole" for="rc-${a.slug}-cap">Capacité (j/sem)</label><div style="display:flex;gap:8px;align-items:center"><input class="inp r-cap days-inp" id="rc-${a.slug}-cap" data-slug="${a.slug}" type="number" min="0" max="7" step="0.5" value="${capOf(a)}" aria-label="Capacité hebdomadaire de ${esc(a.name)}"><span class="rrole">dispo à partir du</span><input class="inp r-from" data-slug="${a.slug}" type="date" value="${esc(o.availableFrom||'')}" style="width:auto" aria-label="Disponible à partir du"></div></div>`:''}
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('.r-status').forEach(s=>s.addEventListener('change',()=>saveResource(s.dataset.slug,{status:s.value})));
+  grid.querySelectorAll('.r-note').forEach(i=>i.addEventListener('change',()=>saveResource(i.dataset.slug,{note:i.value.trim()})));
+  grid.querySelectorAll('.r-cap').forEach(i=>i.addEventListener('change',()=>saveResource(i.dataset.slug,{capacity:Math.max(0,Math.min(7,parseFloat(i.value)||0))})));
+  grid.querySelectorAll('.r-from').forEach(i=>i.addEventListener('change',()=>saveResource(i.dataset.slug,{availableFrom:i.value||''})));
+  document.getElementById('add-res-panel').hidden = !canEdit;
+}
+async function saveResource(slug,patch){
+  if(!state.db) return;
+  const cur = state.resources[slug]||{}; const a = byslug[slug];
+  const body = {...cur, ...patch, name: cur.name || (a?a.name:slug), updatedAt:new Date().toISOString()};
+  try{ await state.db.doc('resources/'+slug).set(body); toast('Ressource enregistrée'); }catch(e){ toast('Enregistrement impossible : '+(e.message||e.code)); }
+}
+document.getElementById('nr-add').addEventListener('click',async()=>{
+  const name=document.getElementById('nr-name').value.trim(); if(!name||!state.db) return;
+  const slug='r-'+name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)+'-'+Date.now().toString(36).slice(-4);
+  try{ await state.db.doc('resources/'+slug).set({name,role:document.getElementById('nr-role').value.trim(),status:document.getElementById('nr-status').value,custom:true,note:'',createdAt:new Date().toISOString()}); document.getElementById('nr-name').value=''; document.getElementById('nr-role').value=''; toast('Ressource ajoutée'); }catch(e){ toast('Ajout impossible : '+(e.message||e.code)); }
+});
+
+// ---------- plan de charge ----------
+function resOptions(sel){
+  const opts=[`<option value=""${!sel?' selected':''}>Non affectée</option>`,`<option value="__missing__"${sel==='__missing__'?' selected':''}>⚠ Ressource manquante</option>`];
+  allResources().forEach(a=>opts.push(`<option value="${a.slug}"${sel===a.slug?' selected':''}>${esc(a.name)}</option>`));
+  return opts.join('');
+}
+function fillStatic(){
+  document.getElementById('f-module').innerHTML = '<option value="">Tous les modules</option>'+MODULES_PLAN.map(m=>`<option>${esc(m)}</option>`).join('');
+  document.getElementById('d-module').innerHTML = MODULES_PLAN.map(m=>`<option>${esc(m)}</option>`).join('');
+  const fr=document.getElementById('f-res'); fr.innerHTML='<option value="">Toutes les ressources</option><option value="__missing__">Ressource manquante</option><option value="__none__">Non affectées</option>'+allResources().map(a=>`<option value="${a.slug}">${esc(a.name)}</option>`).join('');
+  document.getElementById('d-res').innerHTML = resOptions('');
+  document.getElementById('d-roadmap').innerHTML = '<option value="">Hors roadmap</option>'+ROADMAP.phases.map(p=>`<optgroup label="Phase ${p.n} · ${esc(p.short||p.t)}">${ROADMAP.chantiers.filter(c=>c.phase===p.n).map(c=>`<option value="${esc(c.n)}">${esc(c.n)} · ${esc(c.t)}</option>`).join('')}</optgroup>`).join('');
+}
+const PRIO_ORDER={urgent:0,high:1,medium:2,low:3};
+function filtered(){
+  const f=state.filters, q=f.q.toLowerCase();
+  return state.demandes.filter(d=>{
+    if(f.status==='open'){ if(d.status==='terminee') return false; } else if(f.status!=='all' && d.status!==f.status) return false;
+    if(f.module && d.module!==f.module) return false;
+    if(f.phase==='none'){ if(d.phase) return false; } else if(f.phase && String(d.phase)!==f.phase) return false;
+    if(f.res==='__missing__'){ if(!d.missing) return false; } else if(f.res==='__none__'){ if(d.assignee||d.missing) return false; } else if(f.res && d.assignee!==f.res) return false;
+    if(q && !(`${d.title} ${d.note||''} ${d.ref||''} ${d.module||''}`.toLowerCase().includes(q))) return false;
+    return true;
+  }).sort((a,b)=>(b.missing?1:0)-(a.missing?1:0) || (PRIO_ORDER[a.priority]??9)-(PRIO_ORDER[b.priority]??9) || (b.updatedAt||'').localeCompare(a.updatedAt||''));
+}
+const STATUS_CLS = {a_affecter:'neutral',en_cours:'accent',bloquee:'serious',terminee:'good'};
+function renderPlan(){
+  document.getElementById('btn-new').hidden = !state.canEdit; if(!state.canEdit) closeForm();
+  const open = state.demandes.filter(d=>d.status!=='terminee');
+  const set=(id,v)=>document.getElementById(id).textContent=v;
+  set('p-total',open.length); set('p-missing',open.filter(d=>d.missing).length); set('p-unassigned',open.filter(d=>!d.assignee&&!d.missing).length); set('p-blocked',open.filter(d=>d.status==='bloquee').length); set('p-urgent',open.filter(d=>d.priority==='urgent'||d.priority==='high').length);
+  // load bars
+  const rs = allResources().map(a=>({a,items:loadOf(a.slug)})).filter(x=>x.items.length||!x.a.custom);
+  const maxL = Math.max(1,...rs.map(x=>x.items.length));
+  const missingN = open.filter(d=>d.missing).length;
+  document.getElementById('loadbars').innerHTML = `<h4>Charge par ressource <span style="font-weight:400;color:var(--ink-faint)">(demandes ouvertes)</span></h4>`+rs.map(x=>`<div class="lb"><span>${esc(x.a.name)}</span><span class="track">${x.items.map(d=>`<i style="--c:${x.a.color};width:${(100/maxL).toFixed(2)}%" class="${d.status==='bloquee'?'blk':''}" tabindex="0" data-tip="${esc(d.ref?d.ref+' · ':'')}${esc(d.title)}<br><span class=k>${esc(STATUS_LBL[d.status]||d.status)} · ${esc(PRIO_LBL[d.priority]||'')}</span>"></i>`).join('')}</span><span class="n">${x.items.length}</span></div>`).join('')+(missingN?`<div class="lb"><span style="color:var(--crit);font-weight:600">Ressource manquante</span><span class="track">${open.filter(d=>d.missing).map(d=>`<i style="--c:var(--crit);width:${(100/maxL).toFixed(2)}%" tabindex="0" data-tip="${esc(d.ref?d.ref+' · ':'')}${esc(d.title)}"></i>`).join('')}</span><span class="n">${missingN}</span></div>`:'');
+  // list
+  const rows = filtered();
+  const list=document.getElementById('dlist');
+  if(!rows.length){ list.innerHTML=`<div class="pc-empty">${state.demandes.length?'Aucune demande ne correspond aux filtres.':'Aucune demande pour l\'instant. Ajoutez-en une avec « Nouvelle demande ».'}</div>`; return; }
+  list.innerHTML = rows.map(d=>{
+    const sel = d.missing?'__missing__':(d.assignee||'');
+    const cls = d.status==='terminee'?'done':(d.missing?'missing':(d.status==='bloquee'?'blocked':''));
+    const isConfirm = state.confirmDel===d.id;
+    return `<div class="drow ${cls}" data-id="${d.id}">
+      <span class="dref">${esc(d.ref||'')}</span>
+      <div class="dtitle"><div class="t">${d.roadmap?`<span class="chip todo mono" style="margin-right:6px;vertical-align:middle">P${esc(d.phase||'?')} · ${esc(d.roadmap)}</span>`:''}${esc(d.title)}</div>${d.note?`<div class="n">${esc(d.note)}</div>`:''}</div>
+      <span class="chip neutral" style="justify-self:start;max-width:100%;overflow:hidden;text-overflow:ellipsis" title="${esc(d.module||'')}">${esc(d.module||'–')}</span>
+      <span class="prio ${esc(d.priority||'')}">${esc(PRIO_LBL[d.priority]||'–')}</span>
+      ${state.canEdit?`<select class="inp d-status" aria-label="Statut">${Object.entries(STATUS_LBL).map(([k,v])=>`<option value="${k}"${k===d.status?' selected':''}>${v}</option>`).join('')}</select>`:`<span class="chip ${STATUS_CLS[d.status]||'neutral'}" style="justify-self:start"><i class="dot"></i>${esc(STATUS_LBL[d.status]||d.status)}</span>`}
+      ${state.canEdit?`<select class="inp d-res" aria-label="Ressource">${resOptions(sel)}</select>`:(d.missing?'<span class="chip crit" style="justify-self:start"><i class="dot"></i>Ressource manquante</span>':(d.assignee?`<span class="chip accent" style="justify-self:start">${esc(resName(d.assignee))}</span>`:'<span class="chip neutral" style="justify-self:start">Non affectée</span>'))}
+      ${state.canEdit?`<input class="inp d-days days-inp" type="number" min="0" step="0.5" value="${restOf(d)}" title="${d.restDays!=null?'Charge restante saisie':'Charge par défaut (calibrage)'}" style="${d.restDays!=null?'':'color:var(--ink-faint)'}" aria-label="Charge restante en jours">`:`<span class="num mono ro" style="text-align:right;${d.restDays!=null?'':'color:var(--ink-faint)'}" title="${d.restDays!=null?'Charge restante saisie':'Charge par défaut (calibrage)'}">${restOf(d)} j</span>`}
+      <div class="dact">${!state.canEdit?'':(isConfirm?`<span class="confirm">Supprimer ? <button class="btn sm danger d-del-yes">Oui</button><button class="btn sm ghost d-del-no">Non</button></span>`:`<button class="btn sm ghost d-edit" title="Modifier">✎</button><button class="btn sm ghost d-del" title="Supprimer">✕</button>`)}</div>
+    </div>`;
+  }).join('');
+  list.querySelectorAll('.drow').forEach(row=>{
+    const id=row.dataset.id;
+    row.querySelector('.d-status')?.addEventListener('change',e=>updateDemande(id,{status:e.target.value}));
+    row.querySelector('.d-res')?.addEventListener('change',e=>{ const v=e.target.value; updateDemande(id, v==='__missing__'?{assignee:'',missing:true}:{assignee:v,missing:false}); });
+    row.querySelector('.d-days')?.addEventListener('change',e=>{ const v=parseFloat(e.target.value); updateDemande(id,{restDays:isNaN(v)?null:Math.max(0,v)}); });
+    row.querySelector('.d-edit')?.addEventListener('click',()=>openForm(state.demandes.find(d=>d.id===id)));
+    row.querySelector('.d-del')?.addEventListener('click',()=>{ state.confirmDel=id; renderPlan(); });
+    row.querySelector('.d-del-no')?.addEventListener('click',()=>{ state.confirmDel=null; renderPlan(); });
+    row.querySelector('.d-del-yes')?.addEventListener('click',()=>deleteDemande(id));
+  });
+}
+async function updateDemande(id,patch){
+  if(!state.db) return;
+  try{ await state.db.doc('demandes/'+id).update({...patch,updatedAt:new Date().toISOString()}); toast('Enregistré'); }
+  catch(e){ toast('Modification impossible : '+(e.message||e.code)); }
+}
+async function deleteDemande(id){
+  state.confirmDel=null;
+  try{ await state.db.doc('demandes/'+id).delete(); toast('Demande supprimée'); }catch(e){ toast('Suppression impossible : '+(e.message||e.code)); renderPlan(); }
+}
+const form=document.getElementById('dform');
+function openForm(d){
+  state.editing = d?d.id:null;
+  document.getElementById('d-title').value=d?d.title:'';
+  document.getElementById('d-module').value=d?(d.module||MODULES_PLAN[0]):MODULES_PLAN[0];
+  document.getElementById('d-prio').value=d?(d.priority||'high'):'high';
+  document.getElementById('d-status').value=d?d.status:'a_affecter';
+  document.getElementById('d-res').innerHTML=resOptions(d?(d.missing?'__missing__':(d.assignee||'')):'');
+  document.getElementById('d-ref').value=d?(d.ref||''):'';
+  document.getElementById('d-roadmap').value=d?(d.roadmap||''):'';
+  document.getElementById('d-note').value=d?(d.note||''):'';
+  document.getElementById('d-save').textContent=d?'Enregistrer les modifications':'Ajouter la demande';
+  form.hidden=false; document.getElementById('d-title').focus(); form.scrollIntoView({block:'nearest'});
+}
+function closeForm(){ form.hidden=true; state.editing=null; }
+document.getElementById('btn-new').addEventListener('click',()=>openForm(null));
+document.getElementById('d-cancel').addEventListener('click',closeForm);
+form.addEventListener('submit',async e=>{
+  e.preventDefault(); if(!state.db) return;
+  const resv=document.getElementById('d-res').value;
+  const rm=document.getElementById('d-roadmap').value; const rmC=ROADMAP.chantiers.find(c=>c.n===rm);
+  const body={ title:document.getElementById('d-title').value.trim(), module:document.getElementById('d-module').value, priority:document.getElementById('d-prio').value, status:document.getElementById('d-status').value, assignee:resv==='__missing__'?'':resv, missing:resv==='__missing__', ref:document.getElementById('d-ref').value.trim(), note:document.getElementById('d-note').value.trim(), roadmap:rm, phase:rmC?rmC.phase:null, updatedAt:new Date().toISOString() };
+  if(!body.title) return;
+  const btn=document.getElementById('d-save'); btn.disabled=true;
+  try{
+    if(state.editing) await state.db.doc('demandes/'+state.editing).update(body);
+    else await state.db.collection('demandes').add({...body,createdAt:body.updatedAt,source:'manuel'});
+    toast(state.editing?'Demande modifiée':'Demande ajoutée'); closeForm();
+  }catch(err){ toast(err.code==='quota_exceeded'?'Limite de stockage atteinte : supprimez des demandes terminées.':'Enregistrement impossible : '+(err.message||err.code)); }
+  btn.disabled=false;
+});
+['f-status','f-module','f-res','f-phase'].forEach(id=>document.getElementById(id).addEventListener('change',e=>{ state.filters[id.slice(2)==='res'?'res':id.slice(2)]=e.target.value; renderPlan(); }));
+document.getElementById('f-q').addEventListener('input',e=>{ state.filters.q=e.target.value; renderPlan(); });
+
+// ---------- roadmap ----------
+const REAL_LBL = {done:['good','Livré sur main'],partial:['warn','Partiel'],none:['crit','Non commencé'],check:['neutral','À vérifier']};
+const REAL_W = {done:1,partial:.5,none:0,check:0};
+const resName = slug => { const a=allResources().find(x=>x.slug===slug); return a?a.name:slug; };
+function demandesOf(c){ return state.demandes.filter(d=>d.roadmap===c.n || (c.tk.length && c.tk.includes(d.ref))); }
+function resCell(ds){
+  if(!state.hasData) return '<span style="color:var(--ink-faint)">–</span>';
+  if(!ds.length) return '<span class="chip todo">Aucune demande</span>';
+  const parts=[...new Set(ds.map(x=>x.missing?'__missing__':(x.assignee||'')))];
+  return parts.map(p=>p==='__missing__'?'<span class="chip crit"><i class="dot"></i>Ressource manquante</span>':(p?`<span class="chip accent">${esc(resName(p))}</span>`:'<span class="chip neutral">Non affectée</span>')).join(' ')+`<div style="font-size:11px;color:var(--ink-faint);margin-top:3px">${esc([...new Set(ds.map(x=>STATUS_LBL[x.status]||x.status))].join(' · '))}</div>`;
+}
+function phaseStats(n){
+  const cs=ROADMAP.chantiers.filter(c=>c.phase===n);
+  const st={n:cs.length,done:0,partial:0,none:0,check:0,score:0,withRes:0,missing:0,unassigned:0,noDemande:0,names:new Set()};
+  cs.forEach(c=>{ st[c.real]++; st.score+=REAL_W[c.real]; if(state.hasData){ const ds=demandesOf(c); if(!ds.length) st.noDemande++; else if(ds.some(d=>d.assignee)){ st.withRes++; ds.forEach(d=>{ if(d.assignee) st.names.add(resName(d.assignee)); }); } else if(ds.some(d=>d.missing)) st.missing++; else st.unassigned++; } });
+  st.pct = st.n?Math.round(100*st.score/st.n):0;
+  return st;
+}
+function renderAvancement(){
+  const R=ROADMAP; const all=R.chantiers;
+  const tot={n:all.length,done:all.filter(c=>c.real==='done').length,partial:all.filter(c=>c.real==='partial').length,none:all.filter(c=>c.real==='none').length,check:all.filter(c=>c.real==='check').length};
+  const score=all.reduce((s,c)=>s+REAL_W[c.real],0); const pct=Math.round(100*score/tot.n);
+  document.getElementById('av-pct').textContent=pct;
+  document.getElementById('av-sub').textContent=`${tot.done} chantier${tot.done>1?'s':''} livré${tot.done>1?'s':''} et ${tot.partial} partiels sur ${tot.n}, toutes phases confondues. Phase 1 seule : ${phaseStats(1).pct} %.`;
+  document.getElementById('av-bar').innerHTML=`<i style="--c:var(--ok);width:${(100*tot.done/tot.n).toFixed(1)}%"></i><i style="--c:var(--warn);width:${(100*tot.partial/tot.n).toFixed(1)}%"></i><i style="--c:var(--line);width:${(100*(tot.none+tot.check)/tot.n).toFixed(1)}%"></i>`;
+  document.getElementById('av-done').textContent=tot.done; document.getElementById('av-partial').textContent=tot.partial; document.getElementById('av-none').textContent=tot.none+tot.check;
+  document.getElementById('av-none-sub').textContent=tot.check?`dont ${tot.check} à vérifier`:'';
+  const stats=R.phases.map(p=>({p,s:phaseStats(p.n)}));
+  const withRes=stats.reduce((a,x)=>a+x.s.withRes,0), missing=stats.reduce((a,x)=>a+x.s.missing,0), unassigned=stats.reduce((a,x)=>a+x.s.unassigned,0), noDem=stats.reduce((a,x)=>a+x.s.noDemande,0);
+  const tile=document.getElementById('av-res-tile'); document.getElementById('av-res').textContent=state.hasData?`${withRes} / ${tot.n}`:'–'; tile.classList.toggle('bad',state.hasData&&withRes<tot.n/2); tile.classList.toggle('ok',state.hasData&&withRes>=tot.n/2);
+  const sc = state.hasData ? schedule('all') : null;
+  const finCell = n => { if(!sc) return '<div class="fin">–</div>'; const pe=sc.phaseEnd[n]; if(pe.done) return '<div class="fin"><b>Terminée</b></div>'; if(!pe.end) return `<div class="fin"><b>Non datée</b><span class="sub">${pe.unplanned} demande${pe.unplanned>1?'s':''} sans ressource</span></div>`; return `<div class="fin"><b>${esc(fmtDS(pe.end))} ${pe.end.getFullYear()}</b>${pe.unplanned?`<span class="sub">+ ${pe.unplanned} non datée${pe.unplanned>1?'s':''} (${Math.round(pe.unplannedDays)} j)</span>`:'<span class="sub">avec les ressources affectées</span>'}</div>`; };
+  document.getElementById('phase-rows').innerHTML=stats.map(({p,s})=>`<div class="ph-row"><div class="t">Phase ${p.n} · ${esc(p.t)}<span class="sub">${esc(p.lbl)}</span></div><div class="w">${esc(p.w)}</div><div class="n">${s.n} · ${s.done} / ${s.partial} / ${s.none+s.check}</div><div class="ph-prog"><div class="bar"><i style="--c:var(--ok);width:${(100*s.done/s.n).toFixed(1)}%"></i><i style="--c:var(--warn);width:${(100*s.partial/s.n).toFixed(1)}%"></i></div><span class="pct num">${s.pct} %</span></div><div class="ph-res">${state.hasData?`<b>${s.withRes}</b> avec ressource${s.missing?` · <b style="color:var(--crit)">${s.missing}</b> manquante${s.missing>1?'s':''}`:''}${s.unassigned?` · ${s.unassigned} à affecter`:''}${s.noDemande?` · ${s.noDemande} sans demande`:''}${s.names.size?`<br><span style="color:var(--ink-faint)">${esc([...s.names].join(', '))}</span>`:''}`:'–'}</div>${finCell(p.n)}<div><span class="chip ${p.cls}"><i class="dot"></i>${esc(p.cls==='crit'?'En retard':p.cls==='warn'?'En cours':p.n===5?'Sans date':'À venir')}</span></div></div>`).join('');
+  const p1=phaseStats(1);
+  const msgs=[
+    `<b>Avancement global pondéré : ${pct} %</b> — ${tot.done} chantiers livrés, ${tot.partial} partiels, ${tot.none+tot.check} non commencés ou à vérifier, sur ${tot.n} chantiers en 5 phases.`,
+    `<b>Phase 1 (échéance 25 août) : ${p1.pct} % réalisé, échéance dépassée.</b> ${p1.done} chantiers livrés et ${p1.partial} partiels sur main d'aeig-plateform, mais les tickets Plane correspondants n'ont pas bougé : le pilotage ne reflète pas le code.`,
+    `<b>Phase 2 (fin le 13 septembre) : ${phaseStats(2).pct} %.</b> Aucun des ${phaseStats(2).n} chantiers n'est démarré ; calendar et esignature manquent déjà à la Phase 1.`,
+    `<b>Phase 3 a de l'avance sur un point :</b> l'admission V2 existe déjà sur main (facette candidat, formulaire public, poste de relance), alors que la roadmap la plaçait après le pack DV.`,
+    state.hasData?`<b>Ressources : ${withRes} chantiers sur ${tot.n} ont une ressource affectée</b>${missing?`, ${missing} sont déclarés sans ressource`:''}${unassigned?`, ${unassigned} restent à affecter`:''}${noDem?`, ${noDem} n'ont pas encore de demande dans le plan de charge`:''}.`:'<b>Ressources :</b> plan de charge indisponible dans cette copie de la page.',
+    sc?(sc.maxEnd?`<b>Fin estimée avec les ressources affectées : ${esc(fmtDY(sc.maxEnd))}</b>, pour ${fmtN(Math.round(sc.loadTotal))} jours de boucle humaine planifiés sur ${sc.capTotal} jours de capacité par semaine${sc.unplannedDays?` ; ${fmtN(Math.round(sc.unplannedDays))} jours restent sans ressource et ne sont pas datés`:''}. Claude Code écrit le code, les ressources relisent, répondent et recettent. Détail dans l'échéancier.`:`<b>Aucune date de fin calculable :</b> aucune demande ouverte n'est affectée à une ressource ayant de la capacité.`):'',
+    `<b>Concentration :</b> la V2 a été écrite par deux personnes (Franck puis Giovanni), désormais sur une seule branche main fusionnée le 7 septembre ; la V1 en production repose à ${Math.round(100*byslug.franck.commits/DATA.total)} % sur Franck. Équipe V2 arrêtée le 7 septembre : Franck et Modeste à 100 % sur le socle, Giovanni, Alex et Cédric à 30 %.`,
+    `<b>Décisions attendues :</b> Permify par stack ou AEIG ID + rôles déduits ; DV-first ou epitech-benin d'abord ; recadrage des tickets 830, 831, 832, 851, 855 déjà couverts par le code ; préparation du serveur DEV Hetzner pour le déploiement quotidien.`
+  ];
+  document.getElementById('av-messages').innerHTML=msgs.filter(Boolean).map(m=>`<li>${m}</li>`).join('');
+}
+function renderRoadmap(){
+  const R=ROADMAP, d0=new Date(R.range.start), d1=new Date(R.range.end); const todayIso=isoD(new Date());
+  const pos = s => Math.max(0,Math.min(100,100*(new Date(s)-d0)/(d1-d0)));
+  const ticks=[]; for(let t=new Date(d0); t<d1; t.setDate(t.getDate()+7)) ticks.push(`${t.getDate()} ${MONTHS12[t.getMonth()]}`);
+  const rows = R.phases.filter(p=>p.start).map(p=>{ const l=pos(p.start), w=(p.end?pos(p.end):100)-l; return `<div class="tl-row"><div class="tl-bar${p.late?' late':''}${p.end?'':' open'}" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%" tabindex="0" data-tip="<span class=k>Phase ${p.n}</span><br>${esc(p.t)}<br>${esc(p.w)}">${w<12?`P${p.n}`:`Phase ${p.n} · ${esc(p.short)}`}</div></div>`; }).join('');
+  document.getElementById('timeline').innerHTML = `<div class="tl-rows">${rows}<div class="tl-today" data-label="Aujourd'hui" style="left:${pos(todayIso).toFixed(2)}%"></div></div><div class="tl-axis">${ticks.map(t=>`<span>${t}</span>`).join('')}</div>`;
+  document.getElementById('rm-count').textContent=`5 phases · ${R.chantiers.length} chantiers · ${R.chantiers.filter(c=>c.tk.length).length} avec ticket Plane`;
+  document.getElementById('rm-today').textContent=`Aujourd'hui : ${fmtDY(new Date())}, semaine ${isoWeek(new Date())}`;
+  document.getElementById('chantiers').innerHTML = R.phases.map(p=>{
+    const s=phaseStats(p.n);
+    const head=`<div class="ch-phase"><span class="chip ${p.cls} mono">Phase ${p.n}</span><span class="t">${esc(p.t)}</span><span class="w">${esc(p.w)} · ${s.n} chantiers · ${s.pct} %</span></div>`;
+    const rows=R.chantiers.filter(c=>c.phase===p.n).map(c=>{
+      const [cls,lbl]=REAL_LBL[c.real];
+      const tks = c.tk.length?c.tk.map(t=>`<span class="chip neutral mono">${esc(t)}</span>`).join(''):'<span class="chip todo">à créer</span>';
+      const pl = !c.tk.length?'<span style="color:var(--ink-faint)">–</span>':(c.tk.every(t=>R.planeDone.includes(t))?'<span class="chip good"><i class="dot"></i>Done</span>':(c.tk.every(t=>R.planeBacklog.includes(t))?'<span class="chip todo"><i class="dot"></i>Backlog</span>':'<span class="chip neutral"><i class="dot"></i>Todo</span>'));
+      return `<div class="ch-row${c.real==='none'?' late':''}"><span class="num">${esc(c.n)}${c.effort?`<br><span style="font-size:10.5px">${esc(c.effort)}</span>`:''}</span><div class="t">${esc(c.t)}<div class="sub">${esc(c.sub)}</div></div><div class="tk">${tks}</div><div>${pl}</div><div class="real"><span class="chip ${cls}" style="margin-bottom:4px"><i class="dot"></i>${lbl}</span>${c.note?'<br>'+esc(c.note):''}</div><div>${resCell(demandesOf(c))}</div></div>`;
+    }).join('');
+    return head+rows;
+  }).join('');
+  document.getElementById('tranches').innerHTML = R.tranches.map(t=>`<div class="tr-row"><span class="id">${esc(t.id)}</span><span>${esc(t.t)}</span><span class="chip ${t.state==='done'?'good':'neutral'}"><i class="dot"></i>${t.state==='done'?'Livrée':'Restante'}</span><span style="font-size:11.5px;color:var(--ink-faint)">→ ${esc(t.map)}</span></div>`).join('');
+  document.getElementById('ecarts').innerHTML = R.ecarts.map(([k,v,done])=>`<li class="${done?'ecart-done':''}"><b>${esc(k)}.</b> ${done?'<span class="chip good" style="font-size:10.5px;padding:0 6px">Réglé</span> ':''}${esc(v)}</li>`).join('');
+}
+
+// ---------- échéancier ----------
+const MONTHS12=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+const DEFAULT_SETTINGS={startDate:'2026-09-08',sizeDays:{S:.5,M:1.5,L:3,XL:6},defaultDays:.25};
+state.settings={...DEFAULT_SETTINGS,sizeDays:{...DEFAULT_SETTINGS.sizeDays}}; state.scope='all';
+const chantierOf = d => d.roadmap?ROADMAP.chantiers.find(c=>c.n===d.roadmap):null;
+function restOf(d){
+  if(d.restDays!=null && d.restDays!=='' && !isNaN(+d.restDays)) return +d.restDays;
+  const c=chantierOf(d); const S=state.settings;
+  if(c){ const size=(c.effort||'M').split(/[–-]/).pop(); const base=S.sizeDays[size]??S.sizeDays.M; const share=Math.max(1,state.demandes.filter(x=>x.roadmap===c.n && x.status!=='terminee').length); const mult=c.real==='done'?0:(c.real==='partial'?.5:1); return Math.round((base*mult/share)*2)/2; }
+  return S.defaultDays;
+}
+function capOf(a){ const o=state.resources[a.slug]||{}; if(o.capacity!=null && o.capacity!=='') return +o.capacity; const st=a.custom?(o.status||'a_recruter'):resStatus(a); return st==='actif'?5:0; }
+const parseD = s => { const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); };
+const isoD = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const fmtDY = d => `${d.getDate()} ${MONTHS12[d.getMonth()]} ${d.getFullYear()}`;
+const fmtDS = d => `${d.getDate()} ${MONTHS12[d.getMonth()]}`;
+function nextWorkday(d){ const x=new Date(d); while(x.getDay()===0||x.getDay()===6) x.setDate(x.getDate()+1); return x; }
+function wdToDate(start, t){ let x=nextWorkday(start); let n=Math.ceil(t-1e-9); while(n>0){ x.setDate(x.getDate()+1); x=nextWorkday(x); n--; } return x; }
+const dayDiff = (a,b) => Math.round((b-a)/86400000);
+const PRIO_RANK={urgent:0,high:1,medium:2,low:3};
+function schedule(scope){
+  const S=state.settings; const start=nextWorkday(parseD(S.startDate||isoD(new Date())));
+  const open=state.demandes.filter(d=>d.status!=='terminee' && (scope==='all' || d.roadmap));
+  const rows=allResources().map(a=>{ const o=state.resources[a.slug]||{}; const cap=capOf(a); let from=start; if(o.availableFrom){ const f=parseD(o.availableFrom); if(f>from) from=nextWorkday(f); } return {a,cap,from,items:[],load:0}; });
+  const byslugR=Object.fromEntries(rows.map(r=>[r.a.slug,r]));
+  const items=[], unplanned=[];
+  const order=(x,y)=>( (x.status==='bloquee')-(y.status==='bloquee') ) || ((x.status==='en_cours'?0:1)-(y.status==='en_cours'?0:1)) || ((PRIO_RANK[x.priority]??9)-(PRIO_RANK[y.priority]??9)) || ((x.phase||9)-(y.phase||9)) || String(x.roadmap||'').localeCompare(String(y.roadmap||''),undefined,{numeric:true}) || (x.title||'').localeCompare(y.title||'');
+  for(const d of open){ const days=restOf(d); if(days<=0) continue; if(!d.assignee || !byslugR[d.assignee]){ unplanned.push({d,days,why:d.missing?'missing':'none'}); continue; } const r=byslugR[d.assignee]; if(r.cap<=0){ unplanned.push({d,days,why:'nocap',r}); continue; } r.items.push({d,days}); }
+  let maxEnd=null;
+  rows.forEach(r=>{ r.items.sort((x,y)=>order(x.d,y.d)); let t=0; r.items.forEach(it=>{ it.t0=t; t+=it.days/(r.cap/5); it.t1=t; it.start=wdToDate(r.from,it.t0); it.end=wdToDate(r.from,it.t1); r.load+=it.days; items.push({...it,r}); if(!maxEnd||it.end>maxEnd) maxEnd=it.end; }); r.end = r.items.length?r.items[r.items.length-1].end:null; });
+  const phaseEnd={}; ROADMAP.phases.forEach(p=>{ const its=items.filter(it=>it.d.phase===p.n); const un=unplanned.filter(u=>u.d.phase===p.n); const openN=open.filter(d=>d.phase===p.n).length; phaseEnd[p.n]={end:its.length?its.reduce((m,it)=>it.end>m?it.end:m,its[0].end):null, unplanned:un.length, unplannedDays:un.reduce((s,u)=>s+u.days,0), open:openN, done:openN===0}; });
+  const capTotal=rows.reduce((s,r)=>s+(r.cap>0?r.cap:0),0);
+  return {start,rows,items,unplanned,maxEnd,phaseEnd,capTotal,loadTotal:items.reduce((s,it)=>s+it.days,0),unplannedDays:unplanned.reduce((s,u)=>s+u.days,0)};
+}
+function renderSchedule(){
+  const body=document.getElementById('sched-body'), un=document.getElementById('sched-unavailable');
+  if(!state.hasData){ body.hidden=true; un.hidden=false; return; }
+  body.hidden=false; un.hidden=true;
+  const sc=schedule(state.scope); const S=state.settings;
+  document.getElementById('s-end').textContent = sc.maxEnd?fmtDY(sc.maxEnd):'–';
+  document.getElementById('s-end-sub').textContent = sc.maxEnd?`avec les ressources affectées${sc.unplanned.length?` · ${sc.unplanned.length} demande${sc.unplanned.length>1?'s':''} non datée${sc.unplanned.length>1?'s':''}`:''}`:'aucune demande datée';
+  document.getElementById('s-load').textContent = fmtN(Math.round(sc.loadTotal));
+  document.getElementById('s-load-sub').textContent = `${sc.items.length} demandes sur ${sc.rows.filter(r=>r.items.length).length} ressource${sc.rows.filter(r=>r.items.length).length>1?'s':''}`;
+  document.getElementById('s-unp').textContent = fmtN(Math.round(sc.unplannedDays));
+  document.getElementById('s-unp-sub').textContent = `${sc.unplanned.length} demande${sc.unplanned.length>1?'s':''} sans ressource ou sans capacité`;
+  const ut=document.getElementById('s-unp-tile'); ut.classList.toggle('bad',sc.unplannedDays>0); ut.classList.toggle('ok',sc.unplannedDays===0);
+  document.getElementById('s-cap').textContent = sc.capTotal;
+  document.getElementById('s-cap-sub').textContent = sc.rows.filter(r=>r.cap>0).map(r=>`${firstName(r.a)} ${r.cap}`).join(' · ')||'aucune ressource disponible';
+  // gantt
+  const horizonEnd = new Date(Math.max(sc.maxEnd?sc.maxEnd.getTime():0, sc.start.getTime()+70*86400000)); horizonEnd.setDate(horizonEnd.getDate()+7);
+  const total=dayDiff(sc.start,horizonEnd); const pos=d=>100*dayDiff(sc.start,d)/total;
+  const wkPct=100*7/total;
+  let axis=''; for(let d=new Date(sc.start); d<horizonEnd; d.setDate(d.getDate()+1)){ if(d.getDate()===1||(d.getTime()===sc.start.getTime())) axis+=`<span class="mo" style="left:${pos(d).toFixed(2)}%">${MONTHS12[d.getMonth()]} ${d.getFullYear()}</span>`; if(d.getDay()===1) axis+=`<span class="wk" style="left:${pos(d).toFixed(2)}%">${d.getDate()}</span>`; }
+  const today=new Date(); today.setHours(0,0,0,0);
+  const rowsHtml=sc.rows.filter(r=>r.items.length||r.cap>0).sort((x,y)=>y.load-x.load).map(r=>{
+    const bars=r.items.map(it=>{ const l=pos(it.start), w=Math.max(0.4,pos(it.end)-l+ (100/total)); const c=it.d.phase?`p${it.d.phase}`:'other'; const blk=it.d.status==='bloquee'?' blk':''; const lbl=(it.d.ref?it.d.ref+' ':'')+it.d.title; return `<div class="g-bar ${c}${blk}" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%;${it.d.phase?`--c:var(--p${it.d.phase})`:''}" tabindex="0" data-tip="<span class=k>${esc(fmtDS(it.start))} → ${esc(fmtDS(it.end))} · ${it.days} j</span><br><b>${esc(lbl)}</b><br>${esc(it.d.phase?`Phase ${it.d.phase} · ${it.d.roadmap}`:(it.d.module||''))} · ${esc(STATUS_LBL[it.d.status]||'')}">${w*7>140?esc(lbl):''}</div>`; }).join('');
+    return `<div class="g-row"><div class="g-name"><i class="sw" style="--c:${r.a.color}"></i><div><div>${esc(r.a.name)}</div><div class="sub">${r.cap} j/sem · ${Math.round(r.load)} j${r.end?' · fin '+fmtDS(r.end):''}</div></div></div><div class="g-track" style="--wk:${wkPct.toFixed(3)}%">${bars}</div></div>`;
+  }).join('');
+  const ms = ROADMAP.phases.filter(p=>sc.phaseEnd[p.n].end).map(p=>`<div class="g-ms" style="left:${pos(sc.phaseEnd[p.n].end).toFixed(2)}%" data-label="Fin P${p.n} · ${esc(fmtDS(sc.phaseEnd[p.n].end))}"></div>`).join('');
+  const todayMark = (today>=sc.start && today<horizonEnd)?`<div class="g-today" style="left:${pos(today).toFixed(2)}%"></div>`:'';
+  document.getElementById('gantt').innerHTML = `<div class="g-head"><div></div><div class="g-axis">${axis}</div></div><div class="g-rows" style="position:relative"><div style="position:absolute;left:180px;right:0;top:0;bottom:0;pointer-events:none">${todayMark}${ms}</div>${rowsHtml||'<div class="pc-empty">Aucune ressource avec de la capacité. Renseignez la capacité dans les fiches ressources.</div>'}</div>`;
+  document.getElementById('g-legend').innerHTML = ROADMAP.phases.map(p=>`<span class="k"><i class="sw" style="--c:var(--p${p.n})"></i>Phase ${p.n} · ${esc(p.short||'')}</span>`).join('')+`<span class="k"><i class="sw" style="--c:color-mix(in srgb,var(--ink-faint) 55%,transparent)"></i>Hors roadmap</span><span class="k"><i class="sw" style="--c:var(--serious)"></i>Bloquée (planifiée en dernier)</span>`;
+  // unplanned
+  const u=document.getElementById('unplanned');
+  if(!sc.unplanned.length) u.innerHTML=`<b>Tout ce qui est ouvert a une ressource capable de le traiter.</b>`;
+  else if(false){}
+  else { const g={missing:[],none:[],nocap:[]}; sc.unplanned.forEach(x=>g[x.why].push(x)); const li=x=>`<li>${x.d.ref?`<span class="mono" style="color:var(--ink-faint)">${esc(x.d.ref)}</span> `:''}${esc(x.d.title)} <span class="mono" style="color:var(--ink-faint)">· ${x.days} j${x.r?' · '+esc(firstName(x.r.a)):''}</span></li>`; u.innerHTML=`<b>Non daté : ${fmtN(Math.round(sc.unplannedDays))} jours de boucle sur ${sc.unplanned.length} demandes.</b>${g.missing.length?`<div><span class="chip crit"><i class="dot"></i>Ressource manquante déclarée · ${g.missing.length}</span><ul>${g.missing.map(li).join('')}</ul></div>`:''}${g.none.length?`<div><span class="chip neutral"><i class="dot"></i>Non affectées · ${g.none.length}</span><ul>${g.none.map(li).join('')}</ul></div>`:''}${g.nocap.length?`<div><span class="chip warn"><i class="dot"></i>Affectées à une ressource sans capacité · ${g.nocap.length}</span><ul>${g.nocap.map(li).join('')}</ul></div>`:''}`; }
+  // settings
+  const set=(id,v)=>{ const el=document.getElementById(id); if(document.activeElement!==el) el.value=v; };
+  set('st-start',S.startDate); set('st-S',S.sizeDays.S); set('st-M',S.sizeDays.M); set('st-L',S.sizeDays.L); set('st-XL',S.sizeDays.XL); set('st-def',S.defaultDays);
+  ['st-start','st-S','st-M','st-L','st-XL','st-def'].forEach(id=>document.getElementById(id).disabled=!state.canEdit);
+}
+async function saveSettings(patch){ if(!state.db) return; const body={...state.settings,...patch,sizeDays:{...state.settings.sizeDays,...(patch.sizeDays||{})},updatedAt:new Date().toISOString()}; try{ await state.db.doc('settings/plan').set(body); toast('Réglages enregistrés'); }catch(e){ toast('Enregistrement impossible : '+(e.message||e.code)); } }
+document.getElementById('st-start').addEventListener('change',e=>{ if(e.target.value) saveSettings({startDate:e.target.value}); });
+['S','M','L','XL'].forEach(k=>document.getElementById('st-'+k).addEventListener('change',e=>{ const v=parseFloat(e.target.value); if(!isNaN(v)) saveSettings({sizeDays:{[k]:Math.max(0,v)}}); }));
+document.getElementById('st-def').addEventListener('change',e=>{ const v=parseFloat(e.target.value); if(!isNaN(v)) saveSettings({defaultDays:Math.max(0,v)}); });
+document.querySelectorAll('[data-scope]').forEach(b=>b.addEventListener('click',()=>{ state.scope=b.dataset.scope; b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); renderSchedule(); }));
+
+// ---------- vues ----------
+const VIEWS=['chantiers','avancement','roadmap','plan','ressources'];
+function currentView(){ const v=location.hash.replace('#',''); return VIEWS.includes(v)?v:'chantiers'; }
+function updateBanner(){ const b=document.getElementById('plan-banner'); b.hidden = currentView()==='chantiers' || !b.innerHTML; }
+function showView(v){
+  if(!VIEWS.includes(v)) v='chantiers';
+  VIEWS.forEach(x=>{ document.getElementById('view-'+x).hidden = x!==v; });
+  document.querySelectorAll('.view-tab').forEach(b=>{ b.classList.toggle('active',b.dataset.go===v); b.setAttribute('aria-selected',String(b.dataset.go===v)); });
+  if(location.hash.replace('#','')!==v){ try{ history.replaceState(null,'','#'+v); }catch(e){} }
+  updateBanner();
+}
+document.querySelectorAll('.view-tab').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.go)));
+window.addEventListener('hashchange',()=>showView(currentView()));
+showView(currentView());
+
+// ---------- mode (direct / instantané) ----------
+const fmtTS = iso => { const d=new Date(iso); if(isNaN(d)) return iso; return `${d.getDate()} ${MONTHS12[d.getMonth()]} ${d.getFullYear()}, ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; };
+function isoWeek(d){ const x=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())); const day=x.getUTCDay()||7; x.setUTCDate(x.getUTCDate()+4-day); const y0=new Date(Date.UTC(x.getUTCFullYear(),0,1)); return Math.ceil((((x-y0)/86400000)+1)/7); }
+function setMode(mode){
+  state.mode=mode;
+  const banner=document.getElementById('plan-banner'); const meta=document.getElementById('meta-plan');
+  const when = SNAP&&SNAP.exportedAt ? fmtTS(SNAP.exportedAt) : '';
+  if(mode==='live'){ banner.innerHTML=`<span>&#9998;</span><span><b>Édition en direct.</b> Les affectations, statuts, charges et capacités modifiés ici sont enregistrés pour tous les lecteurs de cet artifact. La page publiée sur GitHub Pages est un instantané, republié à la main (voir RULES.md du dépôt zeno-suivi).</span>`; meta.textContent='en direct (artifact Claude)'; }
+  else if(mode==='snapshot'){ banner.innerHTML=`<span>&#128337;</span><span><b>Instantané du plan de charge exporté le ${esc(when)}.</b> Lecture seule ici. Les modifications se font dans <a href="${ARTIFACT_URL}" target="_blank" rel="noopener">l'artifact Claude « Plan de charge Zeno »</a>, puis la page est republiée (RULES.md §9).</span>`; meta.textContent=`instantané du ${when}`; }
+  else { banner.innerHTML=`<span>&#9888;</span><span><b>Plan de charge indisponible</b> : ni base partagée, ni instantané dans cette copie de la page.</span>`; meta.textContent='indisponible'; }
+  document.querySelectorAll('[data-mode-sub]').forEach(el=>el.textContent = mode==='live'?'plan de charge, en direct':(mode==='snapshot'?`plan de charge au ${when}`:'plan de charge indisponible'));
+  updateBanner();
+}
+function applySnapshot(){
+  state.demandes=(SNAP.demandes||[]).map(d=>({...d}));
+  state.resources=Object.fromEntries(Object.entries(SNAP.resources||{}).map(([k,v])=>[k,{...v}]));
+  if(SNAP.settings){ const s=SNAP.settings; state.settings={...DEFAULT_SETTINGS,...s,sizeDays:{...DEFAULT_SETTINGS.sizeDays,...(s.sizeDays||{})}}; }
+}
+function rerenderAll(){ fillStatic(); renderResources(); renderFrise(); renderAlerts(); renderPlan(); renderRoadmap(); renderAvancement(); renderSchedule(); }
+
+// ---------- boot ----------
+renderSynthese(); renderModules(); renderFrise(); fillStatic(); renderResources(); renderAlerts(); renderPlan(); renderRoadmap(); renderAvancement(); renderSchedule();
+(async()=>{
+  let db=null;
+  try{ db = (window.claude && window.claude.use) ? await window.claude.use('db') : null; }catch(e){ db=null; }
+  if(!db){
+    if(SNAP && Array.isArray(SNAP.demandes) && SNAP.demandes.length){ applySnapshot(); state.hasData=true; state.canEdit=false; setMode('snapshot'); }
+    else { setMode('none'); document.getElementById('plan-unavailable').hidden=false; document.getElementById('plan-body').hidden=true; }
+    rerenderAll(); return;
+  }
+  state.db=db; state.hasData=true; state.canEdit=true; setMode('live');
+  db.doc('settings/plan').onSnapshot(snap=>{ if(snap.exists){ const s=snap.data(); state.settings={...DEFAULT_SETTINGS,...s,sizeDays:{...DEFAULT_SETTINGS.sizeDays,...(s.sizeDays||{})}}; } renderPlan(); renderAvancement(); renderSchedule(); },()=>{});
+  db.collection('demandes').onSnapshot(snap=>{ state.demandes=snap.docs.map(d=>({id:d.id,...d.data()})); renderPlan(); renderResources(); renderAlerts(); renderRoadmap(); renderAvancement(); renderSchedule(); },err=>{ document.getElementById('plan-unavailable').textContent='Le plan de charge ne répond plus ('+err.code+'). Rechargez la page.'; document.getElementById('plan-unavailable').hidden=false; document.getElementById('plan-unavailable').classList.add('err'); });
+  db.collection('resources').onSnapshot(snap=>{ state.resources=Object.fromEntries(snap.docs.map(d=>[d.id,d.data()])); fillStatic(); renderResources(); renderFrise(); renderAlerts(); renderPlan(); renderAvancement(); renderSchedule(); },()=>{});
+})();
 </script>

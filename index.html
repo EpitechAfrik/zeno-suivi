@@ -771,8 +771,13 @@ footer p+p{margin-top:6px}
               </div>
             
               <div class="task">
-                <span class="t-status warn"></span>
-                <span class="t-label">Travail en cours : rédaction des spécifications de chaque module (détail dans "CRM AEIG (toutes marques)")</span>
+                <span class="t-status ok"></span>
+                <span class="t-label">Fiches techniques des 12 modules cibles, gabarit commun et registre des incohérences de données — rédigées le 19 août. Rédaction terminée</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Le développement de la nouvelle version est à l'arrêt depuis le 17 août : l'équipe est repartie sur la maintenance et les évolutions de la version actuelle. Détail dans "CRM AEIG (toutes marques)"</span>
               </div>
             
               <div class="task">
@@ -1855,7 +1860,8 @@ footer p+p{margin-top:6px}
             {label:'Décision actée : chaque marque aura sa propre installation Zeno indépendante, plutôt qu\'une installation unique partagée par toutes (pour qu\'une panne ou une mise à jour chez une marque ne touche jamais les autres)', status:'ok'},
             {label:'Décision actée : Digital Valley sera la première marque à utiliser la nouvelle version ; Epitech restera sur l\'ancienne le temps que ce soit stabilisé', status:'ok'},
             {label:'Corriger les accès non protégés déjà identifiés — priorité de la semaine en cours', status:'crit'},
-            {label:'Travail en cours : rédaction des spécifications de chaque module (détail dans "CRM AEIG (toutes marques)")', status:'warn'},
+            {label:'Fiches techniques des 12 modules cibles, gabarit commun et registre des incohérences de données — rédigées le 19 août. Rédaction terminée', status:'ok'},
+            {label:'Le développement de la nouvelle version est à l\'arrêt depuis le 17 août : l\'équipe est repartie sur la maintenance et les évolutions de la version actuelle. Détail dans "CRM AEIG (toutes marques)"', status:'crit'},
             {label:'Prévu : migrer progressivement les autres chantiers vers la nouvelle structure', status:'idle'},
             {label:'Prévu : terminer la modernisation des écrans encore sur l\'ancien système d\'affichage', status:'idle'},
             {label:'Prévu : nettoyer le code obsolète au fur et à mesure des chantiers', status:'idle'},
@@ -2096,7 +2102,7 @@ footer p+p{margin-top:6px}
           name:'CRM AEIG (toutes marques)', desc:'Rendre Zeno réutilisable pour les autres marques du groupe AEIG',
           status:'en-cours', cdc:'oui', owner:'Franck Birba', role:'', when:'09/09', stale:false,
           blocker:'Chartes des 4 marques', support:[{name:'Yemalin Modeste', role:''}], brandContact:{name:'Stéphanie, Gwen', role:''},
-          comments:'Le rythme de ce chantier est limité par le fait que l\'équipe doit, en parallèle, maintenir et continuer à développer les fonctionnalités de la version actuelle de Zeno (V1). L\'idée est d\'avoir des agents autonomes qui construisent cette nouvelle version en continu. (Rapporté par Yemalin le 02/09, pas vérifié par lecture de code.) — Mise à jour du 09/09, VÉRIFIÉE PAR LECTURE DIRECTE DU CODE du dépôt aeig-plateform : le développement a démarré de zéro le 8 juillet et a produit, en deux mois et à deux personnes, 382 fichiers, 37 300 lignes, 730 vérifications automatiques et 9 200 lignes de spécifications. La correction de la note précédente est importante : contrairement à ce qui était écrit ici, une installation Digital Valley existe bel et bien et démarre sur sa propre base de données. Ce qui reste à construire est nommé dans les lignes ci-dessous. L\'essentiel de l\'effort de ces deux mois n\'a pas produit d\'écrans mais la fondation commune : le premier module écrit a coûté 9 976 lignes, le dernier 1 080 pour une capacité complète et testée, donc chaque module suivant coûte moins que le précédent.',
+          comments:'Le rythme de ce chantier est limité par le fait que l\'équipe doit, en parallèle, maintenir et continuer à développer les fonctionnalités de la version actuelle de Zeno (V1). L\'idée est d\'avoir des agents autonomes qui construisent cette nouvelle version en continu. (Rapporté par Yemalin le 02/09, pas vérifié par lecture de code — et démenti depuis : voir la ligne rouge ci-dessous, le développement de la nouvelle version est à l\'arrêt depuis le 17 août.) — Mise à jour du 09/09, VÉRIFIÉE PAR LECTURE DIRECTE DU CODE du dépôt aeig-plateform : le développement a démarré de zéro le 8 juillet et a produit, en deux mois et à deux personnes, 382 fichiers, 37 300 lignes, 730 vérifications automatiques et 9 200 lignes de spécifications. La correction de la note précédente est importante : contrairement à ce qui était écrit ici, une installation Digital Valley existe bel et bien et démarre sur sa propre base de données. Ce qui reste à construire est nommé dans les lignes ci-dessous. L\'essentiel de l\'effort de ces deux mois n\'a pas produit d\'écrans mais la fondation commune : le premier module écrit a coûté 9 976 lignes, le dernier 1 080 pour une capacité complète et testée, donc chaque module suivant coûte moins que le précédent.',
           tasks:[
             {label:'Décision actée : chaque marque a sa propre installation Zeno indépendante, avec les modules dont elle a besoin activés', status:'ok'},
             {label:'Décision actée : l\'équipe technique centrale gère le produit (le socle commun) ; chaque marque gère sa propre installation (données, réglages, utilisateurs)', status:'ok'},
@@ -2120,7 +2126,8 @@ footer p+p{margin-top:6px}
             {label:'À écrire : l\'envoi des informations depuis l\'actuel Zeno vers la nouvelle version (la réception est prête, pas l\'émission)', status:'warn'},
             {label:'À mettre en service : l\'environnement de démonstration. Aujourd\'hui la nouvelle version se montre sur un poste, pas sur une adresse — c\'est un prérequis à toute date annoncée aux marques', status:'warn'},
             {label:'Retard sur le planning : la première phase (échéance du 25 août) est réalisée à 47 %, la deuxième phase n\'est pas démarrée. Avancement d\'ensemble : 23 % des 39 chantiers des 5 phases', status:'crit'},
-            {label:'Travail en cours : rédaction des spécifications de chaque module, une par une, pour permettre le développement autonome de la nouvelle version de Zeno', status:'warn'},
+            {label:'Fiches techniques des 12 modules qui composeront la nouvelle version, plus un gabarit commun et un registre des incohérences de données — rédigées le 19 août. Ce chantier de rédaction est terminé, pas en cours', status:'ok'},
+            {label:'Aucune nouvelle fonctionnalité n\'a été écrite sur la nouvelle version depuis le 17 août. Depuis, deux apports seulement : la fusion des deux lignes de développement en une seule et la mise en place des vérifications automatiques (7 septembre). L\'équipe est repartie sur la maintenance et les évolutions de la version actuelle — c\'est la principale raison du retard', status:'crit'},
           ]
         },
         {

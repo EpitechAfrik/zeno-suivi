@@ -2094,9 +2094,9 @@ footer p+p{margin-top:6px}
       modules: [
         {
           name:'CRM AEIG (toutes marques)', desc:'Rendre Zeno réutilisable pour les autres marques du groupe AEIG',
-          status:'en-cours', cdc:'oui', owner:'Franck Birba', role:'', when:'02/09', stale:false,
-          support:[{name:'Yemalin Modeste', role:''}], brandContact:{name:'Stéphanie, Gwen', role:''},
-          comments:'Le rythme de ce chantier est limité par le fait que l\'équipe doit, en parallèle, maintenir et continuer à développer les fonctionnalités de la version actuelle de Zeno (V1). L\'idée est d\'avoir des agents autonomes qui construisent cette nouvelle version en continu. (Rapporté par Yemalin le 02/09, pas vérifié par lecture de code.)',
+          status:'en-cours', cdc:'oui', owner:'Franck Birba', role:'', when:'09/09', stale:false,
+          blocker:'Chartes des 4 marques', support:[{name:'Yemalin Modeste', role:''}], brandContact:{name:'Stéphanie, Gwen', role:''},
+          comments:'Le rythme de ce chantier est limité par le fait que l\'équipe doit, en parallèle, maintenir et continuer à développer les fonctionnalités de la version actuelle de Zeno (V1). L\'idée est d\'avoir des agents autonomes qui construisent cette nouvelle version en continu. (Rapporté par Yemalin le 02/09, pas vérifié par lecture de code.) — Mise à jour du 09/09, VÉRIFIÉE PAR LECTURE DIRECTE DU CODE du dépôt aeig-plateform : le développement a démarré de zéro le 8 juillet et a produit, en deux mois et à deux personnes, 382 fichiers, 37 300 lignes, 730 vérifications automatiques et 9 200 lignes de spécifications. La correction de la note précédente est importante : contrairement à ce qui était écrit ici, une installation Digital Valley existe bel et bien et démarre sur sa propre base de données. Ce qui reste à construire est nommé dans les lignes ci-dessous. L\'essentiel de l\'effort de ces deux mois n\'a pas produit d\'écrans mais la fondation commune : le premier module écrit a coûté 9 976 lignes, le dernier 1 080 pour une capacité complète et testée, donc chaque module suivant coûte moins que le précédent.',
           tasks:[
             {label:'Décision actée : chaque marque a sa propre installation Zeno indépendante, avec les modules dont elle a besoin activés', status:'ok'},
             {label:'Décision actée : l\'équipe technique centrale gère le produit (le socle commun) ; chaque marque gère sa propre installation (données, réglages, utilisateurs)', status:'ok'},
@@ -2107,6 +2107,19 @@ footer p+p{margin-top:6px}
             {label:'Document qui décrit les grands blocs (modules) qui composent le projet — rédigé', status:'ok'},
             {label:'Fiche type de ce qu\'est un module Zeno activable/désactivable — rédigée', status:'ok'},
             {label:'Plan d\'infrastructure détaillé posé (répartition de charge, bascule automatique en cas de panne, déploiement sans interruption)', status:'ok'},
+            {label:'Moteur commercial utilisable : contacts et organisations sans doublon possible, catalogue d\'offres, opportunités suivies par étapes, alertes automatiques sur les dossiers qui n\'avancent plus', status:'ok'},
+            {label:'Installation Digital Valley prête à démarrer, avec sa propre base de données', status:'ok'},
+            {label:'Personnalisation par marque en service : chaque installation s\'habille automatiquement aux couleurs de sa marque', status:'ok'},
+            {label:'Compte unique : une même personne accède à n\'importe quelle installation du groupe', status:'ok'},
+            {label:'Candidature en ligne sans création de compte : le dossier du candidat se crée tout seul', status:'ok'},
+            {label:'Parcours d\'un dossier configurable au lieu d\'être figé dans le code', status:'ok'},
+            {label:'Poste de relance guidé : la plateforme désigne elle-même les dossiers à relancer et impose de trancher avant de passer au suivant', status:'ok'},
+            {label:'Réception des informations venues du reste du groupe en place côté nouvelle version', status:'ok'},
+            {label:'En attente de la direction et des marques : les chartes graphiques des 4 autres marques. Seule l\'identité Epitech est implémentée d\'après son document de référence ; les autres n\'ont qu\'une couleur. Sans ces chartes, leurs installations ne peuvent pas être habillées', status:'warn'},
+            {label:'À construire : agenda et prise de rendez-vous, signature électronique, espace où le candidat suit lui-même son dossier', status:'warn'},
+            {label:'À écrire : l\'envoi des informations depuis l\'actuel Zeno vers la nouvelle version (la réception est prête, pas l\'émission)', status:'warn'},
+            {label:'À mettre en service : l\'environnement de démonstration. Aujourd\'hui la nouvelle version se montre sur un poste, pas sur une adresse — c\'est un prérequis à toute date annoncée aux marques', status:'warn'},
+            {label:'Retard sur le planning : la première phase (échéance du 25 août) est réalisée à 47 %, la deuxième phase n\'est pas démarrée. Avancement d\'ensemble : 23 % des 39 chantiers des 5 phases', status:'crit'},
             {label:'Travail en cours : rédaction des spécifications de chaque module, une par une, pour permettre le développement autonome de la nouvelle version de Zeno', status:'warn'},
           ]
         },
@@ -2228,7 +2241,7 @@ const ROADMAP = {
     {phase:1,n:'1.7e',effort:'L',t:'esignature (DV minimal)',sub:'templates, envoi DocuSeal, webhook → étape',tk:['ZENO-854'],real:'none',note:'Aucun module esignature ; le mot n\'apparaît que dans les specs.'},
     {phase:1,n:'1.7f',effort:'M',t:'communication minimal',sub:'envoi transactionnel + templates simples',tk:['ZENO-855'],real:'done',note:'modules/communication (T-3a, 7 août) : templates seedés à variables bornées, providers console et Resend, consumer durable, journal scopé pôle.'},
     {phase:1,n:'1.8',effort:'M',t:'Infra : IaC Ansible + DEV Hetzner',sub:'déploiement de la branche refacto',tk:['ZENO-837'],real:'check',note:'L\'IaC Ansible vit dans Zeno (infra/, prod V1). Workflow deploy-dev.yml (main → serveur DEV Hetzner, quotidien) écrit le 7 sept., désactivé tant que le serveur n\'est pas préparé.'},
-    {phase:1,n:'1.9',effort:'L',t:'Provisionnement marque + instance DV',sub:'db, Permify, Redis, buckets, NATS, DNS, thème',tk:['ZENO-838'],real:'partial',note:'Instances déclaratives (demo, crm, epitech-benin) ; aucune instance DV, aucune mention DV dans le code.'},
+    {phase:1,n:'1.9',effort:'L',t:'Provisionnement marque + instance DV',sub:'db, Permify, Redis, buckets, NATS, DNS, thème',tk:['ZENO-838'],real:'partial',note:'Instances déclaratives (demo, demo-auth, epitech-benin) + une instance CRM par marque, dont crm-dv (port 3106, base dédiée). Corrigé le 9 sept. : contrairement à la lecture du 7 sept., DV est bien déclarée et démarrable. Reste sans écran ni module propre : elle hérite du CRM générique.'},
     {phase:1,n:'1.10',effort:'L',t:'Blue/green par marque',sub:'double stack, bascule health-gated',tk:['ZENO-840'],real:'none',note:'Rien.'},
   {phase:2,n:'2.1',t:'workflow — parité complète',sub:'targeting, dry-runs génériques, le reste du moteur',tk:['ZENO-871'],effort:'L',real:'none',note:'core/workflow ne couvre que les parcours et effets (T-1b).'},
   {phase:2,n:'2.2',t:'forms — fusion Evaluation',sub:'décision D4 : un seul moteur de formulaires',tk:['ZENO-872'],effort:'M',real:'none',note:'Rien côté V2 ; les deux moteurs V1 restent séparés.'},
@@ -2271,7 +2284,7 @@ const ROADMAP = {
   ecarts:[
     ['Dépôt','Réglé le 7 sept. (PR Zeno#491) : ARCHITECTURE.md et ROADMAP_V2.md situent désormais la V2 dans le dépôt aeig-plateform, branche main.',true],
     ['Autorisation','La roadmap veut Permify par stack (1.4). refacto s\'appuie sur AEIG ID et des rôles déduits des faits (D6), sans aucun fichier Permify.'],
-    ['Premier vertical','La roadmap est DV-first avec le crm en pilote et une instance DV. refacto est admission-first sur l\'instance epitech-benin ; DV n\'apparaît nulle part dans le code.'],
+    ['Premier vertical','La roadmap est DV-first avec le crm en pilote et une instance DV. Le code est admission-first sur l\'instance epitech-benin. Nuance corrigée le 9 sept. : l\'instance crm-dv et les 5 marques du groupe existent bien dans le code — ce qui manque à DV, c\'est un écran ou un module qui lui soit propre, et les chartes des 4 marques hors Epitech.'],
     ['Deux lignes de code','Réglé le 7 sept. : la branche refacto (56 commits, admission et communication) est fusionnée dans main (PR aeig-plateform#2), CI verte sur main.',true],
     ['Modules absents','calendar (1.7d), esignature (1.7e), blue/green (1.10) et Permify (1.4) n\'existent nulle part.'],
     ['Tickets ↔ code','7 chantiers sont livrés ou partiels sur refacto sans qu\'aucun ticket 829 → 855 n\'ait quitté « Todo ». Fermer ou re-cadrer 830, 831, 832, 851 et 855 avant de dispatcher des agents dessus.']

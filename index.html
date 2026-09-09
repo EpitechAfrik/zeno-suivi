@@ -2108,7 +2108,7 @@ footer p+p{margin-top:6px}
             {label:'Fiche type de ce qu\'est un module Zeno activable/désactivable — rédigée', status:'ok'},
             {label:'Plan d\'infrastructure détaillé posé (répartition de charge, bascule automatique en cas de panne, déploiement sans interruption)', status:'ok'},
             {label:'Moteur commercial utilisable : contacts et organisations sans doublon possible, catalogue d\'offres, opportunités suivies par étapes, alertes automatiques sur les dossiers qui n\'avancent plus', status:'ok'},
-            {label:'Installation Digital Valley prête à démarrer, avec sa propre base de données', status:'ok'},
+            {label:'Installation Digital Valley prête à démarrer, avec sa propre base de données. Attention : c\'est l\'installation technique. La mise en service de la marque auprès de ses équipes est un chantier distinct, voir « DV — Digital Valley (campagne) » ci-dessous', status:'ok'},
             {label:'Personnalisation par marque en service : chaque installation s\'habille automatiquement aux couleurs de sa marque', status:'ok'},
             {label:'Compte unique : une même personne accède à n\'importe quelle installation du groupe', status:'ok'},
             {label:'Candidature en ligne sans création de compte : le dossier du candidat se crée tout seul', status:'ok'},
@@ -2124,11 +2124,18 @@ footer p+p{margin-top:6px}
           ]
         },
         {
-          name:'DV — Digital Valley (campagne)', desc:'Déploiement Zeno pour la marque Digital Valley',
-          status:'pas-demarre', cdc:'non', owner:'Dara, Franck Birba', role:'', when:'01/08', stale:false,
+          name:'DV — Digital Valley (campagne)', desc:'Mise en service de la marque Digital Valley : ateliers funnel, contenu, utilisateurs, ouverture aux équipes',
+          status:'pas-demarre', cdc:'non', owner:'Dara, Franck Birba', role:'', when:'09/09', stale:false,
           support:[], brandContact:{name:'Yann', role:''},
-          comments:'Source : suivi Rachad (CSV). À voir avec Daryl et Gwen pour produire le funnel à l\'image de ce qui a été fait pour Croissance.',
-          tasks:[]
+          comments:'Source : suivi Rachad (CSV). À voir avec Daryl et Gwen pour produire le funnel à l\'image de ce qui a été fait pour Croissance. — Précision du 09/09, VÉRIFIÉE PAR LECTURE DIRECTE DU CODE : ce chantier-ci porte sur la MISE EN SERVICE de la marque (ateliers funnel, contenu, utilisateurs, ouverture aux équipes), pas sur la technique. Il ne faut donc pas le lire en contradiction avec la ligne « Installation Digital Valley prête à démarrer » du chantier CRM AEIG : côté technique, l\'installation existe et démarre. Ce qui n\'a pas commencé, c\'est le travail avec les équipes de la marque. Deux éléments techniques utiles à connaître avant les ateliers : le parcours commercial propre à DV (9 phases, du contact qualifié à l\'archivage, avec l\'obligation d\'un binôme responsable et support) est DÉJÀ écrit et testé d\'après le document Workflow B2B ; mais l\'installation DV est encore réglée sur le parcours générique en 6 étapes, donc DV ne l\'utilise pas aujourd\'hui. C\'est un réglage, pas un développement.',
+          tasks:[
+            {label:'Installation technique de la marque : existe et démarre, avec sa propre base de données (voir le chantier CRM AEIG)', status:'ok'},
+            {label:'Parcours commercial propre à DV — 9 phases, du contact qualifié à l\'archivage, avec obligation d\'un binôme responsable et support : écrit et testé d\'après le document Workflow B2B', status:'ok'},
+            {label:'À régler : l\'installation DV est encore sur le parcours générique en 6 étapes et n\'utilise pas son parcours en 9 phases. C\'est un réglage, pas un développement', status:'warn'},
+            {label:'Pas commencé : les ateliers funnel par type de contact avec Daryl et Gwen, sur le modèle de ce qui a été fait pour Croissance', status:'crit'},
+            {label:'Pas commencé : charte graphique de la marque, contenu, comptes des utilisateurs, ouverture aux équipes', status:'crit'},
+            {label:'Prérequis commun à toutes les marques : mettre en service l\'environnement de démonstration, pour montrer le produit au lieu de le décrire', status:'warn'},
+          ]
         },
         {
           name:'Takabytes (Bizdev)', desc:'Déploiement Zeno pour la marque Takabytes',

@@ -668,7 +668,7 @@ footer p+p{margin-top:6px}
       </button>
     
       <button class="project-tab " data-project="crm_aeig">
-        CRM AEIG<span class="count">5</span>
+        CRM AEIG<span class="count">7</span>
       </button>
     
       <button class="project-tab " data-project="edms">
@@ -2099,10 +2099,42 @@ footer p+p{margin-top:6px}
       label: 'CRM AEIG',
       modules: [
         {
-          name:'CRM AEIG (toutes marques)', desc:'Rendre Zeno réutilisable pour les autres marques du groupe AEIG',
+          name:'Socle multi-marques', desc:'La fondation commune : rendre Zeno réutilisable par les autres marques du groupe AEIG, chacune sur sa propre installation',
+          status:'en-cours', cdc:'oui', blocker:'Chartes des 4 marques', owner:'Franck Birba', role:'', when:'09/09', stale:false,
+          support:[{name:'Yemalin Modeste', role:''}], brandContact:{name:'Stéphanie, Gwen', role:''},
+          comments:'Le rythme de ce chantier est limité par le fait que l\'équipe doit, en parallèle, maintenir et continuer à développer les fonctionnalités de la version actuelle de Zeno (V1). L\'idée est d\'avoir des agents autonomes qui construisent cette nouvelle version en continu. (Rapporté par Yemalin le 02/09, pas vérifié par lecture de code — et démenti depuis : voir la ligne rouge ci-dessous, le développement de la nouvelle version est à l\'arrêt depuis le 17 août.) — Mise à jour du 09/09, VÉRIFIÉE PAR LECTURE DIRECTE DU CODE du dépôt aeig-plateform : le développement a démarré de zéro le 8 juillet et a produit, en deux mois et à deux personnes, 382 fichiers, 37 300 lignes, 730 vérifications automatiques et 9 200 lignes de spécifications. L\'essentiel de cet effort n\'a pas produit d\'écrans mais cette fondation commune, ce qui explique qu\'il ne se voie pas. Correction d\'une note précédente : contrairement à ce qui était écrit ici, une installation Digital Valley existe bel et bien et démarre sur sa propre base de données.',
+          tasks:[
+            {label:'Une installation indépendante par marque, avec seulement les modules dont elle a besoin activés — en service', status:'ok'},
+            {label:'Installation Digital Valley prête à démarrer, avec sa propre base de données. Attention : c\'est l\'installation technique. La mise en service de la marque auprès de ses équipes est un chantier distinct, voir « DV — Digital Valley (campagne) » ci-dessous', status:'ok'},
+            {label:'Personnalisation par marque en service : chaque installation s\'habille automatiquement aux couleurs de sa marque', status:'ok'},
+            {label:'Compte unique : une même personne accède à n\'importe quelle installation du groupe', status:'ok'},
+            {label:'Réception des informations venues du reste du groupe en place côté nouvelle version', status:'ok'},
+            {label:'En attente de la direction et des marques : les chartes graphiques des 4 autres marques. Seule l\'identité Epitech est implémentée d\'après son document de référence ; les autres n\'ont qu\'une couleur. Sans ces chartes, leurs installations ne peuvent pas être habillées', status:'warn'},
+            {label:'À construire : agenda et prise de rendez-vous, signature électronique, espace où le candidat suit lui-même son dossier', status:'warn'},
+            {label:'À écrire : l\'envoi des informations depuis l\'actuel Zeno vers la nouvelle version (la réception est prête, pas l\'émission)', status:'warn'},
+            {label:'À mettre en service : l\'environnement de démonstration. Aujourd\'hui la nouvelle version se montre sur un poste, pas sur une adresse — c\'est un prérequis à toute date annoncée aux marques', status:'warn'},
+            {label:'Retard sur le planning : la première phase (échéance du 25 août) est réalisée à 47 %, la deuxième phase n\'est pas démarrée. Avancement d\'ensemble : 23 % des 39 chantiers des 5 phases', status:'crit'},
+            {label:'Aucune nouvelle fonctionnalité n\'a été écrite sur la nouvelle version depuis le 17 août. Depuis, deux apports seulement : la fusion des deux lignes de développement en une seule et la mise en place des vérifications automatiques (7 septembre). L\'équipe est repartie sur la maintenance et les évolutions de la version actuelle — c\'est la principale raison du retard', status:'crit'},
+          ]
+        },
+        {
+          name:'Moteur commercial et dossiers', desc:'Ce que les équipes utiliseront au quotidien sur la nouvelle version : contacts, opportunités, candidatures et relances',
           status:'en-cours', cdc:'oui', owner:'Franck Birba', role:'', when:'09/09', stale:false,
-          blocker:'Chartes des 4 marques', support:[{name:'Yemalin Modeste', role:''}], brandContact:{name:'Stéphanie, Gwen', role:''},
-          comments:'Le rythme de ce chantier est limité par le fait que l\'équipe doit, en parallèle, maintenir et continuer à développer les fonctionnalités de la version actuelle de Zeno (V1). L\'idée est d\'avoir des agents autonomes qui construisent cette nouvelle version en continu. (Rapporté par Yemalin le 02/09, pas vérifié par lecture de code — et démenti depuis : voir la ligne rouge ci-dessous, le développement de la nouvelle version est à l\'arrêt depuis le 17 août.) — Mise à jour du 09/09, VÉRIFIÉE PAR LECTURE DIRECTE DU CODE du dépôt aeig-plateform : le développement a démarré de zéro le 8 juillet et a produit, en deux mois et à deux personnes, 382 fichiers, 37 300 lignes, 730 vérifications automatiques et 9 200 lignes de spécifications. La correction de la note précédente est importante : contrairement à ce qui était écrit ici, une installation Digital Valley existe bel et bien et démarre sur sa propre base de données. Ce qui reste à construire est nommé dans les lignes ci-dessous. L\'essentiel de l\'effort de ces deux mois n\'a pas produit d\'écrans mais la fondation commune : le premier module écrit a coûté 9 976 lignes, le dernier 1 080 pour une capacité complète et testée, donc chaque module suivant coûte moins que le précédent.',
+          support:[{name:'Yemalin Modeste', role:''}], brandContact:{name:'Stéphanie, Gwen', role:''},
+          comments:'État VÉRIFIÉ PAR LECTURE DIRECTE DU CODE du dépôt aeig-plateform le 09/09. C\'est la partie la plus avancée de la nouvelle version : le moteur commercial est à lui seul le plus gros bloc du dépôt. Chiffre à retenir pour comprendre l\'intérêt du chantier : ce moteur, écrit en premier quand la fondation n\'existait pas encore, a coûté 9 976 lignes de code ; le module de communication, écrit en dernier sur une fondation mûre, en a coûté 1 080 pour une capacité complète et testée.',
+          tasks:[
+            {label:'Moteur commercial utilisable : contacts et organisations sans doublon possible, catalogue d\'offres, opportunités suivies par étapes, alertes automatiques sur les dossiers qui n\'avancent plus', status:'ok'},
+            {label:'Candidature en ligne sans création de compte : le dossier du candidat se crée tout seul', status:'ok'},
+            {label:'Parcours d\'un dossier configurable au lieu d\'être figé dans le code', status:'ok'},
+            {label:'Poste de relance guidé : la plateforme désigne elle-même les dossiers à relancer et impose de trancher avant de passer au suivant', status:'ok'},
+            {label:'Effet mesuré : chaque module suivant coûte moins que le précédent. Le premier module écrit a demandé dix fois plus de code que le dernier, pour une capacité équivalente', status:'ok'},
+          ]
+        },
+        {
+          name:'Cadre et spécifications', desc:'Les décisions actées et les documents de référence sur lesquels la nouvelle version est construite',
+          status:'fonctionnel', cdc:'oui', owner:'Franck Birba', role:'', when:'09/09', stale:false,
+          support:[{name:'Yemalin Modeste', role:''}], brandContact:{name:'Stéphanie, Gwen', role:''},
+          comments:'Documents présents et à jour dans les dépôts, VÉRIFIÉS le 09/09. Ce chantier de rédaction est TERMINÉ : les 12 fiches de modules ont été livrées le 19 août et rien n\'a été rédigé depuis. La mention « rédaction des spécifications en cours », qui figurait ici jusqu\'au 09/09, était donc périmée.',
           tasks:[
             {label:'Décision actée : chaque marque a sa propre installation Zeno indépendante, avec les modules dont elle a besoin activés', status:'ok'},
             {label:'Décision actée : l\'équipe technique centrale gère le produit (le socle commun) ; chaque marque gère sa propre installation (données, réglages, utilisateurs)', status:'ok'},
@@ -2113,21 +2145,7 @@ footer p+p{margin-top:6px}
             {label:'Document qui décrit les grands blocs (modules) qui composent le projet — rédigé', status:'ok'},
             {label:'Fiche type de ce qu\'est un module Zeno activable/désactivable — rédigée', status:'ok'},
             {label:'Plan d\'infrastructure détaillé posé (répartition de charge, bascule automatique en cas de panne, déploiement sans interruption)', status:'ok'},
-            {label:'Moteur commercial utilisable : contacts et organisations sans doublon possible, catalogue d\'offres, opportunités suivies par étapes, alertes automatiques sur les dossiers qui n\'avancent plus', status:'ok'},
-            {label:'Installation Digital Valley prête à démarrer, avec sa propre base de données. Attention : c\'est l\'installation technique. La mise en service de la marque auprès de ses équipes est un chantier distinct, voir « DV — Digital Valley (campagne) » ci-dessous', status:'ok'},
-            {label:'Personnalisation par marque en service : chaque installation s\'habille automatiquement aux couleurs de sa marque', status:'ok'},
-            {label:'Compte unique : une même personne accède à n\'importe quelle installation du groupe', status:'ok'},
-            {label:'Candidature en ligne sans création de compte : le dossier du candidat se crée tout seul', status:'ok'},
-            {label:'Parcours d\'un dossier configurable au lieu d\'être figé dans le code', status:'ok'},
-            {label:'Poste de relance guidé : la plateforme désigne elle-même les dossiers à relancer et impose de trancher avant de passer au suivant', status:'ok'},
-            {label:'Réception des informations venues du reste du groupe en place côté nouvelle version', status:'ok'},
-            {label:'En attente de la direction et des marques : les chartes graphiques des 4 autres marques. Seule l\'identité Epitech est implémentée d\'après son document de référence ; les autres n\'ont qu\'une couleur. Sans ces chartes, leurs installations ne peuvent pas être habillées', status:'warn'},
-            {label:'À construire : agenda et prise de rendez-vous, signature électronique, espace où le candidat suit lui-même son dossier', status:'warn'},
-            {label:'À écrire : l\'envoi des informations depuis l\'actuel Zeno vers la nouvelle version (la réception est prête, pas l\'émission)', status:'warn'},
-            {label:'À mettre en service : l\'environnement de démonstration. Aujourd\'hui la nouvelle version se montre sur un poste, pas sur une adresse — c\'est un prérequis à toute date annoncée aux marques', status:'warn'},
-            {label:'Retard sur le planning : la première phase (échéance du 25 août) est réalisée à 47 %, la deuxième phase n\'est pas démarrée. Avancement d\'ensemble : 23 % des 39 chantiers des 5 phases', status:'crit'},
-            {label:'Fiches techniques des 12 modules qui composeront la nouvelle version, plus un gabarit commun et un registre des incohérences de données — rédigées le 19 août. Ce chantier de rédaction est terminé, pas en cours', status:'ok'},
-            {label:'Aucune nouvelle fonctionnalité n\'a été écrite sur la nouvelle version depuis le 17 août. Depuis, deux apports seulement : la fusion des deux lignes de développement en une seule et la mise en place des vérifications automatiques (7 septembre). L\'équipe est repartie sur la maintenance et les évolutions de la version actuelle — c\'est la principale raison du retard', status:'crit'},
+            {label:'Fiches techniques des 12 modules qui composeront la nouvelle version, plus un gabarit commun et un registre des incohérences de données — rédigées le 19 août. Rédaction terminée', status:'ok'},
           ]
         },
         {
@@ -2376,7 +2394,7 @@ const SNAPSHOT = {"exportedAt":"2026-09-08T01:41:13.573Z","demandes":[{"id":"rm-
     }
     el.style.display = 'flex';
     if(state.project === 'crm_aeig'){
-      el.innerHTML = `<span>&#9432;</span><span><b>Comment lire cet onglet.</b> La première ligne est <b>la plateforme commune</b> : son état a été <b>vérifié par lecture directe du code le 09/09/2026</b>, le moteur commercial et le socle sont livrés et utilisables. Les quatre lignes suivantes sont la <b>mise en service de chaque marque</b> auprès de ses équipes — un travail qui vient <b>après</b> la plateforme et qui attend d'abord les chartes graphiques et les ateliers funnel. « Pas démarré » sur ces quatre lignes ne veut donc pas dire que rien n'existe : les cinq marques sont déjà présentes dans le produit et chacune a son installation déclarée. Le périmètre de chaque marque est repris du suivi Excel de Rachad (10/08/2026) ; l'état technique, lui, est vérifié dans le code.</span>`;
+      el.innerHTML = `<span>&#9432;</span><span><b>Comment lire cet onglet.</b> Les <b>trois premières lignes</b> sont <b>la plateforme commune</b> — le socle, le moteur commercial, et le cadre de décisions et de spécifications. Leur état a été <b>vérifié par lecture directe du code le 09/09/2026</b> : le socle et le moteur sont livrés et utilisables. Les <b>quatre lignes suivantes</b> sont la <b>mise en service de chaque marque</b> auprès de ses équipes — un travail qui vient <b>après</b> la plateforme et qui attend d'abord les chartes graphiques et les ateliers funnel. « Pas démarré » sur ces quatre lignes ne veut donc pas dire que rien n'existe : les cinq marques sont déjà présentes dans le produit et chacune a son installation déclarée. Le périmètre de chaque marque est repris du suivi Excel de Rachad (10/08/2026) ; l'état technique, lui, est vérifié dans le code.</span>`;
     } else if(state.project === 'edms'){
       el.innerHTML = `<span>&#9888;</span><span><b>Statuts vérifiés par lecture directe du code EDMS</b> le 10/08/2026. Projet dédié, distinct de Zeno.</span>`;
     } else {

@@ -647,7 +647,7 @@ footer p+p{margin-top:6px}
       <h1>Suivi des chantiers et plan de charge</h1>
     </div>
     <div class="meta-row">
-      <span>Chantiers&nbsp;: <strong>audit direct du code</strong>, vérifié le <strong>07/09/2026</strong></span>
+      <span>Chantiers&nbsp;: <strong>audit direct du code</strong>, vérifié le <strong>07/09/2026</strong> · CRM AEIG le <strong>09/09/2026</strong></span>
       <span>Plan de charge&nbsp;: <strong id="meta-plan">–</strong></span>
     </div>
   </header>
@@ -2138,25 +2138,43 @@ footer p+p{margin-top:6px}
           ]
         },
         {
-          name:'Takabytes (Bizdev)', desc:'Déploiement Zeno pour la marque Takabytes',
-          status:'pas-demarre', cdc:'non', owner:'—', role:'', when:'01/08', stale:false,
+          name:'Takabytes (Bizdev)', desc:'Mise en service de la marque Takabytes : charte, ateliers funnel, contenu, utilisateurs, ouverture aux équipes',
+          status:'pas-demarre', cdc:'non', owner:'—', role:'', when:'09/09', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'Source : suivi Rachad (CSV) — colonnes non renseignées à date.',
-          tasks:[]
+          comments:'Source : suivi Rachad (CSV) — colonnes non renseignées à date. — Précision du 09/09, VÉRIFIÉE PAR LECTURE DIRECTE DU CODE : ce chantier porte sur la mise en service de la marque auprès de ses équipes, pas sur la technique. Côté technique, la marque est déjà présente dans le produit et son installation est déclarée avec sa propre base de données. Ce qui n\'a pas commencé, c\'est le travail avec les équipes de la marque, et il attend d\'abord la charte graphique.',
+          tasks:[
+            {label:'Marque déjà présente dans le produit, avec sa couleur', status:'ok'},
+            {label:'Installation déclarée, avec sa propre base de données', status:'ok'},
+            {label:'En attente de la direction et de la marque : la charte graphique. Sans elle, l\'installation ne peut pas être habillée aux couleurs de la marque', status:'warn'},
+            {label:'Pas commencé : ateliers funnel par type de contact, contenu, comptes des utilisateurs, ouverture aux équipes', status:'crit'},
+            {label:'Prérequis commun à toutes les marques : mettre en service l\'environnement de démonstration', status:'warn'},
+          ]
         },
         {
-          name:'Afrikedutech (captation de données)', desc:'Déploiement Zeno pour la marque Afrikedutech',
-          status:'pas-demarre', cdc:'non', owner:'—', role:'', when:'01/08', stale:false,
+          name:'Afrikedutech (captation de données)', desc:'Mise en service de la marque Afrikedutech : charte, ateliers funnel, contenu, utilisateurs, ouverture aux équipes',
+          status:'pas-demarre', cdc:'non', owner:'—', role:'', when:'09/09', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'Source : suivi Rachad (CSV) — colonnes non renseignées à date.',
-          tasks:[]
+          comments:'Source : suivi Rachad (CSV) — colonnes non renseignées à date. — Précision du 09/09, VÉRIFIÉE PAR LECTURE DIRECTE DU CODE : ce chantier porte sur la mise en service de la marque auprès de ses équipes, pas sur la technique. Côté technique, la marque est déjà présente dans le produit et son installation est déclarée avec sa propre base de données. Ce qui n\'a pas commencé, c\'est le travail avec les équipes de la marque, et il attend d\'abord la charte graphique.',
+          tasks:[
+            {label:'Marque déjà présente dans le produit, avec sa couleur', status:'ok'},
+            {label:'Installation déclarée, avec sa propre base de données', status:'ok'},
+            {label:'En attente de la direction et de la marque : la charte graphique. Sans elle, l\'installation ne peut pas être habillée aux couleurs de la marque', status:'warn'},
+            {label:'Pas commencé : ateliers funnel par type de contact, contenu, comptes des utilisateurs, ouverture aux équipes', status:'crit'},
+            {label:'Prérequis commun à toutes les marques : mettre en service l\'environnement de démonstration', status:'warn'},
+          ]
         },
         {
-          name:'Future Studio', desc:'Déploiement Zeno pour la marque Future Studio',
-          status:'pas-demarre', cdc:'non', owner:'Godwyn', role:'', when:'01/08', stale:false,
+          name:'Future Studio', desc:'Mise en service de la marque Future Studio : charte, ateliers funnel, contenu, utilisateurs, ouverture aux équipes',
+          status:'pas-demarre', cdc:'non', owner:'Godwyn', role:'', when:'09/09', stale:false,
           support:[], brandContact:{name:'Henry', role:''},
-          comments:'Source : suivi Rachad (CSV), pas vérifié par lecture de code.',
-          tasks:[]
+          comments:'Source : suivi Rachad (CSV), pas vérifié par lecture de code. — Précision du 09/09, VÉRIFIÉE PAR LECTURE DIRECTE DU CODE : ce chantier porte sur la mise en service de la marque auprès de ses équipes, pas sur la technique. Côté technique, la marque est déjà présente dans le produit et son installation est déclarée avec sa propre base de données. Ce qui n\'a pas commencé, c\'est le travail avec les équipes de la marque, et il attend d\'abord la charte graphique.',
+          tasks:[
+            {label:'Marque déjà présente dans le produit, avec sa couleur', status:'ok'},
+            {label:'Installation déclarée, avec sa propre base de données', status:'ok'},
+            {label:'En attente de la direction et de la marque : la charte graphique. Sans elle, l\'installation ne peut pas être habillée aux couleurs de la marque', status:'warn'},
+            {label:'Pas commencé : ateliers funnel par type de contact, contenu, comptes des utilisateurs, ouverture aux équipes', status:'crit'},
+            {label:'Prérequis commun à toutes les marques : mettre en service l\'environnement de démonstration', status:'warn'},
+          ]
         },
       ],
     },
@@ -2351,7 +2369,7 @@ const SNAPSHOT = {"exportedAt":"2026-09-08T01:41:13.573Z","demandes":[{"id":"rm-
     }
     el.style.display = 'flex';
     if(state.project === 'crm_aeig'){
-      el.innerHTML = `<span>&#9888;</span><span><b>Repris du suivi Excel de Rachad</b> (10/08/2026), pas vérifié par lecture de code — CRM AEIG (rendre Zeno réutilisable pour d'autres marques du groupe) est encore au stade spécifications.</span>`;
+      el.innerHTML = `<span>&#9432;</span><span><b>Comment lire cet onglet.</b> La première ligne est <b>la plateforme commune</b> : son état a été <b>vérifié par lecture directe du code le 09/09/2026</b>, le moteur commercial et le socle sont livrés et utilisables. Les quatre lignes suivantes sont la <b>mise en service de chaque marque</b> auprès de ses équipes — un travail qui vient <b>après</b> la plateforme et qui attend d'abord les chartes graphiques et les ateliers funnel. « Pas démarré » sur ces quatre lignes ne veut donc pas dire que rien n'existe : les cinq marques sont déjà présentes dans le produit et chacune a son installation déclarée. Le périmètre de chaque marque est repris du suivi Excel de Rachad (10/08/2026) ; l'état technique, lui, est vérifié dans le code.</span>`;
     } else if(state.project === 'edms'){
       el.innerHTML = `<span>&#9888;</span><span><b>Statuts vérifiés par lecture directe du code EDMS</b> le 10/08/2026. Projet dédié, distinct de Zeno.</span>`;
     } else {

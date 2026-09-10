@@ -951,7 +951,7 @@ footer p+p{margin-top:6px}
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
           <span class="owner clickable" data-contact="3" title="Voir porteur et interlocuteur"><span>Franck Birba</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">09/09</span>
+          <span class="when ">10/09</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -1010,6 +1010,21 @@ footer p+p{margin-top:6px}
               <div class="task">
                 <span class="t-status ok"></span>
                 <span class="t-label">Six écrans de listes qui chargeaient parfois toutes les données au lieu d'une page ont été corrigés (candidats, étudiants, contacts, partenaires, automations, liens marketing)</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Contrat d'inscription signé en ligne — en production le 10/09 : envoi depuis le suivi post-admission (plusieurs admis à la fois) ou la fiche candidat, déjà rempli, jusqu'à trois signataires (candidat, représentant légal si mineur, payeur) ; le candidat suit dans son espace qui a signé et qui doit encore signer ; dossier avancé automatiquement une fois signé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Après la décision du jury, informations complémentaires, documents et paiement se font en parallèle et le contrat suit le formulaire (les quatre parcours en service remis en ordre en production le 10/09) ; export des admis au format attendu pour la création des comptes Epitech</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Avant le premier contrat réel : modèle de contrat à relier à chaque promotion, expéditeur e-mail par campus, modèles d'e-mails et formulaire à rejouer en production, rappels automatiques de signature à activer — équipe admissions avec Franck Birba</span>
               </div>
             
           </div>
@@ -1477,11 +1492,11 @@ footer p+p{margin-top:6px}
           <div><span class="module-name">Signatures électroniques</span><span class="module-desc">Nouvel outil central pour envoyer et signer des documents en ligne</span></div>
           <div class="status-cell">
             <span class="pill warn">En cours</span>
-            <span class="blocker-tag">Pas encore mis en ligne ni relié à un vrai chantier métier</span>
+            <span class="blocker-tag">Mis en ligne le 10/09 ; premier usage réel (contrat d'inscription) en attente de configuration</span>
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
           <span class="owner clickable" data-contact="13" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">07/09</span>
+          <span class="when ">10/09</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -1518,13 +1533,13 @@ footer p+p{margin-top:6px}
               </div>
             
               <div class="task">
-                <span class="t-status warn"></span>
-                <span class="t-label">Pas encore mis en ligne — reste sur une branche de travail séparée</span>
+                <span class="t-status ok"></span>
+                <span class="t-label">Mis en ligne le 10/09, avec le contrat d'inscription des admissions comme premier usage</span>
               </div>
             
               <div class="task">
                 <span class="t-status warn"></span>
-                <span class="t-label">Aucune équipe ne l'utilise encore réellement — la bascule se fera équipe par équipe, sur décision explicite</span>
+                <span class="t-label">Premier usage réel (contrat d'inscription) dès que les modèles de contrat par promotion sont configurés ; les autres équipes basculeront une par une, sur décision explicite</span>
               </div>
             
           </div>
@@ -1921,9 +1936,9 @@ footer p+p{margin-top:6px}
         },
         {
           name:'Admission', desc:'De la candidature à l\'inscription officielle',
-          status:'fonctionnel', cdc:'oui', blocker:'Communication (WhatsApp)', owner:'Franck Birba', role:'', when:'09/09', stale:false,
+          status:'fonctionnel', cdc:'oui', blocker:'Communication (WhatsApp)', owner:'Franck Birba', role:'', when:'10/09', stale:false,
           support:[{name:'Pissano', role:'Ressource additionnelle'}], brandContact:{name:'Fabrice, Charbel', role:''},
-          comments:'Un problème récent où un candidat accepté pouvait ne pas être correctement rattaché à sa promotion vient d\'être corrigé début août. Vérifié par lecture directe du code le 31/08 : semaine dense de livraisons (26-28/08) — filtre du jury, actions groupées sur les candidats, entretiens filtrables par campus, contrat d\'inscription avec la bonne identité légale par campus, vraies instructions de paiement de la scolarité. Un incident de production est survenu le 27/08 (l\'API plantait en boucle à cause d\'une erreur de fusion) : corrigé le jour même. Toujours bloqué côté communication WhatsApp (blocage business, aucune trace d\'avancement dans le code) ; le compte d\'Antoine reste à voir avec Foumi (suivi Rachad, fin juillet, pas revérifié). — Mise à jour du 09/09, vérifiée par lecture directe du code et par déploiement confirmé en production le soir même : incident de production sur l\'écran de suivi post-admission (candidats admis → inscrits), devenu très lent (jusqu\'à 30 secondes de chargement) après un récent élargissement à tout le parcours (170 candidats suivis au lieu d\'une dizaine) — corrigé en production le jour même, écran revérifié rapide. Les relances et confirmations envoyées à la main par l\'équipe sont désormais traçables : on voit qui a envoyé quoi et quand, directement sur la fiche de l\'automation et l\'historique du candidat ; un blocage silencieux qui pouvait, dans de rares cas, empêcher de relancer un candidat pendant 48h sans qu\'aucune trace n\'explique pourquoi a aussi été corrigé. Au passage, six écrans de listes (candidats, étudiants, contacts, partenaires, automations, liens de suivi marketing) qui chargeaient parfois la totalité des données au lieu d\'une page raisonnable ont été corrigés.',
+          comments:'Un problème récent où un candidat accepté pouvait ne pas être correctement rattaché à sa promotion vient d\'être corrigé début août. Vérifié par lecture directe du code le 31/08 : semaine dense de livraisons (26-28/08) — filtre du jury, actions groupées sur les candidats, entretiens filtrables par campus, contrat d\'inscription avec la bonne identité légale par campus, vraies instructions de paiement de la scolarité. Un incident de production est survenu le 27/08 (l\'API plantait en boucle à cause d\'une erreur de fusion) : corrigé le jour même. Toujours bloqué côté communication WhatsApp (blocage business, aucune trace d\'avancement dans le code) ; le compte d\'Antoine reste à voir avec Foumi (suivi Rachad, fin juillet, pas revérifié). — Mise à jour du 09/09, vérifiée par lecture directe du code et par déploiement confirmé en production le soir même : incident de production sur l\'écran de suivi post-admission (candidats admis → inscrits), devenu très lent (jusqu\'à 30 secondes de chargement) après un récent élargissement à tout le parcours (170 candidats suivis au lieu d\'une dizaine) — corrigé en production le jour même, écran revérifié rapide. Les relances et confirmations envoyées à la main par l\'équipe sont désormais traçables : on voit qui a envoyé quoi et quand, directement sur la fiche de l\'automation et l\'historique du candidat ; un blocage silencieux qui pouvait, dans de rares cas, empêcher de relancer un candidat pendant 48h sans qu\'aucune trace n\'explique pourquoi a aussi été corrigé. Au passage, six écrans de listes (candidats, étudiants, contacts, partenaires, automations, liens de suivi marketing) qui chargeaient parfois la totalité des données au lieu d\'une page raisonnable ont été corrigés. — Mise à jour du 10/09, vérifiée par lecture directe du code et par déploiement confirmé en production le 10/09 au matin : le contrat d\'inscription se signe désormais en ligne. Depuis le suivi post-admission (un ou plusieurs admis à la fois) ou depuis la fiche du candidat, le staff envoie le contrat déjà rempli à partir du dossier ; il est signé par le candidat, par son représentant légal s\'il est mineur et par la personne qui règle la scolarité, chacun avec son propre lien, et le dossier avance tout seul vers le premier paiement une fois le contrat signé. Dans son espace en ligne, le candidat voit qui a signé et qui doit encore signer, et signe le sien. Après la décision du jury, le candidat remplit ses informations complémentaires, dépose ses documents et paie sans attendre l\'étape précédente ; le contrat lui est proposé une fois le formulaire envoyé, à la main par le staff ou automatiquement selon le réglage choisi pour chaque parcours (désactivé par défaut). Les quatre parcours d\'admission en service (PGE Abidjan, PGE Cotonou, MSc Cotonou, Bachelor Tech Business Cotonou) ont été remis en ordre en production dans la nuit du 09 au 10/09 pour permettre cette avancée en parallèle. Le dossier avance de lui-même dès qu\'un fait est constaté (formulaire envoyé, documents déposés, paiement reçu, contrat signé), sans intervention du staff. Un export des admis au format attendu pour la création des comptes Epitech est disponible depuis le même écran. Reste à faire avant le premier contrat réel, côté équipe admissions avec Franck Birba : relier un modèle de contrat à chaque promotion, renseigner l\'expéditeur des e-mails de chaque campus, rejouer en production les modèles d\'e-mails et le formulaire d\'informations complémentaires (dernière mise à jour en production : juin et juillet), et activer les rappels automatiques de signature (toutes les 48 h, trois fois au plus).',
           tasks:[
             {label:'Un candidat peut remplir et envoyer son dossier en ligne', status:'ok'},
             {label:'Le staff suit chaque candidat étape par étape jusqu\'à la décision', status:'ok'},
@@ -1936,6 +1951,9 @@ footer p+p{margin-top:6px}
             {label:'Incident du 09/09 : l\'écran de suivi post-admission était devenu très lent (jusqu\'à 30 secondes) — corrigé et revérifié rapide en production', status:'ok'},
             {label:'Les relances et confirmations envoyées à la main sont désormais traçables (qui, quand) ; un blocage silencieux de 48h sans explication a été corrigé', status:'ok'},
             {label:'Six écrans de listes qui chargeaient parfois toutes les données au lieu d\'une page ont été corrigés (candidats, étudiants, contacts, partenaires, automations, liens marketing)', status:'ok'},
+            {label:'Contrat d\'inscription signé en ligne — en production le 10/09 : envoi depuis le suivi post-admission (plusieurs admis à la fois) ou la fiche candidat, déjà rempli, jusqu\'à trois signataires (candidat, représentant légal si mineur, payeur) ; le candidat suit dans son espace qui a signé et qui doit encore signer ; dossier avancé automatiquement une fois signé', status:'ok'},
+            {label:'Après la décision du jury, informations complémentaires, documents et paiement se font en parallèle et le contrat suit le formulaire (les quatre parcours en service remis en ordre en production le 10/09) ; export des admis au format attendu pour la création des comptes Epitech', status:'ok'},
+            {label:'Avant le premier contrat réel : modèle de contrat à relier à chaque promotion, expéditeur e-mail par campus, modèles d\'e-mails et formulaire à rejouer en production, rappels automatiques de signature à activer — équipe admissions avec Franck Birba', status:'warn'},
           ]
         },
         {
@@ -2068,9 +2086,9 @@ footer p+p{margin-top:6px}
         },
         {
           name:'Signatures électroniques', desc:'Nouvel outil central pour envoyer et signer des documents en ligne',
-          status:'en-cours', cdc:'non', blocker:'Pas encore mis en ligne ni relié à un vrai chantier métier', owner:'Yemalin Modeste', role:'', when:'07/09', stale:false,
+          status:'en-cours', cdc:'non', blocker:'Mis en ligne le 10/09 ; premier usage réel (contrat d\'inscription) en attente de configuration', owner:'Yemalin Modeste', role:'', when:'10/09', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'Vérifié par lecture directe du code le 07/09 : jusqu\'ici, l\'envoi de documents à signer en ligne (via l\'outil externe DocuSeal) était fait en double, triple, quadruple par plusieurs équipes différentes (carrière, admissions, pédagogie, CRM, communication, marketing, portails), chacune à sa façon — et le point d\'accès technique à cet outil externe n\'était protégé par aucune vérification d\'identité en production (n\'importe qui pouvait y accéder). Ce problème de sécurité a été corrigé en premier. Un nouvel outil central a ensuite été construit : un écran dédié pour préparer et envoyer un document à signer, une page de signature aux couleurs de l\'école (au lieu de rediriger la personne vers le site de l\'outil externe), la possibilité d\'exiger un ordre précis de signature (ex. l\'entreprise signe avant l\'étudiant) plutôt que tout le monde en même temps, une relance manuelle si quelqu\'un tarde à signer, et un lien vers la fiche de l\'étudiant, du candidat, du contact ou du partenaire concerné. Construit et testé sur la machine de développement, mais pas encore mis en ligne ni relié à un vrai chantier métier — chaque équipe continuera d\'utiliser sa méthode actuelle jusqu\'à ce qu\'elle décide explicitement de basculer vers le nouvel outil, une par une, sans urgence ni bascule forcée.',
+          comments:'Vérifié par lecture directe du code le 07/09 : jusqu\'ici, l\'envoi de documents à signer en ligne (via l\'outil externe DocuSeal) était fait en double, triple, quadruple par plusieurs équipes différentes (carrière, admissions, pédagogie, CRM, communication, marketing, portails), chacune à sa façon — et le point d\'accès technique à cet outil externe n\'était protégé par aucune vérification d\'identité en production (n\'importe qui pouvait y accéder). Ce problème de sécurité a été corrigé en premier. Un nouvel outil central a ensuite été construit : un écran dédié pour préparer et envoyer un document à signer, une page de signature aux couleurs de l\'école (au lieu de rediriger la personne vers le site de l\'outil externe), la possibilité d\'exiger un ordre précis de signature (ex. l\'entreprise signe avant l\'étudiant) plutôt que tout le monde en même temps, une relance manuelle si quelqu\'un tarde à signer, et un lien vers la fiche de l\'étudiant, du candidat, du contact ou du partenaire concerné. Construit et testé sur la machine de développement, mais pas encore mis en ligne ni relié à un vrai chantier métier — chaque équipe continuera d\'utiliser sa méthode actuelle jusqu\'à ce qu\'elle décide explicitement de basculer vers le nouvel outil, une par une, sans urgence ni bascule forcée. — Mise à jour du 10/09, vérifiée par déploiement confirmé en production : l\'outil est en ligne depuis le 10/09 et relié à son premier chantier métier, le contrat d\'inscription des admissions (voir le chantier Admission). Il sait désormais figer certains champs pré-remplis que le signataire ne peut pas modifier (ex. le numéro de contrat), adapter le texte de l\'invitation au type de document envoyé, et déclencher une suite quand un signataire a terminé (ex. faire avancer le dossier du candidat). Les autres équipes continuent d\'utiliser leur méthode actuelle jusqu\'à décision de bascule.',
           tasks:[
             {label:'Écran dédié pour préparer et envoyer un document à signer', status:'ok'},
             {label:'Page de signature aux couleurs de l\'école, sans redirection vers le site de l\'outil externe', status:'ok'},
@@ -2078,8 +2096,8 @@ footer p+p{margin-top:6px}
             {label:'Relance manuelle si un signataire tarde à répondre', status:'ok'},
             {label:'Lien direct vers la fiche de l\'étudiant, du candidat, du contact ou du partenaire concerné', status:'ok'},
             {label:'Faille de sécurité corrigée : le point d\'accès à l\'outil externe n\'était protégé par aucune vérification d\'identité en production', status:'ok'},
-            {label:'Pas encore mis en ligne — reste sur une branche de travail séparée', status:'warn'},
-            {label:'Aucune équipe ne l\'utilise encore réellement — la bascule se fera équipe par équipe, sur décision explicite', status:'warn'},
+            {label:'Mis en ligne le 10/09, avec le contrat d\'inscription des admissions comme premier usage', status:'ok'},
+            {label:'Premier usage réel (contrat d\'inscription) dès que les modèles de contrat par promotion sont configurés ; les autres équipes basculeront une par une, sur décision explicite', status:'warn'},
           ]
         },
         {

@@ -951,7 +951,7 @@ footer p+p{margin-top:6px}
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
           <span class="owner clickable" data-contact="3" title="Voir porteur et interlocuteur"><span>Franck Birba</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">28/08</span>
+          <span class="when ">09/09</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -995,6 +995,21 @@ footer p+p{margin-top:6px}
               <div class="task">
                 <span class="t-status ok"></span>
                 <span class="t-label">Plusieurs bugs corrigés fin août (candidat mal repositionné après un changement, saisie effacée par erreur pendant une relance)</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Incident du 09/09 : l'écran de suivi post-admission était devenu très lent (jusqu'à 30 secondes) — corrigé et revérifié rapide en production</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Les relances et confirmations envoyées à la main sont désormais traçables (qui, quand) ; un blocage silencieux de 48h sans explication a été corrigé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Six écrans de listes qui chargeaient parfois toutes les données au lieu d'une page ont été corrigés (candidats, étudiants, contacts, partenaires, automations, liens marketing)</span>
               </div>
             
           </div>
@@ -1906,9 +1921,9 @@ footer p+p{margin-top:6px}
         },
         {
           name:'Admission', desc:'De la candidature à l\'inscription officielle',
-          status:'fonctionnel', cdc:'oui', blocker:'Communication (WhatsApp)', owner:'Franck Birba', role:'', when:'28/08', stale:false,
+          status:'fonctionnel', cdc:'oui', blocker:'Communication (WhatsApp)', owner:'Franck Birba', role:'', when:'09/09', stale:false,
           support:[{name:'Pissano', role:'Ressource additionnelle'}], brandContact:{name:'Fabrice, Charbel', role:''},
-          comments:'Un problème récent où un candidat accepté pouvait ne pas être correctement rattaché à sa promotion vient d\'être corrigé début août. Vérifié par lecture directe du code le 31/08 : semaine dense de livraisons (26-28/08) — filtre du jury, actions groupées sur les candidats, entretiens filtrables par campus, contrat d\'inscription avec la bonne identité légale par campus, vraies instructions de paiement de la scolarité. Un incident de production est survenu le 27/08 (l\'API plantait en boucle à cause d\'une erreur de fusion) : corrigé le jour même. Toujours bloqué côté communication WhatsApp (blocage business, aucune trace d\'avancement dans le code) ; le compte d\'Antoine reste à voir avec Foumi (suivi Rachad, fin juillet, pas revérifié).',
+          comments:'Un problème récent où un candidat accepté pouvait ne pas être correctement rattaché à sa promotion vient d\'être corrigé début août. Vérifié par lecture directe du code le 31/08 : semaine dense de livraisons (26-28/08) — filtre du jury, actions groupées sur les candidats, entretiens filtrables par campus, contrat d\'inscription avec la bonne identité légale par campus, vraies instructions de paiement de la scolarité. Un incident de production est survenu le 27/08 (l\'API plantait en boucle à cause d\'une erreur de fusion) : corrigé le jour même. Toujours bloqué côté communication WhatsApp (blocage business, aucune trace d\'avancement dans le code) ; le compte d\'Antoine reste à voir avec Foumi (suivi Rachad, fin juillet, pas revérifié). — Mise à jour du 09/09, vérifiée par lecture directe du code et par déploiement confirmé en production le soir même : incident de production sur l\'écran de suivi post-admission (candidats admis → inscrits), devenu très lent (jusqu\'à 30 secondes de chargement) après un récent élargissement à tout le parcours (170 candidats suivis au lieu d\'une dizaine) — corrigé en production le jour même, écran revérifié rapide. Les relances et confirmations envoyées à la main par l\'équipe sont désormais traçables : on voit qui a envoyé quoi et quand, directement sur la fiche de l\'automation et l\'historique du candidat ; un blocage silencieux qui pouvait, dans de rares cas, empêcher de relancer un candidat pendant 48h sans qu\'aucune trace n\'explique pourquoi a aussi été corrigé. Au passage, six écrans de listes (candidats, étudiants, contacts, partenaires, automations, liens de suivi marketing) qui chargeaient parfois la totalité des données au lieu d\'une page raisonnable ont été corrigés.',
           tasks:[
             {label:'Un candidat peut remplir et envoyer son dossier en ligne', status:'ok'},
             {label:'Le staff suit chaque candidat étape par étape jusqu\'à la décision', status:'ok'},
@@ -1918,6 +1933,9 @@ footer p+p{margin-top:6px}
             {label:'Création de parcours d\'admission automatisés', status:'ok'},
             {label:'Relances groupées possibles directement depuis la liste des candidats, sans limite de 50', status:'ok'},
             {label:'Plusieurs bugs corrigés fin août (candidat mal repositionné après un changement, saisie effacée par erreur pendant une relance)', status:'ok'},
+            {label:'Incident du 09/09 : l\'écran de suivi post-admission était devenu très lent (jusqu\'à 30 secondes) — corrigé et revérifié rapide en production', status:'ok'},
+            {label:'Les relances et confirmations envoyées à la main sont désormais traçables (qui, quand) ; un blocage silencieux de 48h sans explication a été corrigé', status:'ok'},
+            {label:'Six écrans de listes qui chargeaient parfois toutes les données au lieu d\'une page ont été corrigés (candidats, étudiants, contacts, partenaires, automations, liens marketing)', status:'ok'},
           ]
         },
         {

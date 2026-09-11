@@ -1040,7 +1040,7 @@ footer p+p{margin-top:6px}
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
           <span class="owner clickable" data-contact="4" title="Voir porteur et interlocuteur"><span>Alex Russel</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">27/08</span>
+          <span class="when ">11/09</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -1059,6 +1059,11 @@ footer p+p{margin-top:6px}
               <div class="task">
                 <span class="t-status ok"></span>
                 <span class="t-label">Journal consultable de toutes les communications envoyées</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Pour un envoi fait depuis un fichier Excel/CSV : la fiche de détail affiche la liste réelle des destinataires (avec le statut livré/échec de chacun) et permet de retélécharger le fichier importé</span>
               </div>
             
               <div class="task">
@@ -1958,13 +1963,14 @@ footer p+p{margin-top:6px}
         },
         {
           name:'Communication', desc:'Emails, newsletters, boîte de réception, partenaires',
-          status:'fonctionnel', cdc:'oui', owner:'Alex Russel', role:'', when:'27/08', stale:false,
+          status:'fonctionnel', cdc:'oui', owner:'Alex Russel', role:'', when:'11/09', stale:false,
           support:[{name:'Cédric', role:'Ressource additionnelle'}], brandContact:{name:'Foumi', role:'Équipe communication'},
-          comments:'Selon le suivi de Rachad : le site epitech.africa (EDMS) et la synchro Zeno↔epitech.africa (événements campus) sont livrés début juillet. Reste des commodités à finaliser. Confirmé le 14/08 : ce module est aussi utilisé par EDMS. Vérifié par lecture directe du code le 31/08 : un nouvel écran de création d\'automations est en place, mais l\'ancien reste accessible en parallèle — la bascule complète n\'est pas terminée.',
+          comments:'Selon le suivi de Rachad : le site epitech.africa (EDMS) et la synchro Zeno↔epitech.africa (événements campus) sont livrés début juillet. Reste des commodités à finaliser. Confirmé le 14/08 : ce module est aussi utilisé par EDMS. Vérifié par lecture directe du code le 31/08 : un nouvel écran de création d\'automations est en place, mais l\'ancien reste accessible en parallèle — la bascule complète n\'est pas terminée. Corrigé le 11/09 (fusionné dans main) : sur un envoi groupé fait à partir d\'un fichier Excel/CSV, la fiche de détail ne montrait que des totaux et ne permettait pas de retrouver ni la liste des destinataires réels ni le fichier importé — impossible de vérifier après coup qui avait reçu quoi. Les deux sont désormais consultables depuis la fiche.',
           tasks:[
             {label:'Envoi d\'emails groupés avec modèles réutilisables', status:'ok'},
             {label:'Création et envoi de newsletters personnalisées', status:'ok'},
             {label:'Journal consultable de toutes les communications envoyées', status:'ok'},
+            {label:'Pour un envoi fait depuis un fichier Excel/CSV : la fiche de détail affiche la liste réelle des destinataires (avec le statut livré/échec de chacun) et permet de retélécharger le fichier importé', status:'ok'},
             {label:'Boîte de réception centralisée pour le portail candidat', status:'ok'},
             {label:'Gestion des partenaires et liens traçables', status:'ok'},
             {label:'Bloqué : la boîte de réception ne couvre encore que le portail candidat', status:'warn'},

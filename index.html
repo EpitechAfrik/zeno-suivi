@@ -664,7 +664,7 @@ footer p+p{margin-top:6px}
   <div class="view" id="view-chantiers">
   <div class="project-tabs" id="project-tabs">
       <button class="project-tab active" data-project="zeno">
-        Zeno<span class="count">16</span>
+        Zeno<span class="count">17</span>
       </button>
     
       <button class="project-tab " data-project="crm_aeig">
@@ -680,10 +680,10 @@ footer p+p{margin-top:6px}
 
   <div class="summary" id="summary">
       <div class="stat ok" data-stat="fonctionnel" tabindex="0"><span class="n">8</span><span class="l">Fonctionnels</span></div>
-      <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">8</span><span class="l">En cours</span></div>
+      <div class="stat warn" data-stat="en-cours" tabindex="0"><span class="n">9</span><span class="l">En cours</span></div>
       <div class="stat crit" data-stat="bloque" tabindex="0"><span class="n">0</span><span class="l">Bloqués</span></div>
       <div class="stat idle" data-stat="pas-demarre" tabindex="0"><span class="n">0</span><span class="l">Pas démarrés</span></div>
-      <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">10</span><span class="l">Sans CDC</span></div>
+      <div class="stat crit" data-stat-cdc="non" tabindex="0"><span class="n">11</span><span class="l">Sans CDC</span></div>
     </div>
 
   <div class="filters">
@@ -713,7 +713,7 @@ footer p+p{margin-top:6px}
     </div>
   </div>
 
-  <div class="result-count" id="result-count">16 chantiers affichés sur 16</div>
+  <div class="result-count" id="result-count">17 chantiers affichés sur 17</div>
 
   <div class="module-row-header">
     <span>Chantier</span>
@@ -1658,6 +1658,60 @@ footer p+p{margin-top:6px}
           </div>
         </div>
       </div>
+    
+      <div class="module" data-idx="16">
+        <div class="module-row" data-toggle="16" tabindex="0">
+          <div><span class="module-name">Jarvis</span><span class="module-desc">Assistant IA pour aider un étudiant à comprendre et avancer sans lui donner la solution</span></div>
+          <div class="status-cell">
+            <span class="pill warn">En cours</span>
+            <span class="blocker-tag">Corpus de connaissance très limité (un seul module sur toute la scolarité)</span>
+          </div>
+          <span class="cdc no">CDC&nbsp;Non</span>
+          <span class="owner clickable" data-contact="16" title="Voir porteur et interlocuteur"><span>Edwin</span><span class="info-icon">&#9432;</span></span>
+          <span class="when ">16/09</span>
+          <span class="chevron">&#8250;</span>
+        </div>
+        <div class="tasks">
+          <div class="tasks-inner">
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Bulle flottante et écran dédié, avec historique des conversations conservé</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Va chercher les vrais projets, notes et résultats de l'étudiant pour répondre à ses questions</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Ne donne jamais de note ni de corrigé, même si on le lui demande directement</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Réglage du moteur de langage et du ton de l'assistant ouvert au staff, sans avoir besoin de redéployer le site</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">La base de connaissance des sujets de cours n'est remplie que pour un seul module sur toute la scolarité</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Le moteur de langage utilisé par défaut n'a pas été testé en conditions réelles avant la mise en ligne</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Aucun test automatique ne couvre cette fonctionnalité</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
     </div>
   <div class="empty" id="empty" style="display:none;"></div>
 
@@ -2139,6 +2193,21 @@ footer p+p{margin-top:6px}
             {label:'Incident du 26-27/08 corrigé : un candidat peut désormais terminer et envoyer son test même après une coupure réseau', status:'ok'},
             {label:'La supervision technique des erreurs est maintenant active sur l\'écran de passage de test (elle ne l\'était pas avant, alors que cet écran est public)', status:'ok'},
             {label:'L\'interface actuelle est utilisée sans blocage ; une nouvelle interface existe en maquette, pas encore mise en place', status:'idle'},
+          ]
+        },
+        {
+          name:'Jarvis', desc:'Assistant IA pour aider un étudiant à comprendre et avancer sans lui donner la solution',
+          status:'en-cours', cdc:'non', blocker:'Corpus de connaissance très limité (un seul module sur toute la scolarité)', owner:'Edwin', role:'', when:'16/09', stale:false,
+          support:[], brandContact:NO_ONE,
+          comments:'Vérifié par lecture directe du code le 16/09. Mis en ligne le 15/09 (fusion de la contribution externe d\'Edwin, revue et adaptée aux conventions du projet). L\'assistant répond dans une bulle flottante ou sur un écran dédié, garde l\'historique des conversations, et peut aller chercher les vrais projets, notes et résultats de l\'étudiant pour répondre — mais sans jamais lui montrer une note ni un corrigé. Ce qui limite son utilité aujourd\'hui : la base de connaissance qui lui permet de citer les sujets de cours n\'a été remplie que pour un seul module (le C Pool) sur toute la scolarité — pour tout le reste, l\'assistant répond sans ce contexte. Le moteur de langage utilisé par défaut (Anthropic/Claude) n\'a pas encore été testé en conditions réelles ; les tests faits jusqu\'ici l\'ont été avec un autre fournisseur (Mistral) dont le crédit était épuisé au moment de la mise en ligne. Aucun test automatique ne couvre cette fonctionnalité pour l\'instant.',
+          tasks:[
+            {label:'Bulle flottante et écran dédié, avec historique des conversations conservé', status:'ok'},
+            {label:'Va chercher les vrais projets, notes et résultats de l\'étudiant pour répondre à ses questions', status:'ok'},
+            {label:'Ne donne jamais de note ni de corrigé, même si on le lui demande directement', status:'ok'},
+            {label:'Réglage du moteur de langage et du ton de l\'assistant ouvert au staff, sans avoir besoin de redéployer le site', status:'ok'},
+            {label:'La base de connaissance des sujets de cours n\'est remplie que pour un seul module sur toute la scolarité', status:'crit'},
+            {label:'Le moteur de langage utilisé par défaut n\'a pas été testé en conditions réelles avant la mise en ligne', status:'warn'},
+            {label:'Aucun test automatique ne couvre cette fonctionnalité', status:'warn'},
           ]
         },
       ],

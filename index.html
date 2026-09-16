@@ -1695,6 +1695,21 @@ footer p+p{margin-top:6px}
               </div>
             
               <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Chaque réponse est désormais vérifiée par une seconde IA avant d'être envoyée à l'étudiant, avec une chance de correction si elle ne respecte pas les règles</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Même en aidant à corriger un bug, l'assistant explique ligne par ligne au lieu de donner le code corrigé tout fait</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">5 tests automatiques couvrent ce nouveau contrôle</span>
+              </div>
+            
+              <div class="task">
                 <span class="t-status crit"></span>
                 <span class="t-label">La base de connaissance des sujets de cours n'est remplie que pour un seul module sur toute la scolarité</span>
               </div>
@@ -1702,11 +1717,6 @@ footer p+p{margin-top:6px}
               <div class="task">
                 <span class="t-status warn"></span>
                 <span class="t-label">Le moteur de langage utilisé par défaut n'a pas été testé en conditions réelles avant la mise en ligne</span>
-              </div>
-            
-              <div class="task">
-                <span class="t-status warn"></span>
-                <span class="t-label">Aucun test automatique ne couvre cette fonctionnalité</span>
               </div>
             
           </div>
@@ -2198,16 +2208,18 @@ footer p+p{margin-top:6px}
         {
           name:'Jarvis', desc:'Assistant IA pour aider un étudiant à comprendre et avancer sans lui donner la solution',
           status:'en-cours', cdc:'non', blocker:'Corpus de connaissance très limité (un seul module sur toute la scolarité)', owner:'Edwin', role:'', when:'16/09', stale:false,
-          support:[], brandContact:NO_ONE,
-          comments:'Vérifié par lecture directe du code le 16/09. Mis en ligne le 15/09 (fusion de la contribution externe d\'Edwin, revue et adaptée aux conventions du projet). L\'assistant répond dans une bulle flottante ou sur un écran dédié, garde l\'historique des conversations, et peut aller chercher les vrais projets, notes et résultats de l\'étudiant pour répondre — mais sans jamais lui montrer une note ni un corrigé. Ce qui limite son utilité aujourd\'hui : la base de connaissance qui lui permet de citer les sujets de cours n\'a été remplie que pour un seul module (le C Pool) sur toute la scolarité — pour tout le reste, l\'assistant répond sans ce contexte. Le moteur de langage utilisé par défaut (Anthropic/Claude) n\'a pas encore été testé en conditions réelles ; les tests faits jusqu\'ici l\'ont été avec un autre fournisseur (Mistral) dont le crédit était épuisé au moment de la mise en ligne. Aucun test automatique ne couvre cette fonctionnalité pour l\'instant.',
+          support:[{name:'Franck Birba', role:'garde-fou anti-triche'}], brandContact:NO_ONE,
+          comments:'Vérifié par lecture directe du code le 16/09. Mis en ligne le 15/09 (fusion de la contribution externe d\'Edwin, revue et adaptée aux conventions du projet). L\'assistant répond dans une bulle flottante ou sur un écran dédié, garde l\'historique des conversations, et peut aller chercher les vrais projets, notes et résultats de l\'étudiant pour répondre — mais sans jamais lui montrer une note ni un corrigé. Ce qui limite son utilité aujourd\'hui : la base de connaissance qui lui permet de citer les sujets de cours n\'a été remplie que pour un seul module (le C Pool) sur toute la scolarité — pour tout le reste, l\'assistant répond sans ce contexte. Le moteur de langage utilisé par défaut (Anthropic/Claude) n\'a pas encore été testé en conditions réelles ; les tests faits jusqu\'ici l\'ont été avec un autre fournisseur (Mistral) dont le crédit était épuisé au moment de la mise en ligne. — Mise à jour du 16/09, vérifiée par lecture directe du code et déploiement confirmé en production (PR #537, mergée avec tous les tests automatiques au vert) : jusqu\'ici, la seule protection contre la triche était une consigne écrite donnée à l\'IA — une simple instruction, contournable par un étudiant motivé (reformulation, "ignore les règles précédentes"...). Un vrai contrôle technique a été ajouté : chaque réponse de l\'assistant est désormais relue par une seconde IA avant d\'être envoyée à l\'étudiant, qui vérifie qu\'elle respecte bien la règle. Si ce n\'est pas le cas, l\'assistant a une seconde chance de corriger sa réponse (avec le motif du refus) avant qu\'elle parte ; si la deuxième tentative échoue aussi, un message générique est envoyé à la place. Rien de non conforme ne peut donc atteindre l\'écran de l\'étudiant. Décision produit actée avec Franck le 16/09 : l\'objectif n\'est pas d\'empêcher tout code (l\'assistant doit rester aussi utile pour déboguer et répondre à des questions précises que les IA publiques, sinon personne ne s\'en sert), mais d\'empêcher le raccourci "je donne le sujet entier, l\'IA me code le projet" — et d\'interdire tout code prêt à copier-coller même quand l\'assistant aide à corriger un bug (il explique ligne par ligne, l\'étudiant réécrit lui-même). 5 tests automatiques couvrent maintenant ce contrôle.',
           tasks:[
             {label:'Bulle flottante et écran dédié, avec historique des conversations conservé', status:'ok'},
             {label:'Va chercher les vrais projets, notes et résultats de l\'étudiant pour répondre à ses questions', status:'ok'},
             {label:'Ne donne jamais de note ni de corrigé, même si on le lui demande directement', status:'ok'},
             {label:'Réglage du moteur de langage et du ton de l\'assistant ouvert au staff, sans avoir besoin de redéployer le site', status:'ok'},
+            {label:'Chaque réponse est désormais vérifiée par une seconde IA avant d\'être envoyée à l\'étudiant, avec une chance de correction si elle ne respecte pas les règles', status:'ok'},
+            {label:'Même en aidant à corriger un bug, l\'assistant explique ligne par ligne au lieu de donner le code corrigé tout fait', status:'ok'},
+            {label:'5 tests automatiques couvrent ce nouveau contrôle', status:'ok'},
             {label:'La base de connaissance des sujets de cours n\'est remplie que pour un seul module sur toute la scolarité', status:'crit'},
             {label:'Le moteur de langage utilisé par défaut n\'a pas été testé en conditions réelles avant la mise en ligne', status:'warn'},
-            {label:'Aucun test automatique ne couvre cette fonctionnalité', status:'warn'},
           ]
         },
       ],

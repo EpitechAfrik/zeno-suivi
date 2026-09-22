@@ -1129,7 +1129,7 @@ footer p+p{margin-top:6px}
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
           <span class="owner clickable" data-contact="5" title="Voir porteur et interlocuteur"><span>Giovanni</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">21/08</span>
+          <span class="when ">22/09</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -1153,6 +1153,11 @@ footer p+p{margin-top:6px}
               <div class="task">
                 <span class="t-status warn"></span>
                 <span class="t-label">Bloqué : le suivi des sanctions disciplinaires n'a jamais été vérifié en profondeur</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Certificat de scolarité conforme au modèle officiel, généré depuis la fiche de l'étudiant — en production le 22/09 : texte du modèle au mot près, bonne année universitaire, filiation (un tuteur n'est jamais présenté comme un parent), signature et papier à en-tête du campus, numéro officiel unique par campus ; s'il manque une information, l'écran dit laquelle et où la corriger. Les quatre autres documents générés restent inchangés. Pas encore vérifié à l'écran sur un vrai étudiant ; l'émission pour toute une promotion est prévue ensuite</span>
               </div>
             
           </div>
@@ -1526,7 +1531,7 @@ footer p+p{margin-top:6px}
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
           <span class="owner clickable" data-contact="13" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">18/09</span>
+          <span class="when ">22/09</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -1575,6 +1580,21 @@ footer p+p{margin-top:6px}
               <div class="task">
                 <span class="t-status warn"></span>
                 <span class="t-label">Premier usage réel (contrat d'inscription) dès que les modèles de contrat par promotion sont configurés ; les autres équipes basculeront une par une, sur décision explicite</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Contrat d'inscription et annexes signés comme un seul dossier — en production le 22/09 : sur la fiche d'une promotion, on joint au contrat ses annexes (obligatoires ou facultatives, dans l'ordre voulu, copiables depuis une autre promotion) ; sur la fiche du candidat, chaque document est suivi (qui a signé, relance document par document), avec l'annonce « dossier signé » ou « dossier bloqué ». Pas encore vérifié à l'écran sur un vrai dossier</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Signature de l'école apposée automatiquement sur le contrat et ses annexes (image de signature du responsable du campus) ; l'envoi est bloqué, avec un message clair, si le campus n'a pas d'image — en production le 22/09, mais l'essai sur un vrai document prévu avant la mise en ligne n'a pas été fait : à réaliser avant le prochain envoi de contrat</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Un candidat affecté à la main à une promotion reçoit bien le contrat de cette promotion, avec le diplôme de son cursus ; avant, l'envoi était refusé (« aucune promotion ne correspond ») dès que la promotion choisie différait de la candidature — en production le 22/09, à constater sur le cas signalé (Programme Grande École 2031, Cotonou)</span>
               </div>
             
           </div>
@@ -2079,14 +2099,15 @@ footer p+p{margin-top:6px}
         },
         {
           name:'Campus', desc:'Vie étudiante, événements, fiche étudiant',
-          status:'fonctionnel', cdc:'non', owner:'Giovanni', role:'', when:'21/08', stale:false,
+          status:'fonctionnel', cdc:'non', owner:'Giovanni', role:'', when:'22/09', stale:false,
           support:[{name:'David', role:'Ressource additionnelle'}], brandContact:{name:'Laure, Angelo (14/08) — Fawaz, Ghislain mentionnés selon les sujets dans une source antérieure', role:''},
-          comments:'Selon le suivi de Rachad : le volet "vie associative" est en cours, sans CDC, sur input du BO (bureau des élèves). Vérifié par lecture directe du code le 31/08 : la gestion des bâtiments/salles/matériel a été déplacée dans un chantier séparé ("Infrastructure & Équipements"). La fiche étudiant a été refondue avec une vue d\'ensemble plus complète.',
+          comments:'Selon le suivi de Rachad : le volet "vie associative" est en cours, sans CDC, sur input du BO (bureau des élèves). Vérifié par lecture directe du code le 31/08 : la gestion des bâtiments/salles/matériel a été déplacée dans un chantier séparé ("Infrastructure & Équipements"). La fiche étudiant a été refondue avec une vue d\'ensemble plus complète. Mise à jour du 22/09, d\'après le descriptif des livraisons (code non relu pour cette mise à jour) ; mise en production dans la nuit du 21 au 22/09 confirmée par le journal de mise en ligne, relu : le certificat de scolarité généré depuis la fiche de l\'étudiant s\'écartait du modèle officiel (formule d\'en-tête, numérotation, année universitaire confondue avec l\'année de sortie, ni filiation, ni signature, ni papier à en-tête). Il est remplacé par un document conforme, qui s\'appuie sur le signataire et le papier à en-tête réglés pour chaque campus.',
           tasks:[
             {label:'La fiche d\'un étudiant affiche une vue d\'ensemble complète (situation académique, administrative, financière, alertes de décrochage)', status:'ok'},
             {label:'Organisation d\'événements avec inscriptions et invitations', status:'ok'},
             {label:'Prise de rendez-vous en ligne avec l\'équipe pédagogique', status:'ok'},
             {label:'Bloqué : le suivi des sanctions disciplinaires n\'a jamais été vérifié en profondeur', status:'warn'},
+            {label:'Certificat de scolarité conforme au modèle officiel, généré depuis la fiche de l\'étudiant — en production le 22/09 : texte du modèle au mot près, bonne année universitaire, filiation (un tuteur n\'est jamais présenté comme un parent), signature et papier à en-tête du campus, numéro officiel unique par campus ; s\'il manque une information, l\'écran dit laquelle et où la corriger. Les quatre autres documents générés restent inchangés. Pas encore vérifié à l\'écran sur un vrai étudiant ; l\'émission pour toute une promotion est prévue ensuite', status:'warn'},
           ]
         },
         {
@@ -2191,9 +2212,9 @@ footer p+p{margin-top:6px}
         },
         {
           name:'Signatures électroniques', desc:'Nouvel outil central pour envoyer et signer des documents en ligne',
-          status:'en-cours', cdc:'non', blocker:'Mis en ligne le 10/09 ; premier usage réel (contrat d\'inscription) en attente de configuration', owner:'Yemalin Modeste', role:'', when:'18/09', stale:false,
+          status:'en-cours', cdc:'non', blocker:'Mis en ligne le 10/09 ; premier usage réel (contrat d\'inscription) en attente de configuration', owner:'Yemalin Modeste', role:'', when:'22/09', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'Vérifié par lecture directe du code le 07/09 : jusqu\'ici, l\'envoi de documents à signer en ligne (via l\'outil externe DocuSeal) était fait en double, triple, quadruple par plusieurs équipes différentes (carrière, admissions, pédagogie, CRM, communication, marketing, portails), chacune à sa façon — et le point d\'accès technique à cet outil externe n\'était protégé par aucune vérification d\'identité en production (n\'importe qui pouvait y accéder). Ce problème de sécurité a été corrigé en premier. Un nouvel outil central a ensuite été construit : un écran dédié pour préparer et envoyer un document à signer, une page de signature aux couleurs de l\'école (au lieu de rediriger la personne vers le site de l\'outil externe), la possibilité d\'exiger un ordre précis de signature (ex. l\'entreprise signe avant l\'étudiant) plutôt que tout le monde en même temps, une relance manuelle si quelqu\'un tarde à signer, et un lien vers la fiche de l\'étudiant, du candidat, du contact ou du partenaire concerné. Construit et testé sur la machine de développement, mais pas encore mis en ligne ni relié à un vrai chantier métier — chaque équipe continuera d\'utiliser sa méthode actuelle jusqu\'à ce qu\'elle décide explicitement de basculer vers le nouvel outil, une par une, sans urgence ni bascule forcée. — Mise à jour du 10/09, vérifiée par déploiement confirmé en production : l\'outil est en ligne depuis le 10/09 et relié à son premier chantier métier, le contrat d\'inscription des admissions (voir le chantier Admission). Il sait désormais figer certains champs pré-remplis que le signataire ne peut pas modifier (ex. le numéro de contrat), adapter le texte de l\'invitation au type de document envoyé, et déclencher une suite quand un signataire a terminé (ex. faire avancer le dossier du candidat). Les autres équipes continuent d\'utiliser leur méthode actuelle jusqu\'à décision de bascule. — Mise à jour du 18/09, vérifiée par lecture du document de conception et du descriptif de la livraison, et par mise en production confirmée le 18/09 au soir (le code lui-même n\'a pas été relu pour cette mise à jour) : dans l\'écran qui sert à préparer un modèle de document à signer, on peut désormais choisir la taille du texte de chaque champ (8, 10, 12 ou 14) — ce réglage n\'existait que pour les conventions de stage — et tout nouveau champ part en taille 10. Jusqu\'ici l\'outil de signature externe rétrécissait tout seul le texte des champs trop bas, jusqu\'à le rendre illisible : c\'est ce qui était arrivé au modèle de test du contrat d\'inscription. Les modèles déjà en place ne sont pas modifiés : rien ne change dans un document existant sans un geste de la personne qui l\'édite. Également en production depuis le 18/09, d\'après le descriptif des livraisons (code non relu) : on peut rouvrir un modèle pour le corriger sans perdre ses zones, sa taille de texte ni ses rattachements, et la liste des modèles n\'affiche plus que ceux qui sont encore en service.',
+          comments:'Vérifié par lecture directe du code le 07/09 : jusqu\'ici, l\'envoi de documents à signer en ligne (via l\'outil externe DocuSeal) était fait en double, triple, quadruple par plusieurs équipes différentes (carrière, admissions, pédagogie, CRM, communication, marketing, portails), chacune à sa façon — et le point d\'accès technique à cet outil externe n\'était protégé par aucune vérification d\'identité en production (n\'importe qui pouvait y accéder). Ce problème de sécurité a été corrigé en premier. Un nouvel outil central a ensuite été construit : un écran dédié pour préparer et envoyer un document à signer, une page de signature aux couleurs de l\'école (au lieu de rediriger la personne vers le site de l\'outil externe), la possibilité d\'exiger un ordre précis de signature (ex. l\'entreprise signe avant l\'étudiant) plutôt que tout le monde en même temps, une relance manuelle si quelqu\'un tarde à signer, et un lien vers la fiche de l\'étudiant, du candidat, du contact ou du partenaire concerné. Construit et testé sur la machine de développement, mais pas encore mis en ligne ni relié à un vrai chantier métier — chaque équipe continuera d\'utiliser sa méthode actuelle jusqu\'à ce qu\'elle décide explicitement de basculer vers le nouvel outil, une par une, sans urgence ni bascule forcée. — Mise à jour du 10/09, vérifiée par déploiement confirmé en production : l\'outil est en ligne depuis le 10/09 et relié à son premier chantier métier, le contrat d\'inscription des admissions (voir le chantier Admission). Il sait désormais figer certains champs pré-remplis que le signataire ne peut pas modifier (ex. le numéro de contrat), adapter le texte de l\'invitation au type de document envoyé, et déclencher une suite quand un signataire a terminé (ex. faire avancer le dossier du candidat). Les autres équipes continuent d\'utiliser leur méthode actuelle jusqu\'à décision de bascule. — Mise à jour du 18/09, vérifiée par lecture du document de conception et du descriptif de la livraison, et par mise en production confirmée le 18/09 au soir (le code lui-même n\'a pas été relu pour cette mise à jour) : dans l\'écran qui sert à préparer un modèle de document à signer, on peut désormais choisir la taille du texte de chaque champ (8, 10, 12 ou 14) — ce réglage n\'existait que pour les conventions de stage — et tout nouveau champ part en taille 10. Jusqu\'ici l\'outil de signature externe rétrécissait tout seul le texte des champs trop bas, jusqu\'à le rendre illisible : c\'est ce qui était arrivé au modèle de test du contrat d\'inscription. Les modèles déjà en place ne sont pas modifiés : rien ne change dans un document existant sans un geste de la personne qui l\'édite. Également en production depuis le 18/09, d\'après le descriptif des livraisons (code non relu) : on peut rouvrir un modèle pour le corriger sans perdre ses zones, sa taille de texte ni ses rattachements, et la liste des modèles n\'affiche plus que ceux qui sont encore en service. Mise à jour du 22/09, d\'après le descriptif des livraisons (code non relu pour cette mise à jour) ; mise en production dans la nuit du 21 au 22/09 confirmée par le journal de mise en ligne, relu : le contrat d\'inscription devient un dossier (contrat et annexes) suivi d\'un seul tenant, la signature de l\'école y est apposée automatiquement, et un candidat affecté à la main à une promotion reçoit enfin le contrat de cette promotion (l\'envoi était jusque-là refusé à tort). Point d\'attention : le descriptif de la signature de l\'école demandait un essai sur un vrai document avant toute mise en production ; cet essai n\'a pas été fait. Il doit précéder le prochain envoi de contrat.',
           tasks:[
             {label:'Écran dédié pour préparer et envoyer un document à signer', status:'ok'},
             {label:'Page de signature aux couleurs de l\'école, sans redirection vers le site de l\'outil externe', status:'ok'},
@@ -2204,6 +2225,9 @@ footer p+p{margin-top:6px}
             {label:'Mis en ligne le 10/09, avec le contrat d\'inscription des admissions comme premier usage', status:'ok'},
             {label:'Taille du texte réglable champ par champ dans la préparation des modèles (8, 10, 12 ou 14), taille 10 par défaut pour tout nouveau champ : le texte ne devient plus illisible dans les zones basses — en production le 18/09', status:'ok'},
             {label:'Premier usage réel (contrat d\'inscription) dès que les modèles de contrat par promotion sont configurés ; les autres équipes basculeront une par une, sur décision explicite', status:'warn'},
+            {label:'Contrat d\'inscription et annexes signés comme un seul dossier — en production le 22/09 : sur la fiche d\'une promotion, on joint au contrat ses annexes (obligatoires ou facultatives, dans l\'ordre voulu, copiables depuis une autre promotion) ; sur la fiche du candidat, chaque document est suivi (qui a signé, relance document par document), avec l\'annonce « dossier signé » ou « dossier bloqué ». Pas encore vérifié à l\'écran sur un vrai dossier', status:'warn'},
+            {label:'Signature de l\'école apposée automatiquement sur le contrat et ses annexes (image de signature du responsable du campus) ; l\'envoi est bloqué, avec un message clair, si le campus n\'a pas d\'image — en production le 22/09, mais l\'essai sur un vrai document prévu avant la mise en ligne n\'a pas été fait : à réaliser avant le prochain envoi de contrat', status:'warn'},
+            {label:'Un candidat affecté à la main à une promotion reçoit bien le contrat de cette promotion, avec le diplôme de son cursus ; avant, l\'envoi était refusé (« aucune promotion ne correspond ») dès que la promotion choisie différait de la candidature — en production le 22/09, à constater sur le cas signalé (Programme Grande École 2031, Cotonou)', status:'warn'},
           ]
         },
         {

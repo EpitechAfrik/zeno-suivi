@@ -734,7 +734,7 @@ footer p+p{margin-top:6px}
           </div>
           <span class="cdc yes">CDC&nbsp;Oui</span>
           <span class="owner clickable" data-contact="0" title="Voir porteur et interlocuteur"><span>Yemalin Modeste, Franck Birba</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">02/09</span>
+          <span class="when ">04/10</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -768,6 +768,16 @@ footer p+p{margin-top:6px}
               <div class="task">
                 <span class="t-status crit"></span>
                 <span class="t-label">Corriger les accès non protégés déjà identifiés — priorité de la semaine en cours</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Les droits d'accès aux écrans sont réconciliés entre l'écran, le serveur et les Réglages → Rôles (03-04/10) : enregistrer une équipe ne lui retire plus d'accès, et chaque équipe peut ouvrir les écrans auxquels elle a droit. Mise en production à confirmer</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">À vérifier avec de vrais comptes : la gestion des tickets s'ouvre désormais pour la pédagogie, les admissions, le campus, le career center et la finance, et les quiz pour les admissions — des écrans que ces équipes n'avaient jamais vus</span>
               </div>
             
               <div class="task">
@@ -1659,7 +1669,7 @@ footer p+p{margin-top:6px}
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
           <span class="owner clickable" data-contact="15" title="Voir porteur et interlocuteur"><span>Edwin</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">31/08</span>
+          <span class="when ">04/10</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -1703,6 +1713,11 @@ footer p+p{margin-top:6px}
               <div class="task">
                 <span class="t-status idle"></span>
                 <span class="t-label">L'interface actuelle est utilisée sans blocage ; une nouvelle interface existe en maquette, pas encore mise en place</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Signalé le 03/10 : l'équipe pédagogique ne pouvait pas ouvrir Devkora (renvoyée vers l'écran Communication). Corrigé le 03/10, mise en production à confirmer, à essayer avec un compte pédagogique</span>
               </div>
             
           </div>
@@ -2004,9 +2019,9 @@ footer p+p{margin-top:6px}
       modules: [
         {
           name:'Architecture globale (refonte technique)', desc:'Revoir en profondeur comment Zeno est construit : comment les données sont reliées entre elles, comment les accès sont contrôlés, et comment séparer l\'environnement de test de celui utilisé par les vrais utilisateurs',
-          status:'en-cours', cdc:'oui', blocker:'Accès non protégés identifiés, correction déjà planifiée', owner:'Yemalin Modeste, Franck Birba', role:'', when:'02/09', stale:false,
+          status:'en-cours', cdc:'oui', blocker:'Accès non protégés identifiés, correction déjà planifiée', owner:'Yemalin Modeste, Franck Birba', role:'', when:'04/10', stale:false,
           support:[{name:'Cédric', role:'Support'}],
-          comments:'Vérifié par lecture directe du code (diagnostic complet mené le 13-14/08/2026), cadré en réunion technique le 14/08, puis les deux documents de cadrage ont été fusionnés dans le projet le 18/08 : un document d\'architecture cible complet existe maintenant, avec un plan de travail chiffré sur plusieurs semaines et des tâches déjà distribuées. La semaine du 18 au 25/08 est consacrée à poser les fondations (voir aussi « Socle multi-marques » dans l’onglet CRM AEIG, et « Dev Platform »). Mise à jour du 02/09 (rapportée par Yemalin, pas vérifiée par lecture de code) : la semaine du 18-25/08 a en réalité été consacrée à la rédaction des spécifications de chaque module plutôt qu\'au démarrage concret du chantier pilote Admission comme envisagé initialement — voir le détail dans « Socle multi-marques » (onglet CRM AEIG), qui est le chantier qui deviendra la nouvelle version de Zeno.',
+          comments:'Vérifié par lecture directe du code (diagnostic complet mené le 13-14/08/2026), cadré en réunion technique le 14/08, puis les deux documents de cadrage ont été fusionnés dans le projet le 18/08 : un document d\'architecture cible complet existe maintenant, avec un plan de travail chiffré sur plusieurs semaines et des tâches déjà distribuées. La semaine du 18 au 25/08 est consacrée à poser les fondations (voir aussi « Socle multi-marques » dans l’onglet CRM AEIG, et « Dev Platform »). Mise à jour du 02/09 (rapportée par Yemalin, pas vérifiée par lecture de code) : la semaine du 18-25/08 a en réalité été consacrée à la rédaction des spécifications de chaque module plutôt qu\'au démarrage concret du chantier pilote Admission comme envisagé initialement — voir le détail dans « Socle multi-marques » (onglet CRM AEIG), qui est le chantier qui deviendra la nouvelle version de Zeno. Ajout du 04/10 (vérifié par lecture directe du code, sur la version actuelle de Zeno) : la liste de « qui a le droit de voir quel écran » existait en quatre exemplaires qui s\'étaient éloignés les uns des autres — celle de l\'écran, celle du serveur, celle des Réglages → Rôles et celle de l\'historique des fiches. Conséquences constatées : certaines équipes se voyaient refuser des écrans auxquels elles avaient pourtant droit — Devkora pour la pédagogie (affiché dans son menu, mais refusé à l\'ouverture), la gestion des tickets pour cinq équipes et les quiz pour les admissions (autorisés par le serveur, mais refusés par l\'écran) — et le simple fait d\'ouvrir puis d\'enregistrer une équipe dans Réglages → Rôles lui retirait des accès sans que personne ne les décoche — l\'équipe Communication les perdait tous. Les quatre listes ont été réconciliées entre le 03 et le 04/10, avec un contrôle automatique qui bloque toute nouvelle divergence. Un seul écart est gardé volontairement : l\'équipe campus accède aux données étudiants sans voir la liste pédagogique générale dans son menu. Intégré, mise en production à confirmer. Cela ne traite pas les « accès non protégés » ci-dessus, qui restent ouverts.',
           tasks:[
             {label:'Diagnostic complet fait (données, accès, code obsolète)', status:'ok'},
             {label:'Document de vision cible de Zeno rédigé et validé (Franck Birba)', status:'ok'},
@@ -2014,6 +2029,8 @@ footer p+p{margin-top:6px}
             {label:'Décision actée : chaque marque aura sa propre installation Zeno indépendante, plutôt qu\'une installation unique partagée par toutes (pour qu\'une panne ou une mise à jour chez une marque ne touche jamais les autres)', status:'ok'},
             {label:'Décision actée : Digital Valley sera la première marque à utiliser la nouvelle version ; Epitech restera sur l\'ancienne le temps que ce soit stabilisé', status:'ok'},
             {label:'Corriger les accès non protégés déjà identifiés — priorité de la semaine en cours', status:'crit'},
+            {label:'Les droits d\'accès aux écrans sont réconciliés entre l\'écran, le serveur et les Réglages → Rôles (03-04/10) : enregistrer une équipe ne lui retire plus d\'accès, et chaque équipe peut ouvrir les écrans auxquels elle a droit. Mise en production à confirmer', status:'ok'},
+            {label:'À vérifier avec de vrais comptes : la gestion des tickets s\'ouvre désormais pour la pédagogie, les admissions, le campus, le career center et la finance, et les quiz pour les admissions — des écrans que ces équipes n\'avaient jamais vus', status:'warn'},
             {label:'Fiches techniques des 12 modules cibles, gabarit commun et registre des incohérences de données — rédigées le 19 août. Rédaction terminée', status:'ok'},
             {label:'Le développement de la nouvelle version est à l\'arrêt depuis le 17 août : l\'équipe est repartie sur la maintenance et les évolutions de la version actuelle. Détail dans « Socle multi-marques », onglet CRM AEIG', status:'crit'},
             {label:'Prévu : migrer progressivement les autres chantiers vers la nouvelle structure', status:'idle'},
@@ -2251,9 +2268,9 @@ footer p+p{margin-top:6px}
         },
         {
           name:'DEVKORA', desc:'Tests de code pour les candidats/étudiants',
-          status:'fonctionnel', cdc:'non', owner:'Edwin', role:'', when:'31/08', stale:false,
+          status:'fonctionnel', cdc:'non', owner:'Edwin', role:'', when:'04/10', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'Précisé le 14/08 : utilisé pour les tests techniques d\'admission et l\'entraînement continu des étudiants, actuellement déployé sur le campus d\'Abidjan. Incident du 26-27/08 : un groupe de candidats est resté bloqué en plein test sans aucun recours, à cause d\'un bug qui désactivait le bouton d\'envoi après une coupure réseau en fin de temps imparti. Corrigé et vérifié par lecture directe du code le 27/08, aucune rechute depuis.',
+          comments:'Précisé le 14/08 : utilisé pour les tests techniques d\'admission et l\'entraînement continu des étudiants, actuellement déployé sur le campus d\'Abidjan. Incident du 26-27/08 : un groupe de candidats est resté bloqué en plein test sans aucun recours, à cause d\'un bug qui désactivait le bouton d\'envoi après une coupure réseau en fin de temps imparti. Corrigé et vérifié par lecture directe du code le 27/08, aucune rechute depuis. Ajout du 04/10 (vérifié par lecture directe du code, correctif écrit et testé le 03/10) : un membre de l\'équipe pédagogique a signalé que cliquer sur Devkora le renvoyait vers l\'écran Communication. Le menu proposait bien Devkora à toute l\'équipe pédagogique, mais l\'écran lui-même ne la reconnaissait pas et la renvoyait vers sa page d\'accueil — qui, de plus, tombait sur Communication au lieu du tableau de bord pédagogique. Les deux défauts sont corrigés ; un contrôle automatique empêche désormais que le menu et l\'écran divergent à nouveau. Correction validée dans le code et intégrée le 03/10, mise en production à confirmer, et pas encore essayée avec un vrai compte pédagogique.',
           tasks:[
             {label:'Exécution réelle de code dans 38 langages', status:'ok'},
             {label:'Essais illimités avant le rendu final', status:'ok'},
@@ -2263,6 +2280,7 @@ footer p+p{margin-top:6px}
             {label:'Incident du 26-27/08 corrigé : un candidat peut désormais terminer et envoyer son test même après une coupure réseau', status:'ok'},
             {label:'La supervision technique des erreurs est maintenant active sur l\'écran de passage de test (elle ne l\'était pas avant, alors que cet écran est public)', status:'ok'},
             {label:'L\'interface actuelle est utilisée sans blocage ; une nouvelle interface existe en maquette, pas encore mise en place', status:'idle'},
+            {label:'Signalé le 03/10 : l\'équipe pédagogique ne pouvait pas ouvrir Devkora (renvoyée vers l\'écran Communication). Corrigé le 03/10, mise en production à confirmer, à essayer avec un compte pédagogique', status:'warn'},
           ]
         },
         {

@@ -1310,10 +1310,10 @@ footer p+p{margin-top:6px}
     
       <div class="module" data-idx="7">
         <div class="module-row" data-toggle="7" tabindex="0">
-          <div><span class="module-name">Formulaires</span><span class="module-desc">Création, collecte et export de formulaires</span></div>
+          <div><span class="module-name">Formulaires</span><span class="module-desc">Création, collecte et export de formulaires — et unification des deux outils de formulaires en un seul</span></div>
           <div class="status-cell">
             <span class="pill ok">Fonctionnel</span>
-            
+            <span class="blocker-tag">Unification à l'arrêt depuis le 21/08</span>
           </div>
           <span class="cdc no">CDC&nbsp;Non</span>
           <span class="owner clickable" data-contact="7" title="Voir porteur et interlocuteur"><span>Giovanni ATCHAOUE</span><span class="info-icon">&#9432;</span></span>
@@ -1339,8 +1339,23 @@ footer p+p{margin-top:6px}
               </div>
             
               <div class="task">
+                <span class="t-status crit"></span>
+                <span class="t-label">Unification, dernière étape : retirer l'ancien outil « Formulaires (ancien) » (questionnaires notés, résultats) après avoir compté et repris ses réponses réelles. Suspendue depuis le 21/08 dans l'attente de ce comptage ; aucun avancement dans le code depuis, et aucun outil de reprise des réponses n'existe encore (vérifié le 06/10)</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Unification : le nouvel outil reprend les types de questions utiles de l'ancien (classement par ordre de préférence, date et heure, curseur, choix par images…) — 20-21/08</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Unification : les anciennes adresses des formulaires renvoient automatiquement vers le nouvel outil</span>
+              </div>
+            
+              <div class="task">
                 <span class="t-status warn"></span>
-                <span class="t-label">Bloqué : l'ancien outil de formulaires reste actif en parallèle tant que la bascule n'est pas confirmée sans perte de données. Constat du 06/10 : les anciennes adresses renvoient vers le nouvel outil, mais l'outil séparé des questionnaires de suivi notés, lui aussi intitulé « Formulaires », reste ouvert ; aucun avancement de la bascule depuis le 21/08</span>
+                <span class="t-label">Unification : compter en production les réponses réelles encore dans l'ancien outil, puis décider de les reprendre ou de les archiver — à faire, personne n'est désigné dans le code</span>
               </div>
             
           </div>
@@ -2439,15 +2454,18 @@ footer p+p{margin-top:6px}
           ]
         },
         {
-          name:'Formulaires', desc:'Création, collecte et export de formulaires',
-          status:'fonctionnel', cdc:'non', owner:'Giovanni ATCHAOUE', role:'', when:'05/10', stale:false,
+          name:'Formulaires', desc:'Création, collecte et export de formulaires — et unification des deux outils de formulaires en un seul',
+          status:'fonctionnel', cdc:'non', blocker:'Unification à l\'arrêt depuis le 21/08', owner:'Giovanni ATCHAOUE', role:'', when:'05/10', stale:false,
           support:[], brandContact:NO_ONE,
-          comments:'Vérifié par lecture directe du code le 31/08 : nouvel outil de formulaires (classés par thème : admission, vie étudiante, écoute...) qui remplace progressivement l\'ancien module du même nom. L\'ancien reste accessible en parallèle, le temps de confirmer qu\'il ne contient plus de réponses réelles à récupérer. Porteur précisé par Yemalin le 03/09 : Giovanni ATCHAOUE. Mise à jour du 06/10, vérifiée par lecture du code et de l\'historique des livraisons : les écrans du nouvel outil n\'ont pas changé depuis le 21/08. Seule retouche depuis : le 05/10, une ancienne page de statistiques des formulaires, consultable sans être membre de l\'équipe, est désormais réservée à l\'équipe (correctif de sécurité, mise en production à confirmer). Précision : les anciennes adresses des formulaires renvoient déjà automatiquement vers le nouvel outil ; ce qui reste en parallèle est l\'outil séparé « Formulaires » des questionnaires de suivi notés, inchangé depuis le 06/08. La bascule n\'a pas avancé depuis le 21/08.',
+          comments:'Vérifié par lecture directe du code le 31/08 : nouvel outil de formulaires (classés par thème : admission, vie étudiante, écoute...) qui remplace progressivement l\'ancien module du même nom. L\'ancien reste accessible en parallèle, le temps de confirmer qu\'il ne contient plus de réponses réelles à récupérer. Porteur précisé par Yemalin le 03/09 : Giovanni ATCHAOUE. Mise à jour du 06/10, vérifiée par lecture du code et de l\'historique des livraisons : les écrans du nouvel outil n\'ont pas changé depuis le 21/08. Seule retouche depuis : le 05/10, une ancienne page de statistiques des formulaires, consultable sans être membre de l\'équipe, est désormais réservée à l\'équipe (correctif de sécurité, mise en production à confirmer). Précision : les anciennes adresses des formulaires renvoient déjà automatiquement vers le nouvel outil ; ce qui reste en parallèle est l\'outil séparé « Formulaires » des questionnaires de suivi notés, inchangé depuis le 06/08. La bascule n\'a pas avancé depuis le 21/08. Précision du 06/10 (Franck Birba) : Formulaires est aussi un chantier d\'unification — il y avait deux outils de formulaires distincts, et le nouvel outil doit absorber l\'ancien. Vérifié dans le code et l\'historique le 06/10 : l\'essentiel de la fusion a été livré du 20 au 21/08 (le nouvel outil a repris les types de questions utiles de l\'ancien, la grille des réponses, l\'export Excel, le classement par thème ; les anciennes adresses renvoient vers le nouvel outil). Reste la dernière étape : l\'ancien outil est toujours ouvert, sous l\'intitulé « Formulaires (ancien) » dans le menu, parce qu\'on ne sait pas encore s\'il contient des réponses réelles à reprendre. Son retrait attend ce comptage depuis le 21/08, sans avancement depuis. Ce que la note précédente du 06/10 appelait « outil séparé des questionnaires notés » est bien cet ancien outil à unifier, pas un autre chantier.',
           tasks:[
             {label:'Création de formulaires classés par thème', status:'ok'},
             {label:'Consultation des réponses dans un tableau', status:'ok'},
             {label:'Export des réponses en Excel', status:'ok'},
-            {label:'Bloqué : l\'ancien outil de formulaires reste actif en parallèle tant que la bascule n\'est pas confirmée sans perte de données. Constat du 06/10 : les anciennes adresses renvoient vers le nouvel outil, mais l\'outil séparé des questionnaires de suivi notés, lui aussi intitulé « Formulaires », reste ouvert ; aucun avancement de la bascule depuis le 21/08', status:'warn'},
+            {label:'Unification, dernière étape : retirer l\'ancien outil « Formulaires (ancien) » (questionnaires notés, résultats) après avoir compté et repris ses réponses réelles. Suspendue depuis le 21/08 dans l\'attente de ce comptage ; aucun avancement dans le code depuis, et aucun outil de reprise des réponses n\'existe encore (vérifié le 06/10)', status:'crit'},
+            {label:'Unification : le nouvel outil reprend les types de questions utiles de l\'ancien (classement par ordre de préférence, date et heure, curseur, choix par images…) — 20-21/08', status:'ok'},
+            {label:'Unification : les anciennes adresses des formulaires renvoient automatiquement vers le nouvel outil', status:'ok'},
+            {label:'Unification : compter en production les réponses réelles encore dans l\'ancien outil, puis décider de les reprendre ou de les archiver — à faire, personne n\'est désigné dans le code', status:'warn'},
           ]
         },
         {

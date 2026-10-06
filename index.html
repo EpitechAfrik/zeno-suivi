@@ -1254,14 +1254,14 @@ footer p+p{margin-top:6px}
     
       <div class="module" data-idx="8">
         <div class="module-row" data-toggle="8" tabindex="0">
-          <div><span class="module-name">Portail parent</span><span class="module-desc">Notes, présences, RDV, paiements — écrans en partie en refonte</span></div>
+          <div><span class="module-name">Portail parent</span><span class="module-desc">Suivi de l'enfant (niveau, progression, projets, présences), rendez-vous et vie du campus</span></div>
           <div class="status-cell">
             <span class="pill ok">Fonctionnel</span>
-            <span class="blocker-tag">Token my.epitech non communiqué</span>
+            <span class="blocker-tag">Paiements en attente de l'intégration Odoo</span>
           </div>
           <span class="cdc partial">CDC&nbsp;Partiel</span>
           <span class="owner clickable" data-contact="8" title="Voir porteur et interlocuteur"><span>Yemalin Modeste</span><span class="info-icon">&#9432;</span></span>
-          <span class="when ">02/09</span>
+          <span class="when ">06/10</span>
           <span class="chevron">&#8250;</span>
         </div>
         <div class="tasks">
@@ -1288,8 +1288,8 @@ footer p+p{margin-top:6px}
               </div>
             
               <div class="task">
-                <span class="t-status ok"></span>
-                <span class="t-label">Suivi des paiements de scolarité</span>
+                <span class="t-status warn"></span>
+                <span class="t-label">Suivi des paiements de scolarité — démenti depuis le 20/09 : la page n'affiche plus aucun montant, en attente de l'intégration Odoo</span>
               </div>
             
               <div class="task">
@@ -1313,8 +1313,28 @@ footer p+p{margin-top:6px}
               </div>
             
               <div class="task">
-                <span class="t-status crit"></span>
-                <span class="t-label">En pause : la refonte de certains écrans attend le token my.epitech pour récupérer les données</span>
+                <span class="t-status ok"></span>
+                <span class="t-label">Les écrans du suivi sont alimentés par les données my.epitech (le token attendu n'est plus un blocage) — depuis le 02/10</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Tous les écrans du portail refaits dans le nouveau design, plus aucune donnée inventée affichée — 24 au 28/09</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status ok"></span>
+                <span class="t-label">Invitation des parents en masse par les équipes du campus — 05/10</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Vie du campus : événements ouverts aux familles (avec inscription), nouvelles du site, posts des réseaux du campus, lettres aux familles — fusionné le 06/10, mise en production à confirmer</span>
+              </div>
+            
+              <div class="task">
+                <span class="t-status warn"></span>
+                <span class="t-label">Faille corrigée : un compte portail pouvait inscrire ou désinscrire quelqu'un d'autre à un événement — correctif prêt, en attente de fusion</span>
               </div>
             
               <div class="task">
@@ -2157,21 +2177,25 @@ footer p+p{margin-top:6px}
           ]
         },
         {
-          name:'Portail parent', desc:'Notes, présences, RDV, paiements — écrans en partie en refonte',
-          status:'fonctionnel', cdc:'partiel', blocker:'Token my.epitech non communiqué', owner:'Yemalin Modeste', role:'', when:'02/09', stale:false,
+          name:'Portail parent', desc:'Suivi de l\'enfant (niveau, progression, projets, présences), rendez-vous et vie du campus',
+          status:'fonctionnel', cdc:'partiel', blocker:'Paiements en attente de l\'intégration Odoo', owner:'Yemalin Modeste', role:'', when:'06/10', stale:false,
           support:[], brandContact:{name:'Sergino', role:'Responsable du Bachelor'},
-          comments:'Le portail est fonctionnel et utilisé (quelques zones du tableau de bord encore vides). Une partie des écrans est en refonte, en pause : on attend que le token d\'accès à la plateforme my (intra) soit communiqué pour récupérer les données. En attendant, revue de l\'interface avec Sergino (responsable du Bachelor), l\'interlocuteur principal sur ce volet. Précisé le 31/08 par Yemalin Modeste : aujourd\'hui, la source des données pour les parents doit venir de la plateforme my (intra) — token toujours pas communiqué. Le portail doit aussi être désengorgé : trop d\'informations peu utiles à retirer. Vérifié par lecture directe du code le 02/09 : le désengorgement a démarré — l\'écran d\'accueil du parent ne garde plus qu\'une vue d\'ensemble simple et un accès direct au suivi du poste de travail et aux rendez-vous, le menu de navigation encombré a été retiré. L\'écran de connexion du parent (et de l\'étudiant) a aussi été refait aux couleurs officielles Epitech. Ce travail a été avancé en priorité cette semaine aussi parce que la communication en a besoin pour prendre des captures d\'écran pour le livret remis aux parents.',
+          comments:'Le portail est fonctionnel et utilisé (quelques zones du tableau de bord encore vides). Une partie des écrans est en refonte, en pause : on attend que le token d\'accès à la plateforme my (intra) soit communiqué pour récupérer les données. En attendant, revue de l\'interface avec Sergino (responsable du Bachelor), l\'interlocuteur principal sur ce volet. Précisé le 31/08 par Yemalin Modeste : aujourd\'hui, la source des données pour les parents doit venir de la plateforme my (intra) — token toujours pas communiqué. Le portail doit aussi être désengorgé : trop d\'informations peu utiles à retirer. Vérifié par lecture directe du code le 02/09 : le désengorgement a démarré — l\'écran d\'accueil du parent ne garde plus qu\'une vue d\'ensemble simple et un accès direct au suivi du poste de travail et aux rendez-vous, le menu de navigation encombré a été retiré. L\'écran de connexion du parent (et de l\'étudiant) a aussi été refait aux couleurs officielles Epitech. Ce travail a été avancé en priorité cette semaine aussi parce que la communication en a besoin pour prendre des captures d\'écran pour le livret remis aux parents. Vérifié par lecture directe du code et de l\'historique le 06/10 : le token my.epitech n\'est plus un blocage — depuis le 02/10, les écrans du suivi (niveau, progression, projets, activité de code, emploi du temps, présences) sont alimentés par les données my.epitech, et une synchronisation en échec ne vide plus le portail. Du 24 au 28/09, tous les écrans du portail ont été refaits dans le nouveau design et plus aucun écran n\'affiche de données inventées : quand une information manque, l\'écran le dit au lieu d\'afficher un exemple. La ligne « Suivi des paiements de scolarité » ci-dessous, marquée comme fait le 02/09, est démentie depuis : par décision produit du 20/09, la page Paiements n\'affiche plus aucun montant en attendant l\'intégration Odoo (elle montrait auparavant un échéancier fictif en cas d\'erreur). Le 05/10 : les équipes du campus peuvent inviter les parents en masse depuis Campus (jamais de relance d\'un parent déjà rattaché ou déjà invité). Le 06/10 : nouvelle rubrique « Vie du campus » — sur l\'accueil et dans deux nouvelles pages Actualités et Événements, le parent voit les événements ouverts aux familles de son campus (et peut s\'y inscrire), les dernières nouvelles du site epitech.africa, les derniers posts des réseaux sociaux du campus et les lettres envoyées aux familles ; prototype validé avant le développement. Fusionné le 06/10, mise en production à confirmer ; pour que les nouvelles et les posts apparaissent, l\'adresse du site et le rattachement de chaque campus à son compte réseaux doivent être renseignés en production. Le 06/10 : une faille de sécurité a été trouvée en chemin — n\'importe quel compte connecté à un portail pouvait inscrire quelqu\'un d\'autre à un événement, ou annuler l\'inscription d\'un autre participant ; correctif prêt et testé, en attente de fusion.',
           tasks:[
             {label:'Un parent voit ses enfants, leurs notes, présences, documents', status:'ok'},
             {label:'Tableau de bord d\'activité de code avec alerte si difficulté', status:'ok'},
             {label:'Demande et suivi de rendez-vous avec l\'équipe', status:'ok'},
             {label:'Messagerie directe avec l\'école', status:'ok'},
-            {label:'Suivi des paiements de scolarité', status:'ok'},
+            {label:'Suivi des paiements de scolarité — démenti depuis le 20/09 : la page n\'affiche plus aucun montant, en attente de l\'intégration Odoo', status:'warn'},
             {label:'Écran d\'accueil du parent simplifié à l\'essentiel, menu de navigation encombré retiré', status:'ok'},
             {label:'Écrans de connexion (parent et étudiant) refaits aux couleurs officielles Epitech', status:'ok'},
             {label:'Bloqué : certains compteurs du tableau de bord restent vides pour l\'instant', status:'warn'},
             {label:'Bloqué : un compte parent non relié à son enfant ne voit rien (déblocage manuel nécessaire)', status:'warn'},
-            {label:'En pause : la refonte de certains écrans attend le token my.epitech pour récupérer les données', status:'crit'},
+            {label:'Les écrans du suivi sont alimentés par les données my.epitech (le token attendu n\'est plus un blocage) — depuis le 02/10', status:'ok'},
+            {label:'Tous les écrans du portail refaits dans le nouveau design, plus aucune donnée inventée affichée — 24 au 28/09', status:'ok'},
+            {label:'Invitation des parents en masse par les équipes du campus — 05/10', status:'ok'},
+            {label:'Vie du campus : événements ouverts aux familles (avec inscription), nouvelles du site, posts des réseaux du campus, lettres aux familles — fusionné le 06/10, mise en production à confirmer', status:'warn'},
+            {label:'Faille corrigée : un compte portail pouvait inscrire ou désinscrire quelqu\'un d\'autre à un événement — correctif prêt, en attente de fusion', status:'warn'},
             {label:'En cours : revue de l\'interface avec le responsable du Bachelor', status:'warn'},
           ]
         },
